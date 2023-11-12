@@ -1,3 +1,4 @@
+use reqwest::Response;
 use serde::{Deserialize, Deserializer};
 
 /// The `OriginalError` struct represents an error with a string message and an error code.
@@ -40,6 +41,17 @@ impl<'de> Deserialize<'de> for ApiError {
             404 => Ok(ApiError::NotFound(original_error.error)),
             500 => Ok(ApiError::InternalServerError(original_error.error)),
             _ => Ok(ApiError::Other(original_error.error, original_error.code)),
+        }
+    }
+}
+
+impl ApiError {
+    pub async fn from(response: Response) -> Self {
+        let deserialed_error = response.json::<Self>().await;
+
+        match deserialed_error {
+            Ok(res) => res,
+            Err(_) => Self::ConversionFailed,
         }
     }
 }

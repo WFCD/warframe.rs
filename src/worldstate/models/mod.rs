@@ -1,3 +1,5 @@
 pub mod base;
-pub mod cetus;
+mod cetus;
 mod macros;
+
+pub use cetus::{Cetus, CetusState};

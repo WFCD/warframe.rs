@@ -1,4 +1,4 @@
-use super::{base::Endpoint, macros::timed_event};
+use super::macros::model_builder;
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -11,12 +11,8 @@ pub enum CetusState {
     Night,
 }
 
-timed_event!(Cetus
+model_builder! {
+    Cetus: "/cetusCycle",
+    timed = true;
     pub state: CetusState
-);
-
-impl Endpoint for Cetus {
-    fn get_endpoint() -> &'static str {
-        "/cetusCycle"
-    }
 }
