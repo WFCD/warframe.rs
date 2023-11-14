@@ -2,7 +2,7 @@ pub(crate) mod base;
 mod cetus;
 mod enemy;
 mod fissure;
-mod macros;
+pub(crate) mod macros;
 mod mission_type;
 
 pub use base::TimedEvent;

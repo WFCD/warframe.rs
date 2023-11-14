@@ -40,7 +40,7 @@ mod test {
     use crate::worldstate::models::{Cetus, Fissure, TimedEvent};
 
     #[tokio::test]
-    async fn test_fetch() -> Result<(), ()> {
+    async fn test_fetch() -> Result<(), ApiError> {
         let client = Client::new();
 
         match client.fetch::<Cetus>().await {
@@ -52,10 +52,7 @@ mod test {
                 cetus.eta();
                 Ok(())
             }
-            Err(why) => {
-                println!("{why:?}");
-                Err(())
-            }
+            Err(why) => Err(why),
         }
     }
 
@@ -64,24 +61,8 @@ mod test {
         let client = Client::new();
 
         match client.fetch_arr::<Fissure>().await {
-            Ok(_) => Ok(()),
+            Ok(_fissures) => Ok(()),
             Err(why) => Err(why),
-        }
-    }
-
-    #[tokio::test]
-    async fn test_fetch_arr_and_print() -> Result<(), ()> {
-        let client = Client::new();
-
-        match client.fetch_arr::<Fissure>().await {
-            Ok(fissures) => {
-                println!("{fissures:?}");
-                Ok(())
-            }
-            Err(why) => {
-                println!("{why:?}");
-                Err(())
-            }
         }
     }
 }

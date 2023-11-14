@@ -1,4 +1,3 @@
-#[macro_export]
 macro_rules! model_builder {
     /*
     Creates an RTObject Model.
@@ -6,14 +5,15 @@ macro_rules! model_builder {
     Example:
     ```rs
     model_builder! {
-        Cetus: "/cetusCycle";
+        Cetus: "/cetusCycle",
+        rt = obj;
         pub state: CetusState,
     }
     ```
     */
-    ($struct_name:ident : $endpoint:literal, rt = obj; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::impl_model_struct!(@basic $struct_name : $endpoint; $($visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = obj; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name : $endpoint; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
+        $crate::ws::impl_endpoint!($struct_name, $endpoint);
 
         impl $crate::ws::RTObject for $struct_name {}
     };
@@ -26,15 +26,16 @@ macro_rules! model_builder {
     ```rs
     model_builder! {
         Cetus: "/cetusCycle",
+        rt = obj,
         timed = true;
         pub state: CetusState,
     }
     ```
     */
-    ($struct_name:ident : $endpoint:literal, rt = obj, timed = true; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::impl_model_struct!(@timed $struct_name; $($visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::impl_timed_event!($struct_name);
-        $crate::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = obj, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@timed $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
+        $crate::ws::impl_timed_event!($struct_name);
+        $crate::ws::impl_endpoint!($struct_name, $endpoint);
 
         impl $crate::ws::RTObject for $struct_name {}
     };
@@ -47,14 +48,14 @@ macro_rules! model_builder {
     ```rs
     model_builder! {
         Cetus: "/cetusCycle",
-        rt_array = true;
+        rt = array;
         pub state: CetusState,
     }
     ```
     */
-    ($struct_name:ident : $endpoint:literal, rt = array; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::impl_model_struct!(@basic $struct_name; $($visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = array; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name : $endpoint; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
+        $crate::ws::impl_endpoint!($struct_name, $endpoint);
 
         impl $crate::ws::RTArray for $struct_name {}
     };
@@ -67,30 +68,31 @@ macro_rules! model_builder {
     ```rs
     model_builder! {
         Cetus: "/cetusCycle",
-        rt_array = true,
+        rt = array,
         timed = true;
         pub state: CetusState,
     }
     ```
     */
-    ($struct_name:ident : $endpoint:literal, rt = array, timed = true; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::impl_model_struct!(@timed $struct_name; $($visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::impl_timed_event!($struct_name);
-        $crate::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = array, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@timed $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename)?),*);
+        $crate::ws::impl_timed_event!($struct_name);
+        $crate::ws::impl_endpoint!($struct_name, $endpoint);
 
         impl $crate::ws::RTArray for $struct_name {}
     };
 }
 
 // ---------------------------------
-#[macro_export]
 macro_rules! impl_model_struct {
-    (@basic $struct_name:ident; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*) => {
+    (@basic $(:$struct_doc:literal)? $struct_name:ident; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*) => {
         #[derive(Debug, serde::Deserialize)]
         #[serde(rename_all = "camelCase")]
+        $(#[doc = $struct_doc])?
         pub struct $struct_name {
             $(
                 $(#[serde(rename(deserialize = $rename))])?
+                $(#[doc = $field_doc])?
                 $visibility $field : $field_type,
             )*
         }
@@ -98,15 +100,21 @@ macro_rules! impl_model_struct {
         impl $crate::ws::Model for $struct_name {}
     };
 
-    (@timed $struct_name:ident; $($visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*) => {
+    (@timed $(:$struct_doc:literal)? $struct_name:ident; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*) => {
         #[derive(Debug, serde::Deserialize)]
         #[serde(rename_all = "camelCase")]
+        $(#[doc = $struct_doc])?
         pub struct $struct_name {
             $(
                 $(#[serde(rename(deserialize = $rename))])?
+                $(#[doc = $field_doc])?
                 $visibility $field : $field_type,
             )*
+
+            #[doc = "The time when the event began"]
             pub activation: chrono::DateTime<chrono::Utc>,
+
+            #[doc = "The time when the event ends"]
             pub expiry: chrono::DateTime<chrono::Utc>,
         }
 
@@ -115,7 +123,6 @@ macro_rules! impl_model_struct {
 }
 
 // ---------------------------------
-#[macro_export]
 macro_rules! impl_endpoint {
     ($struct_name:ident, $endpoint:literal) => {
         impl $crate::ws::Endpoint for $struct_name {
@@ -127,7 +134,6 @@ macro_rules! impl_endpoint {
 }
 
 // ---------------------------------
-#[macro_export]
 macro_rules! impl_timed_event {
     ($struct_name:ident) => {
         impl $crate::ws::TimedEvent for $struct_name {
@@ -155,7 +161,6 @@ macro_rules! impl_timed_event {
 }
 
 // ---------------------------------
-#[macro_export]
 macro_rules! enum_builder {
     ($enum_name:ident; $($enum_option:ident $(= $enum_option_deserialize:literal)?),*$(,)?) => {
         #[derive(Debug, serde::Deserialize)]
@@ -169,3 +174,9 @@ macro_rules! enum_builder {
         }
     };
 }
+
+pub(crate) use enum_builder;
+pub(crate) use impl_endpoint;
+pub(crate) use impl_model_struct;
+pub(crate) use impl_timed_event;
+pub(crate) use model_builder;

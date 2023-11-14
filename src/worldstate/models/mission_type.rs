@@ -1,5 +1,4 @@
-use crate::enum_builder;
-
+use super::macros::enum_builder;
 enum_builder! {
     MissionType;
     AncientRetribution = "Ancient Retribution",
