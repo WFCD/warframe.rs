@@ -1,18 +1,15 @@
-use super::macros::model_builder;
-use serde::Deserialize;
+use crate::{enum_builder, model_builder};
 
-#[derive(Debug, Deserialize)]
-#[serde(rename(deserialize = "state"))]
-pub enum CetusState {
-    #[serde(rename(deserialize = "day"))]
-    Day,
-
-    #[serde(rename(deserialize = "night"))]
-    Night,
+enum_builder! {
+    CetusState;
+    Day = "day",
+    Night = "night",
 }
 
 model_builder! {
     Cetus: "/cetusCycle",
+    rt = obj,
     timed = true;
-    pub state: CetusState
+    pub id: String,
+    pub state: CetusState,
 }

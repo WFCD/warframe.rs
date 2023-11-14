@@ -1,3 +1,4 @@
+use chrono::{DateTime, Utc};
 use serde::de::DeserializeOwned;
 use serde_json::error::Error;
 
@@ -12,6 +13,12 @@ pub trait Model: DeserializeOwned {
 }
 
 pub trait TimedEvent {
+    /// The time when the event began
+    fn activation(&self) -> DateTime<Utc>;
+
+    /// The time when the event ends
+    fn expiry(&self) -> DateTime<Utc>;
+
     /// Short-time-formatted duration string representing the start of the event
     fn start_string(&self) -> String;
 
@@ -21,6 +28,10 @@ pub trait TimedEvent {
     /// Whether the event is expired or not
     fn expired(&self) -> bool;
 }
+
+pub trait RTObject {}
+
+pub trait RTArray {}
 
 pub(crate) fn get_short_format_time_string(dt: chrono::DateTime<chrono::Utc>) -> String {
     let now = chrono::Utc::now();
