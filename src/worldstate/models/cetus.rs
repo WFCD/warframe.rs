@@ -1,7 +1,13 @@
 use super::macros::{enum_builder, model_builder};
+
 enum_builder! {
+    :"Represents the current state on cetus"
     CetusState;
+
+    :"Represents Cetus' day state"
     Day = "day",
+
+    :"Rpresents Cetus' night state"
     Night = "night",
 }
 

@@ -11,9 +11,9 @@ macro_rules! model_builder {
     }
     ```
     */
-    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = obj; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name : $endpoint; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::ws::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident $(: $endpoint:literal)?, rt = obj; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
+        $( $crate::ws::impl_endpoint!($struct_name, $endpoint); )?
 
         impl $crate::ws::RTObject for $struct_name {}
     };
@@ -32,10 +32,10 @@ macro_rules! model_builder {
     }
     ```
     */
-    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = obj, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+    ($(:$struct_doc:literal)? $struct_name:ident $(: $endpoint:literal)?, rt = obj, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
         $crate::ws::impl_model_struct!(@timed $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
         $crate::ws::impl_timed_event!($struct_name);
-        $crate::ws::impl_endpoint!($struct_name, $endpoint);
+        $( $crate::ws::impl_endpoint!($struct_name, $endpoint); )?
 
         impl $crate::ws::RTObject for $struct_name {}
     };
@@ -53,9 +53,9 @@ macro_rules! model_builder {
     }
     ```
     */
-    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = array; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
-        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name : $endpoint; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
-        $crate::ws::impl_endpoint!($struct_name, $endpoint);
+    ($(:$struct_doc:literal)? $struct_name:ident $(: $endpoint:literal)?, rt = array; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+        $crate::ws::impl_model_struct!(@basic $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename:literal)?),*);
+        $( $crate::ws::impl_endpoint!($struct_name, $endpoint); )?
 
         impl $crate::ws::RTArray for $struct_name {}
     };
@@ -74,10 +74,10 @@ macro_rules! model_builder {
     }
     ```
     */
-    ($(:$struct_doc:literal)? $struct_name:ident : $endpoint:literal, rt = array, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
+    ($(:$struct_doc:literal)? $struct_name:ident $(: $endpoint:literal)?, rt = array, timed = true; $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)?),*$(,)?) => {
         $crate::ws::impl_model_struct!(@timed $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename)?),*);
         $crate::ws::impl_timed_event!($struct_name);
-        $crate::ws::impl_endpoint!($struct_name, $endpoint);
+        $( $crate::ws::impl_endpoint!($struct_name, $endpoint); )?
 
         impl $crate::ws::RTArray for $struct_name {}
     };
@@ -162,10 +162,14 @@ macro_rules! impl_timed_event {
 
 // ---------------------------------
 macro_rules! enum_builder {
-    ($enum_name:ident; $($enum_option:ident $(= $enum_option_deserialize:literal)?),*$(,)?) => {
+    ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)?),*$(,)?) => {
         #[derive(Debug, serde::Deserialize)]
+        $(#[doc = $enum_doc])?
         pub enum $enum_name {
             $(
+                $(
+                    #[doc = $option_doc]
+                )?
                 $(
                     #[serde(rename(deserialize = $enum_option_deserialize))]
                 )?

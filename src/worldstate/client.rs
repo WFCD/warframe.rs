@@ -37,7 +37,7 @@ impl Client {
 #[cfg(test)]
 mod test {
     use super::*;
-    use crate::worldstate::models::{Cetus, Fissure, TimedEvent};
+    use crate::worldstate::models::*;
 
     #[tokio::test]
     async fn test_fetch() -> Result<(), ApiError> {
@@ -62,6 +62,16 @@ mod test {
 
         match client.fetch_arr::<Fissure>().await {
             Ok(_fissures) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[tokio::test]
+    async fn test_alert() -> Result<(), ApiError> {
+        let client = Client::new();
+
+        match client.fetch_arr::<Alert>().await {
+            Ok(_alerts) => Ok(()),
             Err(why) => Err(why),
         }
     }
