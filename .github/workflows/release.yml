@@ -37,3 +37,16 @@ jobs:
 
       - name: Cargo build
         run: cargo build --release
+
+
+      - name: Semantic Release
+        id: release
+        uses: cycjimmy/semantic-release-action@v3.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          semantic_version: 18
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/changelog
+            @semantic-release-cargo/semantic-release-cargo
