@@ -2,6 +2,12 @@
 name = "warframe"
 version = "0.1.0"
 edition = "2021"
+description = "An async crate to wrap the Warframe's Worldstate API."
+readme = "README.md"
+documentation = "https://docs.rs/warframe"
+homepage = "https://docs.rs/warframe"
+repository = "https://github.com/Mettwasser/warframe.rs"
+
 
 [features]
 default = ["worldstate"]
