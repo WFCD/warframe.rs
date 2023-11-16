@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/WFCD/warframe.rs/compare/v1.0.1...v1.0.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* Added required field for cargo publish ([cfede82](https://github.com/WFCD/warframe.rs/commit/cfede82a6416415ef850d4b4069907349453e835))
+
 ## [1.0.1](https://github.com/WFCD/warframe.rs/compare/v1.0.0...v1.0.1) (2023-11-16)
 
 
