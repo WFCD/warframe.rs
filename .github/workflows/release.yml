@@ -35,7 +35,3 @@ jobs:
 
       - name: Cargo build
         run: cargo build --release
-
-      - name: Yes
-        uses: semantic-release-cargo@v2
-          
