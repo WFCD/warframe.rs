@@ -14,8 +14,8 @@ default = ["worldstate"]
 worldstate = []
 
 [dev-dependencies]
-clippy = "*"
-rustfmt = "*"
+clippy = "0.0.302"
+rustfmt = "0.10.0"
 
 [dependencies]
 tokio = { version = "1.34.0", features = ["full"] }
