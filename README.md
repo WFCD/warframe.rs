@@ -35,7 +35,7 @@ async fn main() -> Result<(), ApiError> {
 ## Contributing
 Contributions are more than welcome. To contribute simply fork this repository and make a PR.
 
-I use `clippy` for linting, and `rustfmt` for formatting. They aree included as dev-dependencies in the `Cargo.toml`.
+I use `clippy` for linting, and `rustfmt` for formatting. They are included as dev-dependencies in the `Cargo.toml`.
 
 ## - WIP -
 This crate is work-in-progress and is meant as a learning project for me to learn Rust. This is basically a Rust adaptation of [warframe.py](https://github.com/WFCD/warframe.py).
