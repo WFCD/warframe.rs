@@ -176,6 +176,28 @@ macro_rules! enum_builder {
                 $enum_option,
             )*
         }
+
+        impl std::fmt::Display for $enum_name {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                match self {
+                    $($enum_name::$enum_option => write!(f, stringify!($enum_option))),*
+                }
+            }
+        }
+
+        impl $crate::ws::Documentation for $enum_name {
+            fn docs(&self) -> &'static str {
+                match self {
+                    $($enum_name::$enum_option => concat!("", $($option_doc)?)),*
+                }
+            }
+        }
+
+        impl $crate::ws::TypeDocumentation for $enum_name {
+            fn docs() -> &'static str {
+                concat!("", $($enum_doc)?)
+            }
+        }
     };
 }
 
