@@ -35,6 +35,9 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
       - name: Cargo build
         run: cargo build --release
 
@@ -44,6 +47,7 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3.2.0
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         with:
           semantic_version: 18
           extra_plugins: |
