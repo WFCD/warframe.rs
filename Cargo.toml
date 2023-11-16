@@ -7,7 +7,7 @@ readme = "README.md"
 documentation = "https://docs.rs/warframe"
 homepage = "https://docs.rs/warframe"
 repository = "https://github.com/Mettwasser/warframe.rs"
-
+license = "MIT"
 
 [features]
 default = ["worldstate"]
