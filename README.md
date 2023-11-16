@@ -7,7 +7,7 @@ Use this crate if you want to make a Warframe-related rust project that is async
 ## Getting started
 No installation yet. You would have to clone this repo.
 
-I will publish it to crates.io as soon as I have a CI configured.
+I will publish it to crates.io as soon as I have a CI configured..
 
 ### Example
 ```rs
