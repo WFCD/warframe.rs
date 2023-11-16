@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/WFCD/warframe.rs/compare/v1.0.3...v1.0.4) (2023-11-16)
+
+
+### Bug Fixes
+
+* push Cargo.toml updates to git ([4deea46](https://github.com/WFCD/warframe.rs/commit/4deea46b5366df86321b2d5d2737e398c22d6fdb))
+
 ## [1.0.3](https://github.com/WFCD/warframe.rs/compare/v1.0.2...v1.0.3) (2023-11-16)
 
 
