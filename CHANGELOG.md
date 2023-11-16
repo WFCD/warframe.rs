@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/WFCD/warframe.rs/compare/v1.0.0...v1.0.1) (2023-11-16)
+
+
+### Bug Fixes
+
+* **docs:** Changed Contributing part ([f8d5ffa](https://github.com/WFCD/warframe.rs/commit/f8d5ffad93189600f3e31cadc1c9b65791e3af7b))
+
 # 1.0.0 (2023-11-16)
 
 
