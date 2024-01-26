@@ -27,7 +27,7 @@ mod test {
         let client = Client::new();
 
         match client.fetch_arr::<Alert>().await {
-            Ok(_alerts) => Ok(println!("{_alerts:?}")),
+            Ok(_alerts) => Ok(()),
             Err(why) => Err(why),
         }
     }
