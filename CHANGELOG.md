@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/WFCD/warframe.rs/compare/v1.0.4...v1.1.0) (2024-01-26)
+
+
+### Bug Fixes
+
+* Deserializing the `Mission` type is now working ([39d2672](https://github.com/WFCD/warframe.rs/commit/39d26723511bcd258713a87bf737823e7e604edc))
+* Number -> Variant deserialization for `Tier` is now working (new dep however) ([5ec0e76](https://github.com/WFCD/warframe.rs/commit/5ec0e76e217c68f01073069a490bacabe416836c))
+
+
+### Features
+
+* arbitrations model ([470005e](https://github.com/WFCD/warframe.rs/commit/470005ec5518803b27c3a64e2c19d91d5ffc7249))
+* Support for different languages using the new "multilangual" feature ([9e8460e](https://github.com/WFCD/warframe.rs/commit/9e8460ea60cecbf803b070e9bd0eaf62ed42bccf))
+
 ## [1.0.4](https://github.com/WFCD/warframe.rs/compare/v1.0.3...v1.0.4) (2023-11-16)
 
 
