@@ -2,6 +2,8 @@ use chrono::{DateTime, Utc};
 use serde::de::DeserializeOwned;
 use serde_json::error::Error;
 
+use std::ops::{Div, Rem};
+
 pub trait Endpoint {
     fn endpoint() -> &'static str;
 }
@@ -37,6 +39,13 @@ pub trait RTObject {}
 /// Defines a type to be of *API* return type array
 pub trait RTArray {}
 
+fn divmod<T>(number: T, other: T) -> (T, T)
+where
+    T: Rem<Output = T> + Div<Output = T> + Copy,
+{
+    (number / other, number % other)
+}
+
 /// The `get_short_format_time_string` function takes a `DateTime` object and returns a formatted string
 /// representing the time difference between the current time and the provided time.
 ///
@@ -48,38 +57,26 @@ pub trait RTArray {}
 ///
 /// a formatted string representing the time difference between the current time and the provided
 /// `DateTime` value.
-pub(crate) fn get_short_format_time_string(dt: chrono::DateTime<chrono::Utc>) -> String {
-    let now = chrono::Utc::now();
-    let time_in_between = if now > dt { now - dt } else { dt - now };
+pub(crate) fn get_short_format_time_string(dt: DateTime<Utc>) -> String {
+    let now = Utc::now();
+    let mut time_in_between = (if now > dt { now - dt } else { dt - now }).num_seconds();
 
-    let days = time_in_between.num_days();
-    let hours = time_in_between.num_hours();
-    let minutes = time_in_between.num_minutes();
-    let seconds = time_in_between.num_seconds();
+    let components = [("h", 60 * 60), ("m", 60), ("s", 1)];
 
-    let hours_remainder = hours.rem_euclid(24);
-    let minutes_remainder = minutes.rem_euclid(60);
-    let seconds_remainder = seconds.rem_euclid(60);
-
-    let time_components = vec![
-        (days, "d"),
-        (hours_remainder, "h"),
-        (minutes_remainder, "m"),
-        (seconds_remainder, "s"),
-    ];
     let mut formatted_time = String::new();
 
-    for (t, suffix) in time_components {
-        if t != 0 {
-            formatted_time.push_str(&format!("{}{}", t, suffix));
-            formatted_time.push(' ');
+    for &(suffix, divisor) in &components {
+        let (div_time, mod_time) = divmod(time_in_between, divisor);
+        if div_time > 0 {
+            formatted_time.push_str(&format!("{}{} ", div_time, suffix));
+            time_in_between = mod_time;
         }
     }
 
     formatted_time.trim().to_string()
 }
 
-pub trait Documentation {
+pub trait VariantDocumentation {
     /// Gets the documentation for this variant
     fn docs(&self) -> &'static str;
 }
@@ -89,13 +86,25 @@ pub trait TypeDocumentation {
     fn docs() -> &'static str;
 }
 
-// #[test]
-// fn test_format() {
-//     use chrono::{Duration, Utc};
-//     // Example usage
-//     let event_time = Utc::now() + Duration::hours(5) + Duration::minutes(30);
-//     let formatted_time = get_short_format_time_string(event_time);
+pub trait Opposite {
+    #[doc = "Returns the opposite of this state"]
+    fn opposite(&self) -> Self;
+}
 
-//     let assert_result = formatted_time == "5h 29m 59s" || formatted_time == "5h 30m 60s";
-//     assert!(assert_result)
-// }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_format() {
+        use chrono::{Duration, Utc};
+        // Example usage
+        let event_time = Utc::now() + Duration::hours(5) + Duration::minutes(30);
+        let formatted_time = get_short_format_time_string(event_time);
+
+        let assert_result = formatted_time == "5h 29m 59s"
+            || formatted_time == "5h 29m 58s"
+            || formatted_time == "5h 30m";
+        assert!(assert_result)
+    }
+}

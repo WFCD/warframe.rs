@@ -4,11 +4,11 @@ use super::mission_type::MissionType;
 
 enum_builder! {
     Tier;
-    Lith,
-    Meso,
-    Neo,
-    Axi,
-    Requiem,
+    Lith: 1,
+    Meso: 2,
+    Neo: 3,
+    Axi: 4,
+    Requiem: 5,
 }
 
 model_builder! {
@@ -31,11 +31,11 @@ model_builder! {
     :"The name of the node"
     pub node_key: String,
 
-    :"The tier of the relic"
-    pub tier: Tier,
+    :"The tier i18n of the relic"
+    pub tier_name: String = "tier",
 
-    :"The number of the tier (1-5)"
-    pub tier_num: u8,
+    // :"The Tier of the relic"
+    // pub tier: Tier = "tierNum",
 
     :"The i18n name of the enemy"
     pub enemy: String,
@@ -48,4 +48,34 @@ model_builder! {
 
     :"Whether the the fissure is hard (Steel Path)"
     pub is_hard: bool
+}
+
+#[cfg(test)]
+mod test {
+    use super::Fissure;
+    use crate::worldstate::{client::Client, error::ApiError};
+
+    #[cfg(not(feature = "multilangual"))]
+    #[tokio::test]
+    async fn test_fissure() -> Result<(), ApiError> {
+        let client = Client::new();
+
+        match client.fetch_arr::<Fissure>().await {
+            Ok(_fissures) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[cfg(feature = "multilangual")]
+    #[tokio::test]
+    async fn test_fissure() -> Result<(), ApiError> {
+        use crate::worldstate::prelude::Language;
+
+        let client = Client::new();
+
+        match client.fetch_arr::<Fissure>(Language::ZH).await {
+            Ok(_fissures) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
 }
