@@ -11,20 +11,6 @@ enum_builder! {
     Night = "night",
 }
 
-impl CetusState {
-    /// Returns the other state of the state inputted.
-    ///
-    /// For example:
-    ///
-    /// Day -> Night / Night -> Day
-    pub fn opposite(&self) -> Self {
-        match self {
-            CetusState::Day => CetusState::Night,
-            CetusState::Night => CetusState::Day,
-        }
-    }
-}
-
 model_builder! {
     :"The Information about cetus"
     Cetus: "/cetusCycle",
@@ -36,4 +22,43 @@ model_builder! {
 
     :"The state of Cetus (day/night)"
     pub state: CetusState,
+}
+
+#[cfg(test)]
+mod test {
+    use super::Cetus;
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+        prelude::{CetusState, Opposite},
+    };
+
+    #[cfg(not(feature = "multilangual"))]
+    #[tokio::test]
+    async fn test_cetus() -> Result<(), ApiError> {
+        let client = Client::new();
+
+        match client.fetch::<Cetus>().await {
+            Ok(_cetus) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[cfg(feature = "multilangual")]
+    #[tokio::test]
+    async fn test_cetus() -> Result<(), ApiError> {
+        use crate::worldstate::prelude::Language;
+
+        let client = Client::new();
+
+        match client.fetch::<Cetus>(Language::ZH).await {
+            Ok(_cetus) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[test]
+    fn test_cetus_state_opposite() {
+        assert_eq!(CetusState::Day.opposite(), CetusState::Night)
+    }
 }

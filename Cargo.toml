@@ -9,9 +9,13 @@ homepage = "https://docs.rs/warframe"
 repository = "https://github.com/Mettwasser/warframe.rs"
 license = "MIT"
 
+
+
 [features]
 default = ["worldstate"]
+worldstate_full = ["worldstate", "multilangual"]
 worldstate = []
+multilangual = ["worldstate"]
 
 [dev-dependencies]
 clippy = "0.0.302"
@@ -23,3 +27,5 @@ reqwest = { version = "0.11.22", features = ["json"] }
 chrono = { version = "0.4.31", features = ["serde"] }
 serde = { version = "1.0.190", features = ["derive"] }
 serde_json = { version = "1.0.108" }
+serde_flat_path = "0.1.2"
+serde_repr = "0.1.18"

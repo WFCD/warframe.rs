@@ -15,3 +15,33 @@ model_builder! {
     :"The reward type of the alert"
     pub reward_type: Option<RewardType>
 }
+
+#[cfg(test)]
+mod test {
+    use super::Alert;
+    use crate::worldstate::{client::Client, error::ApiError};
+
+    #[cfg(not(feature = "multilangual"))]
+    #[tokio::test]
+    async fn test_alert() -> Result<(), ApiError> {
+        let client = Client::new();
+
+        match client.fetch_arr::<Alert>().await {
+            Ok(_alerts) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[cfg(feature = "multilangual")]
+    #[tokio::test]
+    async fn test_alert() -> Result<(), ApiError> {
+        use crate::worldstate::prelude::Language;
+
+        let client = Client::new();
+
+        match client.fetch_arr::<Alert>(Language::ZH).await {
+            Ok(_alerts) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+}

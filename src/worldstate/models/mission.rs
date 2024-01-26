@@ -15,7 +15,7 @@ model_builder! {
     pub node_key: String,
 
     :"The i18n faction you are up against"
-    pub faction: Enemy,
+    pub faction: String,
 
     :"The faction you are up against"
     pub faction_key: Enemy,
@@ -26,7 +26,7 @@ model_builder! {
     :"The maximum level of the enemy"
     pub max_enemy_level: i32,
 
-    pub max_wave_num: i32,
+    pub max_wave_num: Option<i32>,
 
     :"The i18n type of the mission"
     pub r#type: String,
@@ -59,5 +59,5 @@ model_builder! {
     pub level_auras: Vec<String>,
 
     :"Description of the mission"
-    pub description: String
+    pub description: Option<String>
 }
