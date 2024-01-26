@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/WFCD/warframe.rs/compare/v1.1.0...v1.1.1) (2024-01-26)
+
+
+### Bug Fixes
+
+* RewardType on Alerts is now being parsed correctly ([ef32c18](https://github.com/WFCD/warframe.rs/commit/ef32c18cf9d80161c3ac323584a93bdd5d2445ad))
+
 # [1.1.0](https://github.com/WFCD/warframe.rs/compare/v1.0.4...v1.1.0) (2024-01-26)
 
 
