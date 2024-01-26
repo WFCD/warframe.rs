@@ -260,8 +260,47 @@ macro_rules! enum_builder {
         }
     };
 
-    ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)? $(: $enum_option_num_value:expr)?),*$(,)?) => {
+    ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)?),*$(,)?) => {
         #[derive(Debug, serde::Deserialize, PartialEq)]
+        $(#[doc = $enum_doc])?
+        pub enum $enum_name {
+            $(
+                $(
+                    #[doc = $option_doc]
+                )?
+                $(
+                    #[serde(rename(deserialize = $enum_option_deserialize))]
+                )?
+                $enum_option,
+            )*
+        }
+
+        impl std::fmt::Display for $enum_name {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                match self {
+                    $($enum_name::$enum_option => write!(f, stringify!($enum_option))),*
+                }
+            }
+        }
+
+        impl $crate::ws::VariantDocumentation for $enum_name {
+            fn docs(&self) -> &'static str {
+                match self {
+                    $($enum_name::$enum_option => concat!("", $($option_doc)?)),*
+                }
+            }
+        }
+
+        impl $crate::ws::TypeDocumentation for $enum_name {
+            fn docs() -> &'static str {
+                concat!("", $($enum_doc)?)
+            }
+        }
+    };
+
+    ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)? $(: $enum_option_num_value:expr)?),*$(,)?) => {
+        #[derive(Debug, serde_repr::Deserialize_repr, PartialEq)]
+        #[repr(u8)]
         $(#[doc = $enum_doc])?
         pub enum $enum_name {
             $(
@@ -296,7 +335,7 @@ macro_rules! enum_builder {
                 concat!("", $($enum_doc)?)
             }
         }
-    };
+    }
 }
 
 pub(crate) use enum_builder;

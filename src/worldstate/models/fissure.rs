@@ -34,8 +34,8 @@ model_builder! {
     :"The tier i18n of the relic"
     pub tier_name: String = "tier",
 
-    // :"The Tier of the relic"
-    // pub tier: Tier = "tierNum",
+    :"The Tier of the relic"
+    pub tier: Tier = "tierNum",
 
     :"The i18n name of the enemy"
     pub enemy: String,
