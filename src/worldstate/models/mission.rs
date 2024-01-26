@@ -15,7 +15,7 @@ model_builder! {
     pub node_key: String,
 
     :"The i18n faction you are up against"
-    pub faction: Enemy,
+    pub faction: String,
 
     :"The faction you are up against"
     pub faction_key: Enemy,
