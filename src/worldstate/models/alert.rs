@@ -13,7 +13,7 @@ model_builder! {
     pub mission: Mission,
 
     :"The reward type of the alert"
-    pub reward_type: Option<RewardType>
+    pub reward_types: Vec<RewardType>
 }
 
 #[cfg(test)]
@@ -27,7 +27,7 @@ mod test {
         let client = Client::new();
 
         match client.fetch_arr::<Alert>().await {
-            Ok(_alerts) => Ok(()),
+            Ok(_alerts) => Ok(println!("{_alerts:?}")),
             Err(why) => Err(why),
         }
     }
