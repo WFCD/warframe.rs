@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/WFCD/warframe.rs/compare/v1.1.1...v1.1.2) (2024-01-27)
+
+
+### Bug Fixes
+
+* changed the multilangual feature to be less janky ([cc7c042](https://github.com/WFCD/warframe.rs/commit/cc7c042b973fb091542809bdd9216b7e4e5ec06a))
+
 ## [1.1.1](https://github.com/WFCD/warframe.rs/compare/v1.1.0...v1.1.1) (2024-01-26)
 
 
