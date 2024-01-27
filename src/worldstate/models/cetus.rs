@@ -33,7 +33,6 @@ mod test {
         prelude::{CetusState, Opposite},
     };
 
-    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
     async fn test_cetus() -> Result<(), ApiError> {
         let client = Client::new();
@@ -46,12 +45,12 @@ mod test {
 
     #[cfg(feature = "multilangual")]
     #[tokio::test]
-    async fn test_cetus() -> Result<(), ApiError> {
+    async fn test_cetus_ml() -> Result<(), ApiError> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
 
-        match client.fetch::<Cetus>(Language::ZH).await {
+        match client.fetch_using_lang::<Cetus>(Language::ZH).await {
             Ok(_cetus) => Ok(()),
             Err(why) => Err(why),
         }

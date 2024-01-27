@@ -39,7 +39,6 @@ mod test {
     use super::Arbitration;
     use crate::worldstate::{client::Client, error::ApiError};
 
-    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
     async fn test_arbitration() -> Result<(), ApiError> {
         let client = Client::new();
@@ -52,12 +51,12 @@ mod test {
 
     #[cfg(feature = "multilangual")]
     #[tokio::test]
-    async fn test_arbitration() -> Result<(), ApiError> {
+    async fn test_arbitration_ml() -> Result<(), ApiError> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
 
-        match client.fetch::<Arbitration>(Language::ZH).await {
+        match client.fetch_using_lang::<Arbitration>(Language::ZH).await {
             Ok(_arbitration) => Ok(()),
             Err(why) => Err(why),
         }

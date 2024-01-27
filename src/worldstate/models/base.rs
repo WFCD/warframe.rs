@@ -5,7 +5,10 @@ use serde_json::error::Error;
 use std::ops::{Div, Rem};
 
 pub trait Endpoint {
-    fn endpoint() -> &'static str;
+    fn endpoint_en() -> &'static str;
+
+    #[cfg(feature = "multilangual")]
+    fn endpoint(language: crate::worldstate::language::Language) -> String;
 }
 
 /// The base trait implemented by every Model in the API.

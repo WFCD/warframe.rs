@@ -156,14 +156,17 @@ macro_rules! impl_model_struct {
 macro_rules! impl_endpoint {
     ($struct_name:ident, $endpoint:literal) => {
         impl $crate::ws::Endpoint for $struct_name {
-            #[cfg(not(feature = "multilangual"))]
-            fn endpoint() -> &'static str {
+            fn endpoint_en() -> &'static str {
                 concat!("https://api.warframestat.us/pc/", $endpoint, "?language=en")
             }
 
             #[cfg(feature = "multilangual")]
-            fn endpoint() -> &'static str {
-                concat!("https://api.warframestat.us/pc/", $endpoint)
+            fn endpoint(language: $crate::ws::Language) -> String {
+                format!(
+                    "https://api.warframestat.us/pc/{}?language={}",
+                    $endpoint,
+                    String::from(language)
+                )
             }
         }
     };

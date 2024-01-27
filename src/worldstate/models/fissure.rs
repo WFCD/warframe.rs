@@ -55,7 +55,6 @@ mod test {
     use super::Fissure;
     use crate::worldstate::{client::Client, error::ApiError};
 
-    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
     async fn test_fissure() -> Result<(), ApiError> {
         let client = Client::new();
@@ -68,12 +67,12 @@ mod test {
 
     #[cfg(feature = "multilangual")]
     #[tokio::test]
-    async fn test_fissure() -> Result<(), ApiError> {
+    async fn test_fissure_ml() -> Result<(), ApiError> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
 
-        match client.fetch_arr::<Fissure>(Language::ZH).await {
+        match client.fetch_arr_using::<Fissure>(Language::ZH).await {
             Ok(_fissures) => Ok(()),
             Err(why) => Err(why),
         }
