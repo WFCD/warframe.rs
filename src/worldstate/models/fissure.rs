@@ -72,7 +72,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using::<Fissure>(Language::ZH).await {
+        match client.fetch_arr_using_lang::<Fissure>(Language::ZH).await {
             Ok(_fissures) => Ok(()),
             Err(why) => Err(why),
         }

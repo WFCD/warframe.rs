@@ -21,6 +21,7 @@ mod test {
     use super::Alert;
     use crate::worldstate::{client::Client, error::ApiError};
 
+    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
     async fn test_alert() -> Result<(), ApiError> {
         let client = Client::new();
@@ -38,7 +39,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using::<Alert>(Language::ZH).await {
+        match client.fetch_arr_using_lang::<Alert>(Language::ZH).await {
             Ok(_alerts) => Ok(()),
             Err(why) => Err(why),
         }
