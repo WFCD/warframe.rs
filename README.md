@@ -4,6 +4,8 @@ An async crate to wrap the [Worldstate API](https://docs.warframestat.us).
 
 Use this crate if you want to make a Warframe-related rust project that is async.
 
+Please Note that a few things are subject to change without bumps in majors. Obsolete versions will be yanked asap.
+
 ## Getting started
 To install, simply run `cargo add warframe`.
 
