@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/WFCD/warframe.rs/compare/v1.1.2...v1.1.3) (2024-01-28)
+
+
+### Bug Fixes
+
+* Typo in fetch_arr_using (changed to fetch_arr_using_lang) ([416fb3a](https://github.com/WFCD/warframe.rs/commit/416fb3ad42895c51ccf05b68c6ee31f4f4ac7911))
+
 ## [1.1.2](https://github.com/WFCD/warframe.rs/compare/v1.1.1...v1.1.2) (2024-01-27)
 
 
