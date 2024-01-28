@@ -55,7 +55,7 @@ impl Client {
         }
     }
 
-    pub async fn fetch_arr_using<T>(
+    pub async fn fetch_arr_using_lang<T>(
         &self,
         language: super::language::Language,
     ) -> Result<Vec<T>, ApiError>
