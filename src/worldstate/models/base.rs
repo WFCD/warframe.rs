@@ -1,5 +1,5 @@
 use chrono::{DateTime, Utc};
-use serde::de::DeserializeOwned;
+use serde::{de::DeserializeOwned, Deserialize};
 use serde_json::error::Error;
 
 use std::ops::{Div, Rem};
@@ -27,13 +27,33 @@ pub trait TimedEvent {
     fn expiry(&self) -> DateTime<Utc>;
 
     /// Short-time-formatted duration string representing the start of the event
-    fn start_string(&self) -> String;
+    fn start_string(&self) -> String {
+        format!(
+            "-{}",
+            super::base::get_short_format_time_string(self.activation())
+        )
+    }
 
     /// Short-time-formatted duration string representing the end of the event
-    fn eta(&self) -> String;
+    fn eta(&self) -> String {
+        super::base::get_short_format_time_string(self.expiry())
+    }
 
     /// Whether the event is expired or not
-    fn expired(&self) -> bool;
+    fn expired(&self) -> bool {
+        chrono::Utc::now() >= self.expiry()
+    }
+
+    /// Whether the event is active or not
+    fn active(&self) -> bool {
+        let now = chrono::Utc::now();
+        now >= self.activation() && now <= self.expiry()
+    }
+
+    /// Whether the event is still upcoming or not
+    fn upcoming(&self) -> bool {
+        !self.active() && !self.expired()
+    }
 }
 
 /// Defines a type to be of *API* return type object
@@ -47,6 +67,14 @@ where
     T: Rem<Output = T> + Div<Output = T> + Copy,
 {
     (number / other, number % other)
+}
+
+pub(crate) fn deserialize_f32_from_string<'de, D>(deserializer: D) -> Result<f32, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let s: String = Deserialize::deserialize(deserializer)?;
+    s.parse().map_err(serde::de::Error::custom)
 }
 
 /// The `get_short_format_time_string` function takes a `DateTime` object and returns a formatted string
@@ -93,6 +121,19 @@ pub trait Opposite {
     #[doc = "Returns the opposite of this state"]
     fn opposite(&self) -> Self;
 }
+
+#[cfg(feature = "macros")]
+pub mod macro_features {
+    use super::*;
+
+    pub enum Change<'a, T: 'a + Model + RTArray> {
+        Added(&'a T),
+        Removed(&'a T),
+    }
+}
+
+#[cfg(feature = "macros")]
+pub use macro_features::*;
 
 #[cfg(test)]
 mod tests {

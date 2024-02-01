@@ -1,4 +1,4 @@
-use super::enemy::Enemy;
+use super::faction::Faction;
 use super::macros::{enum_builder, model_builder};
 use super::mission_type::MissionType;
 
@@ -41,7 +41,7 @@ model_builder! {
     pub enemy: String,
 
     :"The type of the enemy"
-    pub enemy_key: Enemy,
+    pub faction: Faction = "enemyKey",
 
     :"Whether the fissure is a storm"
     pub is_storm: bool,
