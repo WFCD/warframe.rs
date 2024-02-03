@@ -1,0 +1,22 @@
+[package]
+name = "warframe-macros"
+version = "0.1.0"
+edition = "2021"
+description = "warframe.rs' macros"
+readme = "README.md"
+documentation = "https://docs.rs/warframe"
+homepage = "https://docs.rs/warframe"
+repository = "https://github.com/Mettwasser/warframe.rs"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0.35"
+proc-macro2 = "1.0.78"
+darling = "0.20.4"
+syn = "2.0.48"
+log = "0.4.20"

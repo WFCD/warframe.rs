@@ -1,9 +1,10 @@
-use super::{macros::model_builder, Enemy, MissionType, Reward};
+use super::{macros::model_builder, Faction, MissionType, Reward};
 
 model_builder! {
     :"A mission"
     Mission,
-    rt = obj;
+    rt = obj,
+    timed = false;
 
     :"The reward of this mission"
     pub reward: Reward,
@@ -18,7 +19,7 @@ model_builder! {
     pub faction: String,
 
     :"The faction you are up against"
-    pub faction_key: Enemy,
+    pub faction_key: Faction,
 
     :"The minimum level of the enemy"
     pub min_enemy_level: i32,

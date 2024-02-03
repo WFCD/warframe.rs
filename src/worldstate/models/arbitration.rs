@@ -1,4 +1,4 @@
-use super::{macros::model_builder, Enemy, MissionType};
+use super::{macros::model_builder, Faction, MissionType};
 
 model_builder! {
     :"Information about an arbitration"
@@ -16,10 +16,10 @@ model_builder! {
     pub node_key: String,
 
     :"The i18n faction you are up against"
-    pub faction: Enemy = "enemy",
+    pub faction: Faction = "enemy",
 
     :"The faction you are up against"
-    pub faction_key: Option<Enemy> = "enemyKey",
+    pub faction_key: Option<Faction> = "enemyKey",
 
     :"The i18n type of the mission"
     pub mission_type: String = "type",

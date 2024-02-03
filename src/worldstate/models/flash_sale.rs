@@ -1,0 +1,52 @@
+use super::macros::model_builder;
+
+model_builder! {
+    :"Popular Deals, discounts, featured deals"
+    FlashSale: "/flashSales",
+    rt = array,
+    timed = true;
+
+    :"The item being sold"
+    pub item: String,
+
+    :"The discount of the Item"
+    pub discount: i32,
+
+    pub premium_override: i32,
+
+    :"Whether the item is popular or not"
+    pub is_popular: Option<bool>,
+
+    :"Whether the item is featured or not"
+    pub is_featured: Option<bool>
+}
+
+#[cfg(test)]
+mod test {
+    use super::FlashSale;
+    use crate::worldstate::{client::Client, error::ApiError};
+
+    #[cfg(not(feature = "multilangual"))]
+    #[tokio::test]
+    async fn test_flashsale() -> Result<(), ApiError> {
+        let client = Client::new();
+
+        match client.fetch_arr::<FlashSale>().await {
+            Ok(_flashsales) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+
+    #[cfg(feature = "multilangual")]
+    #[tokio::test]
+    async fn test_flashsale_ml() -> Result<(), ApiError> {
+        use crate::worldstate::prelude::Language;
+
+        let client = Client::new();
+
+        match client.fetch_arr_using_lang::<FlashSale>(Language::ZH).await {
+            Ok(_flashsales) => Ok(()),
+            Err(why) => Err(why),
+        }
+    }
+}
