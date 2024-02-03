@@ -4,7 +4,8 @@ use super::{Mission, RewardType};
 model_builder! {
     :"An alert in Warframe"
     Alert: "/alerts",
-    rt = array;
+    rt = array,
+    timed = false;
 
     :"ID of this event"
     pub id: String,

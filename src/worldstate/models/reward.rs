@@ -2,7 +2,8 @@ use super::macros::model_builder;
 
 model_builder! {
     CountedItem,
-    rt = array;
+    rt = array,
+    timed = false;
 
     pub count: i32,
     pub r#type: String
@@ -11,7 +12,8 @@ model_builder! {
 model_builder! {
     :"The reward of this event"
     Reward,
-    rt = obj;
+    rt = obj,
+    timed = false;
 
     :"Items that have a quantity attached"
     pub counted_items: Vec<CountedItem>,

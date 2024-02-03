@@ -17,7 +17,7 @@ model_builder! {
     rt = obj,
     timed = true;
 
-    :"The id of the rotation"
+    :"The id of the cycle"
     pub id: String,
 
     :"The state of Cetus (day/night)"

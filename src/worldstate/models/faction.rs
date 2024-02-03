@@ -1,11 +1,13 @@
 use super::macros::enum_builder;
 enum_builder! {
-    Enemy;
+    Faction;
     Orokin,
     Corrupted,
     Infested,
+    Infestation,
     Corpus,
     Grineer,
     Tenno,
-    Narmer
+    Narmer,
+    Crossfire
 }

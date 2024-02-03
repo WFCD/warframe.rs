@@ -1,3 +1,5 @@
+use std::error::Error;
+
 use reqwest::Response;
 use serde::{Deserialize, Deserializer};
 
@@ -28,6 +30,14 @@ pub enum ApiError {
     /// This option represents the case when the API did not respond with a valid JSON
     ConversionFailed,
 }
+
+impl std::fmt::Display for ApiError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Worldstate Api Error")
+    }
+}
+
+impl Error for ApiError {}
 
 impl<'de> Deserialize<'de> for ApiError {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
