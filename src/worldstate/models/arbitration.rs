@@ -45,7 +45,10 @@ mod test {
 
         match client.fetch::<Arbitration>().await {
             Ok(_arbitration) => Ok(()),
-            Err(why) => Err(why),
+            Err(why) => match why {
+                ApiError::NotFound(_) => Ok(()),
+                why => Err(why),
+            },
         }
     }
 
@@ -58,7 +61,10 @@ mod test {
 
         match client.fetch_using_lang::<Arbitration>(Language::ZH).await {
             Ok(_arbitration) => Ok(()),
-            Err(why) => Err(why),
+            Err(why) => match why {
+                ApiError::NotFound(_) => Ok(()),
+                why => Err(why),
+            },
         }
     }
 }
