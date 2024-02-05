@@ -18,7 +18,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          # checkout as wfcd-bot-boi
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install semantic-release-cargo
         if: needs.get-next-version.outputs.new-release-published == 'true'
@@ -52,6 +56,7 @@ jobs:
         id: release
         uses: cycjimmy/semantic-release-action@v3.2.0
         env:
+          # push as wfcd-bot-boi
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         with:
