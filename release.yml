@@ -70,7 +70,8 @@ jobs:
         working-directory: /warframe.rs
 
     needs:
-      - get-next-version
+      - 'get-next-version'
+      - 'build-warframe-macros'
 
     steps:
       - name: Checkout
