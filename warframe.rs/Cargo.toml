@@ -31,6 +31,6 @@ serde_flat_path = "0.1.2"
 serde_repr = "0.1.18"
 async-tungstenite = { version = "0.24.0", features = ["tokio-native-tls"] }
 futures = "0.3.30"
-warframe-macros = { version = "0.1.0", path = "../warframe-macros", optional = true }
+warframe-macros = { version = "0.1.0", path = "../warframe-macros" }
 log = "0.4.20"
 env_logger = "0.11.1"
