@@ -1,3 +1,57 @@
+# [2.0.0](https://github.com/WFCD/warframe.rs/compare/v1.1.3...v2.0.0) (2024-02-05)
+
+
+### chore
+
+* Updates macros for better readability; ([35bed4c](https://github.com/WFCD/warframe.rs/commit/35bed4c4b9a229b108ee0ba53d2c185ad857ce64))
+
+
+### BREAKING CHANGES
+
+* Renamed the Enemy enum to Faction and most fields that use this type;
+
+feat: Archon Hunt model;
+
+feat: Cambion Drift Model;
+
+docs: Changed docs for id field;
+
+feat: Model for Construction Progress;
+
+feat: Model for daily deal;
+
+feat: Model for Event;
+
+feat: Model for Flash Sale;
+
+feat: Model for Global Upgrades (modifiers like double resources);
+
+feat: Model for invasions;
+
+updated mod.rs to include everything;
+
+feat: Added Model for endpoints;
+
+feat: added Model for Nightwave;
+
+feat: added Model for Orb Vallis;
+
+chore: Updated macro usage;
+
+feat: added Model for Sortie;
+
+feat: added Model for Steel Path;
+
+feat: added Model for SyndicateMission;
+
+feat: added Model for void trader;
+
+feat: Macros for the project;
+
+ci: Hopefully fix build error?;
+
+ci: Fix build;
+
 ## [1.1.3](https://github.com/WFCD/warframe.rs/compare/v1.1.2...v1.1.3) (2024-01-28)
 
 
