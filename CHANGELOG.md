@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/WFCD/warframe.rs/compare/v2.0.0...v3.0.0) (2024-02-07)
+
+
+### Features
+
+* split warframe.rs and warframe-macros in monorepo ([#5](https://github.com/WFCD/warframe.rs/issues/5)) ([a1807b3](https://github.com/WFCD/warframe.rs/commit/a1807b3b5965034b62aa2da0c0e15b027e75a636))
+
+
+### BREAKING CHANGES
+
+* split where warframe.rs and warframe-macros are located in the repo
+
 # [2.0.0](https://github.com/WFCD/warframe.rs/compare/v1.1.3...v2.0.0) (2024-02-05)
 
 
