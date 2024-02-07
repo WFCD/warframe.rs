@@ -1,0 +1,119 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  build-warframe-macros:
+    name: Build warframe-macros
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: /warframe-macros
+
+    needs:
+      - get-next-version
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install semantic-release-cargo
+        if: needs.get-next-version.outputs.new-release-published == 'true'
+        uses: EricCrosson/install-github-release-binary@v2
+        with:
+          targets: semantic-release-cargo/semantic-release-cargo@v2
+
+      - name: Prepare semantic-release for Rust
+        if: needs.get-next-version.outputs.new-release-published == 'true'
+        run: semantic-release-cargo prepare ${{ needs.get-next-version.outputs.new-release-version }}
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Cargo build
+        run: cargo build --release
+
+
+      - name: Semantic Release
+        id: release
+        uses: cycjimmy/semantic-release-action@v3.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        with:
+          semantic_version: 18
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/changelog
+            @semantic-release-cargo/semantic-release-cargo
+
+  get-next-version:
+    uses: semantic-release-action/next-release-version/.github/workflows/next-release-version.yml@v4
+    
+  build-warframe-rs:
+    name: Build warframe.rs
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: /warframe.rs
+
+    needs:
+      - 'get-next-version'
+      - 'build-warframe-macros'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install semantic-release-cargo
+        if: needs.get-next-version.outputs.new-release-published == 'true'
+        uses: EricCrosson/install-github-release-binary@v2
+        with:
+          targets: semantic-release-cargo/semantic-release-cargo@v2
+
+      - name: Prepare semantic-release for Rust
+        if: needs.get-next-version.outputs.new-release-published == 'true'
+        run: semantic-release-cargo prepare ${{ needs.get-next-version.outputs.new-release-version }}
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Test Worldstate
+        run: cargo test -F worldstate
+
+      - name: Test Worldstate with all features
+        run: cargo test -F worldstate_full
+
+      - name: Cargo build
+        run: cargo build --release
+
+
+      - name: Semantic Release
+        id: release
+        uses: cycjimmy/semantic-release-action@v3.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        with:
+          semantic_version: 18
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/changelog
+            @semantic-release-cargo/semantic-release-cargo
