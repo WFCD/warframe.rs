@@ -1,2 +1,2 @@
 [workspace]
-members = ["warframe.rs", "warframe-macros"]
+members = ["warframe.rs", "warframe-macros", "examples/*"]
