@@ -4,19 +4,36 @@ use darling::FromMeta;
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, TokenStream as TokenStream2};
 use quote::quote;
-use syn::{parse_macro_input, ItemFn, Meta};
+use syn::{
+    parse::{Parse, ParseStream},
+    parse_macro_input,
+    token::Comma,
+    ItemFn,
+};
 
-fn impl_listen(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box<dyn Error>> {
+fn impl_listen(
+    model_ident: Ident,
+    state_ident: Option<Ident>,
+    item: ItemFn,
+) -> Result<TokenStream2, Box<dyn Error>> {
     let model_name = model_ident.to_string();
 
     let original_fn_name = item.sig.ident.clone();
 
     let mut item_clone = item.clone();
-    item_clone.sig.ident = Ident::from_string(&format!("_{}", item.sig.ident)).unwrap();
-    let item_sig = Ident::from_string(&format!("_{}", item.sig.ident)).unwrap();
+    item_clone.sig.ident = Ident::from_string(&format!("_{}", item.sig.ident))?;
+
+    let item_sig = Ident::from_string(&format!("_{}", item.sig.ident))?;
+
+    let state: Option<TokenStream2> = state_ident
+        .clone()
+        .map(|ident| format!("state: &{},", ident).parse().unwrap());
+
+    let state_arg: Option<TokenStream2> = state_ident.map(|_| "&state,".parse().unwrap());
 
     Ok(quote! {
         async fn #original_fn_name(
+            #state
             client: &warframe::worldstate::client::Client,
         ) -> Result<(), warframe::worldstate::error::ApiError> {
             use warframe::worldstate::prelude::*;
@@ -25,10 +42,11 @@ fn impl_listen(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box<dyn
 
             #item_clone
 
+
             loop {
-                if item.expiry() <= chrono::offset::Utc::now() {
+                if item.expiry() <= warframe::chrono::offset::Utc::now() {
                     debug!("{} :: Looking for state change from the API", #model_name);
-                    tokio::time::sleep(std::time::Duration::from_secs(30)).await;
+                    warframe::tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
                     let new_item = client.fetch::<#model_ident>().await?;
 
@@ -36,19 +54,19 @@ fn impl_listen(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box<dyn
                         continue;
                     } else {
                         // call callback fn
-                        #item_sig(&item, &new_item).await;
+                        #item_sig(#state_arg &item, &new_item).await;
                         item = new_item;
                     }
                 }
 
-                let time_to_sleep = item.expiry() - chrono::offset::Utc::now();
+                let time_to_sleep = item.expiry() - warframe::chrono::offset::Utc::now();
 
                 debug!(
                     "{} :: Sleeping {} seconds",
                     #model_name,
                     time_to_sleep.num_seconds()
                 );
-                tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
+                warframe::tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
             }
         }
     })
@@ -56,17 +74,36 @@ fn impl_listen(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box<dyn
 
 #[proc_macro_attribute]
 pub fn listen(args: TokenStream, input: TokenStream) -> TokenStream {
-    let model_ident = match parse_macro_input!(args) {
-        Meta::Path(path) => path.get_ident().cloned().unwrap(),
-        _ => panic!("Expected model type identifier."),
-    };
+    let ParsedIdents { first, second } = parse_macro_input!(args as ParsedIdents);
 
-    impl_listen(model_ident, parse_macro_input!(input))
+    impl_listen(first, second, parse_macro_input!(input))
         .unwrap()
         .into()
 }
 
-fn impl_listen_any(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box<dyn Error>> {
+struct ParsedIdents {
+    first: Ident,
+    second: Option<Ident>,
+}
+
+impl Parse for ParsedIdents {
+    fn parse(input: ParseStream) -> syn::Result<Self> {
+        let first = input.parse()?;
+        let mut second = None;
+        if input.peek(Comma) {
+            let _: Comma = input.parse()?;
+            second = Some(input.parse()?);
+        }
+
+        Ok(ParsedIdents { first, second })
+    }
+}
+
+fn impl_listen_any(
+    model_ident: Ident,
+    state_ident: Option<Ident>,
+    item: ItemFn,
+) -> Result<TokenStream2, Box<dyn Error>> {
     let model_name = model_ident.to_string();
 
     let original_fn_name = item.sig.ident.clone();
@@ -75,8 +112,15 @@ fn impl_listen_any(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box
     item_clone.sig.ident = Ident::from_string(&format!("_{}", item.sig.ident)).unwrap();
     let item_sig = Ident::from_string(&format!("_{}", item.sig.ident)).unwrap();
 
+    let state: Option<TokenStream2> = state_ident
+        .clone()
+        .map(|ident| format!("state: &{},", ident).parse().unwrap());
+
+    let state_arg: Option<TokenStream2> = state_ident.map(|_| "&state,".parse().unwrap());
+
     Ok(quote! {
         async fn #original_fn_name(
+            #state
             client: &warframe::worldstate::client::Client,
         ) -> Result<(), warframe::worldstate::error::ApiError> {
             use log::debug;
@@ -88,7 +132,7 @@ fn impl_listen_any(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box
 
             loop {
                 debug!("{} :: Fetching for changes", #model_name);
-                tokio::time::sleep(std::time::Duration::from_secs(60)).await;
+                warframe::tokio::time::sleep(std::time::Duration::from_secs(60)).await;
 
                 let new_items = client.fetch_arr::<#model_ident>().await?;
 
@@ -108,7 +152,7 @@ fn impl_listen_any(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box
                     debug!("{} :: Found changes", #model_name);
                     for item in removed_items.into_iter().chain(added_items) {
                         // call callback fn
-                        #item_sig(item).await;
+                        #item_sig(#state_arg item).await;
                     }
                     items = new_items;
                 }
@@ -119,12 +163,9 @@ fn impl_listen_any(model_ident: Ident, item: ItemFn) -> Result<TokenStream2, Box
 
 #[proc_macro_attribute]
 pub fn listen_any(args: TokenStream, input: TokenStream) -> TokenStream {
-    let model_ident = match parse_macro_input!(args) {
-        Meta::Path(path) => path.get_ident().cloned().unwrap(),
-        _ => panic!("Expected model type identifier."),
-    };
+    let ParsedIdents { first, second } = parse_macro_input!(args as ParsedIdents);
 
-    impl_listen_any(model_ident, parse_macro_input!(input))
+    impl_listen_any(first, second, parse_macro_input!(input))
         .unwrap()
         .into()
 }

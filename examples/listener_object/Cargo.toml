@@ -1,0 +1,13 @@
+[package]
+name = "example-listener-object-with-state"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+warframe = { path = "../../warframe.rs/", features = ["worldstate", "macros"] }
+env_logger = "0.11.1"
+tokio = "1.36.0"
+log = "0.4.20"

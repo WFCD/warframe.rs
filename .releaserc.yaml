@@ -6,6 +6,6 @@ plugins:
   - "@semantic-release-cargo/semantic-release-cargo"
   - "@semantic-release/github"
   - - "@semantic-release/git"
-    - assets: ["CHANGELOG.md", "Cargo.toml"]
+    - assets: ["CHANGELOG.md", "./warframe.rs/Cargo.toml"]
 branches:
   - master
