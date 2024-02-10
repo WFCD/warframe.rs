@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/WFCD/warframe.rs/compare/v3.1.0...v3.1.1) (2024-02-10)
+
+
+### Bug Fixes
+
+* Fixed versioning issues ([b318c8d](https://github.com/WFCD/warframe.rs/commit/b318c8df7adbd21e26d3a3bca5503af3b2df8d71))
+
 # [3.1.0](https://github.com/WFCD/warframe.rs/compare/v3.0.0...v3.1.0) (2024-02-10)
 
 
