@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/WFCD/warframe.rs/compare/v3.0.0...v3.1.0) (2024-02-10)
+
+
+### Features
+
+* optional States for listeners ([#6](https://github.com/WFCD/warframe.rs/issues/6)); ([236aa76](https://github.com/WFCD/warframe.rs/commit/236aa76ea836067eb0b80eb5028dee79f253ab6b))
+
 # [3.0.0](https://github.com/WFCD/warframe.rs/compare/v2.0.0...v3.0.0) (2024-02-07)
 
 
