@@ -2,9 +2,6 @@ pub mod client;
 pub mod error;
 pub mod models;
 
-#[cfg(feature = "macros")]
-pub use warframe_macros::{listen, listen_any};
-
 #[cfg(feature = "multilangual")]
 pub mod language;
 
