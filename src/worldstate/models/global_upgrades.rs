@@ -26,7 +26,7 @@ model_builder! {
     pub operation_symbol: String,
 
     :"Value corresponding to performing the operation"
-    pub upgrade_operation_value: String,
+    pub upgrade_operation_value: i32,
 
     :"Whether the upgrade has expired"
     pub expired: bool,
