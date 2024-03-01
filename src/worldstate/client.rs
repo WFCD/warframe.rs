@@ -1,23 +1,10 @@
 use log::debug;
 
+use crate::worldstate::utils::CrossDiff;
+
 use super::error::ApiError;
+use super::listener::{ArrayListenerCallback, ObjectListenerCallback};
 use super::models::base::{Endpoint, Model, RTArray, RTObject, TimedEvent};
-use std::future::Future;
-
-pub trait FnHelper<'a, T: Sized> {
-    fn call(&self, before: &'a T, after: &'a T) -> impl Future + 'a;
-}
-
-impl<'a, T, Fut, Func> FnHelper<'a, T> for Func
-where
-    T: Sized + 'a,
-    Fut: Future + 'a,
-    Func: Fn(&'a T, &'a T) -> Fut,
-{
-    fn call(&self, before: &'a T, after: &'a T) -> impl Future + 'a {
-        self(before, after)
-    }
-}
 
 #[derive(Default)]
 pub struct Client {
@@ -29,17 +16,17 @@ impl Client {
         Default::default()
     }
 
-    pub async fn call_on_update<T, Func>(&self, callback: Func) -> Result<(), ApiError>
+    pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
     where
         T: Model + Endpoint + RTObject + TimedEvent,
-        for<'any> Func: FnHelper<'any, T>,
+        for<'any> Callback: ObjectListenerCallback<'any, T>,
     {
         let mut item = self.fetch::<T>().await?;
 
         loop {
             if item.expiry() <= chrono::offset::Utc::now() {
                 debug!(
-                    "{} :: Looking for state change from the API",
+                    "{} :: Fetching new possible state",
                     std::any::type_name::<T>()
                 );
                 tokio::time::sleep(std::time::Duration::from_secs(30)).await;
@@ -61,6 +48,41 @@ impl Client {
                 time_to_sleep.num_seconds()
             );
             tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
+        }
+    }
+
+    pub async fn call_on_any_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
+    where
+        T: Model + Endpoint + RTArray + TimedEvent + PartialEq,
+        for<'any> Callback: ArrayListenerCallback<'any, T>,
+    {
+        let mut items = self.fetch_arr::<T>().await?;
+
+        loop {
+            tokio::time::sleep(std::time::Duration::from_secs(30)).await;
+
+            debug!(
+                "{} :: Fetching new possible state",
+                std::any::type_name::<T>()
+            );
+            let new_items = self.fetch_arr::<T>().await?;
+
+            let diff = CrossDiff::new(&items, &new_items);
+
+            let removed_items = diff.removed();
+            let added_items = diff.added();
+
+            if !removed_items.is_empty() && !added_items.is_empty() {
+                debug!(
+                    "{} :: Found changes, proceeding to call callback with every change",
+                    std::any::type_name::<T>()
+                );
+                for item in removed_items.into_iter().chain(added_items) {
+                    // call callback fn
+                    callback.call(item).await;
+                }
+                items = new_items;
+            }
         }
     }
 

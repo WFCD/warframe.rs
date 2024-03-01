@@ -1,5 +1,5 @@
 [package]
-name = "listen_to_state_updates"
+name = "listen_to_many_state_updates"
 version = "0.1.0"
 edition = "2021"
 
