@@ -333,7 +333,7 @@ impl Client {
     /// use warframe::worldstate::{listener::Change, prelude::*};
     ///
     /// // Define some state
-    /// #[derive(log::debug)]
+    /// #[derive(Debug)]
     /// struct MyState {
     ///     _num: i32,
     ///     _s: String,
