@@ -1,8 +1,6 @@
-use log::debug;
-
 use super::error::ApiError;
 
-use super::models::base::{Endpoint, Model, RTArray, RTObject, TimedEvent};
+use super::models::base::{Endpoint, Model, RTArray, RTObject};
 
 #[derive(Default, Debug, Clone)]
 pub struct Client {
@@ -73,7 +71,7 @@ impl Client {
     ///#[tokio::main]
     ///async fn main() -> Result<(), Box<dyn Error>> {
     ///    env_logger::builder()
-    ///        .filter_level(log::LevelFilter::Debug)
+    ///        .filter_level(log::LevelFilter::log::debug)
     ///        .init();
     ///
     ///    let client = Client::new();
@@ -85,15 +83,15 @@ impl Client {
     /// ```
     pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
     where
-        T: Model + Endpoint + RTObject + TimedEvent,
+        T: Model + Endpoint + RTObject + crate::worldstate::models::TimedEvent,
         for<'any> Callback: crate::worldstate::listener::ListenerCallback<'any, T>,
     {
-        debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
+        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
         let mut item = self.fetch::<T>().await?;
 
         loop {
             if item.expiry() <= chrono::offset::Utc::now() {
-                debug!(
+                log::debug!(
                     "{} (LISTENER) :: Fetching new possible update",
                     std::any::type_name::<T>()
                 );
@@ -110,7 +108,7 @@ impl Client {
 
             let time_to_sleep = item.expiry() - chrono::offset::Utc::now();
 
-            debug!(
+            log::debug!(
                 "{} (LISTENER) :: Sleeping {} seconds",
                 std::any::type_name::<T>(),
                 time_to_sleep.num_seconds()
@@ -173,16 +171,16 @@ impl Client {
         callback: Callback,
     ) -> Result<(), ApiError>
     where
-        T: Model + Endpoint + RTArray + TimedEvent + PartialEq,
+        T: Model + Endpoint + RTArray + crate::worldstate::models::TimedEvent + PartialEq,
         for<'any> Callback: crate::worldstate::listener::NestedListenerCallback<'any, T>,
     {
-        debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
+        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
         let mut items = self.fetch_arr::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
-            debug!(
+            log::debug!(
                 "{} (LISTENER) :: Fetching new possible state",
                 std::any::type_name::<Vec<T>>()
             );
@@ -194,7 +192,7 @@ impl Client {
             let added_items = diff.added();
 
             if !removed_items.is_empty() && !added_items.is_empty() {
-                debug!(
+                log::debug!(
                     "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
                     std::any::type_name::<Vec<T>>()
                 );
@@ -275,14 +273,14 @@ impl Client {
     ) -> Result<(), ApiError>
     where
         S: Sized + Send + Sync + Clone,
-        T: Model + Endpoint + RTObject + TimedEvent,
+        T: Model + Endpoint + RTObject + crate::worldstate::models::TimedEvent,
         for<'any> Callback: crate::worldstate::listener::StatefulListenerCallback<'any, T, S>,
     {
         let mut item = self.fetch::<T>().await?;
 
         loop {
             if item.expiry() <= chrono::offset::Utc::now() {
-                debug!(
+                log::debug!(
                     "{} (LISTENER) :: Fetching possible update",
                     std::any::type_name::<T>()
                 );
@@ -301,7 +299,7 @@ impl Client {
 
             let time_to_sleep = item.expiry() - chrono::offset::Utc::now();
 
-            debug!(
+            log::debug!(
                 "{} (LISTENER) :: Sleeping {} seconds",
                 std::any::type_name::<T>(),
                 time_to_sleep.num_seconds()
@@ -335,7 +333,7 @@ impl Client {
     /// use warframe::worldstate::{listener::Change, prelude::*};
     ///
     /// // Define some state
-    /// #[derive(Debug)]
+    /// #[derive(log::debug)]
     /// struct MyState {
     ///     _num: i32,
     ///     _s: String,
@@ -352,7 +350,7 @@ impl Client {
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
     ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::Debug)
+    ///         .filter_level(log::LevelFilter::log::debug)
     ///         .init();
     ///
     ///     let client = Client::new();
@@ -375,16 +373,16 @@ impl Client {
     ) -> Result<(), ApiError>
     where
         S: Sized + Send + Sync + Clone,
-        T: Model + Endpoint + RTArray + TimedEvent + PartialEq,
+        T: Model + Endpoint + RTArray + crate::worldstate::models::TimedEvent + PartialEq,
         for<'any> Callback: crate::worldstate::listener::StatefulNestedListenerCallback<'any, T, S>,
     {
-        debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
+        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
         let mut items = self.fetch_arr::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
-            debug!(
+            log::debug!(
                 "{} (LISTENER) :: Fetching new possible state",
                 std::any::type_name::<Vec<T>>()
             );
@@ -396,7 +394,7 @@ impl Client {
             let added_items = diff.added();
 
             if !removed_items.is_empty() && !added_items.is_empty() {
-                debug!(
+                log::debug!(
                     "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
                     std::any::type_name::<Vec<T>>()
                 );
