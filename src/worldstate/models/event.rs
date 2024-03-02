@@ -43,7 +43,7 @@ model_builder! {
     pub rewards: Vec<Reward>,
 
     :"Amount of health remaining for the target"
-    pub health: Option<i32>,
+    pub health: Option<f32>,
 
     :"The associated Syndicate"
     pub affiliated_with: Option<Syndicate>,
