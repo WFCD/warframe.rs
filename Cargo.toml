@@ -11,10 +11,12 @@ license = "MIT"
 
 
 [features]
-worldstate = []
 default = ["worldstate"]
-worldstate_full = ["worldstate", "multilangual"]
+
+worldstate = []
 multilangual = ["worldstate"]
+worldstate_listeners = ["worldstate"]
+worldstate_full = ["worldstate", "multilangual", "worldstate_listeners"]
 
 [dev-dependencies]
 clippy = "0.0.302"
@@ -33,4 +35,4 @@ log = "0.4.20"
 env_logger = "0.11.1"
 
 [workspace]
-members = [ "examples/listen_to_many_state_updates","examples/listen_to_state_updates"]
+members = [ "examples/*"]

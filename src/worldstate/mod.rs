@@ -4,9 +4,9 @@ pub mod models;
 
 #[cfg(feature = "multilangual")]
 pub mod language;
+
+#[cfg(feature = "worldstate_listeners")]
 pub mod listener;
-mod utils;
-mod magic;
 
 pub mod prelude {
     pub use crate::worldstate::client::Client;
