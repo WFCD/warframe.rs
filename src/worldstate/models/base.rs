@@ -12,7 +12,7 @@ pub trait Endpoint {
 }
 
 /// The base trait implemented by every Model in the API.
-pub trait Model: DeserializeOwned {
+pub trait Model: DeserializeOwned + PartialEq {
     fn from_str(raw_json: &str) -> Result<Self, Error> {
         serde_json::from_str::<Self>(raw_json)
     }
@@ -120,16 +120,6 @@ pub trait TypeDocumentation {
 pub trait Opposite {
     #[doc = "Returns the opposite of this state"]
     fn opposite(&self) -> Self;
-}
-
-#[cfg(feature = "macros")]
-pub mod macro_features {
-    use super::*;
-
-    pub enum Change<'a, T: 'a + Model + RTArray> {
-        Added(&'a T),
-        Removed(&'a T),
-    }
 }
 
 #[cfg(feature = "macros")]

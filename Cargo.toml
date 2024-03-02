@@ -1,2 +1,38 @@
+[package]
+name = "warframe"
+version = "3.1.1"
+edition = "2021"
+description = "An async crate to wrap Warframe's Worldstate API."
+readme = "./README.md"
+documentation = "https://docs.rs/warframe"
+homepage = "https://docs.rs/warframe"
+repository = "https://github.com/Mettwasser/warframe.rs"
+license = "MIT"
+
+
+[features]
+default = ["worldstate"]
+
+worldstate = []
+multilangual = ["worldstate"]
+worldstate_listeners = ["worldstate"]
+worldstate_full = ["worldstate", "multilangual", "worldstate_listeners"]
+
+[dev-dependencies]
+clippy = "0.0.302"
+rustfmt = "0.10.0"
+
+[dependencies]
+tokio = { version = "1.34.0", features = ["full"]}
+reqwest = { version = "0.11.22", features = ["json"] }
+chrono = { version = "0.4.31", features = ["serde", "clock"] }
+serde = { version = "1.0.190", features = ["derive"] }
+serde_json = { version = "1.0.108" }
+serde_flat_path = "0.1.2"
+serde_repr = "0.1.18"
+futures = "0.3.30"
+log = "0.4.20"
+env_logger = "0.11.1"
+
 [workspace]
-members = ["warframe.rs", "warframe-macros", "examples/*"]
+members = [ "examples/*"]
