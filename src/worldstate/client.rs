@@ -71,7 +71,7 @@ impl Client {
     ///#[tokio::main]
     ///async fn main() -> Result<(), Box<dyn Error>> {
     ///    env_logger::builder()
-    ///        .filter_level(log::LevelFilter::log::debug)
+    ///        .filter_level(log::LevelFilter::Debug)
     ///        .init();
     ///
     ///    let client = Client::new();
@@ -350,7 +350,7 @@ impl Client {
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
     ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::log::debug)
+    ///         .filter_level(log::LevelFilter::Debug)
     ///         .init();
     ///
     ///     let client = Client::new();
