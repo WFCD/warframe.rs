@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/WFCD/warframe.rs/compare/v3.1.1...v4.0.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* Invasion failing when InvasionMember is Infested ([#9](https://github.com/WFCD/warframe.rs/issues/9)) ([eff5b1a](https://github.com/WFCD/warframe.rs/commit/eff5b1a41aa3a67c5d900ed615d7c0d57c8fa62c))
+
+
+### Features
+
+* Added methods to make update listeners onto the client ([16bd7be](https://github.com/WFCD/warframe.rs/commit/16bd7be775613d85f2d1a753701d0316aabe0cbc))
+
+
+### BREAKING CHANGES
+
+* Deprecated warframe-macros and changed project structure
+
 ## [3.1.1](https://github.com/WFCD/warframe.rs/compare/v3.1.0...v3.1.1) (2024-02-10)
 
 
