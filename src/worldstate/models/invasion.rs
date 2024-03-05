@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use super::macros::model_builder;
 use super::{Faction, Reward, RewardType};
 
@@ -9,7 +11,7 @@ model_builder! {
     timed = false;
 
     :"The reward of the mission."
-    pub reward: Reward,
+    pub reward: Option<Reward>,
 
     :"The localized faction that houses the node/mission"
     pub faction: String,

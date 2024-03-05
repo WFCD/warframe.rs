@@ -1,5 +1,6 @@
 use super::macros::enum_builder;
 enum_builder! {
+    :"A Faction in Warframe"
     Faction;
     Orokin,
     Corrupted,
