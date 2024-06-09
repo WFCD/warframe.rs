@@ -1,6 +1,6 @@
 [package]
 name = "warframe"
-version = "4.0.0"
+version = "4.1.0"
 edition = "2021"
 description = "An async crate to wrap Warframe's Worldstate API."
 readme = "./README.md"

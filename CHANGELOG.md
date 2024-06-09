@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/WFCD/warframe.rs/compare/v4.0.0...v4.1.0) (2024-06-09)
+
+
+### Features
+
+* omnia fissures ([#11](https://github.com/WFCD/warframe.rs/issues/11)) ([1f01abe](https://github.com/WFCD/warframe.rs/commit/1f01abed71425043063fad17c7586a683cd693d9))
+
 # [4.0.0](https://github.com/WFCD/warframe.rs/compare/v3.1.1...v4.0.0) (2024-03-05)
 
 
