@@ -10,7 +10,7 @@ pub mod listener;
 
 pub mod prelude {
     pub use crate::worldstate::client::Client;
-    pub use crate::worldstate::error::ApiError;
+    pub use crate::worldstate::error::{ApiError, ApiErrorResponse};
 
     #[cfg(feature = "multilangual")]
     pub use crate::worldstate::language::Language;
