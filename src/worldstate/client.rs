@@ -1,4 +1,4 @@
-use super::error::ApiError;
+use super::error::{ApiError, ApiErrorResponse};
 
 use super::models::base::{Endpoint, Model, RTArray, RTObject};
 
@@ -19,10 +19,14 @@ impl Client {
     where
         T: Model + Endpoint + RTObject,
     {
-        let response = self.session.get(T::endpoint_en()).send().await.unwrap();
-        match response.status().as_u16() {
-            200 => Ok(response.json::<T>().await.unwrap()), // unwrap should be safe - the API only responds with a JSON
-            _code => Err(ApiError::from(response).await),
+        let response = self.session.get(T::endpoint_en()).send().await?;
+
+        if response.status().is_success() {
+            let json_result = response.json::<T>().await?;
+            Ok(json_result)
+        } else {
+            let error_response = response.json::<ApiErrorResponse>().await?;
+            Err(ApiError::ApiError(error_response))
         }
     }
 
@@ -30,10 +34,14 @@ impl Client {
     where
         T: Model + Endpoint + RTArray,
     {
-        let response = self.session.get(T::endpoint_en()).send().await.unwrap();
-        match response.status().as_u16() {
-            200 => Ok(response.json::<Vec<T>>().await.unwrap()), // unwrap should be safe - the API only responds with a JSON
-            _code => Err(ApiError::from(response).await),
+        let response = self.session.get(T::endpoint_en()).send().await?;
+
+        if response.status().is_success() {
+            let json_result = response.json::<Vec<T>>().await?;
+            Ok(json_result)
+        } else {
+            let error_response = response.json::<ApiErrorResponse>().await?;
+            Err(ApiError::ApiError(error_response))
         }
     }
 }
@@ -424,9 +432,13 @@ impl Client {
             .send()
             .await
             .unwrap();
-        match response.status().as_u16() {
-            200 => Ok(response.json::<T>().await.unwrap()), // unwrap should be safe - the API only responds with a JSON
-            _code => Err(ApiError::from(response).await),
+
+        if response.status().is_success() {
+            let json_result = response.json::<T>().await?;
+            Ok(json_result)
+        } else {
+            let error_response = response.json::<ApiErrorResponse>().await?;
+            Err(ApiError::ApiError(error_response))
         }
     }
 
@@ -444,9 +456,12 @@ impl Client {
             .await
             .unwrap();
 
-        match response.status().as_u16() {
-            200 => Ok(response.json::<Vec<T>>().await.unwrap()), // unwrap should be safe - the API only responds with a JSON
-            _code => Err(ApiError::from(response).await),
+        if response.status().is_success() {
+            let json_result = response.json::<Vec<T>>().await?;
+            Ok(json_result)
+        } else {
+            let error_response = response.json::<ApiErrorResponse>().await?;
+            Err(ApiError::ApiError(error_response))
         }
     }
 }

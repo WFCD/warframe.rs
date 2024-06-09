@@ -9,6 +9,7 @@ enum_builder! {
     Neo: 3,
     Axi: 4,
     Requiem: 5,
+    Omnia: 6,
 }
 
 model_builder! {
