@@ -1,4 +1,7 @@
 **/target/
-*Cargo.lock
-/.vscode/settings.json
-/.vscode/launch.json
+**/Cargo.lock
+
+# IDE files
+.vscode/settings.json
+.vscode/launch.json
+.idea/

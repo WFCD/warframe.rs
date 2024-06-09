@@ -21,8 +21,24 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
           # checkout as wfcd-bot-boi
           token: ${{ secrets.GH_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install Commitlint dependencies
+        run: npm install --global @commitlint/{cli,config-conventional}
+
+      - name: Check Commit Message (PR)
+        if: github.event_name == 'pull_request'
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+      - name: Check Commit Message (Push)
+        if: github.event_name == 'push'
+        run: npx commitlint --last --verbose
+
 
       - name: Install semantic-release-cargo
         if: needs.get-next-version.outputs.new-release-published == 'true'
@@ -47,7 +63,6 @@ jobs:
 
       - name: Cargo build
         run: cargo build --release
-
 
       - name: Semantic Release
         id: release
