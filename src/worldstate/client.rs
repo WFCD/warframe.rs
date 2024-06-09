@@ -199,7 +199,7 @@ impl Client {
             let removed_items = diff.removed();
             let added_items = diff.added();
 
-            if !removed_items.is_empty() && !added_items.is_empty() {
+            if !removed_items.is_empty() || !added_items.is_empty() {
                 log::debug!(
                     "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
                     std::any::type_name::<Vec<T>>()
