@@ -10,5 +10,6 @@ enum_builder! {
     Grineer,
     Tenno,
     Narmer,
-    Crossfire
+    Crossfire,
+    Murmur = "The Murmur"
 }

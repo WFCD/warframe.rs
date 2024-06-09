@@ -38,4 +38,8 @@ enum_builder! {
     Spy = "Spy",
     Survival = "Survival",
     Volatile = "Volatile",
+    Alchemy = "Alchemy",
+    Corruption = "Corruption",
+    VoidCascade = "Void Cascade",
+
 }

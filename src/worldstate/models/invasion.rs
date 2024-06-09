@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use super::macros::model_builder;
 use super::{Faction, Reward, RewardType};
 

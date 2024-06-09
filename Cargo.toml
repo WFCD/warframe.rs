@@ -18,12 +18,9 @@ multilangual = ["worldstate"]
 worldstate_listeners = ["worldstate"]
 worldstate_full = ["worldstate", "multilangual", "worldstate_listeners"]
 
-[dev-dependencies]
-clippy = "0.0.302"
-rustfmt = "0.10.0"
 
 [dependencies]
-tokio = { version = "1.34.0", features = ["full"]}
+tokio = { version = "1.34.0", features = ["full"] }
 reqwest = { version = "0.11.22", features = ["json"] }
 chrono = { version = "0.4.31", features = ["serde", "clock"] }
 serde = { version = "1.0.190", features = ["derive"] }
@@ -33,6 +30,3 @@ serde_repr = "0.1.18"
 futures = "0.3.30"
 log = "0.4.20"
 env_logger = "0.11.1"
-
-[workspace]
-members = [ "examples/*"]
