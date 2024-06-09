@@ -41,5 +41,4 @@ enum_builder! {
     Alchemy = "Alchemy",
     Corruption = "Corruption",
     VoidCascade = "Void Cascade",
-
 }
