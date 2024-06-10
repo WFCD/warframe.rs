@@ -1,5 +1,3 @@
-use crate::worldstate::listener::Change;
-
 use super::error::{ApiError, ApiErrorResponse};
 
 use super::models::base::{Endpoint, Model, RTArray, RTObject};
@@ -152,10 +150,10 @@ impl Client {
     /// /// This function will be called once a fissure updates.
     /// /// This will send a request to the corresponding endpoint once every 30s
     /// /// and compare the results for changes.
-    /// async fn on_fissure_update(fissure: Change<'_, Fissure>) {
-    ///     match fissure {
-    ///         Change::Added(fissure) => println!("Fissure ADDED   : {fissure:?}"),
-    ///         Change::Removed(fissure) => println!("Fissure REMOVED : {fissure:?}"),
+    /// async fn on_fissure_update(fissure: &Fissure, change: Change) {
+    ///     match change {
+    ///         Change::Added => println!("Fissure ADDED   : {fissure:?}"),
+    ///         Change::Removed => println!("Fissure REMOVED : {fissure:?}"),
     ///     }
     /// }
     ///
@@ -350,11 +348,11 @@ impl Client {
     ///     _s: String,
     /// }
     ///
-    /// async fn on_fissure_update(state: Arc<MyState>, fissure: Change<'_, Fissure>) {
+    /// async fn on_fissure_update(state: Arc<MyState>, fissure: &Fissure, change: Change) {
     ///     println!("STATE  : {state:?}");
-    ///     match fissure {
-    ///         Change::Added(f) => println!("FISSURE ADDED   : {f:?}"),
-    ///         Change::Removed(f) => println!("FISSURE REMOVED : {f:?}"),
+    ///     match change {
+    ///         Change::Added => println!("FISSURE ADDED   : {fissure:?}"),
+    ///         Change::Removed => println!("FISSURE REMOVED : {fissure:?}"),
     ///     }
     /// }
     ///
