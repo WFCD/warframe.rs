@@ -2,9 +2,10 @@ use std::future::Future;
 
 use super::models::{Endpoint, Model, RTArray, RTObject};
 
-pub enum Change<'a, T> {
-    Added(&'a T),
-    Removed(&'a T),
+#[derive(PartialEq, PartialOrd, Debug, Clone)]
+pub enum Change {
+    Added,
+    Removed,
 }
 
 // ----------
@@ -33,18 +34,18 @@ where
     T: Sized + Endpoint + RTArray + Model,
 {
     type Fut: Future + Send;
-    fn call(&self, change: Change<'a, T>) -> Self::Fut;
+    fn call(&self, item: &'a T, change: Change) -> Self::Fut;
 }
 
 impl<'a, T, Fut, Func> NestedListenerCallback<'a, T> for Func
 where
     T: Sized + Endpoint + RTArray + Model + 'a,
     Fut: Future + Send,
-    Func: Fn(Change<'a, T>) -> Fut,
+    Func: Fn(&'a T, Change) -> Fut,
 {
     type Fut = Fut;
-    fn call(&self, change: Change<'a, T>) -> Self::Fut {
-        self(change)
+    fn call(&self, item: &'a T, change: Change) -> Self::Fut {
+        self(item, change)
     }
 }
 
@@ -77,7 +78,7 @@ where
     S: Sized + Send + Sync,
 {
     type Fut: Future + Send;
-    fn call_with_state(&self, state: S, change: Change<'a, T>) -> Self::Fut;
+    fn call_with_state(&self, state: S, item: &'a T, change: Change) -> Self::Fut;
 }
 
 impl<'a, T, Fut, Func, S> StatefulNestedListenerCallback<'a, T, S> for Func
@@ -85,17 +86,17 @@ where
     T: Sized + Endpoint + RTArray + Model + 'a,
     S: Sized + Send + Sync,
     Fut: Future + Send,
-    Func: Fn(S, Change<'a, T>) -> Fut,
+    Func: Fn(S, &'a T, Change) -> Fut,
 {
     type Fut = Fut;
-    fn call_with_state(&self, state: S, change: Change<'a, T>) -> Self::Fut {
-        self(state, change)
+    fn call_with_state(&self, state: S, item: &'a T, change: Change) -> Self::Fut {
+        self(state, item, change)
     }
 }
 
 pub struct CrossDiff<'a, T>
 where
-    T: Model + Endpoint + RTArray,
+    T: PartialEq,
 {
     current: &'a [T],
     incoming: &'a [T],
@@ -103,39 +104,39 @@ where
 
 impl<'a, T> CrossDiff<'a, T>
 where
-    T: Model + Endpoint + RTArray,
+    T: PartialEq,
 {
     pub fn new(current: &'a [T], incoming: &'a [T]) -> Self {
         Self { current, incoming }
     }
 
-    pub fn removed(&self) -> Vec<Change<'a, T>> {
+    pub fn removed(&self) -> Vec<(&'a T, Change)> {
         self.current
             .iter()
             .filter(|&item| !self.incoming.contains(item))
-            .map(Change::Removed)
+            .map(|item| (item, Change::Removed))
             .collect()
     }
 
-    pub fn added(&self) -> Vec<Change<'a, T>> {
+    pub fn added(&self) -> Vec<(&'a T, Change)> {
         self.incoming
             .iter()
-            .filter(|&item| !self.incoming.contains(item))
-            .map(Change::Added)
+            .filter(|&item| !self.current.contains(item))
+            .map(|item| (item, Change::Added))
             .collect()
     }
 }
 
 #[cfg(test)]
 mod test {
-    use std::sync::Arc;
+    use std::{sync::Arc, vec};
 
     use crate::worldstate::prelude::{Cetus, Fissure};
 
-    use super::Change;
+    use super::{Change, CrossDiff};
 
     async fn on_cetus_update(_before: &Cetus, _after: &Cetus) {}
-    async fn on_cetus_update_stateful_nested(_state: Arc<i32>, _change: Change<'_, Fissure>) {}
+    async fn on_cetus_update_stateful_nested(_state: Arc<i32>, _item: &Fissure, _change: Change) {}
 
     #[tokio::test]
     async fn test() {
@@ -150,5 +151,14 @@ mod test {
                 .call_on_nested_update_with_state(on_cetus_update_stateful_nested, Arc::new(4))
                 .await
         });
+    }
+
+    #[test]
+    fn test_crossdiff() {
+        let a = vec![1, 2, 3];
+        let b = vec![1, 3, 4];
+        let cf = CrossDiff::new(&a, &b);
+        assert_eq!(cf.added(), vec![(&4, Change::Added)]);
+        assert_eq!(cf.removed(), vec![(&2, Change::Removed)]);
     }
 }

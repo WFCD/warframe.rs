@@ -1,3 +1,5 @@
+use crate::worldstate::listener::Change;
+
 use super::error::{ApiError, ApiErrorResponse};
 
 use super::models::base::{Endpoint, Model, RTArray, RTObject};
@@ -204,9 +206,10 @@ impl Client {
                     "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
                     std::any::type_name::<Vec<T>>()
                 );
-                for item in removed_items.into_iter().chain(added_items) {
+
+                for (item, change) in removed_items.into_iter().chain(added_items) {
                     // call callback fn
-                    callback.call(item).await;
+                    callback.call(item, change).await;
                 }
                 items = new_items;
             }
@@ -401,14 +404,15 @@ impl Client {
             let removed_items = diff.removed();
             let added_items = diff.added();
 
-            if !removed_items.is_empty() && !added_items.is_empty() {
+            if !removed_items.is_empty() || !added_items.is_empty() {
                 log::debug!(
                     "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
                     std::any::type_name::<Vec<T>>()
                 );
-                for item in removed_items.into_iter().chain(added_items) {
+
+                for (item, change) in removed_items.into_iter().chain(added_items) {
                     // call callback fn
-                    callback.call_with_state(state.clone(), item).await;
+                    callback.call_with_state(state.clone(), item, change).await;
                 }
                 items = new_items;
             }
