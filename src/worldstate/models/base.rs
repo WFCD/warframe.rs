@@ -2,7 +2,10 @@ use chrono::{DateTime, Utc};
 use serde::{de::DeserializeOwned, Deserialize};
 use serde_json::error::Error;
 
-use std::ops::{Div, Rem};
+use std::{
+    fmt::Debug,
+    ops::{Div, Rem},
+};
 
 pub trait Endpoint {
     fn endpoint_en() -> &'static str;
@@ -12,7 +15,7 @@ pub trait Endpoint {
 }
 
 /// The base trait implemented by every Model in the API.
-pub trait Model: DeserializeOwned + PartialEq {
+pub trait Model: DeserializeOwned + PartialEq + Debug {
     fn from_str(raw_json: &str) -> Result<Self, Error> {
         serde_json::from_str::<Self>(raw_json)
     }

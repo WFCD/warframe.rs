@@ -6,9 +6,9 @@ use serde::Deserialize;
 #[error("")]
 pub struct ApiErrorResponse {
     /// The error message
-    error: String,
+    pub error: String,
     // The status code returned
-    code: u16,
+    pub code: u16,
 }
 
 #[derive(Debug, thiserror::Error)]
