@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/WFCD/warframe.rs/compare/v4.1.0...v5.0.0) (2024-06-11)
+
+
+### Bug Fixes
+
+* listeners are now properly spawnable in a tokio::task::spawn(f) ([#13](https://github.com/WFCD/warframe.rs/issues/13)) ([d670259](https://github.com/WFCD/warframe.rs/commit/d6702592ae03306f610458bd02fbcc1d69671a4a))
+
+
+### BREAKING CHANGES
+
+* changed the signature of nested listener callback
+
 # [4.1.0](https://github.com/WFCD/warframe.rs/compare/v4.0.0...v4.1.0) (2024-06-09)
 
 
