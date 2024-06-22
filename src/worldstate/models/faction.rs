@@ -13,5 +13,5 @@ enum_builder! {
     Crossfire,
     Murmur = "The Murmur",
     :"Honestly, no idea what this is"
-    FcMitw = "FC_MITW"
+    ManInTheWall = "FC_MITW"
 }
