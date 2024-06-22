@@ -11,5 +11,7 @@ enum_builder! {
     Tenno,
     Narmer,
     Crossfire,
-    Murmur = "The Murmur"
+    Murmur = "The Murmur",
+    :"Honestly, no idea what this is"
+    FcMitw = "FC_MITW"
 }
