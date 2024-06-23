@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/WFCD/warframe.rs/compare/v5.0.0...v5.0.1) (2024-06-23)
+
+
+### Bug Fixes
+
+* syndicate jobs now have the type ([11b8dcd](https://github.com/WFCD/warframe.rs/commit/11b8dcdf3f02085c1a14cf870f55a7b85a8796f7))
+
 # [5.0.0](https://github.com/WFCD/warframe.rs/compare/v4.1.0...v5.0.0) (2024-06-11)
 
 
