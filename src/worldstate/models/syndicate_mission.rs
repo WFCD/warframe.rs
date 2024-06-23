@@ -14,8 +14,8 @@ model_builder! {
     :"The Reward Pool of the Bounty"
     pub reward_pool: Vec<String>,
 
-    :"The name of the syndicate job"
-    pub job_name: String = "type",
+    :"The type (or name) of the syndicate job"
+    pub job_type: String = "type",
 
     :"The level of the Enemies in this job"
     pub enemy_levels: Vec<i32>,
@@ -31,7 +31,7 @@ model_builder! {
 }
 
 model_builder! {
-    :"Warning: This is extremely janky -- All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case they are not valid."
+    :"All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case they are not valid."
     SyndicateMission: "/syndicateMissions",
     rt = array,
     timed = true;
