@@ -27,7 +27,7 @@ model_builder! {
     pub minimum_mr: i32 = "minMR",
 
     :"Expiry when this mission expires/disappears"
-    expiry: DateTime
+    pub expiry: DateTime
 }
 
 model_builder! {
