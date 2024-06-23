@@ -11,5 +11,6 @@ enum_builder! {
     Tenno,
     Narmer,
     Crossfire,
-    Murmur = "The Murmur"
+    Murmur = "The Murmur",
+    ManInTheWall = "FC_MITW"
 }

@@ -14,6 +14,8 @@ model_builder! {
     :"The Reward Pool of the Bounty"
     pub reward_pool: Vec<String>,
 
+    :"The type (or name) of the syndicate job"
+    pub job_type: String = "type",
 
     :"The level of the Enemies in this job"
     pub enemy_levels: Vec<i32>,
@@ -25,11 +27,11 @@ model_builder! {
     pub minimum_mr: i32 = "minMR",
 
     :"Expiry when this mission expires/disappears"
-    expiry: DateTime
+    pub expiry: DateTime
 }
 
 model_builder! {
-    :"Warning: This is extremly janky -- All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case they are not valid."
+    :"All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case they are not valid."
     SyndicateMission: "/syndicateMissions",
     rt = array,
     timed = true;

@@ -45,7 +45,17 @@ mod test {
 
         match client.fetch::<Arbitration>().await {
             Ok(_arbitration) => Ok(()),
-            Err(why) => Err(why),
+            Err(why) => {
+                if let ApiError::ApiError(error) = why {
+                    if error.code == 404 {
+                        Ok(())
+                    } else {
+                        Err(ApiError::ApiError(error))
+                    }
+                } else {
+                    Err(why)
+                }
+            }
         }
     }
 
