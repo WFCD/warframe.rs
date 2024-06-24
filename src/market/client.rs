@@ -23,7 +23,8 @@ impl Client {
 }
 
 impl Client {
-    pub async fn item_statistics(&self, item_url: impl Display) -> Result<StatisticItem, ApiError> {
+    /// Fetches the statistics of an item via its url_name
+    pub async fn item_statistics(&self, item_url: &str) -> Result<StatisticItem, ApiError> {
         let response = self
             .session
             .get(format!(
@@ -40,7 +41,8 @@ impl Client {
         }
     }
 
-    pub async fn item_info(&self, item_url: impl Display) -> Result<ItemInfo, ApiError> {
+    /// Fetches info about an item via its url_name
+    pub async fn item_info(&self, item_url: &str) -> Result<ItemInfo, ApiError> {
         let response = self
             .session
             .get(format!("https://api.warframe.market/v1/items/{item_url}"))
@@ -55,6 +57,7 @@ impl Client {
         }
     }
 
+    /// Fetches all tradable items
     pub async fn items(&self) -> Result<Vec<Item>, ApiError> {
         let response = self
             .session
@@ -70,7 +73,8 @@ impl Client {
         }
     }
 
-    pub async fn orders(&self, item_url: impl Display) -> Result<Vec<Order>, ApiError> {
+    /// Fetches all orders of a specific item via its url_name
+    pub async fn orders(&self, item_url: &str) -> Result<Vec<Order>, ApiError> {
         let response = self
             .session
             .get(format!(
