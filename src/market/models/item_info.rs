@@ -58,7 +58,7 @@ pub struct LanguageItem {
     pub thumb: String,
 
     pub icon: String,
-    // drop: Vec<Option<serde_json::Value>>,
+    // drop: Vec<Option<serde_json::Value>>, // seems to be empty all the time
 }
 
 #[cfg(test)]
