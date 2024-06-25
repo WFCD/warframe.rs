@@ -1,79 +1,79 @@
 {
-	// Place your warframe workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	// Placeholders with the same ids are connected.
-	// Example:
-	"Test a model (RTObj)": {
-		"scope": "rust",
-		"prefix": "model_test",
-		"body": [
-			"#[cfg(test)]"
-			"mod test {"
-			"	use super::${1:model};"
-			"	use crate::worldstate::{client::Client, error::ApiError};"
-			""
-			"	#[cfg(not(feature = \"multilangual\"))]"
-			"	#[tokio::test]"
-			"	async fn test_${1/(.*)/${1:/downcase}/}() -> Result<(), ApiError> {"
-			"		let client = Client::new();"
-			""
-			"		match client.fetch::<${1:model}>().await {"
-			"			Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),"
-			"			Err(why) => Err(why),"
-			"		}"
-			"	}"
-			""
-			"	#[cfg(feature = \"multilangual\")]"
-			"	#[tokio::test]"
-			"	async fn test_${1/(.*)/${1:/downcase}/}_ml() -> Result<(), ApiError> {"
-			"		use crate::worldstate::prelude::Language;"
-			""
-			"		let client = Client::new();"
-			""
-			"		match client.fetch_using_lang::<${1:model}>(Language::ZH).await {"
-			"			Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),"
-			"			Err(why) => Err(why),"
-			"		}"
-			"	}"
-			"}"
-		]
-	},
-	"Test a model (RTArray)": {
-		"scope": "rust",
-		"prefix": "model_test_array",
-		"body": [
-			"#[cfg(test)]"
-			"mod test {"
-			"	use super::${1:model};"
-			"	use crate::worldstate::{client::Client, error::ApiError};"
-			""
-			"	#[cfg(not(feature = \"multilangual\"))]"
-			"	#[tokio::test]"
-			"	async fn test_${1/(.*)/${1:/downcase}/}() -> Result<(), ApiError> {"
-			"		let client = Client::new();"
-			""
-			"		match client.fetch_arr::<${1:model}>().await {"
-			"			Ok(_${1/(.*)/${1:/downcase}/}s) => Ok(()),"
-			"			Err(why) => Err(why),"
-			"		}"
-			"	}"
-			""
-			"	#[cfg(feature = \"multilangual\")]"
-			"	#[tokio::test]"
-			"	async fn test_${1/(.*)/${1:/downcase}/}_ml() -> Result<(), ApiError> {"
-			"		use crate::worldstate::prelude::Language;"
-			""
-			"		let client = Client::new();"
-			""
-			"		match client.fetch_arr_using_lang::<${1:model}>(Language::ZH).await {"
-			"			Ok(_${1/(.*)/${1:/downcase}/}s) => Ok(()),"
-			"			Err(why) => Err(why),"
-			"		}"
-			"	}"
-			"}"
-		]
-	}
+    // Place your warframe workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+    // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+    // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+    // used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+    // Placeholders with the same ids are connected.
+    // Example:
+    "Test a model (RTObj)": {
+        "scope": "rust",
+        "prefix": "model_test",
+        "body": [
+            "#[cfg(test)]",
+            "mod test {",
+            "    use super::${1:model};",
+            "    use crate::worldstate::{client::Client, error::ApiError};",
+            "",
+            "    #[cfg(not(feature = \"multilangual\"))]",
+            "    #[tokio::test]",
+            "    async fn test_${1/(.*)/${1:/downcase}/}() -> Result<(), ApiError> {",
+            "        let client = Client::new();",
+            "",
+            "        match client.fetch::<${1:model}>().await {",
+            "            Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),",
+            "            Err(why) => Err(why),",
+            "        }",
+            "    }",
+            "",
+            "    #[cfg(feature = \"multilangual\")]",
+            "    #[tokio::test]",
+            "    async fn test_${1/(.*)/${1:/downcase}/}_ml() -> Result<(), ApiError> {",
+            "        use crate::worldstate::prelude::Language;",
+            "",
+            "        let client = Client::new();",
+            "",
+            "        match client.fetch_using_lang::<${1:model}>(Language::ZH).await {",
+            "            Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),",
+            "            Err(why) => Err(why),",
+            "        }",
+            "    }",
+            "}",
+        ]
+    },
+    "Test a model (RTArray)": {
+        "scope": "rust",
+        "prefix": "model_test_array",
+        "body": [
+            "#[cfg(test)]",
+            "mod test {",
+            "    use super::${1:model};",
+            "    use crate::worldstate::{client::Client, error::ApiError};",
+            "",
+            "    #[cfg(not(feature = \"multilangual\"))]",
+            "    #[tokio::test]",
+            "    async fn test_${1/(.*)/${1:/downcase}/}() -> Result<(), ApiError> {",
+            "        let client = Client::new();",
+            "",
+            "        match client.fetch_arr::<${1:model}>().await {",
+            "            Ok(_${1/(.*)/${1:/downcase}/}s) => Ok(()),",
+            "            Err(why) => Err(why),",
+            "        }",
+            "    }",
+            "",
+            "    #[cfg(feature = \"multilangual\")]",
+            "    #[tokio::test]",
+            "    async fn test_${1/(.*)/${1:/downcase}/}_ml() -> Result<(), ApiError> {",
+            "        use crate::worldstate::prelude::Language;",
+            "",
+            "        let client = Client::new();",
+            "",
+            "        match client.fetch_arr_using_lang::<${1:model}>(Language::ZH).await {",
+            "            Ok(_${1/(.*)/${1:/downcase}/}s) => Ok(()),",
+            "            Err(why) => Err(why),",
+            "        }",
+            "    }",
+            "}",
+        ]
+    }
 }
