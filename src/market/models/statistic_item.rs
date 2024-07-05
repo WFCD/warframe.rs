@@ -3,18 +3,18 @@ use {
     serde::{Deserialize, Serialize},
 };
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct StatisticItemPayload {
     pub(crate) payload: StatisticItem,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct StatisticItem {
     pub statistics_closed: StatisticsClosed,
     pub statistics_live: StatisticsLive,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct StatisticsClosed {
     #[serde(rename = "48hours")]
     pub last_48_hours: Vec<StatisticsClosed48Hour>,
@@ -23,7 +23,7 @@ pub struct StatisticsClosed {
     pub last_90_days: Vec<StatisticsClosed48Hour>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct StatisticsClosed48Hour {
     pub datetime: DateTime<Utc>,
 
@@ -52,7 +52,7 @@ pub struct StatisticsClosed48Hour {
     pub id: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct StatisticsLive {
     #[serde(rename = "48hours")]
     pub last_48_hours: Vec<StatisticsLive48Hour>,
@@ -61,7 +61,7 @@ pub struct StatisticsLive {
     pub last_90_days: Vec<StatisticsLive48Hour>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct StatisticsLive48Hour {
     pub datetime: DateTime<Utc>,
 
@@ -84,7 +84,7 @@ pub struct StatisticsLive48Hour {
     pub id: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 #[serde(rename_all = "snake_case")]
 pub enum OrderType {
     Buy,

@@ -1,37 +1,128 @@
-use super::{macros::model_builder, Faction, MissionType};
+use {
+    super::{base::TimedEvent, macros::model_builder, Faction, MissionType},
+    chrono::{DateTime, Utc},
+    serde::{Deserialize, Deserializer},
+};
 
-model_builder! {
-    :"Information about an arbitration"
-    Arbitration: "/arbitration",
-    rt = obj,
-    timed = true;
+fn deserialize_expiry<'de, D>(deserializer: D) -> Result<DateTime<Utc>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s: &str = Deserialize::deserialize(deserializer)?;
+    let s = dbg!(s.replace('Z', ""));
+    match DateTime::parse_from_rfc3339(&s) {
+        Ok(dt) => Ok(dt.with_timezone(&Utc)),
+        Err(err) => {
+            if let chrono::format::ParseErrorKind::OutOfRange
+            | chrono::format::ParseErrorKind::Invalid = err.kind()
+            {
+                Ok(DateTime::<Utc>::MAX_UTC)
+            } else {
+                Err(serde::de::Error::custom(err.to_string()))
+            }
+        }
+    }
+}
 
-    :"ID of this event"
-    pub id: String,
+// model_builder! {
+//     :"Information about an arbitration"
+//     Arbitration: "/arbitration",
+//     rt = obj,
+//     timed = true;
 
-    :"The i18n of the node"
+//     :"The i18n of the node"
+//     pub node: String,
+
+//     :"The name of the node"
+//     pub node_key: String,
+
+//     :"The i18n faction you are up against"
+//     pub faction: Faction = "enemy",
+
+//     :"The faction you are up against"
+//     pub faction_key: Option<Faction> = "enemyKey",
+
+//     :"The i18n type of the mission"
+//     pub mission_type: String = "type",
+
+//     :"The type of the mission"
+//     pub mission_type_key: MissionType = "typeKey",
+
+//     :"Whether this mission requires archwing"
+//     pub archwing: bool,
+
+//     :"Whether this mission requires sharkwing"
+//     pub sharkwing: bool,
+// }
+
+// FROM THE MACRO
+// Need custom deserializer for expiry
+#[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
+#[serde(rename_all = "camelCase")]
+#[doc = "Information about an arbitration"]
+pub struct Arbitration {
+    #[doc = "The i18n of the node"]
     pub node: String,
-
-    :"The name of the node"
+    #[doc = "The name of the node"]
     pub node_key: String,
-
-    :"The i18n faction you are up against"
-    pub faction: Faction = "enemy",
-
-    :"The faction you are up against"
-    pub faction_key: Option<Faction> = "enemyKey",
-
-    :"The i18n type of the mission"
-    pub mission_type: String = "type",
-
-    :"The type of the mission"
-    pub mission_type_key: MissionType = "typeKey",
-
-    :"Whether this mission requires archwing"
+    #[serde(rename(deserialize = "enemy"))]
+    #[doc = "The i18n faction you are up against"]
+    pub faction: Faction,
+    #[serde(rename(deserialize = "enemyKey"))]
+    #[doc = "The faction you are up against"]
+    pub faction_key: Option<Faction>,
+    #[serde(rename(deserialize = "type"))]
+    #[doc = "The i18n type of the mission"]
+    pub mission_type: String,
+    #[serde(rename(deserialize = "typeKey"))]
+    #[doc = "The type of the mission"]
+    pub mission_type_key: MissionType,
+    #[doc = "Whether this mission requires archwing"]
     pub archwing: bool,
-
-    :"Whether this mission requires sharkwing"
+    #[doc = "Whether this mission requires sharkwing"]
     pub sharkwing: bool,
+    activation: chrono::DateTime<chrono::Utc>,
+
+    #[serde(deserialize_with = "deserialize_expiry")]
+    expiry: chrono::DateTime<chrono::Utc>,
+}
+
+impl Arbitration {
+    pub fn is_valid(&self) -> bool {
+        self.expiry() != DateTime::<Utc>::MAX_UTC
+    }
+}
+
+impl crate::ws::Model for Arbitration {}
+
+impl crate::ws::TimedEvent for Arbitration {
+    #[doc = "Returns the time when this event began"]
+    fn activation(&self) -> chrono::DateTime<chrono::Utc> {
+        self.activation
+    }
+    #[doc = "Returns the time when this event ends"]
+    fn expiry(&self) -> chrono::DateTime<chrono::Utc> {
+        self.expiry
+    }
+}
+impl crate::ws::Endpoint for Arbitration {
+    fn endpoint_en() -> &'static str {
+        "https://api.warframestat.us/pc/arbitration/?language=en"
+    }
+    #[cfg(feature = "multilangual")]
+    fn endpoint(language: crate::ws::Language) -> String {
+        format!(
+            "https://api.warframestat.us/pc/arbitration/?language={}",
+            <crate::ws::Language as Into<&'static str>>::into(language),
+        )
+    }
+}
+impl crate::ws::RTObject for Arbitration {}
+
+impl crate::ws::TypeDocumentation for Arbitration {
+    fn docs() -> &'static str {
+        "Information about an arbitration"
+    }
 }
 
 #[cfg(test)]

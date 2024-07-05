@@ -3,17 +3,17 @@ use {
     serde::{Deserialize, Serialize},
 };
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct OrderPayload {
     pub(crate) payload: Payload,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct Payload {
     pub(crate) orders: Vec<Order>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 /// Platform is missing here. Platform is always "pc"
 pub struct Order {
     pub platinum: i64,
@@ -35,14 +35,14 @@ pub struct Order {
     pub region: Region,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 #[serde(rename_all = "snake_case")]
 pub enum OrderType {
     Buy,
     Sell,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 #[serde(rename_all = "kebab-case")]
 pub enum Region {
     De,
@@ -54,6 +54,7 @@ pub enum Region {
     Pt,
     Ru,
     Uk,
+    Cs,
 
     #[serde(rename = "zh-hans")]
     ZhHans,
@@ -62,7 +63,7 @@ pub enum Region {
     ZhHant,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct User {
     pub reputation: i64,
 
@@ -81,7 +82,7 @@ pub struct User {
     pub status: Status,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 #[serde(rename_all = "snake_case")]
 pub enum Status {
     Ingame,
@@ -94,7 +95,7 @@ mod test {
     use crate::market::{client::Client, error::ApiError};
 
     #[tokio::test]
-    async fn test_items() -> Result<(), ApiError> {
+    async fn test_orders() -> Result<(), ApiError> {
         let client = Client::new();
         let _ = client.orders("mirage_prime_set").await?;
         Ok(())

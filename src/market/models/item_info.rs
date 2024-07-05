@@ -1,23 +1,23 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct ItemInfoPayload {
     pub(crate) payload: Payload,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct Payload {
     pub(crate) item: ItemInfo,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct ItemInfo {
     pub id: String,
 
     pub items_in_set: Vec<ItemInSet>,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct ItemInSet {
     pub thumb: String,
 
@@ -47,7 +47,7 @@ pub struct ItemInSet {
     pub info: LanguageItem,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct LanguageItem {
     pub item_name: String,
 

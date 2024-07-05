@@ -42,5 +42,6 @@ enum_builder! {
     Alchemy,
     Corruption,
     VoidCascade = "Void Cascade",
-    Defection
+    Defection,
+    Unknown,
 }

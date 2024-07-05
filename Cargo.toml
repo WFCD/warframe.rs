@@ -18,7 +18,8 @@ multilangual = ["worldstate"]
 worldstate_listeners = ["worldstate"]
 worldstate_full = ["worldstate", "multilangual", "worldstate_listeners"]
 market = []
-
+market_cache = ["market", "dep:moka"]
+market_full = ["market", "market_cache"]
 
 [dependencies]
 tokio = { version = "1.34.0", features = ["full"] }
@@ -31,3 +32,4 @@ futures = "0.3.30"
 log = "0.4.20"
 env_logger = "0.11.1"
 thiserror = "1.0.61"
+moka = { version = "0.12.7", optional = true, features = ["future"] }
