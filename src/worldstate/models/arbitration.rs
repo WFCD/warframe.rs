@@ -1,5 +1,5 @@
 use {
-    super::{base::TimedEvent, macros::model_builder, Faction, MissionType},
+    super::{base::TimedEvent, Faction, MissionType},
     chrono::{DateTime, Utc},
     serde::{Deserialize, Deserializer},
 };
