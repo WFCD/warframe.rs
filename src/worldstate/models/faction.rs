@@ -12,5 +12,5 @@ enum_builder! {
     Narmer,
     Crossfire,
     Murmur = "The Murmur",
-    ManInTheWall = "FC_MITW"
+    ManInTheWall = "Man in the Wall"
 }

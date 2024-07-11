@@ -22,6 +22,7 @@ impl Client {
         let response = self.session.get(T::endpoint_en()).send().await?;
 
         if response.status().is_success() {
+            dbg!("Request came through");
             let json_result = response.json::<T>().await?;
             Ok(json_result)
         } else {

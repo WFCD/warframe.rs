@@ -1,3 +1,4 @@
+name: CI
 on:
   push:
     branches:
@@ -10,24 +11,20 @@ jobs:
   get-next-version:
     uses: semantic-release-action/next-release-version/.github/workflows/next-release-version.yml@v4
 
-  build:
-    name: Build
+  commitlint:
+    name: CommitLint
     runs-on: ubuntu-latest
-    needs:
-      - get-next-version
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
-          fetch-depth: 0
-          # checkout as wfcd-bot-boi
-          token: ${{ secrets.GH_TOKEN }}
+         fetch-depth: 0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install Commitlint dependencies
         run: npm install --global @commitlint/{cli,config-conventional}
 
@@ -39,6 +36,20 @@ jobs:
         if: github.event_name == 'push'
         run: npx commitlint --last --verbose
 
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs:
+      - get-next-version
+      - commitlint
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          # checkout as wfcd-bot-boi
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Install semantic-release-cargo
         if: needs.get-next-version.outputs.new-release-published == 'true'
@@ -67,6 +78,7 @@ jobs:
       - name: Semantic Release
         id: release
         uses: cycjimmy/semantic-release-action@v3.2.0
+        if: needs.get-next-version.outputs.new-release-published == 'true'
         env:
           # push as wfcd-bot-boi
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
