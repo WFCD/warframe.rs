@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/WFCD/warframe.rs/compare/v5.0.1...v5.1.0) (2024-07-11)
+
+
+### Features
+
+* market module ([#16](https://github.com/WFCD/warframe.rs/issues/16)) ([28dfebf](https://github.com/WFCD/warframe.rs/commit/28dfebf4bcf5d62f3258bd67e51536ae46fc4962))
+
 ## [5.0.1](https://github.com/WFCD/warframe.rs/compare/v5.0.0...v5.0.1) (2024-06-23)
 
 
