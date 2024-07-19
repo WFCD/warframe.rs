@@ -43,7 +43,7 @@ pub struct StatisticsClosed48Hour {
 
     pub median: f64,
 
-    pub moving_avg: f64,
+    pub moving_avg: Option<f64>,
 
     pub donch_top: f64,
 
@@ -79,7 +79,7 @@ pub struct StatisticsLive48Hour {
 
     pub order_type: OrderType,
 
-    pub moving_avg: f64,
+    pub moving_avg: Option<f64>,
 
     pub id: String,
 }
