@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/WFCD/warframe.rs/compare/v5.1.0...v6.0.0) (2024-07-19)
+
+
+### Features
+
+* simplified fetch to replace the array specific fetch ([3430874](https://github.com/WFCD/warframe.rs/commit/3430874f79f56b2cde691fdead25c87238495925))
+
+
+### BREAKING CHANGES
+
+* replaced fetch_arr, RT traits, and Model trait with the new Queryable trait
+
 # [5.1.0](https://github.com/WFCD/warframe.rs/compare/v5.0.1...v5.1.0) (2024-07-11)
 
 
