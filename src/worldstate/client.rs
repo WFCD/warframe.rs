@@ -1,6 +1,8 @@
-use super::error::{ApiError, ApiErrorResponse};
+use crate::ws::Queryable;
+#[allow(unused)]
+use crate::ws::TimedEvent;
 
-use super::models::base::{Endpoint, Model, RTArray, RTObject};
+use super::error::ApiError;
 
 #[derive(Default, Debug, Clone)]
 pub struct Client {
@@ -15,35 +17,11 @@ impl Client {
 
 // impl FETCH
 impl Client {
-    pub async fn fetch<T>(&self) -> Result<T, ApiError>
+    pub async fn fetch<T>(&self) -> Result<T::Return, ApiError>
     where
-        T: Model + Endpoint + RTObject,
+        T: Queryable,
     {
-        let response = self.session.get(T::endpoint_en()).send().await?;
-
-        if response.status().is_success() {
-            dbg!("Request came through");
-            let json_result = response.json::<T>().await?;
-            Ok(json_result)
-        } else {
-            let error_response = response.json::<ApiErrorResponse>().await?;
-            Err(ApiError::ApiError(error_response))
-        }
-    }
-
-    pub async fn fetch_arr<T>(&self) -> Result<Vec<T>, ApiError>
-    where
-        T: Model + Endpoint + RTArray,
-    {
-        let response = self.session.get(T::endpoint_en()).send().await?;
-
-        if response.status().is_success() {
-            let json_result = response.json::<Vec<T>>().await?;
-            Ok(json_result)
-        } else {
-            let error_response = response.json::<ApiErrorResponse>().await?;
-            Err(ApiError::ApiError(error_response))
-        }
+        <T as Queryable>::query(&self.session).await
     }
 }
 
@@ -58,7 +36,7 @@ impl Client {
     ///
     /// # Generic Constraints
     ///
-    /// - `T`: Must implement the `Model`, `Endpoint`, `RTObject`, and `TimedEvent` traits.
+    /// - `T`: Must implement the `Queryable` and `TimedEvent` traits.
     /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any` and type parameter `T`.
     ///
     /// # Returns
@@ -92,7 +70,7 @@ impl Client {
     /// ```
     pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
     where
-        T: Model + Endpoint + RTObject + crate::worldstate::models::TimedEvent,
+        T: TimedEvent + Queryable<Return = T>,
         for<'any> Callback: crate::worldstate::listener::ListenerCallback<'any, T>,
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
@@ -134,7 +112,7 @@ impl Client {
     ///
     /// # Generic Constraints
     ///
-    /// - `T`: Must implement the `Model`, `Endpoint`, `RTObject`, and `TimedEvent` traits.
+    /// - `T`: Must implement the `Queryable`, `TimedEvent` and `PartialEq` traits.
     /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any` and type parameter `T`.
     ///
     /// # Returns
@@ -180,11 +158,11 @@ impl Client {
         callback: Callback,
     ) -> Result<(), ApiError>
     where
-        T: Model + Endpoint + RTArray + crate::worldstate::models::TimedEvent + PartialEq,
+        T: TimedEvent + Queryable<Return = Vec<T>> + PartialEq,
         for<'any> Callback: crate::worldstate::listener::NestedListenerCallback<'any, T>,
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
-        let mut items = self.fetch_arr::<T>().await?;
+        let mut items = self.fetch::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
@@ -193,7 +171,7 @@ impl Client {
                 "{} (LISTENER) :: Fetching new possible state",
                 std::any::type_name::<Vec<T>>()
             );
-            let new_items = self.fetch_arr::<T>().await?;
+            let new_items = self.fetch::<T>().await?;
 
             let diff = crate::worldstate::listener::CrossDiff::new(&items, &new_items);
 
@@ -229,7 +207,7 @@ impl Client {
     /// # Generic Parameters
     ///
     /// - `S`: The type of the state object. It must be `Sized`, `Send`, `Sync`, and `Clone`.
-    /// - `T`: The type of the item. It must implement the `Model`, `Endpoint`, `RTObject`, and `TimedEvent` traits.
+    /// - `T`: Must implement the `Queryable` and `TimedEvent` traits.
     /// - `Callback`: The type of the callback function. It must implement the `StatefulListenerCallback` trait with the item type `T` and the state type `S`.
     ///
     /// # Returns
@@ -283,7 +261,7 @@ impl Client {
     ) -> Result<(), ApiError>
     where
         S: Sized + Send + Sync + Clone,
-        T: Model + Endpoint + RTObject + crate::worldstate::models::TimedEvent,
+        T: TimedEvent + Queryable<Return = T>,
         for<'any> Callback: crate::worldstate::listener::StatefulListenerCallback<'any, T, S>,
     {
         let mut item = self.fetch::<T>().await?;
@@ -328,7 +306,7 @@ impl Client {
     /// # Generic Constraints
     ///
     /// * `S` - The type of the state, which must be `Sized`, `Send`, `Sync`, and `Clone`.
-    /// * `T` - The type of the items, which must implement the `Model`, `Endpoint`, `RTArray`, `TimedEvent`, and `PartialEq` traits.
+    /// * `T` - Must implement the `Queryable`, `TimedEvent` and `PartialEq` traits.
     /// * `Callback` - The type of the callback function, which must implement the `StatefulNestedListenerCallback` trait.
     ///
     /// # Returns
@@ -383,11 +361,11 @@ impl Client {
     ) -> Result<(), ApiError>
     where
         S: Sized + Send + Sync + Clone,
-        T: Model + Endpoint + RTArray + crate::worldstate::models::TimedEvent + PartialEq,
+        T: Queryable<Return = Vec<T>> + TimedEvent + PartialEq,
         for<'any> Callback: crate::worldstate::listener::StatefulNestedListenerCallback<'any, T, S>,
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
-        let mut items = self.fetch_arr::<T>().await?;
+        let mut items = self.fetch::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
@@ -396,7 +374,7 @@ impl Client {
                 "{} (LISTENER) :: Fetching new possible state",
                 std::any::type_name::<Vec<T>>()
             );
-            let new_items = self.fetch_arr::<T>().await?;
+            let new_items = self.fetch::<T>().await?;
 
             let diff = crate::worldstate::listener::CrossDiff::new(&items, &new_items);
 
@@ -424,47 +402,11 @@ impl Client {
 impl Client {
     pub async fn fetch_using_lang<T>(
         &self,
-        language: super::language::Language,
-    ) -> Result<T, ApiError>
+        language: crate::ws::Language,
+    ) -> Result<T::Return, ApiError>
     where
-        T: Model + Endpoint + RTObject,
+        T: Queryable,
     {
-        let response = self
-            .session
-            .get(T::endpoint(language))
-            .send()
-            .await
-            .unwrap();
-
-        if response.status().is_success() {
-            let json_result = response.json::<T>().await?;
-            Ok(json_result)
-        } else {
-            let error_response = response.json::<ApiErrorResponse>().await?;
-            Err(ApiError::ApiError(error_response))
-        }
-    }
-
-    pub async fn fetch_arr_using_lang<T>(
-        &self,
-        language: super::language::Language,
-    ) -> Result<Vec<T>, ApiError>
-    where
-        T: Model + Endpoint + RTArray,
-    {
-        let response = self
-            .session
-            .get(T::endpoint(language))
-            .send()
-            .await
-            .unwrap();
-
-        if response.status().is_success() {
-            let json_result = response.json::<Vec<T>>().await?;
-            Ok(json_result)
-        } else {
-            let error_response = response.json::<ApiErrorResponse>().await?;
-            Err(ApiError::ApiError(error_response))
-        }
+        T::query_with_language(&self.session, language).await
     }
 }

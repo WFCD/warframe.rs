@@ -1,7 +1,5 @@
 use std::future::Future;
 
-use super::models::{Endpoint, Model, RTArray, RTObject};
-
 #[derive(PartialEq, PartialOrd, Debug, Clone)]
 pub enum Change {
     Added,
@@ -11,7 +9,7 @@ pub enum Change {
 // ----------
 pub trait ListenerCallback<'a, T>
 where
-    T: Sized + Endpoint + RTObject + Model,
+    T: Sized + 'a,
 {
     type Fut: Future + Send;
     fn call(&self, before: &'a T, after: &'a T) -> Self::Fut;
@@ -19,7 +17,7 @@ where
 
 impl<'a, T, Fut, Func> ListenerCallback<'a, T> for Func
 where
-    T: Sized + Endpoint + RTObject + Model + 'a,
+    T: Sized + 'a,
     Fut: Future + Send,
     Func: Fn(&'a T, &'a T) -> Fut,
 {
@@ -31,7 +29,7 @@ where
 
 pub trait NestedListenerCallback<'a, T>
 where
-    T: Sized + Endpoint + RTArray + Model,
+    T: Sized,
 {
     type Fut: Future + Send;
     fn call(&self, item: &'a T, change: Change) -> Self::Fut;
@@ -39,7 +37,7 @@ where
 
 impl<'a, T, Fut, Func> NestedListenerCallback<'a, T> for Func
 where
-    T: Sized + Endpoint + RTArray + Model + 'a,
+    T: Sized + 'a,
     Fut: Future + Send,
     Func: Fn(&'a T, Change) -> Fut,
 {
@@ -52,7 +50,7 @@ where
 // --------- STATEFUL CALLBACKS
 pub trait StatefulListenerCallback<'a, T, S>
 where
-    T: Sized + Endpoint + RTObject + Model,
+    T: Sized,
     S: Sized + Send + Sync,
 {
     type Fut: Future + Send;
@@ -61,7 +59,7 @@ where
 
 impl<'a, T, Fut, Func, S> StatefulListenerCallback<'a, T, S> for Func
 where
-    T: Sized + Endpoint + RTObject + Model + 'a,
+    T: Sized + 'a,
     S: Sized + Send + Sync,
     Fut: Future + Send,
     Func: Fn(S, &'a T, &'a T) -> Fut,
@@ -74,7 +72,7 @@ where
 
 pub trait StatefulNestedListenerCallback<'a, T, S>
 where
-    T: Sized + Endpoint + RTArray + Model,
+    T: Sized,
     S: Sized + Send + Sync,
 {
     type Fut: Future + Send;
@@ -83,7 +81,7 @@ where
 
 impl<'a, T, Fut, Func, S> StatefulNestedListenerCallback<'a, T, S> for Func
 where
-    T: Sized + Endpoint + RTArray + Model + 'a,
+    T: Sized + 'a,
     S: Sized + Send + Sync,
     Fut: Future + Send,
     Func: Fn(S, &'a T, Change) -> Fut,
@@ -136,7 +134,10 @@ mod test {
     use super::{Change, CrossDiff};
 
     async fn on_cetus_update(_before: &Cetus, _after: &Cetus) {}
-    async fn on_cetus_update_stateful_nested(_state: Arc<i32>, _item: &Fissure, _change: Change) {}
+    async fn on_cetus_update_stateful(_state: Arc<i32>, _before: &Cetus, _after: &Cetus) {}
+    async fn on_fissure_update_nested(_item: &Fissure, _change: Change) {}
+    async fn on_fissure_update_stateful_nested(_state: Arc<i32>, _item: &Fissure, _change: Change) {
+    }
 
     #[tokio::test]
     async fn test() {
@@ -148,7 +149,17 @@ mod test {
         let cloned = client.clone();
         tokio::task::spawn(async move {
             cloned
-                .call_on_nested_update_with_state(on_cetus_update_stateful_nested, Arc::new(4))
+                .call_on_update_with_state(on_cetus_update_stateful, Arc::new(4))
+                .await
+        });
+        let cloned = client.clone();
+        tokio::task::spawn(
+            async move { cloned.call_on_nested_update(on_fissure_update_nested).await },
+        );
+        let cloned = client.clone();
+        tokio::task::spawn(async move {
+            cloned
+                .call_on_nested_update_with_state(on_fissure_update_stateful_nested, Arc::new(4))
                 .await
         });
     }

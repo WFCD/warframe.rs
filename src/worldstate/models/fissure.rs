@@ -60,7 +60,7 @@ mod test {
     async fn test_fissure() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<Fissure>().await {
+        match client.fetch::<Fissure>().await {
             Ok(_fissures) => Ok(()),
             Err(why) => Err(why),
         }
@@ -73,7 +73,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using_lang::<Fissure>(Language::ZH).await {
+        match client.fetch_using_lang::<Fissure>(Language::ZH).await {
             Ok(_fissures) => Ok(()),
             Err(why) => Err(why),
         }

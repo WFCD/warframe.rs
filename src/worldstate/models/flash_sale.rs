@@ -31,7 +31,7 @@ mod test {
     async fn test_flashsale() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<FlashSale>().await {
+        match client.fetch::<FlashSale>().await {
             Ok(_flashsales) => Ok(()),
             Err(why) => Err(why),
         }
@@ -44,7 +44,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using_lang::<FlashSale>(Language::ZH).await {
+        match client.fetch_using_lang::<FlashSale>(Language::ZH).await {
             Ok(_flashsales) => Ok(()),
             Err(why) => Err(why),
         }

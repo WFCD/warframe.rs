@@ -1,24 +1,13 @@
 use chrono::{DateTime, Utc};
 use serde::{de::DeserializeOwned, Deserialize};
-use serde_json::error::Error;
 
-use std::{
-    fmt::Debug,
-    ops::{Div, Rem},
-};
+use std::ops::{Div, Rem};
 
 pub trait Endpoint {
     fn endpoint_en() -> &'static str;
 
     #[cfg(feature = "multilangual")]
     fn endpoint(language: crate::worldstate::language::Language) -> String;
-}
-
-/// The base trait implemented by every Model in the API.
-pub trait Model: DeserializeOwned + PartialEq + Debug {
-    fn from_str(raw_json: &str) -> Result<Self, Error> {
-        serde_json::from_str::<Self>(raw_json)
-    }
 }
 
 /// The `TimedEvent` trait defines methods that are related to timed events
@@ -59,11 +48,36 @@ pub trait TimedEvent {
     }
 }
 
-/// Defines a type to be of *API* return type object
-pub trait RTObject {}
+pub trait Queryable: Endpoint {
+    type Return: DeserializeOwned;
+    fn query(
+        request_executor: &reqwest::Client,
+    ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
+        async {
+            Ok(request_executor
+                .get(Self::endpoint_en())
+                .send()
+                .await?
+                .json::<Self::Return>()
+                .await?)
+        }
+    }
 
-/// Defines a type to be of *API* return type array
-pub trait RTArray {}
+    #[cfg(feature = "multilangual")]
+    fn query_with_language(
+        request_executor: &reqwest::Client,
+        language: crate::worldstate::prelude::Language,
+    ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
+        async {
+            Ok(request_executor
+                .get(Self::endpoint(language))
+                .send()
+                .await?
+                .json::<Self::Return>()
+                .await?)
+        }
+    }
+}
 
 fn divmod<T>(number: T, other: T) -> (T, T)
 where
@@ -127,6 +141,8 @@ pub trait Opposite {
 
 #[cfg(feature = "macros")]
 pub use macro_features::*;
+
+use crate::worldstate::error::ApiError;
 
 #[cfg(test)]
 mod tests {

@@ -59,7 +59,7 @@ mod test {
     async fn test_event() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<Event>().await {
+        match client.fetch::<Event>().await {
             Ok(_events) => Ok(()),
             Err(why) => Err(why),
         }
@@ -72,7 +72,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using_lang::<Event>(Language::ZH).await {
+        match client.fetch_using_lang::<Event>(Language::ZH).await {
             Ok(_events) => Ok(()),
             Err(why) => Err(why),
         }

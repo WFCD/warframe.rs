@@ -27,7 +27,7 @@ mod test {
     async fn test_alert() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<Alert>().await {
+        match client.fetch::<Alert>().await {
             Ok(_alerts) => Ok(()),
             Err(why) => Err(why),
         }
@@ -40,7 +40,7 @@ mod test {
 
         let client = Client::new();
 
-        match client.fetch_arr_using_lang::<Alert>(Language::ZH).await {
+        match client.fetch_using_lang::<Alert>(Language::ZH).await {
             Ok(_alerts) => Ok(()),
             Err(why) => Err(why),
         }

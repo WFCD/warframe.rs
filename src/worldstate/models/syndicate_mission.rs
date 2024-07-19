@@ -62,7 +62,7 @@ mod test {
     async fn test_syndicate() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<SyndicateMission>().await {
+        match client.fetch::<SyndicateMission>().await {
             Ok(_syndicates) => Ok(()),
             Err(why) => Err(why),
         }
@@ -76,7 +76,7 @@ mod test {
         let client = Client::new();
 
         match client
-            .fetch_arr_using_lang::<SyndicateMission>(Language::ZH)
+            .fetch_using_lang::<SyndicateMission>(Language::ZH)
             .await
         {
             Ok(_syndicates) => Ok(()),
