@@ -45,7 +45,7 @@ mod test {
     async fn test_globalupgrade() -> Result<(), ApiError> {
         let client = Client::new();
 
-        match client.fetch_arr::<GlobalUpgrade>().await {
+        match client.fetch::<GlobalUpgrade>().await {
             Ok(_globalupgrades) => Ok(()),
             Err(why) => Err(why),
         }
@@ -58,10 +58,7 @@ mod test {
 
         let client = Client::new();
 
-        match client
-            .fetch_arr_using_lang::<GlobalUpgrade>(Language::ZH)
-            .await
-        {
+        match client.fetch_using_lang::<GlobalUpgrade>(Language::ZH).await {
             Ok(_globalupgrades) => Ok(()),
             Err(why) => Err(why),
         }

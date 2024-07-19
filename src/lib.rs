@@ -1,3 +1,5 @@
+#![doc = include_str!("../README.md")]
+
 #[cfg(feature = "worldstate")]
 pub mod worldstate;
 
@@ -9,6 +11,6 @@ pub(crate) mod ws {
     pub(crate) use crate::worldstate::language::Language;
     pub(crate) use crate::worldstate::models::base::*;
     pub(crate) use crate::worldstate::models::macros::{
-        impl_endpoint, impl_model_struct, impl_rt, impl_timed_event,
+        impl_model_struct, impl_queryable, impl_timed_event,
     };
 }

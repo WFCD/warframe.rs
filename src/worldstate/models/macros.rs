@@ -7,9 +7,9 @@ macro_rules! model_builder {
     ) => {
         $crate::ws::impl_model_struct!(@timed = $timed $(:$struct_doc)? $struct_name; $($(:$field_doc)? $visibility $field : $field_type $(= $rename)? $(=> $deserialize_func)?),*);
         $crate::ws::impl_timed_event!($timed, $struct_name);
-        $( $crate::ws::impl_endpoint!($struct_name, $endpoint); )?
+        $( $crate::ws::impl_queryable!($rt, $struct_name, $endpoint); )?
 
-        $crate::ws::impl_rt!($rt, $struct_name);
+
 
         $(
             impl $crate::ws::TypeDocumentation for $struct_name {
@@ -37,8 +37,6 @@ macro_rules! impl_model_struct {
                 $visibility $field : $field_type,
             )*
         }
-
-        impl $crate::ws::Model for $struct_name {}
     };
 
     (
@@ -58,28 +56,6 @@ macro_rules! impl_model_struct {
             activation: chrono::DateTime<chrono::Utc>,
 
             expiry: chrono::DateTime<chrono::Utc>,
-        }
-
-        impl $crate::ws::Model for $struct_name {}
-    };
-}
-
-// ---------------------------------
-macro_rules! impl_endpoint {
-    ($struct_name:ident, $endpoint:literal) => {
-        impl $crate::ws::Endpoint for $struct_name {
-            fn endpoint_en() -> &'static str {
-                concat!("https://api.warframestat.us/pc", $endpoint, "/?language=en")
-            }
-
-            #[cfg(feature = "multilangual")]
-            fn endpoint(language: $crate::ws::Language) -> String {
-                format!(
-                    "https://api.warframestat.us/pc{}/?language={}",
-                    $endpoint,
-                    String::from(language)
-                )
-            }
         }
     };
 }
@@ -237,19 +213,41 @@ macro_rules! enum_builder {
     }
 }
 
-macro_rules! impl_rt {
-    (array, $type:ty) => {
-        impl $crate::ws::RTArray for $type {}
+macro_rules! impl_queryable {
+    (array, $type:ty, $endpoint:literal) => {
+        $crate::ws::impl_queryable!(@endpoint $type, $endpoint);
+        impl $crate::ws::Queryable for $type {
+            type Return = Vec<$type>;
+        }
     };
 
-    (obj, $type:ty) => {
-        impl $crate::ws::RTObject for $type {}
+    (obj, $type:ty, $endpoint:literal) => {
+        $crate::ws::impl_queryable!(@endpoint $type, $endpoint);
+        impl $crate::ws::Queryable for $type {
+            type Return = $type;
+        }
+    };
+
+    (@endpoint $struct_name:ty, $endpoint:literal) => {
+        impl $crate::ws::Endpoint for $struct_name {
+            fn endpoint_en() -> &'static str {
+                concat!("https://api.warframestat.us/pc", $endpoint, "/?language=en")
+            }
+
+            #[cfg(feature = "multilangual")]
+            fn endpoint(language: $crate::ws::Language) -> String {
+                format!(
+                    "https://api.warframestat.us/pc{}/?language={}",
+                    $endpoint,
+                    String::from(language)
+                )
+            }
+        }
     };
 }
 
 pub(crate) use enum_builder;
-pub(crate) use impl_endpoint;
 pub(crate) use impl_model_struct;
-pub(crate) use impl_rt;
+pub(crate) use impl_queryable;
 pub(crate) use impl_timed_event;
 pub(crate) use model_builder;

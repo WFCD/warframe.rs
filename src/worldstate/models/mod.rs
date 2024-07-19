@@ -26,10 +26,7 @@ mod syndicate;
 mod syndicate_mission;
 mod void_trader;
 
-pub use base::{
-    Endpoint, Model, Opposite, RTArray, RTObject, TimedEvent, TypeDocumentation,
-    VariantDocumentation,
-};
+pub use base::{Endpoint, Opposite, TimedEvent, TypeDocumentation, VariantDocumentation};
 
 #[cfg(feature = "macros")]
 pub use base::Change;

@@ -9,8 +9,7 @@ where
     D: Deserializer<'de>,
 {
     let s: &str = Deserialize::deserialize(deserializer)?;
-    let s = dbg!(s.replace('Z', ""));
-    match DateTime::parse_from_rfc3339(&s) {
+    match DateTime::parse_from_rfc3339(s) {
         Ok(dt) => Ok(dt.with_timezone(&Utc)),
         Err(err) => {
             if let chrono::format::ParseErrorKind::OutOfRange
@@ -93,8 +92,6 @@ impl Arbitration {
     }
 }
 
-impl crate::ws::Model for Arbitration {}
-
 impl crate::ws::TimedEvent for Arbitration {
     #[doc = "Returns the time when this event began"]
     fn activation(&self) -> chrono::DateTime<chrono::Utc> {
@@ -117,7 +114,9 @@ impl crate::ws::Endpoint for Arbitration {
         )
     }
 }
-impl crate::ws::RTObject for Arbitration {}
+impl crate::ws::Queryable for Arbitration {
+    type Return = Arbitration;
+}
 
 impl crate::ws::TypeDocumentation for Arbitration {
     fn docs() -> &'static str {
