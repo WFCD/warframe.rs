@@ -35,8 +35,6 @@ async fn main() -> Result<(), ApiError> {
 ## Contributing
 Contributions are more than welcome. To contribute simply fork this repository and make a PR.
 
-We use `clippy` for linting, and `rustfmt` for formatting. They are included as dev-dependencies in the `Cargo.toml`.
-
 ### Commitlint
 
 Commit messages are linting in the PR
