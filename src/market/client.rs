@@ -1,4 +1,6 @@
 //! Provides a client that acts as the baseline for interacting with the market API
+
+#[allow(unused_imports)]
 use std::{sync::Arc, time::Duration};
 
 use super::{
@@ -70,7 +72,9 @@ impl Client {
             .await?;
 
         if response.status().is_success() {
-            let json_result = response.json::<ItemInfoPayload>().await?;
+            let json_result = response
+                .json::<crate::market::models::ItemInfoPayload>()
+                .await?;
             Ok(json_result.payload.item)
         } else {
             Err(response.status().into())
@@ -86,7 +90,9 @@ impl Client {
             .await?;
 
         if response.status().is_success() {
-            let json_result = response.json::<ItemsPayload>().await?;
+            let json_result = response
+                .json::<crate::market::models::ItemsPayload>()
+                .await?;
             Ok(json_result.payload.items)
         } else {
             Err(response.status().into())
@@ -104,7 +110,9 @@ impl Client {
             .await?;
 
         if response.status().is_success() {
-            let json_result = response.json::<OrderPayload>().await?;
+            let json_result = response
+                .json::<crate::market::models::OrderPayload>()
+                .await?;
             Ok(json_result.payload.orders)
         } else {
             Err(response.status().into())
