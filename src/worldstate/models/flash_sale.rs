@@ -12,7 +12,11 @@ model_builder! {
     :"The discount of the Item"
     pub discount: i32,
 
+    :"The PLATINUM price of this item"
     pub premium_override: i32,
+
+    :"The CREDIT price of this item"
+    pub regular_override: i32,
 
     :"Whether the item is popular or not"
     pub is_popular: Option<bool>,

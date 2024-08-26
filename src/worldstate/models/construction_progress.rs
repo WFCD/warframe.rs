@@ -8,7 +8,10 @@ model_builder! {
     rt = obj,
     timed = false;
 
+    :"The progress of the Fomorian"
     pub fomorian_progress: f32 => "deserialize_f32_from_string",
+
+    :"The progress of the Razorback"
     pub razorback_progress: f32 => "deserialize_f32_from_string",
 
     :"No clue what this is tbh"

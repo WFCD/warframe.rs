@@ -1,17 +1,87 @@
+//! # Allows registering listeners.
+//!
+//! Listeners are functions that will be called when a specific endpoint receives an update.
+//!
+//! There are 2 types. The 'normal' ones for models like [Cetus](crate::worldstate::models::Cetus),
+//! and 'nested' ones for models like [Fissure](crate::worldstate::models::Fissure).
+//!
+//! ### Demo for the 'normal' listeners
+//! ```rust,no_run
+//! use std::error::Error;
+//!
+//! use warframe::worldstate::prelude::*;
+//!
+//! async fn on_cetus_update(before: &Cetus, after: &Cetus) {
+//!     println!("BEFORE : {before:?}");
+//!     println!("AFTER  : {after:?}");
+//! }
+//!
+//! #[tokio::main]
+//! async fn main() -> Result<(), Box<dyn Error>> {
+//!     env_logger::builder()
+//!         .filter_level(log::LevelFilter::Debug)
+//!         .init();
+//!
+//!     let client = Client::new();
+//!     
+//!     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)
+//!     Ok(())
+//! }
+//! ```
+//!
+//! ### Demo for the 'nested' listeners
+//! ```rust
+//! use std::error::Error;
+//!
+//! use warframe::worldstate::{listener::Change, prelude::*};
+//!
+//! /// This function will be called once a fissure updates.
+//! /// This will send a request to the corresponding endpoint once every 30s
+//! /// and compare the results for changes.
+//! async fn on_fissure_update(fissure: &Fissure, change: Change) {
+//!     match change {
+//!         Change::Added => println!("Fissure ADDED   : {fissure:?}"),
+//!         Change::Removed => println!("Fissure REMOVED : {fissure:?}"),
+//!     }
+//! }
+//!
+//! #[tokio::main]
+//! async fn main() -> Result<(), Box<dyn Error>> {
+//!     // Logging setup
+//!     env_logger::builder()
+//!         .filter_level(log::LevelFilter::Debug)
+//!         .init();
+//!
+//!     // initialize a client (included in the prelude)
+//!     let client = Client::new();
+//!
+//!     // Pass the function to the handler
+//!     // (will return a Future)
+//!     client.call_on_nested_update(on_fissure_update); // don't forget to start it as a bg task (or .await it)
+//!     Ok(())
+//! }
+//! ```
+
 use std::future::Future;
 
+/// Represents what has happened to the nested Item.
 #[derive(PartialEq, PartialOrd, Debug, Clone)]
 pub enum Change {
+    /// The Item has been added to the collection
     Added,
+    /// The Item has been removed the collection
     Removed,
 }
 
 // ----------
+/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
 pub trait ListenerCallback<'a, T>
 where
     T: Sized + 'a,
 {
+    /// Type of the future
     type Fut: Future + Send;
+    /// The method to call the handler
     fn call(&self, before: &'a T, after: &'a T) -> Self::Fut;
 }
 
@@ -27,11 +97,14 @@ where
     }
 }
 
+/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
 pub trait NestedListenerCallback<'a, T>
 where
     T: Sized,
 {
+    /// Type of the future
     type Fut: Future + Send;
+    /// The method to call the handler
     fn call(&self, item: &'a T, change: Change) -> Self::Fut;
 }
 
@@ -48,12 +121,17 @@ where
 }
 
 // --------- STATEFUL CALLBACKS
+/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
+///
+/// and a state.
 pub trait StatefulListenerCallback<'a, T, S>
 where
     T: Sized,
     S: Sized + Send + Sync,
 {
+    /// Type of the future
     type Fut: Future + Send;
+    /// The method to call the handler
     fn call_with_state(&self, state: S, before: &'a T, after: &'a T) -> Self::Fut;
 }
 
@@ -70,12 +148,17 @@ where
     }
 }
 
+/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
+///
+/// and a state.
 pub trait StatefulNestedListenerCallback<'a, T, S>
 where
     T: Sized,
     S: Sized + Send + Sync,
 {
+    /// Type of the future
     type Fut: Future + Send;
+    /// The method to call the handler
     fn call_with_state(&self, state: S, item: &'a T, change: Change) -> Self::Fut;
 }
 
@@ -92,6 +175,7 @@ where
     }
 }
 
+/// A type that implements logic to find which items have been added or removed in 2 collections
 pub struct CrossDiff<'a, T>
 where
     T: PartialEq,
@@ -104,10 +188,12 @@ impl<'a, T> CrossDiff<'a, T>
 where
     T: PartialEq,
 {
+    /// Creates a [CrossDiff]
     pub fn new(current: &'a [T], incoming: &'a [T]) -> Self {
         Self { current, incoming }
     }
 
+    /// Gets all the removed items
     pub fn removed(&self) -> Vec<(&'a T, Change)> {
         self.current
             .iter()
@@ -116,6 +202,7 @@ where
             .collect()
     }
 
+    /// Gets all the added items
     pub fn added(&self) -> Vec<(&'a T, Change)> {
         self.incoming
             .iter()

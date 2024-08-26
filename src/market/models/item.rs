@@ -12,15 +12,20 @@ pub(crate) struct Items {
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct Item {
+    /// thumb
     pub thumb: String,
 
+    /// item_name
     pub item_name: String,
 
+    /// url_name
     pub url_name: String,
 
+    /// id
     pub id: String,
 
     #[serde(default)]
+    /// vaulted
     pub vaulted: bool,
 }
 

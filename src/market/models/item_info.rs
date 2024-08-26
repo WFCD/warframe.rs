@@ -47,16 +47,22 @@ pub struct ItemInSet {
     pub info: LanguageItem,
 }
 
+/// A Language Item
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct LanguageItem {
+    /// item_name
     pub item_name: String,
 
+    /// description
     pub description: String,
 
+    /// wiki_link
     pub wiki_link: String,
 
+    /// thumb
     pub thumb: String,
 
+    /// icon
     pub icon: String,
     // drop: Vec<Option<serde_json::Value>>, // seems to be empty all the time
 }

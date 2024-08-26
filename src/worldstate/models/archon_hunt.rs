@@ -30,6 +30,7 @@ model_builder! {
     :"Whether the mission is a sharkwing mission"
     pub is_sharkwing: bool,
 
+    :"Any additional spawners"
     pub advanced_spawners: Vec<String>,
 
     :"Items required to enter the mission"

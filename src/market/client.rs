@@ -1,3 +1,4 @@
+//! Provides a client that acts as the baseline for interacting with the market API
 use std::{sync::Arc, time::Duration};
 
 use super::{
@@ -12,13 +13,19 @@ use super::{
 
 #[cfg(feature = "market_cache")]
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[doc = "A cached value"]
 pub enum CacheValue {
+    /// StatisticItem
     StatisticItem(Arc<StatisticItem>),
+    /// ItemInfo
     ItemInfo(Arc<ItemInfo>),
+    /// Items
     Items(Arc<Vec<Item>>),
+    /// Orders
     Orders(Arc<Vec<Order>>),
 }
 
+/// The client
 #[derive(Debug, Clone)]
 #[cfg_attr(not(feature = "market_cache"), derive(Default))]
 pub struct Client {
@@ -28,6 +35,7 @@ pub struct Client {
 }
 
 impl Client {
+    /// Creates a new [Client]
     pub fn new() -> Self {
         Default::default()
     }
@@ -104,6 +112,7 @@ impl Client {
     }
 }
 
+/// The cached version of the client
 #[cfg(feature = "market_cache")]
 pub mod cached {
     use {
@@ -117,13 +126,17 @@ pub mod cached {
     pub use moka;
     use reqwest::Response;
 
+    /// Whether an item has been gotten via a cache hit or freshly fetched.
     pub enum FetchResult {
+        /// Cache hit
         Cached(CacheValue),
+        /// Fetched
         Fetched(Result<Response, ApiError>),
     }
 
     #[cfg(feature = "market_cache")]
     impl Client {
+        /// Creates a new client with a custom cache
         pub fn new_with_cache(cache: Cache<String, CacheValue>) -> Self {
             Self {
                 session: Default::default(),

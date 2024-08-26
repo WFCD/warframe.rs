@@ -3,16 +3,24 @@ use super::macros::{enum_builder, model_builder};
 use super::mission_type::MissionType;
 
 enum_builder! {
+    :"Represents Relic tiers"
     Tier;
+    :"Lith"
     Lith: 1,
+    :"Meso"
     Meso: 2,
+    :"Neo"
     Neo: 3,
+    :"Axi"
     Axi: 4,
+    :"Requiem"
     Requiem: 5,
+    :"Omnia"
     Omnia: 6,
 }
 
 model_builder! {
+    :"A Fissure Mission in which you can crack Void Relics"
     Fissure: "/fissures",
     rt = array,
     timed = true;

@@ -1,15 +1,35 @@
+//! A client to do all sorts of things with the API
+
 use crate::ws::Queryable;
 #[allow(unused)]
 use crate::ws::TimedEvent;
 
 use super::error::ApiError;
 
+/// The client that acts as a convenient way to query models.
+///
+/// ## Example
+/// ```rust,no_run
+/// use warframe::worldstate::prelude as wf;
+/// #[tokio::main]
+/// async fn main() -> Result<(), wf::ApiError> {
+///     let client = wf::Client::new();
+///
+///     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
+///     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+///
+///     Ok(())
+/// }
+/// ```
+///
+/// Check [Models](crate::worldstate::models) for an alternative way of querying/[`fetch`](Client::fetch)ing.
 #[derive(Default, Debug, Clone)]
 pub struct Client {
     session: reqwest::Client,
 }
 
 impl Client {
+    /// Creates a new [Client].
     pub fn new() -> Self {
         Default::default()
     }
@@ -17,11 +37,54 @@ impl Client {
 
 // impl FETCH
 impl Client {
+    /// Fetches an instance of a specified model.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use warframe::worldstate::prelude as wf;
+    /// #[tokio::main]
+    /// async fn main() -> Result<(), wf::ApiError> {
+    ///     let client = wf::Client::new();
+    ///
+    ///     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
+    ///     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+    ///
+    ///     Ok(())
+    /// }
+    /// ```
     pub async fn fetch<T>(&self) -> Result<T::Return, ApiError>
     where
         T: Queryable,
     {
         <T as Queryable>::query(&self.session).await
+    }
+
+    /// Fetches an instance of a specified model in a supplied Language.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use warframe::worldstate::prelude as wf;
+    /// #[tokio::main]
+    /// async fn main() -> Result<(), wf::ApiError> {
+    ///     let client = wf::Client::new();
+    ///
+    ///     let cetus: wf::Cetus = client.fetch_using_lang::<wf::Cetus>(wf::Language::ZH).await?;
+    ///     let fissures: Vec<wf::Fissure> = client.fetch_using_lang::<wf::Fissure>(wf::Language::ZH).await?;
+    ///
+    ///     Ok(())
+    /// }
+    /// ```
+    #[cfg(feature = "multilangual")]
+    pub async fn fetch_using_lang<T>(
+        &self,
+        language: crate::ws::Language,
+    ) -> Result<T::Return, ApiError>
+    where
+        T: Queryable,
+    {
+        T::query_with_language(&self.session, language).await
     }
 }
 
@@ -46,26 +109,26 @@ impl Client {
     /// # Example
     ///
     /// ```rust
-    ///use std::error::Error;
+    /// use std::error::Error;
     ///
-    ///use warframe::worldstate::prelude::*;
+    /// use warframe::worldstate::prelude::*;
     ///
-    ///async fn on_cetus_update(before: &Cetus, after: &Cetus) {
-    ///    println!("BEFORE : {before:?}");
-    ///    println!("AFTER  : {after:?}");
-    ///}
+    /// async fn on_cetus_update(before: &Cetus, after: &Cetus) {
+    ///     println!("BEFORE : {before:?}");
+    ///     println!("AFTER  : {after:?}");
+    /// }
     ///
-    ///#[tokio::main]
-    ///async fn main() -> Result<(), Box<dyn Error>> {
-    ///    env_logger::builder()
-    ///        .filter_level(log::LevelFilter::Debug)
-    ///        .init();
+    /// #[tokio::main]
+    /// async fn main() -> Result<(), Box<dyn Error>> {
+    ///     env_logger::builder()
+    ///         .filter_level(log::LevelFilter::Debug)
+    ///         .init();
     ///
-    ///    let client = Client::new();
-    ///    
-    ///    client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
-    ///    Ok(())
-    ///}
+    ///     let client = Client::new();
+    ///     
+    ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
+    ///     Ok(())
+    /// }
     ///
     /// ```
     pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
@@ -151,7 +214,6 @@ impl Client {
     ///     client.call_on_nested_update(on_fissure_update); // don't forget to start it as a bg task (or .await it)
     ///     Ok(())
     /// }
-    ///
     /// ```
     pub async fn call_on_nested_update<T, Callback>(
         &self,
@@ -394,19 +456,5 @@ impl Client {
                 items = new_items;
             }
         }
-    }
-}
-
-// impl FETCH (with language)
-#[cfg(feature = "multilangual")]
-impl Client {
-    pub async fn fetch_using_lang<T>(
-        &self,
-        language: crate::ws::Language,
-    ) -> Result<T::Return, ApiError>
-    where
-        T: Queryable,
-    {
-        T::query_with_language(&self.session, language).await
     }
 }

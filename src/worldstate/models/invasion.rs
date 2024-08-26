@@ -4,6 +4,7 @@ use super::{Faction, Reward, RewardType};
 type DateTime = chrono::DateTime<chrono::Utc>;
 
 model_builder! {
+    :"An defender/attacker of an Invasion"
     InvasionMember,
     rt = obj,
     timed = false;
@@ -19,6 +20,7 @@ model_builder! {
 }
 
 model_builder! {
+    :"An Invasion"
     Invasion: "/invasions",
     rt = array,
     timed = false;
