@@ -16,8 +16,8 @@
 //! async fn main() -> Result<(), wf::ApiError> {
 //!     let reqwest_client = reqwest::Client::new();
 //!
-//!     let cetus: wf::Cetus = Cetus::query(&reqwest_client).await?;
-//!     let fissures: Vec<wf::Fissure> = Fissure::query(&reqwest_client).await?;
+//!     let cetus: wf::Cetus = wf::Cetus::query(&reqwest_client).await?;
+//!     let fissures: Vec<wf::Fissure> = wf::Fissure::query(&reqwest_client).await?;
 //!
 //!     Ok(())
 //! }
