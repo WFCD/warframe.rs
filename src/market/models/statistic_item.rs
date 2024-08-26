@@ -1,4 +1,5 @@
 use {
+    super::OrderType,
     chrono::{DateTime, Utc},
     serde::{Deserialize, Serialize},
 };
@@ -82,13 +83,6 @@ pub struct StatisticsLive48Hour {
     pub moving_avg: Option<f64>,
 
     pub id: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
-#[serde(rename_all = "snake_case")]
-pub enum OrderType {
-    Buy,
-    Sell,
 }
 
 #[cfg(test)]

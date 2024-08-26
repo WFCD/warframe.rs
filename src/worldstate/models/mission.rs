@@ -27,6 +27,7 @@ model_builder! {
     :"The maximum level of the enemy"
     pub max_enemy_level: i32,
 
+    :"The maximum wave you can get to"
     pub max_wave_num: Option<i32>,
 
     :"The i18n type of the mission"
@@ -44,10 +45,13 @@ model_builder! {
     :"Whether the mission is a sharkwing mission"
     pub is_sharkwing: bool,
 
+    :"The enemy spec"
     pub enemy_spec: String,
 
+    :"Any level override"
     pub level_override: String,
 
+    :"Any additional spawners"
     pub advanced_spawners: Vec<String>,
 
     :"Items required to enter the mission"

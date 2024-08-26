@@ -1,7 +1,32 @@
+//! # Models
+//! All Models can be found here.
+//! Some of them are queryable.
+//!
+//! You can query every model that implements [Queryable](crate::worldstate::models::base::Queryable) [CLient](crate::worldstate::client::Client).
+//! # Querying...
+//!
+//! ### ...through the client
+//! To query models through the provided client, see [Client](crate::worldstate::client::Client)
+//!
+//! ### ...via the [Queryable] trait
+//! ```rust
+//! use warframe::worldstate::prelude as wf;
+//! use warframe::worldstate::prelude::Queryable;
+//! #[tokio::main]
+//! async fn main() -> Result<(), wf::ApiError> {
+//!     let reqwest_client = reqwest::Client::new();
+//!
+//!     let cetus: wf::Cetus = wf::Cetus::query(&reqwest_client).await?;
+//!     let fissures: Vec<wf::Fissure> = wf::Fissure::query(&reqwest_client).await?;
+//!
+//!     Ok(())
+//! }
+//! ```
+
 mod alert;
 mod arbitration;
 mod archon_hunt;
-pub(crate) mod base;
+pub mod base;
 mod cambion_drift;
 mod cetus;
 mod construction_progress;
@@ -26,10 +51,7 @@ mod syndicate;
 mod syndicate_mission;
 mod void_trader;
 
-pub use base::{Endpoint, Opposite, TimedEvent, TypeDocumentation, VariantDocumentation};
-
-#[cfg(feature = "macros")]
-pub use base::Change;
+pub use base::*;
 
 pub use alert::Alert;
 pub use arbitration::Arbitration;
@@ -55,3 +77,16 @@ pub use steel_path::{SteelPath, SteelPathShopItem};
 pub use syndicate::Syndicate;
 pub use syndicate_mission::{SyndicateJob, SyndicateMission};
 pub use void_trader::{VoidTrader, VoidTraderInventoryItem};
+
+#[tokio::test]
+async fn test_doc_example() -> Result<(), crate::worldstate::prelude::ApiError> {
+    use crate::worldstate::prelude as wf;
+    use crate::worldstate::prelude::Queryable;
+
+    let client = reqwest::Client::new();
+
+    let _cetus: wf::Cetus = Cetus::query(&client).await?;
+    let _fissures: Vec<wf::Fissure> = Fissure::query(&client).await?;
+
+    Ok(())
+}

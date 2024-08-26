@@ -1,11 +1,20 @@
+//! Here lies what powers the models.
+
 use chrono::{DateTime, Utc};
 use serde::{de::DeserializeOwned, Deserialize};
 
 use std::ops::{Div, Rem};
 
+/// Types implementing this have an actual endpoint on the API.
 pub trait Endpoint {
+    /// Returns the URL to the english endpoint.
+    ///
+    /// Getting the english endpoint is free, as concatenating is done at compile time.
     fn endpoint_en() -> &'static str;
 
+    /// Returns the URL to the endpoint of the specified language.
+    ///
+    /// Getting this endpoint is __NOT__ free, as concatenating is done at runtime.
     #[cfg(feature = "multilangual")]
     fn endpoint(language: crate::worldstate::language::Language) -> String;
 }
@@ -48,8 +57,14 @@ pub trait TimedEvent {
     }
 }
 
+/// Marks a struct as `Queryable`.
+///
+/// Comes with a default implementation that works universally.
 pub trait Queryable: Endpoint {
+    /// The Type returned by the [query](Queryable::query).
     type Return: DeserializeOwned;
+
+    /// Queries a model and returns an instance of ['itself'](Queryable::Return).
     fn query(
         request_executor: &reqwest::Client,
     ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
@@ -63,6 +78,7 @@ pub trait Queryable: Endpoint {
         }
     }
 
+    /// Queries a model with the specified language and returns an instance of ['itself'](Queryable::Return).
     #[cfg(feature = "multilangual")]
     fn query_with_language(
         request_executor: &reqwest::Client,
@@ -124,23 +140,23 @@ pub(crate) fn get_short_format_time_string(dt: DateTime<Utc>) -> String {
     formatted_time.trim().to_string()
 }
 
+/// A trait allowing to get the documentation of an enum variant - so you don't have to write it.
 pub trait VariantDocumentation {
     /// Gets the documentation for this variant
     fn docs(&self) -> &'static str;
 }
 
+/// A trait allowing to get the documentation of a type - so you don't have to write it.
 pub trait TypeDocumentation {
     /// Gets the documentation for this Enum
     fn docs() -> &'static str;
 }
 
+/// A trait that allows enums with 2 variants to easily access the other variant.
 pub trait Opposite {
-    #[doc = "Returns the opposite of this state"]
+    /// Returns the opposite of this state
     fn opposite(&self) -> Self;
 }
-
-#[cfg(feature = "macros")]
-pub use macro_features::*;
 
 use crate::worldstate::error::ApiError;
 

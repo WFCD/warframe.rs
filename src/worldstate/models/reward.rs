@@ -1,11 +1,15 @@
 use super::macros::model_builder;
 
 model_builder! {
+    :"Small info about how many of which items are given"
     CountedItem,
     rt = array,
     timed = false;
 
+    :"How many of this item"
     pub count: i32,
+
+    :"The item type"
     pub r#type: String
 }
 

@@ -4,12 +4,14 @@ enum_builder! {
     :"The State of the Cambion Drift"
     CambionDriftState;
 
+    :"The 'Vome' state"
     Vome = "vome",
+    :"The 'Fass' state"
     Fass = "fass"
 }
 
 model_builder! {
-    :"Struct representing Cambion Drift info"
+    :"Cambion Drift info"
     CambionDrift: "/cambionCycle",
     rt = obj,
     timed = true;

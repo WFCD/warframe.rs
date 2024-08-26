@@ -4,10 +4,15 @@ use super::{
 };
 
 enum_builder! {
+    :"Represents the difficulty of a [Nightwave Challenge](NightwaveChallenge)"
     NightwaveChallengeType;
+    :"Easy"
     Easy,
+    :"Medium"
     Medium,
+    :"Hard"
     Hard,
+    :"Unknown"
     Unknown,
 }
 
@@ -40,6 +45,7 @@ model_builder! {
 }
 
 impl NightwaveChallenge {
+    /// Gets the difficulty for this challenge
     pub fn challenge_type(&self) -> NightwaveChallengeType {
         use NightwaveChallengeType::*;
         if self.is_permanent {
@@ -70,8 +76,10 @@ model_builder! {
     :"The Tag of this Nightwave"
     pub tag: String,
 
+    :"The phase of the nightwave"
     pub phase: i32,
 
+    :"The reward types"
     pub reward_types: Vec<RewardType>,
 
     :"The active challenges (most likely the weekly rotation)"

@@ -1,3 +1,22 @@
+//! # The worldstate module
+//!
+//! Get information about various different parts of the game.
+//! Check []
+//!
+//! ## Quickstart
+//! ```rust,no_run
+//! use warframe::worldstate::prelude as wf;
+//! #[tokio::main]
+//! async fn main() -> Result<(), wf::ApiError> {
+//!     let client = wf::Client::new();
+//!
+//!     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
+//!     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+//!
+//!     Ok(())
+//! }
+//! ```
+
 pub mod client;
 pub mod error;
 pub mod models;
@@ -8,6 +27,7 @@ pub mod language;
 #[cfg(feature = "worldstate_listeners")]
 pub mod listener;
 
+/// The prelude which contains most things you need.
 pub mod prelude {
     pub use crate::worldstate::client::Client;
     pub use crate::worldstate::error::{ApiError, ApiErrorResponse};

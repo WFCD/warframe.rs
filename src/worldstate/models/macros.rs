@@ -24,32 +24,32 @@ macro_rules! model_builder {
 // ---------------------------------
 macro_rules! impl_model_struct {
     (
-        @timed = false $(:$struct_doc:literal)? $struct_name:ident;
-        $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)? $(=> $deserialize_func:literal)?),*) => {
+        @timed = false :$struct_doc:literal $struct_name:ident;
+        $(:$field_doc:literal $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)? $(=> $deserialize_func:literal)?),*) => {
         #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
         #[serde(rename_all = "camelCase")]
-        $(#[doc = $struct_doc])?
+        #[doc = $struct_doc]
         pub struct $struct_name {
             $(
                 $(#[serde(rename(deserialize = $rename))])?
                 $(#[serde(deserialize_with = $deserialize_func)])?
-                $(#[doc = $field_doc])?
+                #[doc = $field_doc]
                 $visibility $field : $field_type,
             )*
         }
     };
 
     (
-        @timed = true $(:$struct_doc:literal)? $struct_name:ident;
-        $($(:$field_doc:literal)? $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)? $(=> $deserialize_func:literal)?),*) => {
+        @timed = true :$struct_doc:literal $struct_name:ident;
+        $(:$field_doc:literal $visibility:vis $field:ident : $field_type:ty $(= $rename:literal)? $(=> $deserialize_func:literal)?),*) => {
         #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
         #[serde(rename_all = "camelCase")]
-        $(#[doc = $struct_doc])?
+        #[doc = $struct_doc]
         pub struct $struct_name {
             $(
                 $(#[serde(rename(deserialize = $rename))])?
                 $(#[serde(deserialize_with = stringify!($deserialize_func))])?
-                $(#[doc = $field_doc])?
+                #[doc = $field_doc]
                 $visibility $field : $field_type,
             )*
 

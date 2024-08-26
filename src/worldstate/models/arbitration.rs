@@ -87,6 +87,7 @@ pub struct Arbitration {
 }
 
 impl Arbitration {
+    /// Whether the arbitration is still valid.
     pub fn is_valid(&self) -> bool {
         self.expiry() != DateTime::<Utc>::MAX_UTC
     }

@@ -4,7 +4,9 @@ enum_builder! {
     :"Represents the state on Orb Vallis"
     OrbVallisState;
 
+    :"Warm"
     Warm = "warm",
+    :"Cold"
     Cold = "cold"
 }
 

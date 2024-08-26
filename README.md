@@ -8,7 +8,7 @@ Use this crate if you want to make a Warframe-related rust project that is async
 To install, simply run `cargo add warframe`.
 
 ### Example
-```rs
+```rust,no_run
 use warframe::worldstate::prelude::*;
 
 #[tokio::main]
@@ -31,7 +31,7 @@ async fn main() -> Result<(), ApiError> {
 ```
 
 ## Contributing
-Contributions are more than welcome. To contribute simply fork this repository and make a PR.
+See [CONTRIBUTING](CONTRIBUTING.md)
 
 ### Commitlint
 
