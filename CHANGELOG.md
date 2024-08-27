@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/WFCD/warframe.rs/compare/v6.0.0...v6.0.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **docs:** added docs for almost everything ([2985fb1](https://github.com/WFCD/warframe.rs/commit/2985fb16e241d84bf4d476a35d34a28e4753af3d))
+
 # [6.0.0](https://github.com/WFCD/warframe.rs/compare/v5.1.0...v6.0.0) (2024-07-19)
 
 
