@@ -1,7 +1,10 @@
 //! Provides a client that acts as the baseline for interacting with the market API
 
 #[allow(unused_imports)]
-use std::{sync::Arc, time::Duration};
+use std::{
+    sync::Arc,
+    time::Duration,
+};
 
 use super::{
     error::ApiError,
@@ -9,7 +12,10 @@ use super::{
         item::Item,
         item_info::ItemInfo,
         orders::Order,
-        statistic_item::{StatisticItem, StatisticItemPayload},
+        statistic_item::{
+            StatisticItem,
+            StatisticItemPayload,
+        },
     },
 };
 
@@ -123,16 +129,16 @@ impl Client {
 /// The cached version of the client
 #[cfg(feature = "market_cache")]
 pub mod cached {
-    use {
-        crate::market::models::{
-            item::ItemsPayload, item_info::ItemInfoPayload, orders::OrderPayload,
-        },
-        moka::future::Cache,
-    };
+    pub use moka;
+    use moka::future::Cache;
+    use reqwest::Response;
 
     use super::*;
-    pub use moka;
-    use reqwest::Response;
+    use crate::market::models::{
+        item::ItemsPayload,
+        item_info::ItemInfoPayload,
+        orders::OrderPayload,
+    };
 
     /// Whether an item has been gotten via a cache hit or freshly fetched.
     pub enum FetchResult {
@@ -175,7 +181,8 @@ pub mod cached {
                     if let CacheValue::StatisticItem(item) = value {
                         Ok(item)
                     } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error msg
+                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
+                                                                         // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -206,7 +213,8 @@ pub mod cached {
                     if let CacheValue::ItemInfo(item) = value {
                         Ok(item)
                     } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error msg
+                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
+                                                                         // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -237,7 +245,8 @@ pub mod cached {
                     if let CacheValue::Items(item) = value {
                         Ok(item)
                     } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error msg
+                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
+                                                                         // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -270,7 +279,8 @@ pub mod cached {
                     if let CacheValue::Orders(item) = value {
                         Ok(item)
                     } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error msg
+                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
+                                                                         // msg
                     }
                 }
                 FetchResult::Fetched(response) => {

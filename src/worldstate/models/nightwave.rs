@@ -1,5 +1,8 @@
 use super::{
-    macros::{enum_builder, model_builder},
+    macros::{
+        enum_builder,
+        model_builder,
+    },
     RewardType,
 };
 
@@ -89,7 +92,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Nightwave;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

@@ -10,8 +10,12 @@ pub mod market;
 pub(crate) mod ws {
     #[cfg(feature = "multilangual")]
     pub(crate) use crate::worldstate::language::Language;
-    pub(crate) use crate::worldstate::models::base::*;
-    pub(crate) use crate::worldstate::models::macros::{
-        impl_model_struct, impl_queryable, impl_timed_event,
+    pub(crate) use crate::worldstate::models::{
+        base::*,
+        macros::{
+            impl_model_struct,
+            impl_queryable,
+            impl_timed_event,
+        },
     };
 }

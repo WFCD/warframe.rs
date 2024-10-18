@@ -1,4 +1,7 @@
-use super::{macros::model_builder, Faction};
+use super::{
+    macros::model_builder,
+    Faction,
+};
 
 model_builder! {
     :"A Mission corresponding to a Sortie"
@@ -41,7 +44,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Sortie;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

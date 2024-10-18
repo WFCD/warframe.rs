@@ -1,4 +1,9 @@
-use super::{macros::model_builder, Faction, Reward, Syndicate};
+use super::{
+    macros::model_builder,
+    Faction,
+    Reward,
+    Syndicate,
+};
 
 model_builder! {
     :"An Event in Warframe"
@@ -52,7 +57,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Event;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

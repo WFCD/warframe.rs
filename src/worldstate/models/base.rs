@@ -1,9 +1,18 @@
 //! Here lies what powers the models.
 
-use chrono::{DateTime, Utc};
-use serde::{de::DeserializeOwned, Deserialize};
+use std::ops::{
+    Div,
+    Rem,
+};
 
-use std::ops::{Div, Rem};
+use chrono::{
+    DateTime,
+    Utc,
+};
+use serde::{
+    de::DeserializeOwned,
+    Deserialize,
+};
 
 /// Types implementing this have an actual endpoint on the API.
 pub trait Endpoint {
@@ -78,7 +87,8 @@ pub trait Queryable: Endpoint {
         }
     }
 
-    /// Queries a model with the specified language and returns an instance of ['itself'](Queryable::Return).
+    /// Queries a model with the specified language and returns an instance of
+    /// ['itself'](Queryable::Return).
     #[cfg(feature = "multilangual")]
     fn query_with_language(
         request_executor: &reqwest::Client,
@@ -110,8 +120,8 @@ where
     s.parse().map_err(serde::de::Error::custom)
 }
 
-/// The `get_short_format_time_string` function takes a `DateTime` object and returns a formatted string
-/// representing the time difference between the current time and the provided time.
+/// The `get_short_format_time_string` function takes a `DateTime` object and returns a formatted
+/// string representing the time difference between the current time and the provided time.
 ///
 /// Arguments:
 ///
@@ -166,7 +176,10 @@ mod tests {
 
     #[test]
     fn test_format() {
-        use chrono::{Duration, Utc};
+        use chrono::{
+            Duration,
+            Utc,
+        };
         // Example usage
         let event_time = Utc::now() + Duration::hours(5) + Duration::minutes(30);
         let formatted_time = get_short_format_time_string(event_time);

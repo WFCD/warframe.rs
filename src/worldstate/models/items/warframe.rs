@@ -1,8 +1,14 @@
 //! Warframe type and utils
 
-use {
-    super::{Component, Introduced, Polarity},
-    serde::{Deserialize, Serialize},
+use serde::{
+    Deserialize,
+    Serialize,
+};
+
+use super::{
+    Component,
+    Introduced,
+    Polarity,
 };
 
 /// A Warframe

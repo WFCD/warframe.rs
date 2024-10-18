@@ -1,4 +1,7 @@
-use chrono::{DateTime, Utc};
+use chrono::{
+    DateTime,
+    Utc,
+};
 
 use super::macros::model_builder;
 
@@ -42,7 +45,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::News;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

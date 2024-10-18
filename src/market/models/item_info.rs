@@ -1,4 +1,7 @@
-use serde::{Deserialize, Serialize};
+use serde::{
+    Deserialize,
+    Serialize,
+};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub(crate) struct ItemInfoPayload {
@@ -69,7 +72,10 @@ pub struct LanguageItem {
 
 #[cfg(test)]
 mod test {
-    use crate::market::{client::Client, error::ApiError};
+    use crate::market::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[tokio::test]
     async fn test_items() -> Result<(), ApiError> {

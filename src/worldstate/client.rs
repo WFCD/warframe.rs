@@ -1,10 +1,9 @@
 //! A client to do all sorts of things with the API
 
+use super::error::ApiError;
 use crate::ws::Queryable;
 #[allow(unused)]
 use crate::ws::TimedEvent;
-
-use super::error::ApiError;
 
 /// The client that acts as a convenient way to query models.
 ///
@@ -22,7 +21,8 @@ use super::error::ApiError;
 /// }
 /// ```
 ///
-/// Check [Models](crate::worldstate::models) for an alternative way of querying/[`fetch`](Client::fetch)ing.
+/// Check [Models](crate::worldstate::models) for an alternative way of
+/// querying/[`fetch`](Client::fetch)ing.
 #[derive(Default, Debug, Clone)]
 pub struct Client {
     session: reqwest::Client,
@@ -70,8 +70,12 @@ impl Client {
     /// async fn main() -> Result<(), wf::ApiError> {
     ///     let client = wf::Client::new();
     ///
-    ///     let cetus: wf::Cetus = client.fetch_using_lang::<wf::Cetus>(wf::Language::ZH).await?;
-    ///     let fissures: Vec<wf::Fissure> = client.fetch_using_lang::<wf::Fissure>(wf::Language::ZH).await?;
+    ///     let cetus: wf::Cetus = client
+    ///         .fetch_using_lang::<wf::Cetus>(wf::Language::ZH)
+    ///         .await?;
+    ///     let fissures: Vec<wf::Fissure> = client
+    ///         .fetch_using_lang::<wf::Fissure>(wf::Language::ZH)
+    ///         .await?;
     ///
     ///     Ok(())
     /// }
@@ -91,20 +95,24 @@ impl Client {
 // impl UPDATE LISTENER
 #[cfg(feature = "worldstate_listeners")]
 impl Client {
-    /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a callback function.
+    /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a
+    /// callback function.
     ///
     /// # Arguments
     ///
-    /// - `callback`: A function that implements the `ListenerCallback` trait and is called with the previous and new values of `T`.
+    /// - `callback`: A function that implements the `ListenerCallback` trait and is called with the
+    ///   previous and new values of `T`.
     ///
     /// # Generic Constraints
     ///
     /// - `T`: Must implement the `Queryable` and `TimedEvent` traits.
-    /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any` and type parameter `T`.
+    /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any`
+    ///   and type parameter `T`.
     ///
     /// # Returns
     ///
-    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns an `ApiError`.
+    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns
+    ///   an `ApiError`.
     ///
     /// # Example
     ///
@@ -129,7 +137,6 @@ impl Client {
     ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
     ///     Ok(())
     /// }
-    ///
     /// ```
     pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
     where
@@ -167,20 +174,24 @@ impl Client {
         }
     }
 
-    /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a callback function.
+    /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a
+    /// callback function.
     ///
     /// # Arguments
     ///
-    /// - `callback`: A function that implements the `ListenerCallback` trait and is called with the previous and new values of `T`.
+    /// - `callback`: A function that implements the `ListenerCallback` trait and is called with the
+    ///   previous and new values of `T`.
     ///
     /// # Generic Constraints
     ///
     /// - `T`: Must implement the `Queryable`, `TimedEvent` and `PartialEq` traits.
-    /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any` and type parameter `T`.
+    /// - `Callback`: Must implement the `ListenerCallback` trait with a lifetime parameter `'any`
+    ///   and type parameter `T`.
     ///
     /// # Returns
     ///
-    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns an `ApiError`.
+    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns
+    ///   an `ApiError`.
     ///
     /// # Example
     ///
@@ -263,19 +274,21 @@ impl Client {
     ///
     /// # Arguments
     ///
-    /// - `callback`: A callback function that takes the current item, the new item, and the state as arguments.
+    /// - `callback`: A callback function that takes the current item, the new item, and the state
+    ///   as arguments.
     /// - `state`: The state object that will be passed to the callback function.
     ///
     /// # Generic Parameters
     ///
     /// - `S`: The type of the state object. It must be `Sized`, `Send`, `Sync`, and `Clone`.
     /// - `T`: Must implement the `Queryable` and `TimedEvent` traits.
-    /// - `Callback`: The type of the callback function. It must implement the `StatefulListenerCallback` trait with the item type `T` and the state type `S`.
+    /// - `Callback`: The type of the callback function. It must implement the
+    ///   `StatefulListenerCallback` trait with the item type `T` and the state type `S`.
     ///
     /// # Returns
     ///
-    /// This method returns a `Result` indicating whether the operation was successful or an `ApiError` occurred.
-    /// The result is `Ok(())` if the operation was successful.
+    /// This method returns a `Result` indicating whether the operation was successful or an
+    /// `ApiError` occurred. The result is `Ok(())` if the operation was successful.
     ///
     /// # Examples
     ///
@@ -369,11 +382,13 @@ impl Client {
     ///
     /// * `S` - The type of the state, which must be `Sized`, `Send`, `Sync`, and `Clone`.
     /// * `T` - Must implement the `Queryable`, `TimedEvent` and `PartialEq` traits.
-    /// * `Callback` - The type of the callback function, which must implement the `StatefulNestedListenerCallback` trait.
+    /// * `Callback` - The type of the callback function, which must implement the
+    ///   `StatefulNestedListenerCallback` trait.
     ///
     /// # Returns
     ///
-    /// Returns `Ok(())` if the callback function is successfully called on each change, or an `ApiError` if an error occurs.
+    /// Returns `Ok(())` if the callback function is successfully called on each change, or an
+    /// `ApiError` if an error occurs.
     ///
     /// # Example
     ///

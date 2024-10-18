@@ -1,6 +1,9 @@
 //! Everything to do with the item type - whether it's Warframes, Weapons, Mods, everything.
 
-use serde::{Deserialize, Serialize};
+use serde::{
+    Deserialize,
+    Serialize,
+};
 
 pub mod warframe;
 
@@ -35,7 +38,8 @@ pub enum Polarity {
     #[serde(rename = "umbra")]
     Umbra,
 
-    /// O (Universal polarity) - Can be only applied by Aura- and Stance-Forma on their slots respectively
+    /// O (Universal polarity) - Can be only applied by Aura- and Stance-Forma on their slots
+    /// respectively
     #[serde(rename = "any")]
     Any,
 }
@@ -87,8 +91,6 @@ pub struct Introduced {
 
     date: String,
 }
-
-
 
 #[test]
 fn test_to_string() {

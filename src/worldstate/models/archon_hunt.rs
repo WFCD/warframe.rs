@@ -1,6 +1,8 @@
-use super::macros::model_builder;
-use super::Faction;
-use super::MissionType;
+use super::{
+    macros::model_builder,
+    Faction,
+    MissionType,
+};
 
 model_builder! {
     :"An archon hunt mission"
@@ -68,7 +70,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::ArchonHunt;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

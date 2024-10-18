@@ -1,6 +1,7 @@
-use super::base::deserialize_f32_from_string;
-
-use super::macros::model_builder;
+use super::{
+    base::deserialize_f32_from_string,
+    macros::model_builder,
+};
 
 model_builder! {
     :"Construction percentages for showing how far constructed the enemy fleets are"
@@ -21,7 +22,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::ConstructionProgress;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

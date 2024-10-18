@@ -1,5 +1,9 @@
-use super::macros::model_builder;
-use super::{Faction, Reward, RewardType};
+use super::{
+    macros::model_builder,
+    Faction,
+    Reward,
+    RewardType,
+};
 
 type DateTime = chrono::DateTime<chrono::Utc>;
 
@@ -71,7 +75,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Invasion;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

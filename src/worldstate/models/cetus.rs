@@ -1,4 +1,7 @@
-use super::macros::{enum_builder, model_builder};
+use super::macros::{
+    enum_builder,
+    model_builder,
+};
 
 enum_builder! {
     :"Represents the current state on cetus"
@@ -30,7 +33,10 @@ mod test {
     use crate::worldstate::{
         client::Client,
         error::ApiError,
-        prelude::{CetusState, Opposite},
+        prelude::{
+            CetusState,
+            Opposite,
+        },
     };
 
     #[tokio::test]

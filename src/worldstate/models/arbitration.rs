@@ -1,7 +1,16 @@
-use {
-    super::{base::TimedEvent, Faction, MissionType},
-    chrono::{DateTime, Utc},
-    serde::{Deserialize, Deserializer},
+use chrono::{
+    DateTime,
+    Utc,
+};
+use serde::{
+    Deserialize,
+    Deserializer,
+};
+
+use super::{
+    base::TimedEvent,
+    Faction,
+    MissionType,
 };
 
 fn deserialize_expiry<'de, D>(deserializer: D) -> Result<DateTime<Utc>, D::Error>
@@ -128,7 +137,10 @@ impl crate::ws::TypeDocumentation for Arbitration {
 #[cfg(test)]
 mod test {
     use super::Arbitration;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[tokio::test]
     async fn test_arbitration() -> Result<(), ApiError> {

@@ -1,5 +1,8 @@
-use super::macros::model_builder;
-use super::{Mission, RewardType};
+use super::{
+    macros::model_builder,
+    Mission,
+    RewardType,
+};
 
 model_builder! {
     :"An alert in Warframe"
@@ -20,7 +23,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Alert;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

@@ -1,6 +1,10 @@
-use {
-    chrono::{DateTime, Utc},
-    serde::{Deserialize, Serialize},
+use chrono::{
+    DateTime,
+    Utc,
+};
+use serde::{
+    Deserialize,
+    Serialize,
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
@@ -92,7 +96,10 @@ pub enum Status {
 
 #[cfg(test)]
 mod test {
-    use crate::market::{client::Client, error::ApiError};
+    use crate::market::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[tokio::test]
     async fn test_orders() -> Result<(), ApiError> {
