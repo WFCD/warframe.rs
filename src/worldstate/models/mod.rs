@@ -35,6 +35,7 @@ mod event;
 mod faction;
 mod fissure;
 mod flash_sale;
+pub mod items;
 // mod global_upgrades;
 mod invasion;
 pub(crate) mod macros;
