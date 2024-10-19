@@ -162,6 +162,7 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
+    #[cfg(feature = "multilangual")]
     pub async fn query_item_using_lang(
         &self,
         query: &str,
