@@ -1,15 +1,32 @@
 //! A client to do all sorts of things with the API
 
-use super::error::ApiError;
-use crate::ws::Queryable;
+use reqwest::StatusCode;
+
+use super::{
+    error::ApiError,
+    models::items::Item,
+};
 #[allow(unused)]
 use crate::ws::TimedEvent;
+use crate::{
+    worldstate::models::items::{
+        map_category_to_item,
+        Category,
+    },
+    ws::Queryable,
+};
+
+#[derive(serde::Deserialize)]
+struct DummyCategory {
+    category: Category,
+}
 
 /// The client that acts as a convenient way to query models.
 ///
 /// ## Example
 /// ```rust,no_run
 /// use warframe::worldstate::prelude as wf;
+///
 /// #[tokio::main]
 /// async fn main() -> Result<(), wf::ApiError> {
 ///     let client = wf::Client::new();
@@ -43,6 +60,7 @@ impl Client {
     ///
     /// ```rust
     /// use warframe::worldstate::prelude as wf;
+    ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), wf::ApiError> {
     ///     let client = wf::Client::new();
@@ -66,6 +84,7 @@ impl Client {
     ///
     /// ```rust
     /// use warframe::worldstate::prelude as wf;
+    ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), wf::ApiError> {
     ///     let client = wf::Client::new();
@@ -89,6 +108,86 @@ impl Client {
         T: Queryable,
     {
         T::query_with_language(&self.session, language).await
+    }
+
+    /// Queries an item by its name and returns the closest matching item.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use warframe::worldstate::{
+    ///     models::items::Item,
+    ///     prelude as wf,
+    /// };
+    ///
+    /// #[tokio::main]
+    /// async fn main() -> Result<(), wf::ApiError> {
+    ///     let client = wf::Client::new();
+    ///
+    ///     let sigil = client.query_item("Accord Sigil").await?;
+    ///
+    ///     assert!(matches!(sigil, Some(Item::Sigil(_))));
+    ///
+    ///     Ok(())
+    /// }
+    /// ```
+    pub async fn query_item(&self, query: &str) -> Result<Option<Item>, ApiError> {
+        self.query_by_url(format!(
+            "https://api.warframestat.us/items/{}/?language=en",
+            urlencoding::encode(query),
+        ))
+        .await
+    }
+
+    /// Queries an item by its name and returns the closest matching item.
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// use warframe::worldstate::{
+    ///     models::items::Item,
+    ///     prelude as wf,
+    /// };
+    ///
+    /// #[tokio::main]
+    /// async fn main() -> Result<(), wf::ApiError> {
+    ///     let client = wf::Client::new();
+    ///
+    ///     let nano_spores = client
+    ///         .query_item_using_lang("Nanosporen", wf::Language::DE)
+    ///         .await?;
+    ///
+    ///     assert!(matches!(nano_spores, Some(Item::Misc(_))));
+    ///
+    ///     Ok(())
+    /// }
+    /// ```
+    pub async fn query_item_using_lang(
+        &self,
+        query: &str,
+        language: crate::ws::Language,
+    ) -> Result<Option<Item>, ApiError> {
+        self.query_by_url(format!(
+            "https://api.warframestat.us/items/{}/?language={}",
+            urlencoding::encode(query),
+            language
+        ))
+        .await
+    }
+
+    async fn query_by_url(&self, url: String) -> Result<Option<Item>, ApiError> {
+        let response = self.session.get(url).send().await?;
+
+        if response.status() == StatusCode::NOT_FOUND {
+            return Ok(None);
+        }
+
+        let json = response.text().await?;
+        let category = serde_json::from_str::<DummyCategory>(&json)?.category;
+
+        let item = map_category_to_item(category, &json)?;
+
+        Ok(Some(item))
     }
 }
 

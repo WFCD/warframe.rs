@@ -1,109 +1,107 @@
 //! Warframe type and utils
 
-use serde::{
-    Deserialize,
-    Serialize,
-};
+use serde::Deserialize;
 
 use super::{
+    Category,
     Component,
     Introduced,
     Polarity,
 };
 
 /// A Warframe
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Warframe {
-    abilities: Vec<Ability>,
+    pub abilities: Vec<Ability>,
 
-    armor: i64,
+    pub armor: i64,
 
-    aura: String,
+    pub aura: String,
 
-    build_price: i64,
+    pub build_price: i64,
 
-    build_quantity: i64,
+    pub build_quantity: i64,
 
-    build_time: i64,
+    pub build_time: i64,
 
-    category: String,
+    pub category: Category,
 
-    color: i64,
+    pub color: i64,
 
-    components: Vec<Component>,
+    pub components: Vec<Component>,
 
-    conclave: bool,
+    pub conclave: bool,
 
-    consume_on_build: bool,
+    pub consume_on_build: bool,
 
-    description: String,
+    pub description: String,
 
-    health: i64,
+    pub health: i64,
 
-    image_name: String,
+    pub image_name: String,
 
-    introduced: Introduced,
+    pub introduced: Introduced,
 
-    // is_prime should be here, but due to alignment I'll remove it
-    // since it can easily be evaluated by checking `market_cost` for Option::Some
-    market_cost: Option<i64>,
+    pub is_prime: bool,
 
-    masterable: bool,
+    pub market_cost: Option<i64>,
 
-    mastery_req: i64,
+    pub masterable: bool,
 
-    name: String,
+    pub mastery_req: i64,
 
-    passive_description: String,
+    pub name: String,
 
-    polarities: Vec<Polarity>,
+    pub passive_description: String,
 
-    power: i64,
+    pub polarities: Vec<Polarity>,
 
-    product_category: String,
+    pub power: i64,
 
-    release_date: String,
+    pub product_category: String,
 
-    sex: Sex,
+    pub release_date: String,
 
-    shield: i64,
+    pub sex: Sex,
 
-    skip_build_time_price: i64,
+    pub shield: i64,
 
-    sprint: f64,
+    pub skip_build_time_price: i64,
 
-    sprint_speed: f64,
+    pub sprint: f64,
 
-    stamina: f64,
+    pub sprint_speed: f64,
 
-    tradable: bool,
+    pub stamina: f64,
+
+    pub tradable: bool,
 
     #[serde(rename = "type")]
-    warframe_type: String,
+    pub warframe_type: String,
 
-    unique_name: String,
+    pub unique_name: String,
 
-    wikia_thumbnail: String,
+    pub wikia_thumbnail: String,
 
-    wikia_url: String,
+    pub wikia_url: String,
 }
 
 /// An ability
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Ability {
-    unique_name: String,
+    pub unique_name: String,
 
-    name: String,
+    pub name: String,
 
-    description: String,
+    pub description: String,
 
-    image_name: String,
+    pub image_name: String,
 }
 
 /// A Warframe's Sex (or gender)
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 pub enum Sex {
     /// Male
     Male,
@@ -118,10 +116,9 @@ pub enum Sex {
 
 #[tokio::test]
 async fn test_warframe_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _warframe = reqwest::get("https://api.warframestat.us/items/valkyr%20prime/")
+    let _warframe = reqwest::get("https://api.warframestat.us/items/koumei/")
         .await?
         .json::<Warframe>()
         .await?;
-
     Ok(())
 }

@@ -94,7 +94,7 @@ pub trait Queryable: Endpoint {
         request_executor: &reqwest::Client,
         language: crate::worldstate::prelude::Language,
     ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
-        async {
+        async move {
             Ok(request_executor
                 .get(Self::endpoint(language))
                 .send()

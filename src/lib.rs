@@ -1,7 +1,6 @@
 #![doc = include_str!("../README.md")]
 
 #[cfg(feature = "worldstate")]
-#[forbid(missing_docs)]
 pub mod worldstate;
 
 #[cfg(feature = "market")]

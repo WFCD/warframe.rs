@@ -239,7 +239,7 @@ macro_rules! impl_queryable {
                 format!(
                     "https://api.warframestat.us/pc{}/?language={}",
                     $endpoint,
-                    String::from(language)
+                    language
                 )
             }
         }

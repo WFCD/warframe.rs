@@ -37,6 +37,6 @@ pub mod prelude {
             ApiError,
             ApiErrorResponse,
         },
-        models::*,
-    }; // most of `base.rs` is included here
+        models::*, // most of `base.rs` is included here
+    };
 }
