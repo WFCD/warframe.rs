@@ -1,6 +1,10 @@
 //! Adds an enum that represents the different languages that are supported by the API
 
+use core::str;
+use std::fmt::Display;
+
 /// An enumeration representing various supported languages.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Language {
     /// German (`DE`)
     DE,
@@ -62,5 +66,11 @@ impl From<Language> for &'static str {
             EN => "en",
             UK => "uk",
         }
+    }
+}
+
+impl Display for Language {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", <&'static str>::from(*self))
     }
 }

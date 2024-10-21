@@ -1,4 +1,7 @@
-use super::macros::{enum_builder, model_builder};
+use super::macros::{
+    enum_builder,
+    model_builder,
+};
 
 enum_builder! {
     :"Represents the state on Orb Vallis"
@@ -26,7 +29,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::OrbVallis;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

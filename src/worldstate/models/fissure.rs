@@ -1,6 +1,11 @@
-use super::faction::Faction;
-use super::macros::{enum_builder, model_builder};
-use super::mission_type::MissionType;
+use super::{
+    faction::Faction,
+    macros::{
+        enum_builder,
+        model_builder,
+    },
+    mission_type::MissionType,
+};
 
 enum_builder! {
     :"Represents Relic tiers"
@@ -62,7 +67,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::Fissure;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[tokio::test]
     async fn test_fissure() -> Result<(), ApiError> {

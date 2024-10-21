@@ -32,7 +32,10 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::DailyDeal;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
     #[cfg(not(feature = "multilangual"))]
     #[tokio::test]

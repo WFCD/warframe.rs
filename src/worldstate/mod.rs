@@ -29,11 +29,14 @@ pub mod listener;
 
 /// The prelude which contains most things you need.
 pub mod prelude {
-    pub use crate::worldstate::client::Client;
-    pub use crate::worldstate::error::{ApiError, ApiErrorResponse};
-
     #[cfg(feature = "multilangual")]
     pub use crate::worldstate::language::Language;
-
-    pub use crate::worldstate::models::*; // most of `base.rs` is included here
+    pub use crate::worldstate::{
+        client::Client,
+        error::{
+            ApiError,
+            ApiErrorResponse,
+        },
+        models::*, // most of `base.rs` is included here
+    };
 }

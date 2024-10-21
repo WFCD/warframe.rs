@@ -74,7 +74,8 @@ pub enum Change {
 }
 
 // ----------
-/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
+/// A listener callback that can listen to any model with
+/// [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
 pub trait ListenerCallback<'a, T>
 where
     T: Sized + 'a,
@@ -97,7 +98,8 @@ where
     }
 }
 
-/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
+/// A listener callback that can listen to any model with
+/// [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
 pub trait NestedListenerCallback<'a, T>
 where
     T: Sized,
@@ -121,7 +123,8 @@ where
 }
 
 // --------- STATEFUL CALLBACKS
-/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
+/// A listener callback that can listen to any model with
+/// [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Self
 ///
 /// and a state.
 pub trait StatefulListenerCallback<'a, T, S>
@@ -148,7 +151,8 @@ where
     }
 }
 
-/// A listener callback that can listen to any model with [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
+/// A listener callback that can listen to any model with
+/// [`Queryable::Return`](crate::worldstate::models::base::Queryable::Return) = Vec<Self>
 ///
 /// and a state.
 pub trait StatefulNestedListenerCallback<'a, T, S>
@@ -214,11 +218,19 @@ where
 
 #[cfg(test)]
 mod test {
-    use std::{sync::Arc, vec};
+    use std::{
+        sync::Arc,
+        vec,
+    };
 
-    use crate::worldstate::prelude::{Cetus, Fissure};
-
-    use super::{Change, CrossDiff};
+    use super::{
+        Change,
+        CrossDiff,
+    };
+    use crate::worldstate::prelude::{
+        Cetus,
+        Fissure,
+    };
 
     async fn on_cetus_update(_before: &Cetus, _after: &Cetus) {}
     async fn on_cetus_update_stateful(_state: Arc<i32>, _before: &Cetus, _after: &Cetus) {}

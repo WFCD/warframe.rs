@@ -1,4 +1,9 @@
-use super::{macros::model_builder, Faction, MissionType, Reward};
+use super::{
+    macros::model_builder,
+    Faction,
+    MissionType,
+    Reward,
+};
 
 model_builder! {
     :"A mission"

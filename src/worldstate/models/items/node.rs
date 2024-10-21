@@ -1,0 +1,46 @@
+use serde::Deserialize;
+
+use super::Category;
+
+#[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct Node {
+    pub category: Category,
+
+    pub faction_index: i64,
+
+    pub masterable: bool,
+
+    pub mastery_req: i64,
+
+    pub max_enemy_level: i64,
+
+    pub min_enemy_level: i64,
+
+    pub mission_index: i64,
+
+    pub name: String,
+
+    #[serde(rename = "nodeType")]
+    pub type_: i64,
+
+    pub system_index: i64,
+
+    pub system_name: String,
+
+    pub tradable: bool,
+
+    #[serde(rename = "type")]
+    pub node_type: String,
+
+    pub unique_name: String,
+}
+
+#[tokio::test]
+async fn test_node_query() -> Result<(), Box<dyn std::error::Error>> {
+    let _node = reqwest::get("https://api.warframestat.us/items/oro/")
+        .await?
+        .json::<Node>()
+        .await?;
+    Ok(())
+}
