@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/WFCD/warframe.rs/compare/v6.0.1...v6.1.0) (2024-10-21)
+
+
+### Features
+
+* item query support and item types ([#19](https://github.com/WFCD/warframe.rs/issues/19)) ([f79f2d8](https://github.com/WFCD/warframe.rs/commit/f79f2d8dcff11f76867f0c0a938e2d78fa0f6529))
+
 ## [6.0.1](https://github.com/WFCD/warframe.rs/compare/v6.0.0...v6.0.1) (2024-08-27)
 
 
