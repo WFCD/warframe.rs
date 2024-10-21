@@ -1,16 +1,3 @@
-// Example code that deserializes and serializes the nodeel.
-// extern crate serde;
-// #[macro_use]
-// extern crate serde_derive;
-// extern crate serde_json;
-//
-// use generated_nodeule::Node;
-//
-// fn main() {
-//     let json = r#"{"answer": 42}"#;
-//     let nodeel: Node = serde_json::from_str(&json).unwrap();
-// }
-
 use serde::Deserialize;
 
 use super::Category;
