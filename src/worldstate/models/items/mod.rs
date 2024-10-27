@@ -18,7 +18,10 @@ use serde::Deserialize;
 use sigil::Sigil;
 use skin::Skin;
 use warframe::Warframe;
-use weapon::RangedWeapon;
+use weapon::{
+    RangedWeapon,
+    Weapon,
+};
 
 pub mod arcane;
 pub mod archwing;
@@ -208,7 +211,7 @@ pub enum Item {
     Skin(Skin),
     // boxed because it's fairly large - enums always take as much space as the largest element
     Warframe(Box<Warframe>),
-    Weapon(Box<RangedWeapon>),
+    Weapon(Box<Weapon>),
 }
 
 pub(crate) fn map_category_to_item(
@@ -237,7 +240,7 @@ pub(crate) fn map_category_to_item(
         | Category::Secondary
         | Category::ArchGun
         | Category::Melee
-        | Category::ArchMelee => Item::Weapon(Box::new(from_str::<RangedWeapon>(json)?)),
+        | Category::ArchMelee => Item::Weapon(Box::new(from_str::<Weapon>(json)?)),
     };
 
     Ok(item)
