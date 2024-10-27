@@ -18,7 +18,7 @@ use serde::Deserialize;
 use sigil::Sigil;
 use skin::Skin;
 use warframe::Warframe;
-use weapon::Weapon;
+use weapon::RangedWeapon;
 
 pub mod arcane;
 pub mod archwing;
@@ -39,7 +39,7 @@ pub mod warframe;
 pub mod weapon;
 
 /// Represents a polarity
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, strum::Display)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::Display)]
 #[serde(rename_all = "lowercase")]
 pub enum Polarity {
     /// V (Damage, Powers) - Commonly dropped by Grineer
@@ -208,7 +208,7 @@ pub enum Item {
     Skin(Skin),
     // boxed because it's fairly large - enums always take as much space as the largest element
     Warframe(Box<Warframe>),
-    Weapon(Box<Weapon>),
+    Weapon(Box<RangedWeapon>),
 }
 
 pub(crate) fn map_category_to_item(
@@ -237,7 +237,7 @@ pub(crate) fn map_category_to_item(
         | Category::Secondary
         | Category::ArchGun
         | Category::Melee
-        | Category::ArchMelee => Item::Weapon(Box::new(from_str::<Weapon>(json)?)),
+        | Category::ArchMelee => Item::Weapon(Box::new(from_str::<RangedWeapon>(json)?)),
     };
 
     Ok(item)
