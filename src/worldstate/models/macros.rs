@@ -174,7 +174,7 @@ macro_rules! enum_builder {
     };
 
     ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)? $(: $enum_option_num_value:expr)?),*$(,)?) => {
-        #[derive(Debug, serde_repr::Deserialize_repr, PartialEq, PartialOrd, Clone)]
+        #[derive(Debug, serde_repr::Deserialize_repr, PartialEq, PartialOrd, Clone, Eq, Copy)]
         #[repr(u8)]
         $(#[doc = $enum_doc])?
         pub enum $enum_name {
