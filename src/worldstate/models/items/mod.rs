@@ -18,10 +18,7 @@ use serde::Deserialize;
 use sigil::Sigil;
 use skin::Skin;
 use warframe::Warframe;
-use weapon::{
-    RangedWeapon,
-    Weapon,
-};
+use weapon::Weapon;
 
 pub mod arcane;
 pub mod archwing;
