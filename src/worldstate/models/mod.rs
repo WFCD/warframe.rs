@@ -40,6 +40,7 @@ mod fissure;
 mod flash_sale;
 pub mod items;
 // mod global_upgrades;
+mod damage_type;
 mod invasion;
 pub(crate) mod macros;
 mod mission;
@@ -73,6 +74,12 @@ pub use cetus::{
 // pub use global_upgrades::GlobalUpgrade;
 pub use construction_progress::ConstructionProgress;
 pub use daily_deal::DailyDeal;
+pub use damage_type::{
+    CombinedElementalDamage,
+    DamageType,
+    ElementalDamage,
+    PhysicalDamage,
+};
 pub use faction::Faction;
 pub use fissure::{
     Fissure,

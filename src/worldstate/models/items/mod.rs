@@ -39,7 +39,7 @@ pub mod warframe;
 pub mod weapon;
 
 /// Represents a polarity
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, strum::Display)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::Display)]
 #[serde(rename_all = "lowercase")]
 pub enum Polarity {
     /// V (Damage, Powers) - Commonly dropped by Grineer

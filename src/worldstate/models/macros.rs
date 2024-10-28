@@ -82,7 +82,7 @@ macro_rules! impl_timed_event {
 // ---------------------------------
 macro_rules! enum_builder {
     ($(:$enum_doc:literal)? $enum_name:ident; $(:$option_doc1:literal)? $enum_option1:ident $(= $enum_option_deserialize1:literal)?, $(:$option_doc2:literal)? $enum_option2:ident $(= $enum_option_deserialize2:literal)? $(,)?) => {
-        #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
+        #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone, Eq, Copy)]
         $(#[doc = $enum_doc])?
         pub enum $enum_name {
             $(
@@ -136,7 +136,7 @@ macro_rules! enum_builder {
     };
 
     ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)?),*$(,)?) => {
-        #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
+        #[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone, Eq, Copy)]
         $(#[doc = $enum_doc])?
         pub enum $enum_name {
             $(
@@ -174,7 +174,7 @@ macro_rules! enum_builder {
     };
 
     ($(:$enum_doc:literal)? $enum_name:ident; $($(:$option_doc:literal)? $enum_option:ident $(= $enum_option_deserialize:literal)? $(: $enum_option_num_value:expr)?),*$(,)?) => {
-        #[derive(Debug, serde_repr::Deserialize_repr, PartialEq, PartialOrd, Clone)]
+        #[derive(Debug, serde_repr::Deserialize_repr, PartialEq, PartialOrd, Clone, Eq, Copy)]
         #[repr(u8)]
         $(#[doc = $enum_doc])?
         pub enum $enum_name {
