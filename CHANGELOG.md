@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/WFCD/warframe.rs/compare/v6.1.0...v6.2.0) (2024-10-28)
+
+
+### Features
+
+* damage types ([#20](https://github.com/WFCD/warframe.rs/issues/20)) ([ea8ddb1](https://github.com/WFCD/warframe.rs/commit/ea8ddb1ff1fd451ca7397d7529f9d1578b75170a))
+
 # [6.1.0](https://github.com/WFCD/warframe.rs/compare/v6.0.1...v6.1.0) (2024-10-21)
 
 
