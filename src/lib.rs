@@ -6,6 +6,9 @@ pub mod worldstate;
 #[cfg(feature = "market")]
 pub mod market;
 
+#[cfg(feature = "profile")]
+pub mod profile;
+
 pub(crate) mod ws {
     #[cfg(feature = "multilangual")]
     pub(crate) use crate::worldstate::language::Language;

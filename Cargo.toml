@@ -13,7 +13,7 @@ license = "MIT"
 [features]
 default = ["worldstate"]
 
-full = ["worldstate_full", "market_full"]
+full = ["worldstate_full", "market_full", "profile"]
 worldstate = []
 multilangual = ["worldstate"]
 worldstate_listeners = ["worldstate"]
@@ -21,6 +21,7 @@ worldstate_full = ["worldstate", "multilangual", "worldstate_listeners"]
 market = []
 market_cache = ["market", "dep:moka"]
 market_full = ["market", "market_cache"]
+profile = []
 
 [dependencies]
 tokio = { version = "1.39.3", features = ["full"] }
