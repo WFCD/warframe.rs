@@ -1,3 +1,4 @@
+use core::str;
 use std::{
     collections::HashMap,
     fmt,
@@ -18,13 +19,18 @@ use serde_repr::{
     Serialize_repr,
 };
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+use super::{
+    load_out_preset::LoadOutPreset,
+    platform::PlatformName,
+};
+
+#[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub(crate) struct ProfilePayload {
     pub(crate) results: Vec<Profile>,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct Profile {
     #[serde(deserialize_with = "deserialize_oid")]
@@ -91,148 +97,6 @@ pub struct Profile {
 
     /// migrated_to_console
     pub migrated_to_console: bool,
-}
-
-#[derive(Serialize, Debug, Clone)]
-pub struct PlatformName {
-    /// name
-    pub name: String,
-
-    /// platform
-    pub platform: Platform,
-}
-
-impl<'de> Deserialize<'de> for PlatformName {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        struct SplitFieldVisitor;
-
-        impl<'de> Visitor<'de> for SplitFieldVisitor {
-            type Value = PlatformName;
-
-            fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-                formatter.write_str("a string with a byte code for platform at the end")
-            }
-
-            fn visit_str<E>(self, value: &str) -> Result<Self::Value, E>
-            where
-                E: de::Error,
-            {
-                // Split string
-                let (display_name, platform_byte) = value.split_at(value.len() - 1);
-                // Convert last char of string to Platform enum
-                let platform = Platform::from_byte(platform_byte.as_bytes()[0])
-                    .ok_or_else(|| E::custom("invalid platform byte"))?;
-                Ok(PlatformName {
-                    name: display_name.to_string(),
-                    platform,
-                })
-            }
-        }
-
-        deserializer.deserialize_str(SplitFieldVisitor)
-    }
-}
-
-#[derive(Serialize, Debug, Clone, PartialEq)]
-pub enum Platform {
-    PC = 0x0,
-    Xbox = 0x1,
-    PS = 0x2,
-    Switch = 0x3,
-    Ios = 0x4,
-}
-
-impl Platform {
-    pub fn from_byte(byte: u8) -> Option<Self> {
-        match byte {
-            0x0 => Some(Self::PC),
-            0x1 => Some(Self::Xbox),
-            0x2 => Some(Self::PS),
-            0x3 => Some(Self::Switch),
-            0x4 => Some(Self::Ios),
-            _ => None,
-        }
-    }
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct LoadOutPreset {
-    /// focus_school
-    pub focus_school: FocusSchool,
-
-    /// preset_icon
-    pub preset_icon: String,
-
-    /// favorite
-    pub favorite: bool,
-
-    #[serde(rename = "n")]
-    /// name, only present if set
-    pub name: Option<String>,
-
-    #[serde(rename = "s")]
-    /// warframe
-    pub warframe: LoadOutPresetItem,
-
-    #[serde(rename = "l")]
-    /// primary
-    pub primary: LoadOutPresetItem,
-
-    #[serde(rename = "p")]
-    /// secondary
-    pub secondary: LoadOutPresetItem,
-
-    #[serde(rename = "m")]
-    /// melee
-    pub melee: LoadOutPresetItem,
-
-    #[serde(rename = "h")]
-    // TODO: What is this?
-    /// h
-    pub h: LoadOutPresetItem,
-
-    #[serde(rename = "a")]
-    // TODO: What is this?
-    /// a
-    pub a: Option<LoadOutPresetItem>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct LoadOutPresetItem {
-    #[serde(deserialize_with = "deserialize_oid")]
-    /// item_id
-    pub item_id: String,
-
-    #[serde(rename = "mod")]
-    /// mod_loadout
-    pub mod_loadout: u8,
-
-    #[serde(rename = "cus")]
-    /// customisation_loadout
-    pub customisation_loadout: u8,
-
-    #[serde(rename = "hide", default = "bool::default")]
-    /// hide, only present in API if true
-    pub hide: bool,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
-pub enum FocusSchool {
-    #[serde(rename = "AP_ATTACK")]
-    Madurai,
-    #[serde(rename = "AP_DEFENSE")]
-    Vazarin,
-    #[serde(rename = "AP_TACTIC")]
-    Naramon,
-    #[serde(rename = "AP_WARD")]
-    Unairu,
-    #[serde(rename = "AP_POWER")]
-    Zenurik,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -441,23 +305,20 @@ pub struct ChallengeProgress {
     pub progress: i32,
 }
 
-fn deserialize_oid<'de, D>(deserializer: D) -> Result<String, D::Error>
+pub(crate) fn deserialize_oid<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
     D: Deserializer<'de>,
 {
     deserialize_oid_or_none(deserializer)?.ok_or_else(|| de::Error::custom("missing $oid field"))
 }
 
-fn deserialize_oid_or_none<'de, D>(deserializer: D) -> Result<Option<String>, D::Error>
+pub(crate) fn deserialize_oid_or_none<'de, D>(deserializer: D) -> Result<Option<String>, D::Error>
 where
     D: Deserializer<'de>,
 {
     let v: Value = Deserialize::deserialize(deserializer)?;
-    if let Some(oid) = v.get("$oid").and_then(Value::as_str) {
-        Ok(Some(oid.to_string()))
-    } else {
-        Ok(None)
-    }
+
+    Ok(v.get("$oid").and_then(Value::as_str).map(|s| s.to_owned()))
 }
 
 fn deserialize_date<'de, D>(deserializer: D) -> Result<i64, D::Error>
@@ -465,19 +326,13 @@ where
     D: Deserializer<'de>,
 {
     let v: Value = Deserialize::deserialize(deserializer)?;
-    if let Some(date) = v.get("$date").and_then(Value::as_object) {
-        if let Some(numberLong) = date.get("$numberLong").and_then(Value::as_str) {
-            if let Ok(number) = numberLong.parse::<i64>() {
-                Ok(number)
-            } else {
-                Err(de::Error::custom("invalid $numberLong field"))
-            }
-        } else {
-            Err(de::Error::custom("missing $numberLong field"))
-        }
-    } else {
-        Err(de::Error::custom("missing $date field"))
-    }
+
+    v.get("$date")
+        .and_then(Value::as_object)
+        .and_then(|date| date.get("$numberLong").and_then(Value::as_str))
+        .ok_or_else(|| de::Error::custom("missing $date or $numberLong field"))?
+        .parse()
+        .map_err(|_| de::Error::custom("invalid $numberLong field"))
 }
 
 #[cfg(test)]
@@ -485,6 +340,10 @@ mod tests {
     use serde_json::json;
 
     use super::*;
+    use crate::profile::models::{
+        focus_school::FocusSchool,
+        platform::Platform,
+    };
 
     #[test]
     fn test_profile_payload_deserialization() {
@@ -713,7 +572,7 @@ mod tests {
         assert_eq!(result.display_name.name, "Player1");
         assert_eq!(result.display_name.platform, Platform::PC);
 
-        assert_eq!(result.platform_names.is_some(), true);
+        assert!(result.platform_names.is_some());
         let platform_names = result.platform_names.as_ref().unwrap();
         assert_eq!(platform_names.len(), 5);
         assert_eq!(platform_names[0].name, "Player1");
@@ -728,39 +587,39 @@ mod tests {
         assert_eq!(platform_names[4].platform, Platform::Ios);
 
         assert_eq!(result.player_level, 0);
-        assert_eq!(result.guild_id.is_some(), true);
+        assert!(result.guild_id.is_some());
 
-        assert_eq!(result.load_out_preset.is_some(), true);
+        assert!(result.load_out_preset.is_some());
         let load_out_preset = result.load_out_preset.as_ref().unwrap();
 
         assert_eq!(load_out_preset.focus_school, FocusSchool::Vazarin);
         assert_eq!(load_out_preset.preset_icon, "");
-        assert_eq!(load_out_preset.favorite, false);
+        assert!(!load_out_preset.favorite);
         assert_eq!(load_out_preset.name.as_deref(), Some("Preset1"));
 
         assert_eq!(load_out_preset.warframe.item_id, "507f1f77bcf86cd799439011");
         assert_eq!(load_out_preset.warframe.mod_loadout, 0);
-        assert_eq!(load_out_preset.warframe.customisation_loadout, 0);
+        assert_eq!(load_out_preset.warframe.customization_loadout, 0);
 
         assert_eq!(load_out_preset.primary.item_id, "507f1f77bcf86cd799439011");
         assert_eq!(load_out_preset.primary.mod_loadout, 0);
-        assert_eq!(load_out_preset.primary.customisation_loadout, 0);
-        assert_eq!(load_out_preset.primary.hide, false);
+        assert_eq!(load_out_preset.primary.customization_loadout, 0);
+        assert!(!load_out_preset.primary.hide);
 
         assert_eq!(
             load_out_preset.secondary.item_id,
             "507f1f77bcf86cd799439011"
         );
         assert_eq!(load_out_preset.secondary.mod_loadout, 0);
-        assert_eq!(load_out_preset.secondary.customisation_loadout, 0);
+        assert_eq!(load_out_preset.secondary.customization_loadout, 0);
 
         assert_eq!(load_out_preset.melee.item_id, "507f1f77bcf86cd799439011");
         assert_eq!(load_out_preset.melee.mod_loadout, 0);
-        assert_eq!(load_out_preset.melee.customisation_loadout, 0);
+        assert_eq!(load_out_preset.melee.customization_loadout, 0);
 
         assert_eq!(load_out_preset.h.item_id, "507f1f77bcf86cd799439011");
         assert_eq!(load_out_preset.h.mod_loadout, 0);
-        assert_eq!(load_out_preset.h.customisation_loadout, 0);
+        assert_eq!(load_out_preset.h.customization_loadout, 0);
 
         assert_eq!(result.load_out_inventory.weapon_skins.len(), 1);
         assert_eq!(result.load_out_inventory.weapon_skins[0].item_type, "Item1");
@@ -895,9 +754,9 @@ mod tests {
         assert_eq!(result.death_marks.len(), 1);
         assert_eq!(result.death_marks[0], "DeathMark1");
 
-        assert_eq!(result.harvestable, false);
-        assert_eq!(result.death_squadable, false);
+        assert!(!result.harvestable);
+        assert!(!result.death_squadable);
         assert_eq!(result.created, 0);
-        assert_eq!(result.migrated_to_console, false);
+        assert!(!result.migrated_to_console);
     }
 }
