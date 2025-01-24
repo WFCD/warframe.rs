@@ -1,14 +1,7 @@
 use core::str;
-use std::{
-    collections::HashMap,
-    fmt,
-};
-
+use std::collections::HashMap;
 use serde::{
-    de::{
-        self,
-        Visitor,
-    },
+    de::self,
     Deserialize,
     Deserializer,
     Serialize,
@@ -18,7 +11,7 @@ use serde_repr::{
     Deserialize_repr,
     Serialize_repr,
 };
-
+use crate::profile::models::affiliation::AffiliationTag;
 use super::{
     load_out_preset::LoadOutPreset,
     platform::PlatformName,
@@ -91,12 +84,78 @@ pub struct Profile {
     /// death_squadable
     pub death_squadable: bool,
 
+    /// accolades
+    pub accolades: HashMap<String, bool>,
+
     #[serde(deserialize_with = "deserialize_date")]
     /// created
     pub created: i64,
 
     /// migrated_to_console
     pub migrated_to_console: bool,
+
+    /// missions
+    pub missions: Vec<Mission>,
+
+    /// affiliations
+    pub affiliations: Vec<Affiliation>,
+
+    /// daily_affiliation
+    pub daily_affiliation: i32,
+
+    /// daily_affiliation_pvp
+    pub daily_affiliation_pvp: i32,
+
+    /// daily_affiliation_library
+    pub daily_affiliation_library: i32,
+
+    /// daily_affiliation_cetus
+    pub daily_affiliation_cetus: i32,
+
+    /// daily_affiliation_quills
+    pub daily_affiliation_quills: i32,
+
+    /// daily_affiliation_solaris
+    pub daily_affiliation_solaris: i32,
+
+    /// daily_affiliation_ventkids
+    pub daily_affiliation_ventkids: i32,
+
+    /// daily_affiliation_vox
+    pub daily_affiliation_vox: i32,
+
+    /// daily_affiliation_entrati
+    pub daily_affiliation_entrati: i32,
+
+    /// daily_affiliation_necraloid
+    pub daily_affiliation_necraloid: i32,
+
+    /// daily_affiliation_zariman
+    pub daily_affiliation_zariman: i32,
+
+    /// daily_affiliation_kahl
+    pub daily_affiliation_kahl: i32,
+
+    /// daily_affiliation_cavia
+    pub daily_affiliation_cavia: i32,
+
+    /// daily_affiliation_hex
+    pub daily_affiliation_hex: i32,
+
+    /// daily_focus
+    pub daily_focus: i32,
+
+    /// operator_load_outs
+    pub operator_load_outs: Vec<OperatorLoadOut>,
+
+    /// unlocked_operator
+    pub unlocked_operator: bool,
+
+    /// unlocked_alignment
+    pub unlocked_alignment: bool,
+
+    /// alignment
+    pub alignment: Alignment
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -305,6 +364,81 @@ pub struct ChallengeProgress {
     pub progress: i32,
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct Mission {
+    /// tag
+    pub tag: String,
+
+    /// completes
+    pub completes: i32,
+
+    /// tier - 1 is steel path completed
+    pub tier: Option<i32>,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct Affiliation {
+    /// tag
+    pub tag: AffiliationTag,
+
+    /// standing
+    pub standing: i32,
+
+    /// title
+    pub title: i32,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct OperatorLoadOut {
+    /// skins
+    pub skins: Vec<String>,
+
+    /// upgrades
+    pub upgrades: Vec<String>,
+
+    /// ability_override
+    pub ability_override: AbilityOverride,
+
+    #[serde(rename = "pricol")]
+    /// primary_colors
+    pub primary_colors: ColorLoadOut,
+
+    #[serde(rename = "eyecol")]
+    /// eye_colors
+    pub eye_colors: ColorLoadOut,
+
+    #[serde(rename = "sigcol")]
+    /// sigil_colors
+    pub sigil_colors: SigilColorLoadOut,
+
+    #[serde(rename = "cloth")]
+    /// cloth_colors
+    pub cloth_colors: ColorLoadOut,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct AbilityOverride {
+    /// ability
+    pub ability: String,
+
+    /// index
+    pub index: i32,
+}
+
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct Alignment {
+    /// alignment
+    pub alignment: i32,
+
+    /// wisdom
+    pub wisdom: i32,
+}
+
 pub(crate) fn deserialize_oid<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
     D: Deserializer<'de>,
@@ -337,7 +471,7 @@ where
 
 #[cfg(test)]
 mod tests {
-    use serde_json::json;
+    use std::fs;
 
     use super::*;
     use crate::profile::models::{
@@ -347,223 +481,10 @@ mod tests {
 
     #[test]
     fn test_profile_payload_deserialization() {
-        let data = json!({
-            "Results": [
-                {
-                    "AccountId": { "$oid": "507f1f77bcf86cd799439011" },
-                    "DisplayName": "Player1\x00",
-                    "PlatformNames": [
-                        "Player1\x00",
-                        "Player1\x01",
-                        "Player1\x02",
-                        "Player1\x03",
-                        "Player1\x04",
-                    ],
-                    "PlayerLevel": 0,
-                    "GuildId": { "$oid": "507f1f77bcf86cd799439011" },
-                    "LoadOutPreset": {
-                        "FocusSchool": "AP_DEFENSE",
-                        "PresetIcon": "",
-                        "Favorite": false,
-                        "n": "Preset1",
-                        "s": {
-                            "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
-                            "mod": 0,
-                            "cus": 0
-                        },
-                        "p": {
-                            "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
-                            "mod": 0,
-                            "cus": 0,
-                            "hide": false
-                        },
-                        "l": {
-                            "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
-                            "mod": 0,
-                            "cus": 0,
-                        },
-                        "m": {
-                            "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
-                            "mod": 0,
-                            "cus": 0
-                        },
-                        "h": {
-                            "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
-                            "mod": 0,
-                            "cus": 0
-                        }
-                    },
-                    "LoadOutInventory": {
-                        "WeaponSkins": [
-                            {
-                                "ItemType": "Item1"
-                            }
-                        ],
-                        "Suits": [
-                            {
-                                "ItemType": "Warframe",
-                                "Configs": [
-                                    {
-                                        "Name": "Build1",
-                                        "Skins": [],
-                                        "pricol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        },
-                                        "attcol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "m1": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        },
-                                        "sigcol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "m1": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        },
-                                        "syancol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "en": 0,
-                                        }
-                                    }
-                                ]
-                            }
-                        ],
-                        "LongGuns": [
-                            {
-                                "ItemType": "Primary",
-                                "Configs": [
-                                    {
-                                        "Name": "Build1",
-                                        "Skins": [],
-                                        "pricol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "m1": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        }
-                                    }
-                                ]
-                            }
-                        ],
-                        "Pistols": [
-                            {
-                                "ItemType": "Pistol",
-                                "Configs": [
-                                    {
-                                        "Name": "Build1",
-                                        "Skins": [],
-                                        "pricol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "m1": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        }
-                                    }
-                                ]
-                            }
-                        ],
-                        "Melee": [
-                            {
-                                "ItemType": "Melee",
-                                "Configs": [
-                                    {
-                                        "Name": "Build1",
-                                        "Skins": ["Skin1"],
-                                        "pricol": {
-                                            "t0": 0,
-                                            "t1": 0,
-                                            "t2": 0,
-                                            "t3": 0,
-                                            "m0": 0,
-                                            "m1": 0,
-                                            "en": 0,
-                                            "e1": 0
-                                        }
-                                    }
-                                ]
-                            }
-                        ],
-                        "XPInfo": [
-                            {
-                                "ItemType": "Warframe",
-                                "XP": 0
-                            },
-                            {
-                                "ItemType": "Primary",
-                                "XP": 0
-                            },
-                            {
-                                "ItemType": "Secondary",
-                                "XP": 0
-                            },
-                            {
-                                "ItemType": "Melee",
-                                "XP": 0
-                            }
-                        ]
-                    },
-                    "GuildId": { "$oid": "507f1f77bcf86cd799439011" },
-                    "GuildName": "Guild1#456",
-                    "GuildTier": 1,
-                    "GuildXP": 0,
-                    "GuildClass": 10,
-                    "GuildEmblem": true,
-                    "AllianceId": { "$oid": "507f1f77bcf86cd799439011" },
-                    "PlayerSkills": {
-                        "LPP_SPACE": 0,
-                        "LPS_GUNNERY": 0,
-                        "LPS_TACTICAL": 0,
-                        "LPS_PILOTING": 0,
-                        "LPS_ENGINEERING": 0,
-                        "LPS_COMMAND": 0,
-                        "LPP_DRIFTER": 0,
-                        "LPS_DRIFT_RIDING": 0,
-                        "LPS_DRIFT_COMBAT": 0,
-                        "LPS_DRIFT_OPPORTUNITY": 0,
-                        "LPS_DRIFT_ENDURANCE": 0
-                    },
-                    "ChallengeProgress": [
-                        {
-                            "Name": "Challenge1",
-                            "Progress": 0
-                        }
-                    ],
-                    "DeathMarks": ["DeathMark1"],
-                    "Harvestable": false,
-                    "DeathSquadable": false,
-                    "Created": { "$date": { "$numberLong": "0" } },
-                    "MigratedToConsole": false
-                }
-            ]
-        });
+        let data = fs::read_to_string("test_data/profile_payload.json")
+            .expect("Failed to read test data");
 
-        let payload: ProfilePayload = serde_json::from_value(data).expect("Deserialization failed");
+        let payload: ProfilePayload = serde_json::from_str(&data).expect("Deserialization failed");
 
         assert_eq!(payload.results.len(), 1);
         let result = &payload.results[0];
@@ -756,7 +677,88 @@ mod tests {
 
         assert!(!result.harvestable);
         assert!(!result.death_squadable);
+
+        assert_eq!(result.accolades.len(), 1);
+        assert_eq!(result.accolades.get("Accolade1"), Some(&true));
+
         assert_eq!(result.created, 0);
         assert!(!result.migrated_to_console);
+
+        assert_eq!(result.missions.len(), 2);
+        assert_eq!(result.missions[0].tag, "Mission1");
+        assert_eq!(result.missions[0].completes, 3);
+        assert_eq!(result.missions[0].tier, Some(1));
+
+        assert_eq!(result.missions[1].tag, "Mission2");
+        assert_eq!(result.missions[1].completes, 4);
+        assert_eq!(result.missions[1].tier, None);
+
+        assert_eq!(result.affiliations.len(), 1);
+        assert_eq!(result.affiliations[0].tag, AffiliationTag::ArbitersOfHexis);
+        assert_eq!(result.affiliations[0].standing, 200000);
+        assert_eq!(result.affiliations[0].title, 4);
+
+        assert_eq!(result.daily_affiliation, 0);
+        assert_eq!(result.daily_affiliation_pvp, 0);
+        assert_eq!(result.daily_affiliation_library, 0);
+        assert_eq!(result.daily_affiliation_cetus, 0);
+        assert_eq!(result.daily_affiliation_quills, 0);
+        assert_eq!(result.daily_affiliation_solaris, 0);
+        assert_eq!(result.daily_affiliation_ventkids, 0);
+        assert_eq!(result.daily_affiliation_vox, 0);
+        assert_eq!(result.daily_affiliation_entrati, 0);
+        assert_eq!(result.daily_affiliation_necraloid, 0);
+        assert_eq!(result.daily_affiliation_zariman, 0);
+        assert_eq!(result.daily_affiliation_kahl, 0);
+        assert_eq!(result.daily_affiliation_cavia, 0);
+        assert_eq!(result.daily_affiliation_hex, 0);
+        assert_eq!(result.daily_focus, 0);
+
+        assert_eq!(result.operator_load_outs.len(), 1);
+        let operator_load_out = &result.operator_load_outs[0];
+
+        assert_eq!(operator_load_out.skins.len(), 1);
+        assert_eq!(operator_load_out.skins[0], "Skin1");
+
+        assert_eq!(operator_load_out.upgrades.len(), 1);
+        assert_eq!(operator_load_out.upgrades[0], "5f24b0df01109467953ec82b");
+
+        assert_eq!(operator_load_out.ability_override.ability, "Ability1");
+        assert_eq!(operator_load_out.ability_override.index, 0);
+
+        assert_eq!(operator_load_out.primary_colors.primary, Some(0));
+        assert_eq!(operator_load_out.primary_colors.secondary, None);
+        assert_eq!(operator_load_out.primary_colors.tertiary, None);
+        assert_eq!(operator_load_out.primary_colors.accents, Some(0));
+        assert_eq!(operator_load_out.primary_colors.emissive_primary, None);
+        assert_eq!(operator_load_out.primary_colors.emissive_secondary, None);
+        assert_eq!(operator_load_out.primary_colors.energy_primary, Some(0));
+
+        assert_eq!(operator_load_out.eye_colors.primary, Some(0));
+        assert_eq!(operator_load_out.eye_colors.secondary, Some(0));
+        assert_eq!(operator_load_out.eye_colors.tertiary, Some(0));
+        assert_eq!(operator_load_out.eye_colors.accents, Some(0));
+
+        assert_eq!(operator_load_out.sigil_colors.front_primary, None);
+        assert_eq!(operator_load_out.sigil_colors.front_secondary, None);
+        assert_eq!(operator_load_out.sigil_colors.back_primary, None);
+        assert_eq!(operator_load_out.sigil_colors.back_secondary, None);
+        assert_eq!(operator_load_out.sigil_colors.t1, Some(0));
+        assert_eq!(operator_load_out.sigil_colors.t3, None);
+        assert_eq!(operator_load_out.sigil_colors.en, Some(0));
+
+        assert_eq!(operator_load_out.cloth_colors.primary, Some(0));
+        assert_eq!(operator_load_out.cloth_colors.secondary, Some(0));
+        assert_eq!(operator_load_out.cloth_colors.tertiary, Some(0));
+        assert_eq!(operator_load_out.cloth_colors.accents, Some(0));
+        assert_eq!(operator_load_out.cloth_colors.emissive_primary, None);
+        assert_eq!(operator_load_out.cloth_colors.emissive_secondary, None);
+        assert_eq!(operator_load_out.cloth_colors.energy_primary, Some(0));
+
+        assert_eq!(result.unlocked_operator, true);
+        assert_eq!(result.unlocked_alignment, true);
+
+        assert_eq!(result.alignment.alignment, 0);
+        assert_eq!(result.alignment.wisdom, 0);
     }
 }

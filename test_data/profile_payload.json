@@ -1,0 +1,290 @@
+{
+  "Results": [
+    {
+      "AccountId": { "$oid": "507f1f77bcf86cd799439011" },
+      "DisplayName": "Player1\uE000",
+      "PlatformNames": [
+        "Player1\uE000",
+        "Player1\uE001",
+        "Player1\uE002",
+        "Player1\uE003",
+        "Player1\uE004"
+      ],
+      "PlayerLevel": 0,
+      "LoadOutPreset": {
+        "FocusSchool": "AP_DEFENSE",
+        "PresetIcon": "",
+        "Favorite": false,
+        "n": "Preset1",
+        "s": {
+          "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
+          "mod": 0,
+          "cus": 0
+        },
+        "p": {
+          "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
+          "mod": 0,
+          "cus": 0,
+          "hide": false
+        },
+        "l": {
+          "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
+          "mod": 0,
+          "cus": 0
+        },
+        "m": {
+          "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
+          "mod": 0,
+          "cus": 0
+        },
+        "h": {
+          "ItemId": { "$oid": "507f1f77bcf86cd799439011" },
+          "mod": 0,
+          "cus": 0
+        }
+      },
+      "LoadOutInventory": {
+        "WeaponSkins": [
+          {
+            "ItemType": "Item1"
+          }
+        ],
+        "Suits": [
+          {
+            "ItemType": "Warframe",
+            "Configs": [
+              {
+                "Name": "Build1",
+                "Skins": [],
+                "pricol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "en": 0,
+                  "e1": 0
+                },
+                "attcol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "m1": 0,
+                  "en": 0,
+                  "e1": 0
+                },
+                "sigcol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "m1": 0,
+                  "en": 0,
+                  "e1": 0
+                },
+                "syancol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "en": 0
+                }
+              }
+            ]
+          }
+        ],
+        "LongGuns": [
+          {
+            "ItemType": "Primary",
+            "Configs": [
+              {
+                "Name": "Build1",
+                "Skins": [],
+                "pricol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "m1": 0,
+                  "en": 0,
+                  "e1": 0
+                }
+              }
+            ]
+          }
+        ],
+        "Pistols": [
+          {
+            "ItemType": "Pistol",
+            "Configs": [
+              {
+                "Name": "Build1",
+                "Skins": [],
+                "pricol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "m1": 0,
+                  "en": 0,
+                  "e1": 0
+                }
+              }
+            ]
+          }
+        ],
+        "Melee": [
+          {
+            "ItemType": "Melee",
+            "Configs": [
+              {
+                "Name": "Build1",
+                "Skins": ["Skin1"],
+                "pricol": {
+                  "t0": 0,
+                  "t1": 0,
+                  "t2": 0,
+                  "t3": 0,
+                  "m0": 0,
+                  "m1": 0,
+                  "en": 0,
+                  "e1": 0
+                }
+              }
+            ]
+          }
+        ],
+        "XPInfo": [
+          {
+            "ItemType": "Warframe",
+            "XP": 0
+          },
+          {
+            "ItemType": "Primary",
+            "XP": 0
+          },
+          {
+            "ItemType": "Secondary",
+            "XP": 0
+          },
+          {
+            "ItemType": "Melee",
+            "XP": 0
+          }
+        ]
+      },
+      "GuildId": { "$oid": "507f1f77bcf86cd799439011" },
+      "GuildName": "Guild1#456",
+      "GuildTier": 1,
+      "GuildXP": 0,
+      "GuildClass": 10,
+      "GuildEmblem": true,
+      "AllianceId": { "$oid": "507f1f77bcf86cd799439011" },
+      "PlayerSkills": {
+        "LPP_SPACE": 0,
+        "LPS_GUNNERY": 0,
+        "LPS_TACTICAL": 0,
+        "LPS_PILOTING": 0,
+        "LPS_ENGINEERING": 0,
+        "LPS_COMMAND": 0,
+        "LPP_DRIFTER": 0,
+        "LPS_DRIFT_RIDING": 0,
+        "LPS_DRIFT_COMBAT": 0,
+        "LPS_DRIFT_OPPORTUNITY": 0,
+        "LPS_DRIFT_ENDURANCE": 0
+      },
+      "ChallengeProgress": [
+        {
+          "Name": "Challenge1",
+          "Progress": 0
+        }
+      ],
+      "DeathMarks": ["DeathMark1"],
+      "Harvestable": false,
+      "DeathSquadable": false,
+      "Accolades": {
+        "Accolade1": true
+      },
+      "Created": { "$date": { "$numberLong": "0" } },
+      "MigratedToConsole": false,
+      "Missions": [
+        {
+          "Tag": "Mission1",
+          "Completes": 3,
+          "Tier": 1
+        },
+        {
+          "Tag": "Mission2",
+          "Completes": 4
+        }
+      ],
+      "Affiliations": [
+        {
+          "Tag": "ArbitersSyndicate",
+          "Standing": 200000,
+          "Title": 4
+        }
+      ],
+      "DailyAffiliation": 0,
+      "DailyAffiliationPvp": 0,
+      "DailyAffiliationLibrary": 0,
+      "DailyAffiliationCetus": 0,
+      "DailyAffiliationQuills": 0,
+      "DailyAffiliationSolaris": 0,
+      "DailyAffiliationVentkids": 0,
+      "DailyAffiliationVox": 0,
+      "DailyAffiliationEntrati": 0,
+      "DailyAffiliationNecraloid": 0,
+      "DailyAffiliationZariman": 0,
+      "DailyAffiliationKahl": 0,
+      "DailyAffiliationCavia": 0,
+      "DailyAffiliationHex": 0,
+      "DailyFocus": 0,
+      "OperatorLoadOuts": [
+        {
+          "Skins": ["Skin1"],
+          "pricol": {
+            "t0": 0,
+            "t3": 0,
+            "en": 0
+          },
+          "eyecol": {
+            "t0": 0,
+            "t1": 0,
+            "t2": 0,
+            "t3": 0,
+            "en": 0
+          },
+          "Upgrades": ["5f24b0df01109467953ec82b"],
+          "sigcol": {
+            "t1": 0,
+            "en": 0
+          },
+          "AbilityOverride": {
+            "Ability": "Ability1",
+            "Index": 0
+          },
+          "cloth": {
+            "t0": 0,
+            "t1": 0,
+            "t2": 0,
+            "t3": 0,
+            "en": 0,
+            "e1": 0
+          }
+        }
+      ],
+      "UnlockedOperator": true,
+      "UnlockedAlignment": true,
+      "Alignment": {
+        "Wisdom": 0,
+        "Alignment": 0
+      }
+    }
+  ]
+}

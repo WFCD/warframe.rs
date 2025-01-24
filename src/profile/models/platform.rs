@@ -36,21 +36,13 @@ impl<'de> Deserialize<'de> for PlatformName {
             where
                 E: de::Error,
             {
-                let v = value.as_bytes();
+                let mut chars = value.chars();
+                let platorm_char = chars.next_back().ok_or_else(|| E::custom("value cannot be empty"))?;
 
-                if v.is_empty() {
-                    return Err(E::custom("value cannot be empty"));
-                }
+                let platform = Platform::from_char(platorm_char)
+                    .ok_or_else(|| E::custom("Invalid platform char"))?;
 
-                let platform = Platform::from_byte(
-                    *v.last()
-                        .ok_or_else(|| E::custom("expected a platform byte at the end"))?,
-                )
-                .ok_or_else(|| E::custom("Invalid platform byte"))?;
-
-                let name = str::from_utf8(&v[..v.len() - 1])
-                    .map_err(|e| E::custom(e))?
-                    .to_owned();
+                let name = chars.collect();
 
                 Ok(PlatformName { name, platform })
             }
@@ -62,21 +54,21 @@ impl<'de> Deserialize<'de> for PlatformName {
 
 #[derive(Serialize, Debug, Clone, PartialEq)]
 pub enum Platform {
-    PC = 0x0,
-    Xbox = 0x1,
-    PS = 0x2,
-    Switch = 0x3,
-    Ios = 0x4,
+    PC,
+    Xbox,
+    PS,
+    Switch,
+    Ios,
 }
 
 impl Platform {
-    pub fn from_byte(byte: u8) -> Option<Self> {
-        match byte {
-            0x0 => Some(Self::PC),
-            0x1 => Some(Self::Xbox),
-            0x2 => Some(Self::PS),
-            0x3 => Some(Self::Switch),
-            0x4 => Some(Self::Ios),
+    pub fn from_char(char: char) -> Option<Self> {
+        match char {
+            '\u{e000}' => Some(Self::PC),
+            '\u{e001}' => Some(Self::Xbox),
+            '\u{e002}' => Some(Self::PS),
+            '\u{e003}' => Some(Self::Switch),
+            '\u{e004}' => Some(Self::Ios),
             _ => None,
         }
     }
