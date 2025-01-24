@@ -37,14 +37,18 @@ impl<'de> Deserialize<'de> for PlatformName {
                 E: de::Error,
             {
                 let mut chars = value.chars();
-                let platorm_char = chars.next_back().ok_or_else(|| E::custom("value cannot be empty"))?;
+                let platform_char = chars.next_back().ok_or_else(|| E::custom("value cannot be empty"))?;
 
-                let platform = Platform::from_char(platorm_char)
-                    .ok_or_else(|| E::custom("Invalid platform char"))?;
+                let mut platform = Platform::from_char(platform_char);
 
-                let name = chars.collect();
+                let mut name = chars.collect();
+                if platform.is_none() {
+                    // Older profiles don't have this field, so we default to PC
+                    platform = Some(Platform::PC);
+                    name = format!("{}{}", name, platform_char);
+                }
 
-                Ok(PlatformName { name, platform })
+                Ok(PlatformName { name, platform: platform.unwrap() })
             }
         }
 
@@ -62,6 +66,16 @@ pub enum Platform {
 }
 
 impl Platform {
+    pub fn to_char(&self) -> char {
+        match self {
+            Self::PC => '\u{e000}',
+            Self::Xbox => '\u{e001}',
+            Self::PS => '\u{e002}',
+            Self::Switch => '\u{e003}',
+            Self::Ios => '\u{e004}',
+        }
+    }
+    
     pub fn from_char(char: char) -> Option<Self> {
         match char {
             '\u{e000}' => Some(Self::PC),

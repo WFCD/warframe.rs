@@ -9,7 +9,7 @@ use super::{
 #[serde(rename_all = "PascalCase")]
 pub struct LoadOutPreset {
     /// focus_school
-    pub focus_school: FocusSchool,
+    pub focus_school: Option<FocusSchool>,
 
     /// preset_icon
     pub preset_icon: String,
@@ -40,7 +40,7 @@ pub struct LoadOutPreset {
     #[serde(rename = "h")]
     // TODO: What is this?
     /// h
-    pub h: LoadOutPresetItem,
+    pub h: Option<LoadOutPresetItem>,
 
     #[serde(rename = "a")]
     // TODO: What is this?
