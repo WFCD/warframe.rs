@@ -62,7 +62,7 @@ pub enum Platform {
     Xbox,
     PS,
     Switch,
-    Ios,
+    Mobile,
 }
 
 impl Platform {
@@ -72,7 +72,17 @@ impl Platform {
             Self::Xbox => '\u{e001}',
             Self::PS => '\u{e002}',
             Self::Switch => '\u{e003}',
-            Self::Ios => '\u{e004}',
+            Self::Mobile => '\u{e004}',
+        }
+    }
+    
+    pub fn to_sub_domain(&self) -> &'static str {
+        match self {
+            Self::PC => "content",
+            Self::Xbox => "content-xb1",
+            Self::PS => "content-ps4",
+            Self::Switch => "content-swi",
+            Self::Mobile => "content-mob",
         }
     }
     
@@ -82,7 +92,7 @@ impl Platform {
             '\u{e001}' => Some(Self::Xbox),
             '\u{e002}' => Some(Self::PS),
             '\u{e003}' => Some(Self::Switch),
-            '\u{e004}' => Some(Self::Ios),
+            '\u{e004}' => Some(Self::Mobile),
             _ => None,
         }
     }
