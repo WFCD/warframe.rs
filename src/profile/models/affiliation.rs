@@ -1,5 +1,18 @@
 use serde::Deserialize;
 
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
+pub struct Affiliation {
+    /// tag
+    pub tag: AffiliationTag,
+
+    /// standing
+    pub standing: i32,
+
+    /// title
+    pub title: i32,
+}
+
 #[derive(Deserialize, Debug, Clone, PartialEq)]
 pub enum AffiliationTag {
     #[serde(rename = "ArbitersSyndicate")]
@@ -60,12 +73,14 @@ pub enum AffiliationTag {
     NightwaveNorasMix3,
     #[serde(rename = "RadioLegionIntermission8Syndicate")]
     NightwaveNorasMix4,
+    #[serde(rename = "RadioLegionIntermission9Syndicate")]
+    NightwaveNorasMix5,
     #[serde(rename = "EntratiLabSyndicate")]
     Cavia,
     #[serde(rename = "RadioLegionIntermission10Syndicate")]
-    NightwaveNorasMix5,
-    #[serde(rename = "RadioLegionIntermission11Syndicate")]
     NightwaveNorasMix6,
+    #[serde(rename = "RadioLegionIntermission11Syndicate")]
+    NightwaveNorasMix7,
     #[serde(rename = "HexSyndicate")]
     Hex,
 }

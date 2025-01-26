@@ -7,20 +7,32 @@ use serde::{
     Serialize,
 };
 use serde_json::Value;
-use serde_repr::{
-    Deserialize_repr,
-    Serialize_repr,
-};
-use crate::profile::models::affiliation::AffiliationTag;
 use super::{
+    guild_tier::GuildTier,
+    player_skill::PlayerSkill,
     load_out_preset::LoadOutPreset,
+    load_out_inventory::LoadOutInventory,
+    operator_load_out::OperatorLoadOut,
     platform::PlatformName,
+    affiliation::{Affiliation, AffiliationTag},
+    stats::Stats,
 };
 
 #[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub(crate) struct ProfilePayload {
     pub(crate) results: Vec<Profile>,
+    
+    // TODO: What is this?
+    //pub(crate) tech_projects: Vec<?>,
+    
+    // TODO: What is this?
+    //pub(crate) xp_components: Vec<?>,
+
+    #[serde(deserialize_with = "deserialize_date")]
+    pub(crate) xp_cache_expiry_date: i64,
+    
+    pub(crate) stats: Option<Stats>
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -58,7 +70,7 @@ pub struct Profile {
 
     #[serde(rename = "GuildXP")]
     /// guild_xp
-    pub guild_xp: Option<i32>,
+    pub guild_xp: Option<u32>,
 
     /// guild_class
     pub guild_class: Option<u8>,
@@ -72,7 +84,7 @@ pub struct Profile {
 
     #[serde(default)]
     /// player_skills
-    pub player_skills: HashMap<PlayerSkill, i32>,
+    pub player_skills: HashMap<PlayerSkill, u32>,
 
     /// challenge_progress
     pub challenge_progress: Vec<ChallengeProgress>,
@@ -108,49 +120,49 @@ pub struct Profile {
     pub affiliations: Vec<Affiliation>,
 
     /// daily_affiliation
-    pub daily_affiliation: i32,
+    pub daily_affiliation: u32,
 
     /// daily_affiliation_pvp
-    pub daily_affiliation_pvp: i32,
+    pub daily_affiliation_pvp: u32,
 
     /// daily_affiliation_library
-    pub daily_affiliation_library: i32,
+    pub daily_affiliation_library: u32,
 
     /// daily_affiliation_cetus
-    pub daily_affiliation_cetus: i32,
+    pub daily_affiliation_cetus: u32,
 
     /// daily_affiliation_quills
-    pub daily_affiliation_quills: i32,
+    pub daily_affiliation_quills: u32,
 
     /// daily_affiliation_solaris
-    pub daily_affiliation_solaris: i32,
+    pub daily_affiliation_solaris: u32,
 
     /// daily_affiliation_ventkids
-    pub daily_affiliation_ventkids: i32,
+    pub daily_affiliation_ventkids: u32,
 
     /// daily_affiliation_vox
-    pub daily_affiliation_vox: i32,
+    pub daily_affiliation_vox: u32,
 
     /// daily_affiliation_entrati
-    pub daily_affiliation_entrati: i32,
+    pub daily_affiliation_entrati: u32,
 
     /// daily_affiliation_necraloid
-    pub daily_affiliation_necraloid: i32,
+    pub daily_affiliation_necraloid: u32,
 
     /// daily_affiliation_zariman
-    pub daily_affiliation_zariman: i32,
+    pub daily_affiliation_zariman: u32,
 
     /// daily_affiliation_kahl
-    pub daily_affiliation_kahl: i32,
+    pub daily_affiliation_kahl: u32,
 
     /// daily_affiliation_cavia
-    pub daily_affiliation_cavia: i32,
+    pub daily_affiliation_cavia: u32,
 
     /// daily_affiliation_hex
-    pub daily_affiliation_hex: i32,
+    pub daily_affiliation_hex: u32,
 
     /// daily_focus
-    pub daily_focus: i32,
+    pub daily_focus: u32,
 
     /// operator_load_outs
     pub operator_load_outs: Vec<OperatorLoadOut>,
@@ -169,208 +181,12 @@ pub struct Profile {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct LoadOutInventory {
-    /// weapon_skins
-    pub weapon_skins: Vec<LoadOutInventoryItemType>,
-
-    #[serde(rename = "Suits")]
-    /// warframes
-    pub warframe: Vec<LoadOutInventoryItem<WarframeLoadOutInventoryItemConfig>>,
-
-    #[serde(rename = "LongGuns")]
-    /// primaries
-    pub primaries: Vec<LoadOutInventoryItem>,
-
-    #[serde(rename = "Pistols")]
-    /// secondaries
-    pub secondaries: Vec<LoadOutInventoryItem>,
-
-    /// melee
-    pub melee: Vec<LoadOutInventoryItem>,
-
-    #[serde(rename = "XPInfo")]
-    /// xp_info
-    pub xp_info: Vec<XPInfo>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct LoadOutInventoryItemType {
-    /// item_type
-    pub item_type: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct LoadOutInventoryItem<Config = LoadOutInventoryItemConfig> {
-    /// item_type
-    pub item_type: String,
-
-    /// configs
-    pub configs: Vec<Config>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct LoadOutInventoryItemConfig {
-    /// name
-    pub name: Option<String>,
-
-    /// skins
-    pub skins: Vec<String>,
-
-    #[serde(rename = "pricol")]
-    /// primary_colors
-    pub primary_colors: Option<ColorLoadOut>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct WarframeLoadOutInventoryItemConfig {
-    #[serde(flatten)]
-    pub base: LoadOutInventoryItemConfig,
-
-    #[serde(rename = "attcol")]
-    /// attachment_colors
-    pub attachment_colors: Option<ColorLoadOut>,
-
-    #[serde(rename = "sigcol")]
-    /// sigil_colors
-    pub sigil_colors: Option<SigilColorLoadOut>,
-
-    #[serde(rename = "syancol")]
-    /// syandana_colors
-    pub syandana_colors: Option<ColorLoadOut>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-/// base10 i32 color loadout, [None] if color is not set
-pub struct ColorLoadOut {
-    #[serde(rename = "t0")]
-    /// primary
-    pub primary: Option<i32>,
-
-    #[serde(rename = "t1")]
-    /// secondary
-    pub secondary: Option<i32>,
-
-    #[serde(rename = "t2")]
-    /// tertiary
-    pub tertiary: Option<i32>,
-
-    #[serde(rename = "t3")]
-    /// accents
-    pub accents: Option<i32>,
-
-    #[serde(rename = "m0")]
-    /// emissive_primary
-    pub emissive_primary: Option<i32>,
-
-    #[serde(rename = "m1")]
-    /// emissive_secondary
-    pub emissive_secondary: Option<i32>,
-
-    #[serde(rename = "en")]
-    /// energy_primary
-    pub energy_primary: Option<i32>,
-
-    #[serde(rename = "e1")]
-    /// energy_secondary
-    pub energy_secondary: Option<i32>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-/// base10 i32 color loadout, [None] if color is not set
-pub struct SigilColorLoadOut {
-    #[serde(rename = "t0")]
-    /// front_primary
-    pub front_primary: Option<i32>,
-
-    #[serde(rename = "m0")]
-    /// front_secondary
-    pub front_secondary: Option<i32>,
-
-    #[serde(rename = "t2")]
-    /// back_primary
-    pub back_primary: Option<i32>,
-
-    #[serde(rename = "m1")]
-    /// back_secondary
-    pub back_secondary: Option<i32>,
-
-    // TODO: What is this?
-    /// t1
-    pub t1: Option<i32>,
-
-    // TODO: What is this?
-    /// t3
-    pub t3: Option<i32>,
-
-    // TODO: What is this?
-    /// en
-    pub en: Option<i32>,
-
-    // TODO: What is this?
-    /// e1
-    pub e1: Option<i32>,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct XPInfo {
-    /// item_type
-    pub item_type: String,
-
-    #[serde(rename = "XP")]
-    /// xp
-    pub xp: i32,
-}
-
-#[derive(Serialize_repr, Deserialize_repr, Debug, Clone, PartialEq)]
-#[repr(u8)]
-pub enum GuildTier {
-    Ghost = 1,
-    Shadow = 2,
-    Storm = 3,
-    Mountain = 4,
-    Moon = 5,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
-pub enum PlayerSkill {
-    #[serde(rename = "LPP_SPACE")]
-    Railjack,
-    #[serde(rename = "LPS_GUNNERY")]
-    RailjackGunnery,
-    #[serde(rename = "LPS_TACTICAL")]
-    RailjackTactical,
-    #[serde(rename = "LPS_PILOTING")]
-    RailjackPiloting,
-    #[serde(rename = "LPS_ENGINEERING")]
-    RailjackEngineering,
-    #[serde(rename = "LPS_COMMAND")]
-    RailjackCommand,
-    #[serde(rename = "LPP_DRIFTER")]
-    Drifter,
-    #[serde(rename = "LPS_DRIFT_RIDING")]
-    DrifterRiding,
-    #[serde(rename = "LPS_DRIFT_COMBAT")]
-    DrifterCombat,
-    #[serde(rename = "LPS_DRIFT_OPPORTUNITY")]
-    DrifterOpportunity,
-    #[serde(rename = "LPS_DRIFT_ENDURANCE")]
-    DrifterEndurance,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
 pub struct ChallengeProgress {
-    // TODO: Do we want this as a BIG enum? Prob not
     /// name
     pub name: String,
 
     /// progress
-    pub progress: i32,
+    pub progress: u32,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -380,62 +196,10 @@ pub struct Mission {
     pub tag: String,
 
     /// completes
-    pub completes: i32,
+    pub completes: u32,
 
     /// tier - 1 is steel path completed
-    pub tier: Option<i32>,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct Affiliation {
-    /// tag
-    pub tag: AffiliationTag,
-
-    /// standing
-    pub standing: i32,
-
-    /// title
-    pub title: i32,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct OperatorLoadOut {
-    /// skins
-    pub skins: Vec<String>,
-
-    /// upgrades
-    pub upgrades: Option<Vec<String>>,
-
-    /// ability_override
-    pub ability_override: Option<AbilityOverride>,
-
-    #[serde(rename = "pricol")]
-    /// primary_colors
-    pub primary_colors: Option<ColorLoadOut>,
-
-    #[serde(rename = "eyecol")]
-    /// eye_colors
-    pub eye_colors: Option<ColorLoadOut>,
-
-    #[serde(rename = "sigcol")]
-    /// sigil_colors
-    pub sigil_colors: Option<SigilColorLoadOut>,
-
-    #[serde(rename = "cloth")]
-    /// cloth_colors
-    pub cloth_colors: Option<ColorLoadOut>,
-}
-
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct AbilityOverride {
-    /// ability
-    pub ability: String,
-
-    /// index
-    pub index: i32,
+    pub tier: Option<u8>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -566,36 +330,36 @@ mod tests {
         assert!(config.base.primary_colors.is_some());
         let primary_colors = config.base.primary_colors.as_ref().unwrap();
         
-        assert_eq!(primary_colors.primary, Some(0));
-        assert_eq!(primary_colors.secondary, Some(0));
-        assert_eq!(primary_colors.tertiary, Some(0));
-        assert_eq!(primary_colors.accents, Some(0));
-        assert_eq!(primary_colors.emissive_primary, Some(0));
-        assert_eq!(primary_colors.emissive_secondary, None);
-        assert_eq!(primary_colors.energy_primary, Some(0));
-        assert_eq!(primary_colors.energy_secondary, Some(0));
+        assert_eq!(primary_colors.t0, Some(0));
+        assert_eq!(primary_colors.t1, Some(0));
+        assert_eq!(primary_colors.t2, Some(0));
+        assert_eq!(primary_colors.t3, Some(0));
+        assert_eq!(primary_colors.m0, Some(0));
+        assert_eq!(primary_colors.m1, None);
+        assert_eq!(primary_colors.en, Some(0));
+        assert_eq!(primary_colors.e1, Some(0));
 
         assert!(config.attachment_colors.is_some());
         let attachment_colors = config.attachment_colors.as_ref().unwrap();
         
-        assert_eq!(attachment_colors.primary, Some(0));
-        assert_eq!(attachment_colors.secondary, Some(0));
-        assert_eq!(attachment_colors.tertiary, Some(0));
-        assert_eq!(attachment_colors.accents, Some(0));
-        assert_eq!(attachment_colors.emissive_primary, Some(0));
-        assert_eq!(attachment_colors.emissive_secondary, Some(0));
-        assert_eq!(attachment_colors.energy_primary, Some(0));
-        assert_eq!(attachment_colors.energy_secondary, Some(0));
+        assert_eq!(attachment_colors.t0, Some(0));
+        assert_eq!(attachment_colors.t1, Some(0));
+        assert_eq!(attachment_colors.t2, Some(0));
+        assert_eq!(attachment_colors.t3, Some(0));
+        assert_eq!(attachment_colors.m0, Some(0));
+        assert_eq!(attachment_colors.m1, Some(0));
+        assert_eq!(attachment_colors.en, Some(0));
+        assert_eq!(attachment_colors.e1, Some(0));
 
         assert!(config.sigil_colors.is_some());
         let sigil_colors = config.sigil_colors.as_ref().unwrap();
         
-        assert_eq!(sigil_colors.front_primary, Some(0));
-        assert_eq!(sigil_colors.front_secondary, Some(0));
-        assert_eq!(sigil_colors.back_primary, Some(0));
-        assert_eq!(sigil_colors.back_secondary, Some(0));
+        assert_eq!(sigil_colors.t0, Some(0));
         assert_eq!(sigil_colors.t1, Some(0));
+        assert_eq!(sigil_colors.t2, Some(0));
         assert_eq!(sigil_colors.t3, Some(0));
+        assert_eq!(sigil_colors.m0, Some(0));
+        assert_eq!(sigil_colors.m1, Some(0));
         assert_eq!(sigil_colors.en, Some(0));
         assert_eq!(sigil_colors.e1, Some(0));
 
@@ -613,14 +377,14 @@ mod tests {
         assert!(config.primary_colors.is_some());
         let primary_colors = config.primary_colors.as_ref().unwrap();
         
-        assert_eq!(primary_colors.primary, Some(0));
-        assert_eq!(primary_colors.secondary, Some(0));
-        assert_eq!(primary_colors.tertiary, Some(0));
-        assert_eq!(primary_colors.accents, Some(0));
-        assert_eq!(primary_colors.emissive_primary, Some(0));
-        assert_eq!(primary_colors.emissive_secondary, Some(0));
-        assert_eq!(primary_colors.energy_primary, Some(0));
-        assert_eq!(primary_colors.energy_secondary, Some(0));
+        assert_eq!(primary_colors.t0, Some(0));
+        assert_eq!(primary_colors.t1, Some(0));
+        assert_eq!(primary_colors.t2, Some(0));
+        assert_eq!(primary_colors.t3, Some(0));
+        assert_eq!(primary_colors.m0, Some(0));
+        assert_eq!(primary_colors.m1, Some(0));
+        assert_eq!(primary_colors.en, Some(0));
+        assert_eq!(primary_colors.e1, Some(0));
 
         assert_eq!(result.load_out_inventory.secondaries.len(), 1);
         let secondary = &result.load_out_inventory.secondaries[0];
@@ -636,14 +400,14 @@ mod tests {
         assert!(config.primary_colors.is_some());
         let primary_colors = config.primary_colors.as_ref().unwrap();
         
-        assert_eq!(primary_colors.primary, Some(0));
-        assert_eq!(primary_colors.secondary, Some(0));
-        assert_eq!(primary_colors.tertiary, Some(0));
-        assert_eq!(primary_colors.accents, Some(0));
-        assert_eq!(primary_colors.emissive_primary, Some(0));
-        assert_eq!(primary_colors.emissive_secondary, Some(0));
-        assert_eq!(primary_colors.energy_primary, Some(0));
-        assert_eq!(primary_colors.energy_secondary, Some(0));
+        assert_eq!(primary_colors.t0, Some(0));
+        assert_eq!(primary_colors.t1, Some(0));
+        assert_eq!(primary_colors.t2, Some(0));
+        assert_eq!(primary_colors.t3, Some(0));
+        assert_eq!(primary_colors.m0, Some(0));
+        assert_eq!(primary_colors.m1, Some(0));
+        assert_eq!(primary_colors.en, Some(0));
+        assert_eq!(primary_colors.e1, Some(0));
 
         assert_eq!(result.load_out_inventory.melee.len(), 1);
         let melee = &result.load_out_inventory.melee[0];
@@ -659,14 +423,14 @@ mod tests {
         assert!(config.primary_colors.is_some());
         let primary_colors = config.primary_colors.as_ref().unwrap();
         
-        assert_eq!(primary_colors.primary, Some(0));
-        assert_eq!(primary_colors.secondary, Some(0));
-        assert_eq!(primary_colors.tertiary, Some(0));
-        assert_eq!(primary_colors.accents, Some(0));
-        assert_eq!(primary_colors.emissive_primary, Some(0));
-        assert_eq!(primary_colors.emissive_secondary, Some(0));
-        assert_eq!(primary_colors.energy_primary, Some(0));
-        assert_eq!(primary_colors.energy_secondary, Some(0));
+        assert_eq!(primary_colors.t0, Some(0));
+        assert_eq!(primary_colors.t1, Some(0));
+        assert_eq!(primary_colors.t2, Some(0));
+        assert_eq!(primary_colors.t3, Some(0));
+        assert_eq!(primary_colors.m0, Some(0));
+        assert_eq!(primary_colors.m1, Some(0));
+        assert_eq!(primary_colors.en, Some(0));
+        assert_eq!(primary_colors.e1, Some(0));
 
         assert_eq!(result.load_out_inventory.xp_info.len(), 4);
 
@@ -764,43 +528,38 @@ mod tests {
         assert!(operator_load_out.primary_colors.is_some());
         let operator_load_out_primary_colors = operator_load_out.primary_colors.as_ref().unwrap();
         
-        assert_eq!(operator_load_out_primary_colors.primary, Some(0));
-        assert_eq!(operator_load_out_primary_colors.secondary, None);
-        assert_eq!(operator_load_out_primary_colors.tertiary, None);
-        assert_eq!(operator_load_out_primary_colors.accents, Some(0));
-        assert_eq!(operator_load_out_primary_colors.emissive_primary, None);
-        assert_eq!(operator_load_out_primary_colors.emissive_secondary, None);
-        assert_eq!(operator_load_out_primary_colors.energy_primary, Some(0));
+        assert_eq!(operator_load_out_primary_colors.t0, Some(0));
+        assert_eq!(operator_load_out_primary_colors.t1, None);
+        assert_eq!(operator_load_out_primary_colors.t2, None);
+        assert_eq!(operator_load_out_primary_colors.t3, Some(0));
+        assert_eq!(operator_load_out_primary_colors.m0, None);
+        assert_eq!(operator_load_out_primary_colors.m1, None);
+        assert_eq!(operator_load_out_primary_colors.en, Some(0));
 
         assert!(operator_load_out.eye_colors.is_some());
         let operator_load_out_eye_colors = operator_load_out.eye_colors.as_ref().unwrap();
         
-        assert_eq!(operator_load_out_eye_colors.primary, Some(0));
-        assert_eq!(operator_load_out_eye_colors.secondary, Some(0));
-        assert_eq!(operator_load_out_eye_colors.tertiary, Some(0));
-        assert_eq!(operator_load_out_eye_colors.accents, Some(0));
+        assert_eq!(operator_load_out_eye_colors.t0, Some(0));
+        assert_eq!(operator_load_out_eye_colors.t1, Some(0));
+        assert_eq!(operator_load_out_eye_colors.t2, Some(0));
+        assert_eq!(operator_load_out_eye_colors.t3, Some(0));
 
         assert!(operator_load_out.sigil_colors.is_some());
         let operator_load_out_sigil_colors = operator_load_out.sigil_colors.as_ref().unwrap();
-        
-        assert_eq!(operator_load_out_sigil_colors.front_primary, None);
-        assert_eq!(operator_load_out_sigil_colors.front_secondary, None);
-        assert_eq!(operator_load_out_sigil_colors.back_primary, None);
-        assert_eq!(operator_load_out_sigil_colors.back_secondary, None);
+
         assert_eq!(operator_load_out_sigil_colors.t1, Some(0));
-        assert_eq!(operator_load_out_sigil_colors.t3, None);
         assert_eq!(operator_load_out_sigil_colors.en, Some(0));
 
         assert!(operator_load_out.cloth_colors.is_some());
         let operator_load_out_cloth_colors = operator_load_out.cloth_colors.as_ref().unwrap();
         
-        assert_eq!(operator_load_out_cloth_colors.primary, Some(0));
-        assert_eq!(operator_load_out_cloth_colors.secondary, Some(0));
-        assert_eq!(operator_load_out_cloth_colors.tertiary, Some(0));
-        assert_eq!(operator_load_out_cloth_colors.accents, Some(0));
-        assert_eq!(operator_load_out_cloth_colors.emissive_primary, None);
-        assert_eq!(operator_load_out_cloth_colors.emissive_secondary, None);
-        assert_eq!(operator_load_out_cloth_colors.energy_primary, Some(0));
+        assert_eq!(operator_load_out_cloth_colors.t0, Some(0));
+        assert_eq!(operator_load_out_cloth_colors.t1, Some(0));
+        assert_eq!(operator_load_out_cloth_colors.t2, Some(0));
+        assert_eq!(operator_load_out_cloth_colors.t3, Some(0));
+        assert_eq!(operator_load_out_cloth_colors.m0, None);
+        assert_eq!(operator_load_out_cloth_colors.m1, None);
+        assert_eq!(operator_load_out_cloth_colors.en, Some(0));
 
         assert_eq!(result.unlocked_operator, true);
         assert_eq!(result.unlocked_alignment, true);
@@ -810,5 +569,102 @@ mod tests {
         
         assert_eq!(alignment.alignment, 0);
         assert_eq!(alignment.wisdom, 0);
+        
+        assert_eq!(payload.xp_cache_expiry_date, 0);
+        
+        assert!(payload.stats.is_some());
+        let stats = payload.stats.as_ref().unwrap();
+        
+        assert_eq!(stats.ciphers_failed, 0);
+        assert_eq!(stats.ciphers_solved, 0);
+        assert_eq!(stats.cipher_time, 0.0);
+        assert_eq!(stats.capture_event_score, 0);
+        assert_eq!(stats.deaths, 0);
+        assert_eq!(stats.rating, 0);
+        
+        assert_eq!(stats.weapons.len(), 1);
+        assert_eq!(stats.weapons[0].unique_name, "Weapon1");
+        assert_eq!(stats.weapons[0].headshots, Some(0));
+        assert_eq!(stats.weapons[0].hits, Some(0));
+        assert_eq!(stats.weapons[0].fired, Some(0));
+        assert_eq!(stats.weapons[0].kills, Some(0));
+        assert_eq!(stats.weapons[0].assists, Some(0));
+        assert_eq!(stats.weapons[0].xp, Some(0));
+        assert_eq!(stats.weapons[0].equip_time, 0.0);
+        
+        assert_eq!(stats.enemies.len(), 1);
+        assert_eq!(stats.enemies[0].unique_name, "Enemy1");
+        assert_eq!(stats.enemies[0].executions, Some(0));
+        assert_eq!(stats.enemies[0].headshots, Some(0));
+        assert_eq!(stats.enemies[0].kills, Some(0));
+        assert_eq!(stats.enemies[0].assists, Some(0));
+        assert_eq!(stats.enemies[0].deaths, Some(0));
+        
+        assert_eq!(stats.heal_count, 0);
+        assert_eq!(stats.income, 0);
+        assert_eq!(stats.melee_kills, 0);
+        assert_eq!(stats.missions_dumped, 0);
+        assert_eq!(stats.missions_failed, 0);
+        assert_eq!(stats.missions_interrupted, 0);
+        assert_eq!(stats.missions_quit, 0);
+        assert_eq!(stats.missions_completed, 0);
+        
+        assert_eq!(stats.missions.len(), 1);
+        assert_eq!(stats.missions[0].unique_name, "Mission1");
+        assert_eq!(stats.missions[0].high_score, 0);
+        
+        assert_eq!(stats.time_played_sec, 0.0);
+        assert_eq!(stats.pickup_count, 0);
+        assert_eq!(stats.player_level, 0);
+        assert_eq!(stats.rank, 0);
+        assert_eq!(stats.revive_count, 0);
+        assert_eq!(stats.sabotage_event_score, Some(0));
+        assert_eq!(stats.survival_event_score, Some(0));
+        
+        assert_eq!(stats.abilities.len(), 1);
+        assert_eq!(stats.abilities[0].unique_name, "Ability1");
+        assert_eq!(stats.abilities[0].used, 0);
+        
+        assert_eq!(stats.infested_event_score, Some(0));
+
+        assert_eq!(stats.scans.len(), 1);
+        assert_eq!(stats.scans[0].unique_name, "Scan1");
+        assert_eq!(stats.scans[0].scans, 0);
+
+        assert_eq!(stats.dojo_obstacle_score, Some(0));
+        
+        assert_eq!(stats.pvp.len(), 2);
+        assert_eq!(stats.pvp[0].unique_name, "Suit1");
+        assert_eq!(stats.pvp[0].suit_kills, Some(0));
+        assert_eq!(stats.pvp[0].suit_deaths, Some(0));
+        assert_eq!(stats.pvp[0].weapon_kills, None);
+        
+        assert_eq!(stats.pvp[1].unique_name, "Weapon1");
+        assert_eq!(stats.pvp[1].weapon_kills, Some(0));
+        assert_eq!(stats.pvp[1].suit_kills, None);
+        assert_eq!(stats.pvp[1].suit_deaths, None);
+        
+        assert_eq!(stats.fomorian_event_score, Some(0));
+        assert_eq!(stats.zephyr_score, Some(0));
+        assert_eq!(stats.sentinel_game_score, Some(0));
+        assert_eq!(stats.project_sinister_event_score, Some(0));
+        assert_eq!(stats.pvp_games_pending_mask, Some(0));
+        assert_eq!(stats.colonist_rescue_event_score_max, Some(0));
+        assert_eq!(stats.ambulas_event_score_max, Some(0));
+        
+        assert_eq!(stats.races.len(), 1);
+        assert_eq!(stats.races.get("Race1"), Some(&0));
+        
+        assert_eq!(stats.halloween_19_score_max, Some(0));
+        assert_eq!(stats.flotilla_event_score, Some(0));
+        assert_eq!(stats.flotilla_ground_badges_tier_1, Some(0));
+        assert_eq!(stats.flotilla_ground_badges_tier_2, Some(0));
+        assert_eq!(stats.flotilla_ground_badges_tier_3, Some(0));
+        assert_eq!(stats.flotilla_space_badges_tier_1, Some(0));
+        assert_eq!(stats.flotilla_space_badges_tier_2, Some(0));
+        assert_eq!(stats.flotilla_space_badges_tier_3, Some(0));
+        assert_eq!(stats.mech_survival_score_max, Some(0));
+        assert_eq!(stats.caliber_chicks_score, Some(0));
+        assert_eq!(stats.guild_name, Some("Guild1#456".to_string()));
     }
 }

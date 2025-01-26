@@ -286,5 +286,107 @@
         "Alignment": 0
       }
     }
-  ]
+  ],
+  "TechProjects": [],
+  "XpComponents": [],
+  "XpCacheExpiryDate": { "$date": { "$numberLong": "0" } },
+  "Stats": {
+    "CiphersFailed": 0,
+    "CiphersSolved": 0,
+    "CipherTime": 0,
+    "CaptureEventScore": 0,
+    "Deaths": 0,
+    "Rating": 0,
+    "Weapons": [
+      {
+        "type": "Weapon1",
+        "headshots": 0,
+        "hits": 0,
+        "fired": 0,
+        "kills": 0,
+        "assists": 0,
+        "xp": 0,
+        "equipTime": 0
+      }
+    ],
+    "Enemies": [
+      {
+        "type": "Enemy1",
+        "executions": 0,
+        "headshots": 0,
+        "kills": 0,
+        "assists": 0,
+        "deaths": 0
+      }
+    ],
+    "HealCount": 0,
+    "Income": 0,
+    "MeleeKills": 0,
+    "MissionsDumped": 0,
+    "MissionsFailed": 0,
+    "MissionsInterrupted": 0,
+    "MissionsQuit": 0,
+    "MissionsCompleted": 0,
+    "Missions": [
+      {
+        "type": "Mission1",
+        "highScore": 0
+      }
+    ],
+    "TimePlayedSec": 0,
+    "PickupCount": 0,
+    "PlayerLevel": 0,
+    "Rank": 0,
+    "ReviveCount": 0,
+    "SabotageEventScore": 0,
+    "SurvivalEventScore": 0,
+    "Abilities": [
+      {
+        "type": "Ability1",
+        "used": 0
+      }
+    ],
+    "InfestedEventScore": 0,
+    "Scans": [
+      {
+        "type": "Scan1",
+        "scans": 0
+      }
+    ],
+    "DojoObstacleScore": 0,
+    "PVP": [
+      {
+        "type": "Suit1",
+        "suitKills": 0,
+        "suitDeaths": 0
+      },
+      {
+        "type": "Weapon1",
+        "weaponKills": 0
+      }
+    ],
+    "FomorianEventScore": 0,
+    "ZephyrScore": 0,
+    "SentinelGameScore": 0,
+    "ProjectSinisterEventScore": 0,
+    "PvpGamesPendingMask": 0,
+    "ColonistRescueEventScoreMax": 0,
+    "AmbulasEventScoreMax": 0,
+    "Races": {
+      "Race1": {
+        "highScore": 0
+      }
+    },
+    "Halloween19ScoreMax": 0,
+    "FlotillaEventScore": 0,
+    "FlotillaGroundBadgesTier2": 0,
+    "FlotillaGroundBadgesTier3": 0,
+    "FlotillaGroundBadgesTier1": 0,
+    "FlotillaSpaceBadgesTier2": 0,
+    "FlotillaSpaceBadgesTier1": 0,
+    "FlotillaSpaceBadgesTier3": 0,
+    "MechSurvivalScoreMax": 0,
+    "CaliberChicksScore": 0,
+    "GuildName": "Guild1#456"
+  }
 }

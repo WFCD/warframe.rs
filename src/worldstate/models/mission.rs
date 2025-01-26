@@ -27,13 +27,13 @@ model_builder! {
     pub faction_key: Faction,
 
     :"The minimum level of the enemy"
-    pub min_enemy_level: i32,
+    pub min_enemy_level: u32,
 
     :"The maximum level of the enemy"
-    pub max_enemy_level: i32,
+    pub max_enemy_level: u32,
 
     :"The maximum wave you can get to"
-    pub max_wave_num: Option<i32>,
+    pub max_wave_num: Option<u32>,
 
     :"The i18n type of the mission"
     pub r#type: String,

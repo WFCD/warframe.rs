@@ -1,5 +1,11 @@
 pub mod focus_school;
+pub mod guild_tier;
+pub mod player_skill;
 pub mod load_out_preset;
+pub mod load_out_inventory;
+pub mod operator_load_out;
+pub mod color_load_out;
 pub mod affiliation;
+pub mod stats;
 pub mod platform;
 pub(crate) mod profile;
