@@ -24,7 +24,6 @@ pub trait Endpoint {
     /// Returns the URL to the endpoint of the specified language.
     ///
     /// Getting this endpoint is __NOT__ free, as concatenating is done at runtime.
-    #[cfg(feature = "multilangual")]
     fn endpoint(language: crate::worldstate::language::Language) -> String;
 }
 
@@ -73,10 +72,11 @@ pub trait Queryable: Endpoint {
     /// The Type returned by the [query](Queryable::query).
     type Return: DeserializeOwned;
 
-    /// Queries a model and returns an instance of ['itself'](Queryable::Return).
+    /// Queries a model and returns an instance of [`itself`](Queryable::Return).
+    #[must_use]
     fn query(
         request_executor: &reqwest::Client,
-    ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
+    ) -> impl std::future::Future<Output = Result<Self::Return, Error>> + Send {
         async {
             Ok(request_executor
                 .get(Self::endpoint_en())
@@ -88,12 +88,12 @@ pub trait Queryable: Endpoint {
     }
 
     /// Queries a model with the specified language and returns an instance of
-    /// ['itself'](Queryable::Return).
-    #[cfg(feature = "multilangual")]
+    /// [`itself`](Queryable::Return).
+    #[must_use]
     fn query_with_language(
         request_executor: &reqwest::Client,
         language: crate::worldstate::prelude::Language,
-    ) -> impl std::future::Future<Output = Result<Self::Return, ApiError>> + Send {
+    ) -> impl std::future::Future<Output = Result<Self::Return, Error>> + Send {
         async move {
             Ok(request_executor
                 .get(Self::endpoint(language))
@@ -142,7 +142,7 @@ pub(crate) fn get_short_format_time_string(dt: DateTime<Utc>) -> String {
     for &(suffix, divisor) in &components {
         let (div_time, mod_time) = divmod(time_in_between, divisor);
         if div_time > 0 {
-            formatted_time.push_str(&format!("{}{} ", div_time, suffix));
+            formatted_time.push_str(&format!("{div_time}{suffix} "));
             time_in_between = mod_time;
         }
     }
@@ -165,10 +165,11 @@ pub trait TypeDocumentation {
 /// A trait that allows enums with 2 variants to easily access the other variant.
 pub trait Opposite {
     /// Returns the opposite of this state
+    #[must_use]
     fn opposite(&self) -> Self;
 }
 
-use crate::worldstate::error::ApiError;
+use crate::worldstate::error::Error;
 
 #[cfg(test)]
 mod tests {
@@ -187,6 +188,6 @@ mod tests {
         let assert_result = formatted_time == "5h 29m 59s"
             || formatted_time == "5h 29m 58s"
             || formatted_time == "5h 30m";
-        assert!(assert_result)
+        assert!(assert_result);
     }
 }

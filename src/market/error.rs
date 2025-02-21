@@ -7,7 +7,7 @@ pub enum ApiError {
     #[error("Couldn't send request: {0}")]
     FaultyRequest(#[from] reqwest::Error),
 
-    /// An error that occurs when the deserialization of serde_json fails
+    /// An error that occurs when the deserialization of `serde_json` fails
     #[error("Couldn't deserialize json body: {0}")]
     FailedDeserialization(#[from] serde_json::Error),
 

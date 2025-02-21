@@ -58,12 +58,38 @@ impl crate::ws::TypeDocumentation for Faction {
 }
 
 impl Faction {
+    #[must_use]
     pub fn vulnerable_to(self) -> Vec<super::DamageType> {
-        use CombinedElementalDamage::*;
-        use DamageType::*;
-        use ElementalDamage::*;
-        use Faction::*;
-        use PhysicalDamage::*;
+        use CombinedElementalDamage::{
+            Corrosive,
+            Magnetic,
+            Radiation,
+            Viral,
+        };
+        use DamageType::{
+            Combined,
+            Elemental,
+            Physical,
+        };
+        use ElementalDamage::{
+            Electricity,
+            Heat,
+            Toxin,
+        };
+        use Faction::{
+            Corpus,
+            Corrupted,
+            Grineer,
+            Infested,
+            Murmur,
+            Narmer,
+            Orokin,
+        };
+        use PhysicalDamage::{
+            Impact,
+            Puncture,
+            Slash,
+        };
 
         match self {
             Orokin | Corrupted => vec![Physical(Puncture), Combined(Viral)],
@@ -72,27 +98,30 @@ impl Faction {
             Grineer => vec![Physical(Impact), Combined(Corrosive)],
             Narmer => vec![Physical(Slash), Elemental(Toxin)],
             Murmur => vec![Elemental(Electricity), Combined(Radiation)],
-            Tenno => vec![],
-            Crossfire => vec![],
-            ManInTheWall => vec![],
+            _ => vec![],
         }
     }
 
+    #[must_use]
     pub fn resistant_to(self) -> Option<DamageType> {
-        use CombinedElementalDamage::*;
-        use DamageType::*;
-        use Faction::*;
+        use CombinedElementalDamage::{
+            Magnetic,
+            Radiation,
+            Viral,
+        };
+        use DamageType::Combined;
+        use Faction::{
+            Corrupted,
+            Murmur,
+            Narmer,
+            Orokin,
+        };
 
         match self {
             Orokin | Corrupted => Some(Combined(Radiation)),
             Narmer => Some(Combined(Magnetic)),
             Murmur => Some(Combined(Viral)),
-            Grineer => None,
-            Corpus => None,
-            Infested => None,
-            Tenno => None,
-            Crossfire => None,
-            ManInTheWall => None,
+            _ => None,
         }
     }
 }

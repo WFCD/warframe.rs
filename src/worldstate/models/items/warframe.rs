@@ -9,6 +9,7 @@ use super::{
     Polarity,
 };
 
+#[allow(clippy::struct_excessive_bools)]
 /// A Warframe
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]

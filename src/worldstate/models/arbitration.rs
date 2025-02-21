@@ -97,6 +97,7 @@ pub struct Arbitration {
 
 impl Arbitration {
     /// Whether the arbitration is still valid.
+    #[must_use]
     pub fn is_valid(&self) -> bool {
         self.expiry() != DateTime::<Utc>::MAX_UTC
     }
@@ -116,7 +117,7 @@ impl crate::ws::Endpoint for Arbitration {
     fn endpoint_en() -> &'static str {
         "https://api.warframestat.us/pc/arbitration/?language=en"
     }
-    #[cfg(feature = "multilangual")]
+    
     fn endpoint(language: crate::ws::Language) -> String {
         format!(
             "https://api.warframestat.us/pc/arbitration/?language={}",
@@ -139,21 +140,21 @@ mod test {
     use super::Arbitration;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
     #[tokio::test]
-    async fn test_arbitration() -> Result<(), ApiError> {
+    async fn test_arbitration() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<Arbitration>().await {
             Ok(_arbitration) => Ok(()),
             Err(why) => {
-                if let ApiError::ApiError(error) = why {
+                if let Error::ApiError(error) = why {
                     if error.code == 404 {
                         Ok(())
                     } else {
-                        Err(ApiError::ApiError(error))
+                        Err(Error::ApiError(error))
                     }
                 } else {
                     Err(why)
@@ -162,9 +163,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_arbitration_ml() -> Result<(), ApiError> {
+    async fn test_arbitration_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
@@ -172,11 +173,11 @@ mod test {
         match client.fetch_using_lang::<Arbitration>(Language::ZH).await {
             Ok(_arbitration) => Ok(()),
             Err(why) => {
-                if let ApiError::ApiError(error) = why {
+                if let Error::ApiError(error) = why {
                     if error.code == 404 {
                         Ok(())
                     } else {
-                        Err(ApiError::ApiError(error))
+                        Err(Error::ApiError(error))
                     }
                 } else {
                     Err(why)

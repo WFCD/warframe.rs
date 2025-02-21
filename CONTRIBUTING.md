@@ -50,7 +50,7 @@ impl Endpoint for $struct_name {
         concat!("https://api.warframestat.us/pc", $endpoint, "/?language=en")
     }
 
-    #[cfg(feature = "multilangual")]
+    
     fn endpoint(language: Language) -> String {
         format!(
             "https://api.warframestat.us/pc{}/?language={}",
@@ -84,7 +84,7 @@ pub trait Queryable: Endpoint {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     fn query_with_language(
         ...
 }

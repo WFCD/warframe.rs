@@ -234,7 +234,7 @@ macro_rules! impl_queryable {
                 concat!("https://api.warframestat.us/pc", $endpoint, "/?language=en")
             }
 
-            #[cfg(feature = "multilangual")]
+            
             fn endpoint(language: $crate::ws::Language) -> String {
                 format!(
                     "https://api.warframestat.us/pc{}/?language={}",

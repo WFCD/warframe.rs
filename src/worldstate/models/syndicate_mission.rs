@@ -57,12 +57,12 @@ mod test {
     use super::SyndicateMission;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
+    
     #[tokio::test]
-    async fn test_syndicate() -> Result<(), ApiError> {
+    async fn test_syndicate() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<SyndicateMission>().await {
@@ -71,9 +71,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_syndicate_ml() -> Result<(), ApiError> {
+    async fn test_syndicate_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();

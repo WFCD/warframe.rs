@@ -4,7 +4,7 @@
 //!
 //! You can query every model that implements
 //! [Queryable](crate::worldstate::models::base::Queryable)
-//! [CLient](crate::worldstate::client::Client). # Querying...
+//! [`Client`](crate::worldstate::client::Client). # Querying...
 //!
 //! ### ...through the client
 //! To query models through the provided client, see [Client](crate::worldstate::client::Client)
@@ -126,7 +126,7 @@ pub use void_trader::{
 };
 
 #[tokio::test]
-async fn test_doc_example() -> Result<(), crate::worldstate::prelude::ApiError> {
+async fn test_doc_example() -> Result<(), crate::worldstate::prelude::Error> {
     use crate::worldstate::{
         prelude as wf,
         prelude::Queryable,

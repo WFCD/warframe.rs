@@ -123,7 +123,7 @@ pub struct Introduced {
 }
 
 /// An Item's category
-#[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
+#[derive(Deserialize, Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Category {
     /// Arcanes
     Arcanes,
@@ -163,7 +163,7 @@ pub enum Category {
     Primary,
     /// Secondary Weapons
     Secondary,
-    /// ArchGun Weapons
+    /// `ArchGun` Weapons
     #[serde(rename = "Arch-Gun")]
     ArchGun,
 
@@ -171,7 +171,7 @@ pub enum Category {
     /// Melee Weapons
     Melee,
     #[serde(rename = "Arch-Melee")]
-    /// ArchMelee Weapons
+    /// `ArchMelee` Weapons
     ArchMelee,
 }
 
@@ -248,12 +248,12 @@ mod test {
     use items::Item;
 
     use crate::worldstate::{
-        error::ApiError,
+        error::Error,
         prelude::*,
     };
 
     #[tokio::test]
-    async fn test_item_query() -> Result<(), ApiError> {
+    async fn test_item_query() -> Result<(), Error> {
         let client = Client::new();
 
         let sigil = client.query_item("Accord Sigil").await?;

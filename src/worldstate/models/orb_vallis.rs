@@ -31,12 +31,12 @@ mod test {
     use super::OrbVallis;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
+    
     #[tokio::test]
-    async fn test_orbvallis() -> Result<(), ApiError> {
+    async fn test_orbvallis() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<OrbVallis>().await {
@@ -45,9 +45,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_orbvallis_ml() -> Result<(), ApiError> {
+    async fn test_orbvallis_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();

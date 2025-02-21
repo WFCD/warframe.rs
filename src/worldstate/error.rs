@@ -14,12 +14,12 @@ pub struct ApiErrorResponse {
 
 /// The Error type of this crate
 #[derive(Debug, thiserror::Error)]
-pub enum ApiError {
+pub enum Error {
     /// An error from the sent request
     #[error("Couldn't send request: {0}")]
     FaultyRequest(#[from] reqwest::Error),
 
-    /// An error that occurs when the deserialization of serde_json fails
+    /// An error that occurs when the deserialization of `serde_json` fails
     #[error("Couldn't deserialize json body: {0}")]
     FailedDeserialization(#[from] serde_json::Error),
 

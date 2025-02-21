@@ -44,9 +44,22 @@ impl ElementalDamage {
     /// Combines two Primary Elements into their Combined Element.
     ///
     /// Returns [None] if both `a` and `b` are equal.
+    #[must_use]
     pub const fn combine(a: Self, b: Self) -> Option<CombinedElementalDamage> {
-        use CombinedElementalDamage::*;
-        use ElementalDamage::*;
+        use CombinedElementalDamage::{
+            Blast,
+            Corrosive,
+            Gas,
+            Magnetic,
+            Radiation,
+            Viral,
+        };
+        use ElementalDamage::{
+            Cold,
+            Electricity,
+            Heat,
+            Toxin,
+        };
 
         let combined_element = match (a, b) {
             unordered_pattern!(Heat, Cold) => Blast,
@@ -74,12 +87,25 @@ pub enum CombinedElementalDamage {
 }
 
 impl CombinedElementalDamage {
-    /// Breaks down a combined element into both of its [PrimaryElement]s.
+    /// Breaks down a combined element into both of its [`PrimaryElement`]s.
     ///
     /// The order in which they are returned follows classic HCET.
+    #[must_use]
     pub const fn break_down(self) -> (ElementalDamage, ElementalDamage) {
-        use CombinedElementalDamage::*;
-        use ElementalDamage::*;
+        use CombinedElementalDamage::{
+            Blast,
+            Corrosive,
+            Gas,
+            Magnetic,
+            Radiation,
+            Viral,
+        };
+        use ElementalDamage::{
+            Cold,
+            Electricity,
+            Heat,
+            Toxin,
+        };
 
         match self {
             Radiation => (Heat, Electricity),

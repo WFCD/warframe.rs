@@ -1,6 +1,7 @@
+#![allow(clippy::missing_panics_doc)]
+#![allow(clippy::missing_errors_doc)]
 //! Provides a client that acts as the baseline for interacting with the market API
 
-#[allow(unused_imports)]
 use std::{
     sync::Arc,
     time::Duration,
@@ -23,9 +24,9 @@ use super::{
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[doc = "A cached value"]
 pub enum CacheValue {
-    /// StatisticItem
+    /// `StatisticItem`
     StatisticItem(Arc<StatisticItem>),
-    /// ItemInfo
+    /// `ItemInfo`
     ItemInfo(Arc<ItemInfo>),
     /// Items
     Items(Arc<Vec<Item>>),
@@ -44,8 +45,9 @@ pub struct Client {
 
 impl Client {
     /// Creates a new [Client]
+    #[must_use]
     pub fn new() -> Self {
-        Default::default()
+        Self::default()
     }
 }
 
@@ -129,11 +131,23 @@ impl Client {
 /// The cached version of the client
 #[cfg(feature = "market_cache")]
 pub mod cached {
+    use std::sync::Arc;
+
     pub use moka;
     use moka::future::Cache;
     use reqwest::Response;
 
-    use super::*;
+    use super::{
+        ApiError,
+        CacheValue,
+        Client,
+        Duration,
+        Item,
+        ItemInfo,
+        Order,
+        StatisticItem,
+        StatisticItemPayload,
+    };
     use crate::market::models::{
         item::ItemsPayload,
         item_info::ItemInfoPayload,
@@ -151,9 +165,10 @@ pub mod cached {
     #[cfg(feature = "market_cache")]
     impl Client {
         /// Creates a new client with a custom cache
+        #[must_use]
         pub fn new_with_cache(cache: Cache<String, CacheValue>) -> Self {
             Self {
-                session: Default::default(),
+                session: reqwest::Client::default(),
                 cache,
             }
         }
@@ -166,7 +181,7 @@ pub mod cached {
             }
         }
 
-        /// Fetches the statistics of an item via its url_name
+        /// Fetches the statistics of an item via its `url_name`
         pub async fn item_statistics(
             &self,
             item_url: &str,
@@ -203,7 +218,7 @@ pub mod cached {
             }
         }
 
-        /// Fetches info about an item via its url_name
+        /// Fetches info about an item via its `url_name`
         pub async fn item_info(&self, item_url: &str) -> Result<Arc<ItemInfo>, ApiError> {
             match self
                 .get_cached_or_new(&format!("https://api.warframe.market/v1/items/{item_url}"))
@@ -267,7 +282,7 @@ pub mod cached {
             }
         }
 
-        /// Fetches all orders of a specific item via its url_name
+        /// Fetches all orders of a specific item via its `url_name`
         pub async fn orders(&self, item_url: &str) -> Result<Arc<Vec<Order>>, ApiError> {
             match self
                 .get_cached_or_new(&format!(
@@ -306,7 +321,7 @@ pub mod cached {
     impl Default for Client {
         fn default() -> Self {
             Self {
-                session: Default::default(),
+                session: reqwest::Client::default(),
                 cache: Cache::builder()
                     .max_capacity(10_000)
                     .time_to_live(Duration::from_secs(1800))

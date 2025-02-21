@@ -49,8 +49,14 @@ model_builder! {
 
 impl NightwaveChallenge {
     /// Gets the difficulty for this challenge
+    #[must_use]
     pub fn challenge_type(&self) -> NightwaveChallengeType {
-        use NightwaveChallengeType::*;
+        use NightwaveChallengeType::{
+            Easy,
+            Hard,
+            Medium,
+            Unknown,
+        };
         if self.is_permanent {
             return Unknown;
         }
@@ -94,12 +100,11 @@ mod test {
     use super::Nightwave;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
-    async fn test_nightwave() -> Result<(), ApiError> {
+    async fn test_nightwave() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<Nightwave>().await {
@@ -108,9 +113,8 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
     #[tokio::test]
-    async fn test_nightwave_ml() -> Result<(), ApiError> {
+    async fn test_nightwave_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
