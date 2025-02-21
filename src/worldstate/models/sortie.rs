@@ -46,12 +46,12 @@ mod test {
     use super::Sortie;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
+    
     #[tokio::test]
-    async fn test_sortie() -> Result<(), ApiError> {
+    async fn test_sortie() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<Sortie>().await {
@@ -60,9 +60,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_sortie_ml() -> Result<(), ApiError> {
+    async fn test_sortie_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();

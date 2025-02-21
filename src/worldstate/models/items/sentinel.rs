@@ -5,6 +5,7 @@ use super::{
     Component,
 };
 
+#[allow(clippy::struct_excessive_bools)]
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Sentinel {

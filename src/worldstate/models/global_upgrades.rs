@@ -40,7 +40,7 @@ mod test {
     use super::GlobalUpgrade;
     use crate::worldstate::{client::Client, error::ApiError};
 
-    #[cfg(not(feature = "multilangual"))]
+    
     #[tokio::test]
     async fn test_globalupgrade() -> Result<(), ApiError> {
         let client = Client::new();
@@ -51,7 +51,7 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
     async fn test_globalupgrade_ml() -> Result<(), ApiError> {
         use crate::worldstate::prelude::Language;

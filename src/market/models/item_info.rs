@@ -53,13 +53,13 @@ pub struct ItemInSet {
 /// A Language Item
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
 pub struct LanguageItem {
-    /// item_name
+    /// `item_name`
     pub item_name: String,
 
     /// description
     pub description: String,
 
-    /// wiki_link
+    /// `wiki_link`
     pub wiki_link: String,
 
     /// thumb

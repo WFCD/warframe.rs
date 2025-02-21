@@ -72,12 +72,11 @@ mod test {
     use super::ArchonHunt;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
     #[tokio::test]
-    async fn test_archonhunt() -> Result<(), ApiError> {
+    async fn test_archonhunt() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<ArchonHunt>().await {
@@ -86,9 +85,8 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
     #[tokio::test]
-    async fn test_archonhunt_ml() -> Result<(), ApiError> {
+    async fn test_archonhunt_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();

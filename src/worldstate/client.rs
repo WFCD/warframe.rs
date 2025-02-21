@@ -1,17 +1,23 @@
+#![allow(clippy::missing_errors_doc)]
+
 //! A client to do all sorts of things with the API
 
 use reqwest::StatusCode;
 
 use super::{
-    error::ApiError,
+    error::Error,
     models::items::Item,
+    Change,
 };
 #[allow(unused)]
 use crate::ws::TimedEvent;
 use crate::{
-    worldstate::models::items::{
-        map_category_to_item,
-        Category,
+    worldstate::{
+        models::items::{
+            map_category_to_item,
+            Category,
+        },
+        CrossDiff,
     },
     ws::Queryable,
 };
@@ -47,8 +53,9 @@ pub struct Client {
 
 impl Client {
     /// Creates a new [Client].
+    #[must_use]
     pub fn new() -> Self {
-        Default::default()
+        Self::default()
     }
 }
 
@@ -71,7 +78,7 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    pub async fn fetch<T>(&self) -> Result<T::Return, ApiError>
+    pub async fn fetch<T>(&self) -> Result<T::Return, Error>
     where
         T: Queryable,
     {
@@ -99,11 +106,10 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    #[cfg(feature = "multilangual")]
     pub async fn fetch_using_lang<T>(
         &self,
         language: crate::ws::Language,
-    ) -> Result<T::Return, ApiError>
+    ) -> Result<T::Return, Error>
     where
         T: Queryable,
     {
@@ -131,7 +137,7 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    pub async fn query_item(&self, query: &str) -> Result<Option<Item>, ApiError> {
+    pub async fn query_item(&self, query: &str) -> Result<Option<Item>, Error> {
         self.query_by_url(format!(
             "https://api.warframestat.us/items/{}/?language=en",
             urlencoding::encode(query),
@@ -162,12 +168,11 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    #[cfg(feature = "multilangual")]
     pub async fn query_item_using_lang(
         &self,
         query: &str,
         language: crate::ws::Language,
-    ) -> Result<Option<Item>, ApiError> {
+    ) -> Result<Option<Item>, Error> {
         self.query_by_url(format!(
             "https://api.warframestat.us/items/{}/?language={}",
             urlencoding::encode(query),
@@ -176,7 +181,7 @@ impl Client {
         .await
     }
 
-    async fn query_by_url(&self, url: String) -> Result<Option<Item>, ApiError> {
+    async fn query_by_url(&self, url: String) -> Result<Option<Item>, Error> {
         let response = self.session.get(url).send().await?;
 
         if response.status() == StatusCode::NOT_FOUND {
@@ -193,7 +198,7 @@ impl Client {
 }
 
 // impl UPDATE LISTENER
-#[cfg(feature = "worldstate_listeners")]
+
 impl Client {
     /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a
     /// callback function.
@@ -238,10 +243,11 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ApiError>
+    #[allow(clippy::missing_panics_doc)]
+    pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), Error>
     where
         T: TimedEvent + Queryable<Return = T>,
-        for<'any> Callback: crate::worldstate::listener::ListenerCallback<'any, T>,
+        for<'any> Callback: AsyncFn(&'any T, &'any T),
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
         let mut item = self.fetch::<T>().await?;
@@ -259,7 +265,7 @@ impl Client {
                 if item.expiry() >= new_item.expiry() {
                     continue;
                 }
-                callback.call(&item, &new_item).await;
+                callback(&item, &new_item).await;
                 item = new_item;
             }
 
@@ -326,13 +332,12 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    pub async fn call_on_nested_update<T, Callback>(
-        &self,
-        callback: Callback,
-    ) -> Result<(), ApiError>
+    #[allow(clippy::missing_panics_doc)]
+    #[allow(clippy::missing_errors_doc)]
+    pub async fn call_on_nested_update<T, Callback>(&self, callback: Callback) -> Result<(), Error>
     where
         T: TimedEvent + Queryable<Return = Vec<T>> + PartialEq,
-        for<'any> Callback: crate::worldstate::listener::NestedListenerCallback<'any, T>,
+        for<'any> Callback: AsyncFn(&'any T, Change),
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
         let mut items = self.fetch::<T>().await?;
@@ -346,7 +351,7 @@ impl Client {
             );
             let new_items = self.fetch::<T>().await?;
 
-            let diff = crate::worldstate::listener::CrossDiff::new(&items, &new_items);
+            let diff = CrossDiff::new(&items, &new_items);
 
             let removed_items = diff.removed();
             let added_items = diff.added();
@@ -359,7 +364,7 @@ impl Client {
 
                 for (item, change) in removed_items.into_iter().chain(added_items) {
                     // call callback fn
-                    callback.call(item, change).await;
+                    callback(item, change).await;
                 }
                 items = new_items;
             }
@@ -368,7 +373,7 @@ impl Client {
 }
 
 // impl UPDATE LISTENER (with state)
-#[cfg(feature = "worldstate_listeners")]
+
 impl Client {
     /// Asynchronous method that calls a callback function with state on update.
     ///
@@ -429,15 +434,16 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
+    #[allow(clippy::missing_panics_doc)]
     pub async fn call_on_update_with_state<S, T, Callback>(
         &self,
         callback: Callback,
         state: S,
-    ) -> Result<(), ApiError>
+    ) -> Result<(), Error>
     where
         S: Sized + Send + Sync + Clone,
         T: TimedEvent + Queryable<Return = T>,
-        for<'any> Callback: crate::worldstate::listener::StatefulListenerCallback<'any, T, S>,
+        for<'any> Callback: AsyncFn(S, &'any T, &'any T),
     {
         let mut item = self.fetch::<T>().await?;
 
@@ -454,9 +460,7 @@ impl Client {
                 if item.expiry() >= new_item.expiry() {
                     continue;
                 }
-                callback
-                    .call_with_state(state.clone(), &item, &new_item)
-                    .await;
+                callback(state.clone(), &item, &new_item).await;
                 item = new_item;
             }
 
@@ -531,15 +535,16 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
+    #[allow(clippy::missing_panics_doc)]
     pub async fn call_on_nested_update_with_state<S, T, Callback>(
         &self,
         callback: Callback,
         state: S,
-    ) -> Result<(), ApiError>
+    ) -> Result<(), Error>
     where
         S: Sized + Send + Sync + Clone,
         T: Queryable<Return = Vec<T>> + TimedEvent + PartialEq,
-        for<'any> Callback: crate::worldstate::listener::StatefulNestedListenerCallback<'any, T, S>,
+        for<'any> Callback: AsyncFn(S, &'any T, Change),
     {
         log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
         let mut items = self.fetch::<T>().await?;
@@ -553,7 +558,7 @@ impl Client {
             );
             let new_items = self.fetch::<T>().await?;
 
-            let diff = crate::worldstate::listener::CrossDiff::new(&items, &new_items);
+            let diff = CrossDiff::new(&items, &new_items);
 
             let removed_items = diff.removed();
             let added_items = diff.added();
@@ -566,7 +571,7 @@ impl Client {
 
                 for (item, change) in removed_items.into_iter().chain(added_items) {
                     // call callback fn
-                    callback.call_with_state(state.clone(), item, change).await;
+                    callback(state.clone(), item, change).await;
                 }
                 items = new_items;
             }

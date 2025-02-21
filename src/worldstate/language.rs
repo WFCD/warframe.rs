@@ -4,7 +4,7 @@ use core::str;
 use std::fmt::Display;
 
 /// An enumeration representing various supported languages.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Language {
     /// German (`DE`)
     DE,
@@ -32,19 +32,18 @@ pub enum Language {
 
 impl From<Language> for String {
     fn from(value: Language) -> Self {
-        use Language::*;
         match value {
-            DE => "de",
-            ES => "es",
-            FR => "fr",
-            IT => "it",
-            KO => "ko",
-            PL => "pl",
-            PT => "pt",
-            RU => "ru",
-            ZH => "zh",
-            EN => "en",
-            UK => "uk",
+            Language::DE => "de",
+            Language::ES => "es",
+            Language::FR => "fr",
+            Language::IT => "it",
+            Language::KO => "ko",
+            Language::PL => "pl",
+            Language::PT => "pt",
+            Language::RU => "ru",
+            Language::ZH => "zh",
+            Language::EN => "en",
+            Language::UK => "uk",
         }
         .into()
     }
@@ -52,19 +51,18 @@ impl From<Language> for String {
 
 impl From<Language> for &'static str {
     fn from(value: Language) -> Self {
-        use Language::*;
         match value {
-            DE => "de",
-            ES => "es",
-            FR => "fr",
-            IT => "it",
-            KO => "ko",
-            PL => "pl",
-            PT => "pt",
-            RU => "ru",
-            ZH => "zh",
-            EN => "en",
-            UK => "uk",
+            Language::DE => "de",
+            Language::ES => "es",
+            Language::FR => "fr",
+            Language::IT => "it",
+            Language::KO => "ko",
+            Language::PL => "pl",
+            Language::PT => "pt",
+            Language::RU => "ru",
+            Language::ZH => "zh",
+            Language::EN => "en",
+            Language::UK => "uk",
         }
     }
 }

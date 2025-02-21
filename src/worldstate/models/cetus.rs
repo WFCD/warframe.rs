@@ -32,7 +32,7 @@ mod test {
     use super::Cetus;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
         prelude::{
             CetusState,
             Opposite,
@@ -40,7 +40,7 @@ mod test {
     };
 
     #[tokio::test]
-    async fn test_cetus() -> Result<(), ApiError> {
+    async fn test_cetus() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<Cetus>().await {
@@ -49,9 +49,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_cetus_ml() -> Result<(), ApiError> {
+    async fn test_cetus_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();
@@ -64,6 +64,6 @@ mod test {
 
     #[test]
     fn test_cetus_state_opposite() {
-        assert_eq!(CetusState::Day.opposite(), CetusState::Night)
+        assert_eq!(CetusState::Day.opposite(), CetusState::Night);
     }
 }

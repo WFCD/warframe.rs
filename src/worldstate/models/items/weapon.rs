@@ -38,6 +38,7 @@ pub enum Weapon {
     Ranged(RangedWeapon),
 }
 
+#[allow(clippy::struct_excessive_bools)]
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct RangedWeapon {
@@ -118,7 +119,7 @@ pub struct RangedWeapon {
 
     pub unique_name: String,
 
-    /// This will be [Some], if [RangedWeapon::is_prime] is true
+    /// This will be [Some], if [`RangedWeapon::is_prime`] is true
     pub vaulted: Option<bool>,
 
     pub wikia_thumbnail: String,
@@ -155,6 +156,7 @@ pub struct RangedAttack {
     pub falloff: Option<Falloff>,
 }
 
+#[allow(clippy::struct_excessive_bools)]
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct MeleeWeapon {
@@ -224,7 +226,7 @@ pub struct MeleeWeapon {
 
     pub unique_name: String,
 
-    /// This will be [Some], if [MeleeWeapon::is_prime] is true
+    /// This will be [Some], if [`MeleeWeapon::is_prime`] is true
     pub vaulted: Option<bool>,
 
     pub wikia_thumbnail: String,

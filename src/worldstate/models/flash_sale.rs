@@ -30,12 +30,12 @@ mod test {
     use super::FlashSale;
     use crate::worldstate::{
         client::Client,
-        error::ApiError,
+        error::Error,
     };
 
-    #[cfg(not(feature = "multilangual"))]
+    
     #[tokio::test]
-    async fn test_flashsale() -> Result<(), ApiError> {
+    async fn test_flashsale() -> Result<(), Error> {
         let client = Client::new();
 
         match client.fetch::<FlashSale>().await {
@@ -44,9 +44,9 @@ mod test {
         }
     }
 
-    #[cfg(feature = "multilangual")]
+    
     #[tokio::test]
-    async fn test_flashsale_ml() -> Result<(), ApiError> {
+    async fn test_flashsale_ml() -> Result<(), Error> {
         use crate::worldstate::prelude::Language;
 
         let client = Client::new();

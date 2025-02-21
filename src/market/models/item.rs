@@ -18,10 +18,10 @@ pub struct Item {
     /// thumb
     pub thumb: String,
 
-    /// item_name
+    /// `item_name`
     pub item_name: String,
 
-    /// url_name
+    /// `url_name`
     pub url_name: String,
 
     /// id
