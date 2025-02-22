@@ -1,23 +1,21 @@
+use warframe_macros::model;
+
 use super::{
-    macros::model_builder,
     Mission,
     RewardType,
 };
 
-model_builder! {
-    :"An alert in Warframe"
-    Alert: "/alerts",
-    rt = array,
-    timed = false;
-
-    :"ID of this event"
+/// An alert in Warframe
+#[model(endpoint = "/alerts", return_style = Array)]
+pub struct Alert {
+    /// ID of this event
     pub id: String,
 
-    :"The mission associated with the alert"
+    /// The mission associated with the alert
     pub mission: Mission,
 
-    :"The reward type of the alert"
-    pub reward_types: Vec<RewardType>
+    /// The reward type of the alert
+    pub reward_types: Vec<RewardType>,
 }
 
 #[cfg(test)]
@@ -40,7 +38,7 @@ mod test {
 
     #[tokio::test]
     async fn test_alert_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

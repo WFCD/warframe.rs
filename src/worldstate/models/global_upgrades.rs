@@ -38,9 +38,11 @@ model_builder! {
 #[cfg(test)]
 mod test {
     use super::GlobalUpgrade;
-    use crate::worldstate::{client::Client, error::ApiError};
+    use crate::worldstate::{
+        client::Client,
+        error::ApiError,
+    };
 
-    
     #[tokio::test]
     async fn test_globalupgrade() -> Result<(), ApiError> {
         let client = Client::new();
@@ -51,10 +53,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_globalupgrade_ml() -> Result<(), ApiError> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

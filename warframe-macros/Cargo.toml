@@ -1,0 +1,21 @@
+[package]
+name = "warframe-macros"
+version = "6.2.0"
+edition = "2024"
+description = "An async crate to wrap Warframe's Worldstate API."
+readme = "../README.md"
+documentation = "https://docs.rs/warframe"
+homepage = "https://docs.rs/warframe"
+repository = "https://github.com/Mettwasser/warframe.rs"
+license = "MIT"
+rust-version = "1.85"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+heck = "0.5.0"
+manyhow = { version = "0.11.4" }
+proc-macro2 = { version = "1.0.93" }
+quote = { version = "1.0.38" }
+syn = { version = "2.0.98", features = ["full"] }

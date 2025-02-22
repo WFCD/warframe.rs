@@ -10,9 +10,11 @@ use chrono::{
     Utc,
 };
 use serde::{
-    de::DeserializeOwned,
     Deserialize,
+    de::DeserializeOwned,
 };
+
+use crate::worldstate::language::Language;
 
 /// Types implementing this have an actual endpoint on the API.
 pub trait Endpoint {
@@ -37,15 +39,12 @@ pub trait TimedEvent {
 
     /// Short-time-formatted duration string representing the start of the event
     fn start_string(&self) -> String {
-        format!(
-            "-{}",
-            super::base::get_short_format_time_string(self.activation())
-        )
+        format!("-{}", get_short_format_time_string(self.activation()))
     }
 
     /// Short-time-formatted duration string representing the end of the event
     fn eta(&self) -> String {
-        super::base::get_short_format_time_string(self.expiry())
+        get_short_format_time_string(self.expiry())
     }
 
     /// Whether the event is expired or not
@@ -92,7 +91,7 @@ pub trait Queryable: Endpoint {
     #[must_use]
     fn query_with_language(
         request_executor: &reqwest::Client,
-        language: crate::worldstate::prelude::Language,
+        language: Language,
     ) -> impl std::future::Future<Output = Result<Self::Return, Error>> + Send {
         async move {
             Ok(request_executor
@@ -148,18 +147,6 @@ pub(crate) fn get_short_format_time_string(dt: DateTime<Utc>) -> String {
     }
 
     formatted_time.trim().to_string()
-}
-
-/// A trait allowing to get the documentation of an enum variant - so you don't have to write it.
-pub trait VariantDocumentation {
-    /// Gets the documentation for this variant
-    fn docs(&self) -> &'static str;
-}
-
-/// A trait allowing to get the documentation of a type - so you don't have to write it.
-pub trait TypeDocumentation {
-    /// Gets the documentation for this Enum
-    fn docs() -> &'static str;
 }
 
 /// A trait that allows enums with 2 variants to easily access the other variant.

@@ -1,35 +1,29 @@
-use super::macros::model_builder;
+use warframe_macros::model;
 
-model_builder! {
-    :"An Item in Baro's inventory"
-    VoidTraderInventoryItem,
-    rt = obj,
-    timed = false;
-
-    :"The item that is being sold"
+/// An Item in Baro's inventory
+#[model]
+pub struct VoidTraderInventoryItem {
+    /// The item that is being sold
     pub item: String,
 
-    :"The Ducat cost of this item"
+    /// The Ducat cost of this item
     pub ducats: i32,
 
-    :"The Credit cost of this item"
+    /// The Credit cost of this item
     pub credits: i32,
 }
 
-model_builder! {
-    :"Information on the current Void Trader offerings, or when he will arrive"
-    VoidTrader: "/voidTrader",
-    rt = obj,
-    timed = true;
-
-    :"Unique identifier for this object/event/thing"
+/// Information on the current Void Trader offerings, or when he will arrive
+#[model(endpoint = "/voidTrader", return_style = Object, timed)]
+pub struct VoidTrader {
+    /// Unique identifier for this object/event/thing
     pub id: String,
 
-    :"The i18n of the Node Baro will appear on"
+    /// The i18n of the Node Baro will appear on
     pub location: String,
 
-    :"Baro's Inventory"
-    pub inventory: Vec<VoidTraderInventoryItem>
+    /// Baro's Inventory
+    pub inventory: Vec<VoidTraderInventoryItem>,
 }
 
 #[cfg(test)]
@@ -40,7 +34,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_voidtrader() -> Result<(), Error> {
         let client = Client::new();
@@ -51,10 +44,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_voidtrader_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

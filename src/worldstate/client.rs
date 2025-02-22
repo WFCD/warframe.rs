@@ -5,27 +5,22 @@
 use reqwest::StatusCode;
 
 use super::{
-    error::Error,
-    models::items::Item,
     Change,
-};
-#[allow(unused)]
-use crate::ws::TimedEvent;
-use crate::{
-    worldstate::{
-        models::items::{
-            map_category_to_item,
-            Category,
-        },
-        CrossDiff,
+    error::Error,
+    language::Language,
+    models::{
+        Queryable,
+        TimedEvent,
+        items::Item,
     },
-    ws::Queryable,
 };
-
-#[derive(serde::Deserialize)]
-struct DummyCategory {
-    category: Category,
-}
+use crate::worldstate::{
+    CrossDiff,
+    models::items::{
+        Category,
+        map_category_to_item,
+    },
+};
 
 /// The client that acts as a convenient way to query models.
 ///
@@ -106,10 +101,7 @@ impl Client {
     ///     Ok(())
     /// }
     /// ```
-    pub async fn fetch_using_lang<T>(
-        &self,
-        language: crate::ws::Language,
-    ) -> Result<T::Return, Error>
+    pub async fn fetch_using_lang<T>(&self, language: Language) -> Result<T::Return, Error>
     where
         T: Queryable,
     {
@@ -171,7 +163,7 @@ impl Client {
     pub async fn query_item_using_lang(
         &self,
         query: &str,
-        language: crate::ws::Language,
+        language: Language,
     ) -> Result<Option<Item>, Error> {
         self.query_by_url(format!(
             "https://api.warframestat.us/items/{}/?language={}",
@@ -182,6 +174,11 @@ impl Client {
     }
 
     async fn query_by_url(&self, url: String) -> Result<Option<Item>, Error> {
+        #[derive(serde::Deserialize)]
+        struct DummyCategory {
+            category: Category,
+        }
+
         let response = self.session.get(url).send().await?;
 
         if response.status() == StatusCode::NOT_FOUND {
@@ -189,6 +186,7 @@ impl Client {
         }
 
         let json = response.text().await?;
+
         let category = serde_json::from_str::<DummyCategory>(&json)?.category;
 
         let item = map_category_to_item(category, &json)?;

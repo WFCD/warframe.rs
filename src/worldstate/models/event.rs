@@ -1,56 +1,54 @@
+use warframe_macros::model;
+
 use super::{
-    macros::model_builder,
     Faction,
     Reward,
     Syndicate,
 };
 
-model_builder! {
-    :"An Event in Warframe"
-    Event: "/events",
-    rt = array,
-    timed = true;
-
-    :"Maximum score to complete the event"
+/// An Event in Warframe
+#[model(endpoint = "/events", return_style = Array, timed)]
+pub struct Event {
+    /// Maximum score to complete the event
     pub maximum_score: Option<i32>,
 
-    :"The current score for the event"
+    /// The current score for the event
     pub current_score: Option<i32>,
 
-    :"Interval for the first goal"
+    /// Interval for the first goal
     pub small_interval: Option<i32>,
 
-    :"Interval for the second intermediate score"
+    /// Interval for the second intermediate score
     pub large_interval: Option<i32>,
 
-    :"The faction you're up against"
+    /// The faction you're up against
     pub faction: Option<Faction>,
 
-    :r"The description for the event"
+    /// The description for the event
     pub description: Option<String>,
 
-    :"Tooltip for the event"
+    /// Tooltip for the event
     pub tooltip: Option<String>,
 
-    :"Node that the event is taking place on"
+    /// Node that the event is taking place on
     pub node: Option<String>,
 
-    :"Nodes that the event is happening concurrently on"
+    /// Nodes that the event is happening concurrently on
     pub concurrent_nodes: Vec<String>,
 
-    :"Node that is being attacked & defended in the event"
+    /// Node that is being attacked & defended in the event
     pub victim_node: Option<String>,
 
-    :"Localized tag for the event score"
+    /// Localized tag for the event score
     pub score_loc_tag: Option<String>,
 
-    :"The rewards to earn"
+    /// The rewards to earn
     pub rewards: Vec<Reward>,
 
-    :"Amount of health remaining for the target"
+    /// Amount of health remaining for the target
     pub health: Option<f32>,
 
-    :"The associated Syndicate"
+    /// The associated Syndicate
     pub affiliated_with: Option<Syndicate>,
 }
 
@@ -62,7 +60,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_event() -> Result<(), Error> {
         let client = Client::new();
@@ -73,10 +70,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_event_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 
