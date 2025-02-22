@@ -1,29 +1,23 @@
-use super::macros::{
-    enum_builder,
-    model_builder,
-};
+use warframe_macros::model;
 
-enum_builder! {
-    :"Represents the state on Orb Vallis"
-    OrbVallisState;
-
-    :"Warm"
-    Warm = "warm",
-    :"Cold"
-    Cold = "cold"
+/// Represents the state on Orb Vallis
+#[model]
+#[serde(rename_all = "lowercase")]
+pub enum OrbVallisState {
+    /// Warm
+    Warm,
+    /// Cold
+    Cold,
 }
 
-model_builder! {
-    :"The current cycle of the Orb Vallis warm/cold cycle"
-    OrbVallis: "/vallisCycle",
-    rt = obj,
-    timed = true;
-
-    :"Unique identifier for this object/event/thing"
+/// The current cycle of the Orb Vallis warm/cold cycle
+#[model(endpoint = "/vallisCycle", return_style = Object, timed)]
+pub struct OrbVallis {
+    /// Unique identifier for this object/event/thing
     pub id: String,
 
-    :"The state of the orb vallis (warm/cold)"
-    pub state: OrbVallisState
+    /// The state of the orb vallis (warm/cold)
+    pub state: OrbVallisState,
 }
 
 #[cfg(test)]
@@ -34,7 +28,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_orbvallis() -> Result<(), Error> {
         let client = Client::new();
@@ -45,10 +38,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_orbvallis_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

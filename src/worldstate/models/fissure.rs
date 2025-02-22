@@ -1,67 +1,62 @@
+use warframe_macros::model;
+
 use super::{
     faction::Faction,
-    macros::{
-        enum_builder,
-        model_builder,
-    },
     mission_type::MissionType,
 };
 
-enum_builder! {
-    :"Represents Relic tiers"
-    Tier;
-    :"Lith"
-    Lith: 1,
-    :"Meso"
-    Meso: 2,
-    :"Neo"
-    Neo: 3,
-    :"Axi"
-    Axi: 4,
-    :"Requiem"
-    Requiem: 5,
-    :"Omnia"
-    Omnia: 6,
+/// Represents Relic tiers
+#[model]
+pub enum Tier {
+    /// Lith
+    Lith = 1,
+    /// Meso
+    Meso = 2,
+    /// Neo
+    Neo = 3,
+    /// Axi
+    Axi = 4,
+    /// Requiem
+    Requiem = 5,
+    /// Omnia
+    Omnia = 6,
 }
 
-model_builder! {
-    :"A Fissure Mission in which you can crack Void Relics"
-    Fissure: "/fissures",
-    rt = array,
-    timed = true;
-
-    :"The id of the fissure"
+/// A Fissure Mission in which you can crack Void Relics
+#[model(endpoint = "/fissures", return_style = Array, timed)]
+pub struct Fissure {
+    /// The id of the fissure
     pub id: String,
 
-    :"The i18n of the mission"
+    /// The i18n of the mission
     pub mission_type: String,
 
-    :"The type of the mission"
+    /// The type of the mission
     pub mission_key: MissionType,
 
-    :"The i18n of the node"
+    /// The i18n of the node
     pub node: String,
 
-    :"The name of the node"
+    /// The name of the node
     pub node_key: String,
 
-    :"The tier i18n of the relic"
-    pub tier_name: String = "tier",
+    /// The tier i18n of the relic
+    pub tier_name: String,
 
-    :"The Tier of the relic"
-    pub tier: Tier = "tierNum",
+    /// The Tier of the relic
+    pub tier: Tier,
 
-    :"The i18n name of the enemy"
+    /// The i18n name of the enemy
     pub enemy: String,
 
-    :"The type of the enemy"
-    pub faction: Faction = "enemyKey",
+    /// The type of the enemy
+    pub faction: Faction,
 
-    :"Whether the fissure is a storm"
+    /// Whether the fissure is a storm
     pub is_storm: bool,
 
-    :"Whether the the fissure is hard (Steel Path)"
-    pub is_hard: bool
+    /// Whether the the fissure is hard (Steel Path)
+    pub is_hard: bool,
 }
 
 #[cfg(test)]
@@ -82,10 +77,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_fissure_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

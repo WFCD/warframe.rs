@@ -1,3 +1,5 @@
+use warframe_macros::model;
+
 use super::damage_type::{
     CombinedElementalDamage,
     DamageType,
@@ -5,8 +7,8 @@ use super::damage_type::{
     PhysicalDamage,
 };
 
-#[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone, Eq, Copy)]
 /// A Faction in Warframe
+#[model]
 pub enum Faction {
     /// Orokin
     Orokin,
@@ -31,30 +33,6 @@ pub enum Faction {
     /// This is a placeholder faction. For example, it was used during the Jade event
     #[serde(rename(deserialize = "Man in the Wall"))]
     ManInTheWall,
-}
-
-impl crate::ws::VariantDocumentation for Faction {
-    fn docs(&self) -> &'static str {
-        match self {
-            Faction::Orokin => "Orokin",
-            Faction::Corrupted => "Corrupted",
-            Faction::Infested => "Infested",
-            Faction::Corpus => "Corpus",
-            Faction::Grineer => "Grineer",
-            Faction::Tenno => "Tenno",
-            Faction::Narmer => "Narmer",
-            Faction::Crossfire => "Crossfire, which is Faction-less",
-            Faction::ManInTheWall => {
-                "This is a placeholder faction. For example, it was used during"
-            }
-            Faction::Murmur => "Murmur",
-        }
-    }
-}
-impl crate::ws::TypeDocumentation for Faction {
-    fn docs() -> &'static str {
-        "A Faction in Warframe"
-    }
 }
 
 impl Faction {

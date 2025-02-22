@@ -6,11 +6,12 @@ use serde::{
     Deserialize,
     Deserializer,
 };
+use warframe_macros::model;
 
 use super::{
-    base::TimedEvent,
     Faction,
     MissionType,
+    base::TimedEvent,
 };
 
 fn deserialize_expiry<'de, D>(deserializer: D) -> Result<DateTime<Utc>, D::Error>
@@ -18,81 +19,56 @@ where
     D: Deserializer<'de>,
 {
     let s: &str = Deserialize::deserialize(deserializer)?;
-    match DateTime::parse_from_rfc3339(s) {
-        Ok(dt) => Ok(dt.with_timezone(&Utc)),
-        Err(err) => {
-            if let chrono::format::ParseErrorKind::OutOfRange
-            | chrono::format::ParseErrorKind::Invalid = err.kind()
-            {
+    DateTime::parse_from_rfc3339(s)
+        .map(|dt| dt.with_timezone(&Utc))
+        .or_else(|err| {
+            if matches!(
+                err.kind(),
+                chrono::format::ParseErrorKind::OutOfRange
+                    | chrono::format::ParseErrorKind::Invalid
+            ) {
                 Ok(DateTime::<Utc>::MAX_UTC)
             } else {
                 Err(serde::de::Error::custom(err.to_string()))
             }
-        }
-    }
+        })
 }
 
-// model_builder! {
-//     :"Information about an arbitration"
-//     Arbitration: "/arbitration",
-//     rt = obj,
-//     timed = true;
-
-//     :"The i18n of the node"
-//     pub node: String,
-
-//     :"The name of the node"
-//     pub node_key: String,
-
-//     :"The i18n faction you are up against"
-//     pub faction: Faction = "enemy",
-
-//     :"The faction you are up against"
-//     pub faction_key: Option<Faction> = "enemyKey",
-
-//     :"The i18n type of the mission"
-//     pub mission_type: String = "type",
-
-//     :"The type of the mission"
-//     pub mission_type_key: MissionType = "typeKey",
-
-//     :"Whether this mission requires archwing"
-//     pub archwing: bool,
-
-//     :"Whether this mission requires sharkwing"
-//     pub sharkwing: bool,
-// }
-
-// FROM THE MACRO
-// Need custom deserializer for expiry
-#[derive(Debug, serde::Deserialize, PartialEq, PartialOrd, Clone)]
-#[serde(rename_all = "camelCase")]
-#[doc = "Information about an arbitration"]
+/// Information about an arbitration
+#[model(
+    endpoint = "/arbitration",
+    return_style = Object,
+    timed,
+    expiry(serde(deserialize_with = "deserialize_expiry")),
+)]
 pub struct Arbitration {
-    #[doc = "The i18n of the node"]
+    /// The i18n of the node
     pub node: String,
-    #[doc = "The name of the node"]
-    pub node_key: String,
-    #[serde(rename(deserialize = "enemy"))]
-    #[doc = "The i18n faction you are up against"]
-    pub faction: Faction,
-    #[serde(rename(deserialize = "enemyKey"))]
-    #[doc = "The faction you are up against"]
-    pub faction_key: Option<Faction>,
-    #[serde(rename(deserialize = "type"))]
-    #[doc = "The i18n type of the mission"]
-    pub mission_type: String,
-    #[serde(rename(deserialize = "typeKey"))]
-    #[doc = "The type of the mission"]
-    pub mission_type_key: MissionType,
-    #[doc = "Whether this mission requires archwing"]
-    pub archwing: bool,
-    #[doc = "Whether this mission requires sharkwing"]
-    pub sharkwing: bool,
-    activation: chrono::DateTime<chrono::Utc>,
 
-    #[serde(deserialize_with = "deserialize_expiry")]
-    expiry: chrono::DateTime<chrono::Utc>,
+    /// The name of the node
+    pub node_key: String,
+
+    /// The i18n faction you are up against
+    #[serde(rename(deserialize = "enemy"))]
+    pub faction: Faction,
+
+    /// The faction you are up against
+    #[serde(rename(deserialize = "enemyKey"))]
+    pub faction_key: Option<Faction>,
+
+    /// The i18n type of the mission
+    #[serde(rename(deserialize = "type"))]
+    pub mission_type: String,
+
+    /// The type of the mission
+    #[serde(rename(deserialize = "typeKey"))]
+    pub mission_type_key: MissionType,
+
+    /// Whether this mission requires archwing
+    pub archwing: bool,
+
+    /// Whether this mission requires sharkwing
+    pub sharkwing: bool,
 }
 
 impl Arbitration {
@@ -100,38 +76,6 @@ impl Arbitration {
     #[must_use]
     pub fn is_valid(&self) -> bool {
         self.expiry() != DateTime::<Utc>::MAX_UTC
-    }
-}
-
-impl crate::ws::TimedEvent for Arbitration {
-    #[doc = "Returns the time when this event began"]
-    fn activation(&self) -> chrono::DateTime<chrono::Utc> {
-        self.activation
-    }
-    #[doc = "Returns the time when this event ends"]
-    fn expiry(&self) -> chrono::DateTime<chrono::Utc> {
-        self.expiry
-    }
-}
-impl crate::ws::Endpoint for Arbitration {
-    fn endpoint_en() -> &'static str {
-        "https://api.warframestat.us/pc/arbitration/?language=en"
-    }
-    
-    fn endpoint(language: crate::ws::Language) -> String {
-        format!(
-            "https://api.warframestat.us/pc/arbitration/?language={}",
-            <crate::ws::Language as Into<&'static str>>::into(language),
-        )
-    }
-}
-impl crate::ws::Queryable for Arbitration {
-    type Return = Arbitration;
-}
-
-impl crate::ws::TypeDocumentation for Arbitration {
-    fn docs() -> &'static str {
-        "Information about an arbitration"
     }
 }
 
@@ -163,10 +107,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_arbitration_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

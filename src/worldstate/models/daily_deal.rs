@@ -1,31 +1,27 @@
-use super::macros::model_builder;
+use warframe_macros::model;
 
-model_builder! {
-    :"Info about the Daily Deal(s)"
-    DailyDeal: "/dailyDeals",
-    rt = array,
-    timed = true;
-
-
-    :"The Item being sold"
+/// Info about the Daily Deal(s)
+#[model(endpoint = "/dailyDeals", return_style = Array, timed)]
+pub struct DailyDeal {
+    /// The Item being sold
     pub item: String,
 
-    :"The unique name of the Item"
+    /// The unique name of the Item
     pub unique_name: String,
 
-    :"The original price of the Item"
+    /// The original price of the Item
     pub original_price: i32,
 
-    :"The discounted price"
+    /// The discounted price
     pub sale_price: i32,
 
-    :"The total amount of items available"
+    /// The total amount of items available
     pub total: i32,
 
-    :"The number of items sold"
+    /// The number of items sold
     pub sold: i32,
 
-    :"The discount % of the item"
+    /// The discount % of the item
     pub discount: i32,
 }
 
@@ -37,7 +33,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_dailydeal() -> Result<(), Error> {
         let client = Client::new();
@@ -48,10 +43,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_dailydeal_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

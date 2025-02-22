@@ -1,29 +1,24 @@
-use super::macros::{
-    enum_builder,
-    model_builder,
-};
+use warframe_macros::model;
 
-enum_builder! {
-    :"The State of the Cambion Drift"
-    CambionDriftState;
-
-    :"The 'Vome' state"
-    Vome = "vome",
-    :"The 'Fass' state"
-    Fass = "fass"
+/// The State of the Cambion Drift
+#[model]
+pub enum CambionDriftState {
+    /// The 'Vome' state
+    #[serde(rename(deserialize = "vome"))]
+    Vome,
+    /// The 'Fass' state
+    #[serde(rename(deserialize = "fass"))]
+    Fass,
 }
 
-model_builder! {
-    :"Cambion Drift info"
-    CambionDrift: "/cambionCycle",
-    rt = obj,
-    timed = true;
-
-    :"The id of the cycle"
+/// Cambion Drift info
+#[model(endpoint = "/cambionCycle", return_style = Object, timed)]
+pub struct CambionDrift {
+    /// The id of the cycle
     pub id: String,
 
-    :"The state of the cambion drift (vome/fass)"
-    pub state: CambionDriftState
+    /// The state of the cambion drift (vome/fass)
+    pub state: CambionDriftState,
 }
 
 #[cfg(test)]
@@ -34,7 +29,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_cambiondrift() -> Result<(), Error> {
         let client = Client::new();
@@ -45,10 +39,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_cambiondrift_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

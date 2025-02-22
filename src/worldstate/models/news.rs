@@ -2,43 +2,39 @@ use chrono::{
     DateTime,
     Utc,
 };
+use warframe_macros::model;
 
-use super::macros::model_builder;
-
-model_builder! {
-    :"A news item"
-    News: "/news",
-    rt = array,
-    timed = false;
-
-    :"The id of the News"
+/// A news item
+#[model(endpoint = "/news", return_style = Array)]
+pub struct News {
+    /// The id of the News
     pub id: String,
 
-    :"The message associated to the News"
+    /// The message associated to the News
     pub message: String,
 
-    :"The link to the image associated with the News"
+    /// The link to the image associated with the News
     pub image_link: String,
 
-    :"Whether the News are prioritized"
+    /// Whether the News are prioritized
     pub priority: bool,
 
-    :"Whether the News are related to an update"
+    /// Whether the News are related to an update
     pub update: bool,
 
-    :"Whether the News are related to a stream"
+    /// Whether the News are related to a stream
     pub stream: bool,
 
-    :"A string describing this element"
+    /// A string describing this element
     pub as_string: String,
 
-    :"The date the News were posted"
+    /// The date the News were posted
     pub date: DateTime<Utc>,
 
-    :"When the event that is associated with the News begins"
+    /// When the event that is associated with the News begins
     pub start_date: Option<DateTime<Utc>>,
 
-    :"When the event that is associated with the News ends"
+    /// When the event that is associated with the News ends
     pub end_date: Option<DateTime<Utc>>,
 }
 
@@ -50,7 +46,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_news() -> Result<(), Error> {
         let client = Client::new();
@@ -61,10 +56,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_news_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

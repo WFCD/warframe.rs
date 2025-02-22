@@ -1,55 +1,52 @@
-use super::macros::model_builder;
+use warframe_macros::model;
 
 type DateTime = chrono::DateTime<chrono::Utc>;
 
-model_builder! {
-    :"A Syndicate Job (aka Bounty)"
-    SyndicateJob,
-    rt = obj,
-    timed = false;
-
-    :"Unique identifier for this object/event/thing"
+/// A Syndicate Job (aka Bounty)
+#[model]
+pub struct SyndicateJob {
+    /// Unique identifier for this object/event/thing
     pub id: String,
 
-    :"The Reward Pool of the Bounty"
+    /// The Reward Pool of the Bounty
     pub reward_pool: Vec<String>,
 
-    :"The type (or name) of the syndicate job"
-    pub job_type: String = "type",
+    /// The type (or name) of the syndicate job
+    #[serde(rename = "type")]
+    pub job_type: String,
 
-    :"The level of the Enemies in this job"
+    /// The level of the Enemies in this job
     pub enemy_levels: Vec<i32>,
 
-    :"The amount of standing you get after completing each stage"
+    /// The amount of standing you get after completing each stage
     pub standing_stages: Vec<i32>,
 
-    :"The minimum Mastery Rank required for this job"
-    pub minimum_mr: i32 = "minMR",
+    /// The minimum Mastery Rank required for this job
+    #[serde(rename = "minMR")]
+    pub minimum_mr: i32,
 
-    :"Expiry when this mission expires/disappears"
-    pub expiry: DateTime
+    /// Expiry when this mission expires/disappears
+    pub expiry: DateTime,
 }
 
-model_builder! {
-    :"All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case they are not valid."
-    SyndicateMission: "/syndicateMissions",
-    rt = array,
-    timed = true;
-
-    :"Unique identifier for this object/event/thing"
+/// All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case
+/// they are not valid.
+#[model(endpoint =  "/syndicateMissions", return_style = Array, timed)]
+pub struct SyndicateMission {
+    /// Unique identifier for this object/event/thing
     pub id: String,
 
-    :"The i18n of the syndicate"
+    /// The i18n of the syndicate
     pub syndicate: String,
 
-    :"The Syndicate TYPE"
+    /// The Syndicate TYPE
     pub syndicate_key: String,
 
-    :"The Nodes some missions related to the syndicate are on"
+    /// The Nodes some missions related to the syndicate are on
     pub nodes: Vec<String>,
 
-    :"The jobs this syndicate has to offer"
-    pub jobs: Vec<SyndicateJob>
+    /// The jobs this syndicate has to offer
+    pub jobs: Vec<SyndicateJob>,
 }
 
 #[cfg(test)]
@@ -60,7 +57,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_syndicate() -> Result<(), Error> {
         let client = Client::new();
@@ -71,10 +67,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_syndicate_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

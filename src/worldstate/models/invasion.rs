@@ -1,5 +1,6 @@
+use warframe_macros::model;
+
 use super::{
-    macros::model_builder,
     Faction,
     Reward,
     RewardType,
@@ -7,68 +8,63 @@ use super::{
 
 type DateTime = chrono::DateTime<chrono::Utc>;
 
-model_builder! {
-    :"An defender/attacker of an Invasion"
-    InvasionMember,
-    rt = obj,
-    timed = false;
-
-    :"The reward of the mission."
+/// An defender/attacker of an Invasion
+#[model]
+pub struct InvasionMember {
+    /// The reward of the mission.
     pub reward: Option<Reward>,
 
-    :"The localized faction that houses the node/mission"
+    /// The localized faction that houses the node/mission
     pub faction: String,
 
-    :"The faction that houses the node/mission"
+    /// The faction that houses the node/mission
     pub faction_key: Faction,
 }
 
-model_builder! {
-    :"An Invasion"
-    Invasion: "/invasions",
-    rt = array,
-    timed = false;
-
-    :"The time the Invasion began"
+/// An Invasion
+#[model(endpoint = "/invasions", return_style = Array)]
+pub struct Invasion {
+    /// The time the Invasion began
     pub activation: DateTime,
 
-    :"Whether the Invasion is over"
+    /// Whether the Invasion is over
     pub completed: bool,
 
-    :"Percantage of the Invasion's completion"
+    /// Percentage of the Invasion's completion
     pub completion: f32,
 
-    :"How many fights have happened"
+    /// How many fights have happened
     pub count: i32,
 
-    :"The Invasion's description"
-    pub description: String = "desc",
+    /// The Invasion's description
+    #[serde(rename = "desc")]
+    pub description: String,
 
-    :"Short-formatted string estimating the time until the Invasion is closed"
+    /// Short-formatted string estimating the time until the Invasion is closed
     pub eta: String,
 
-    :"The i18n of the node"
+    /// The i18n of the node
     pub node: String,
 
-    :"The name of the node"
+    /// The name of the node
     pub node_key: String,
 
-    :"The amount of runs required to qualify for the reward. (most likely 3)"
+    /// The amount of runs required to qualify for the reward. (most likely 3)
     pub required_runs: i32,
 
-    :"Whether the fight is against infested enemies"
+    /// Whether the fight is against infested enemies
     pub vs_infestation: bool,
 
-    :"The invading faction information"
+    /// The invading faction information
     pub attacker: InvasionMember,
 
-    :"The defending faction information"
+    /// The defending faction information
     pub defender: InvasionMember,
 
-    :"Short-time-formatted duration string of the start of the Invasion"
+    /// Short-time-formatted duration string of the start of the Invasion
     pub start_string: String,
 
-    :"A list of reward types"
+    /// A list of reward types
     pub reward_types: Vec<RewardType>,
 }
 
@@ -80,7 +76,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_invasion() -> Result<(), Error> {
         let client = Client::new();
@@ -91,10 +86,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_invasion_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

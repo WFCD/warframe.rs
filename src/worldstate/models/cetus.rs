@@ -1,29 +1,23 @@
-use super::macros::{
-    enum_builder,
-    model_builder,
-};
+use warframe_macros::model;
 
-enum_builder! {
-    :"Represents the current state on cetus"
-    CetusState;
-
-    :"Represents Cetus' day state"
-    Day = "day",
-
-    :"Rpresents Cetus' night state"
-    Night = "night",
+#[model]
+/// Represents the current state on cetus
+pub enum CetusState {
+    /// Represents Cetus' day state
+    #[serde(rename(deserialize = "day"))]
+    Day,
+    /// Represents Cetus' night state
+    #[serde(rename(deserialize = "night"))]
+    Night,
 }
 
-model_builder! {
-    :"The Information about cetus"
-    Cetus: "/cetusCycle",
-    rt = obj,
-    timed = true;
-
-    :"The id of the cycle"
+/// The Information about cetus
+#[model(endpoint = "/cetusCycle", return_style = Object, timed)]
+pub struct Cetus {
+    /// The id of the cycle
     pub id: String,
 
-    :"The state of Cetus (day/night)"
+    /// The state of Cetus (day/night)
     pub state: CetusState,
 }
 
@@ -33,7 +27,7 @@ mod test {
     use crate::worldstate::{
         client::Client,
         error::Error,
-        prelude::{
+        models::{
             CetusState,
             Opposite,
         },
@@ -49,10 +43,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_cetus_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

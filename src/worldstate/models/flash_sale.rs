@@ -1,28 +1,25 @@
-use super::macros::model_builder;
+use warframe_macros::model;
 
-model_builder! {
-    :"Popular Deals, discounts, featured deals"
-    FlashSale: "/flashSales",
-    rt = array,
-    timed = true;
-
-    :"The item being sold"
+/// Popular Deals, discounts, featured deals
+#[model(endpoint = "/flashSales", return_style = Array, timed)]
+pub struct FlashSale {
+    /// The item being sold
     pub item: String,
 
-    :"The discount of the Item"
+    /// The discount of the Item
     pub discount: i32,
 
-    :"The PLATINUM price of this item"
+    /// The PLATINUM price of this item
     pub premium_override: i32,
 
-    :"The CREDIT price of this item"
+    /// The CREDIT price of this item
     pub regular_override: i32,
 
-    :"Whether the item is popular or not"
+    /// Whether the item is popular or not
     pub is_popular: Option<bool>,
 
-    :"Whether the item is featured or not"
-    pub is_featured: Option<bool>
+    /// Whether the item is featured or not
+    pub is_featured: Option<bool>,
 }
 
 #[cfg(test)]
@@ -33,7 +30,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_flashsale() -> Result<(), Error> {
         let client = Client::new();
@@ -44,10 +40,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_flashsale_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

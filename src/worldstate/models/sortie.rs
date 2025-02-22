@@ -1,44 +1,38 @@
-use super::{
-    macros::model_builder,
-    Faction,
-};
+use warframe_macros::model;
 
-model_builder! {
-    :"A Mission corresponding to a Sortie"
-    SortieMission,
-    rt = obj,
-    timed = false;
+use super::Faction;
 
-    :"The i18n Mission type of this mission"
+/// A Mission corresponding to a Sortie
+#[model]
+pub struct SortieMission {
+    /// The i18n Mission type of this mission
     pub mission_type: String,
 
-    :"The Modifier of this mission (e.g. Augmented Enemy Armor)"
+    /// The Modifier of this mission (e.g. Augmented Enemy Armor)
     pub modifier: String,
 
-    :"The description of the modifier of this mission (e.g. Enemies have Improved/Added armor. Corrosive Projection effects are halved.)"
+    /// The description of the modifier of this mission (e.g. Enemies have Improved/Added armor.
+    /// Corrosive Projection effects are halved.)
     pub modifier_description: String,
 
-    :"The i18n of the name"
+    /// The i18n of the name
     pub node: String,
 }
 
-model_builder! {
-    :"Data about the missions for the current sortie"
-    Sortie: "/sortie",
-    rt = obj,
-    timed = true;
-
-    :"Unique identifier for this object/event/thing"
+/// Data about the missions for the current sortie
+#[model(endpoint = "/sortie", return_style = Object, timed)]
+pub struct Sortie {
+    /// Unique identifier for this object/event/thing
     pub id: String,
 
-    :"The name of the boss"
+    /// The name of the boss
     pub boss: String,
 
-    :"The faction you are up against"
+    /// The faction you are up against
     pub faction: Faction,
 
-    :"The 3 missions corresponding to this sortie"
-    pub missions: [SortieMission; 3] = "variants",
+    /// The 3 missions corresponding to this sortie
+    pub missions: [SortieMission; 3],
 }
 
 #[cfg(test)]
@@ -49,7 +43,6 @@ mod test {
         error::Error,
     };
 
-    
     #[tokio::test]
     async fn test_sortie() -> Result<(), Error> {
         let client = Client::new();
@@ -60,10 +53,9 @@ mod test {
         }
     }
 
-    
     #[tokio::test]
     async fn test_sortie_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

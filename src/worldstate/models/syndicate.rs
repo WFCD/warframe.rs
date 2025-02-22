@@ -1,40 +1,55 @@
-use super::macros::enum_builder;
+use warframe_macros::model;
 
-enum_builder! {
-    :"A Syndicate in Warframe"
-    Syndicate;
-    :"ArbitersOfHexis"
-    ArbitersOfHexis = "Arbiters of Hexis",
-    :"CephalonSuda"
-    CephalonSuda = "Cephalon Suda",
-    :"Assassins"
-    Assassins = "Assassins",
-    :"Nightwave"
-    Nightwave = "Nightwave",
-    :"Ostrons"
-    Ostrons = "Ostrons",
-    :"VoxSolaris"
-    VoxSolaris = "Vox Solaris",
-    :"SolarisUnited"
-    SolarisUnited = "Solaris United",
-    :"PerrinSequence"
-    PerrinSequence = "Perrin Sequence",
-    :"SteelMeridian"
-    SteelMeridian = "Steel Meridian",
-    :"RedVeil"
-    RedVeil = "Red Veil",
-    :"NewLoka"
-    NewLoka = "New Loka",
-    :"Holdfasts"
-    Holdfasts = "The Holdfasts",
-    :"Entrati"
+/// A Syndicate in Warframe
+#[model]
+pub enum Syndicate {
+    /// ArbitersOfHexis
+    #[serde(rename = "Arbiters of Hexis")]
+    ArbitersOfHexis,
+    /// CephalonSuda
+    #[serde(rename = "Cephalon Suda")]
+    CephalonSuda,
+    /// Assassins
+    #[serde(rename = "Assassins")]
+    Assassins,
+    /// Nightwave
+    #[serde(rename = "Nightwave")]
+    Nightwave,
+    /// Ostrons
+    #[serde(rename = "Ostrons")]
+    Ostrons,
+    /// VoxSolaris
+    #[serde(rename = "Vox Solaris")]
+    VoxSolaris,
+    /// SolarisUnited
+    #[serde(rename = "Solaris United")]
+    SolarisUnited,
+    /// PerrinSequence
+    #[serde(rename = "Perrin Sequence")]
+    PerrinSequence,
+    /// SteelMeridian
+    #[serde(rename = "Steel Meridian")]
+    SteelMeridian,
+    /// RedVeil
+    #[serde(rename = "Red Veil")]
+    RedVeil,
+    /// NewLoka
+    #[serde(rename = "New Loka")]
+    NewLoka,
+    /// Holdfasts
+    #[serde(rename = "The Holdfasts")]
+    Holdfasts,
+    /// Entrati
     Entrati,
-    :"Cavia"
-    Cavia = "EntratiLabSyndicate",
-    :"VentKids"
-    VentKids =  "Operations Syndicate",
-    :"KahlsGarrison"
-    KahlsGarrison = "Kahl's Garrison",
-    :"Necraloid"
+    /// Cavia
+    #[serde(rename = "EntratiLabSyndicate")]
+    Cavia,
+    /// VentKids
+    #[serde(rename = "Operations Syndicate")]
+    VentKids,
+    /// KahlsGarrison
+    #[serde(rename = "Kahl's Garrison")]
+    KahlsGarrison,
+    /// Necraloid
     Necraloid,
 }

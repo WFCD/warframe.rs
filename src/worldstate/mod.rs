@@ -23,20 +23,6 @@ pub mod models;
 
 pub mod language;
 
-/// The prelude which contains most things you need.
-pub mod prelude {
-
-    pub use crate::worldstate::language::Language;
-    pub use crate::worldstate::{
-        client::Client,
-        error::{
-            ApiErrorResponse,
-            Error,
-        },
-        models::*, // most of `base.rs` is included here
-    };
-}
-
 /// Represents what has happened to the nested Item.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Change {

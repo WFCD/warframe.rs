@@ -1,49 +1,42 @@
-use super::{
-    macros::{
-        enum_builder,
-        model_builder,
-    },
-    RewardType,
-};
+use warframe_macros::model;
 
-enum_builder! {
-    :"Represents the difficulty of a [Nightwave Challenge](NightwaveChallenge)"
-    NightwaveChallengeType;
-    :"Easy"
+use super::RewardType;
+
+/// Represents the difficulty of a [Nightwave Challenge](NightwaveChallenge)
+#[model]
+pub enum NightwaveChallengeType {
+    /// Easy
     Easy,
-    :"Medium"
+    /// Medium
     Medium,
-    :"Hard"
+    /// Hard
     Hard,
-    :"Unknown"
+    /// Unknown
     Unknown,
 }
 
-model_builder! {
-    :"A Nightwave challenge"
-    NightwaveChallenge,
-    rt = obj,
-    timed = true;
-
-    :"The ID of this challenge"
+/// A Nightwave challenge
+#[model(timed)]
+pub struct NightwaveChallenge {
+    /// The ID of this challenge
     pub id: String,
 
-    :"Whether it is a daily mission or not"
+    /// Whether it is a daily mission or not
     pub is_daily: bool,
 
-    :"Whether it is an elite mission or not"
+    /// Whether it is an elite mission or not
     pub is_elite: bool,
 
-    :"The Description of this challenge (what you need to do in order to complete it)"
-    description: String = "desc",
+    /// The Description of this challenge (what you need to do in order to complete it)
+    description: String,
 
-    :"The Title of this Challenge"
+    /// The Title of this Challenge
     pub title: String,
 
-    :"The amount of reputation (aka standing) you get by completing this mission"
+    /// The amount of reputation (aka standing) you get by completing this mission
     pub reputation: i32,
 
-    :"Whether it is permanent or not"
+    /// Whether it is permanent or not
     pub is_permanent: bool,
 }
 
@@ -70,29 +63,26 @@ impl NightwaveChallenge {
     }
 }
 
-model_builder! {
-    :"The Current cycle and challenges of Nightwave, a battle-pass-esque rotation and challenge system"
-    Nightwave: "/nightwave",
-    rt = obj,
-    timed = true;
-
-    :"The ID of the Nightwave"
+/// The Current cycle and challenges of Nightwave, a battle-pass-esque rotation and challenge system
+#[model(endpoint = "/nightwave", return_style = Object, timed)]
+pub struct Nightwave {
+    /// The ID of the Nightwave
     pub id: String,
 
-    :"The Season of this Nightwave"
+    /// The Season of this Nightwave
     pub season: i32,
 
-    :"The Tag of this Nightwave"
+    /// The Tag of this Nightwave
     pub tag: String,
 
-    :"The phase of the nightwave"
+    /// The phase of the nightwave
     pub phase: i32,
 
-    :"The reward types"
+    /// The reward types
     pub reward_types: Vec<RewardType>,
 
-    :"The active challenges (most likely the weekly rotation)"
-    pub active_challenges: Vec<NightwaveChallenge>
+    /// The active challenges (most likely the weekly rotation)
+    pub active_challenges: Vec<NightwaveChallenge>,
 }
 
 #[cfg(test)]
@@ -115,7 +105,7 @@ mod test {
 
     #[tokio::test]
     async fn test_nightwave_ml() -> Result<(), Error> {
-        use crate::worldstate::prelude::Language;
+        use crate::worldstate::language::Language;
 
         let client = Client::new();
 

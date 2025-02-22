@@ -42,7 +42,6 @@ pub mod items;
 // mod global_upgrades;
 mod damage_type;
 mod invasion;
-pub(crate) mod macros;
 mod mission;
 mod mission_type;
 mod news;
@@ -126,16 +125,11 @@ pub use void_trader::{
 };
 
 #[tokio::test]
-async fn test_doc_example() -> Result<(), crate::worldstate::prelude::Error> {
-    use crate::worldstate::{
-        prelude as wf,
-        prelude::Queryable,
-    };
-
+async fn test_doc_example() -> Result<(), crate::worldstate::error::Error> {
     let client = reqwest::Client::new();
 
-    let _cetus: wf::Cetus = Cetus::query(&client).await?;
-    let _fissures: Vec<wf::Fissure> = Fissure::query(&client).await?;
+    let _cetus: Cetus = Cetus::query(&client).await?;
+    let _fissures: Vec<Fissure> = Fissure::query(&client).await?;
 
     Ok(())
 }

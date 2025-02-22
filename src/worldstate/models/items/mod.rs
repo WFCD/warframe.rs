@@ -245,11 +245,12 @@ pub(crate) fn map_category_to_item(
 
 #[cfg(test)]
 mod test {
-    use items::Item;
 
     use crate::worldstate::{
+        client::Client,
         error::Error,
-        prelude::*,
+        language::Language,
+        models::items::Item,
     };
 
     #[tokio::test]

@@ -1,89 +1,108 @@
-use super::macros::enum_builder;
-enum_builder! {
-    :"A Mission Type in Warframe"
-    MissionType;
-    :"AncientRetribution"
-    AncientRetribution = "Ancient Retribution",
-    :"Arena"
+use warframe_macros::model;
+
+/// A Mission Type in Warframe
+#[model]
+pub enum MissionType {
+    /// AncientRetribution
+    #[serde(rename = "Ancient Retribution")]
+    AncientRetribution,
+    /// Arena
     Arena,
-    :"Assassination"
+    /// Assassination
     Assassination,
-    :"Assault"
+    /// Assault
     Assault,
-    :"Capture"
+    /// Capture
     Capture,
-    :"Conclave"
+    /// Conclave
     Conclave,
-    :"DarkSectorDefection"
-    DarkSectorDefection = "Dark Sector Defection",
-    :"DarkSectorDefense"
-    DarkSectorDefense = "Dark Sector Defense",
-    :"DarkSectorDisruption"
-    DarkSectorDisruption = "Dark Sector Disruption",
-    :"DarkSectorExcavation"
-    DarkSectorExcavation = "Dark Sector Excavation",
-    :"DarkSectorSabotage"
-    DarkSectorSabotage = "Dark Sector Sabotage",
-    :"DarkSectorSurvival"
-    DarkSectorSurvival = "Dark Sector Survival",
-    :"Defense"
+    /// DarkSectorDefection
+    #[serde(rename = "Dark Sector Defection")]
+    DarkSectorDefection,
+    /// DarkSectorDefense
+    #[serde(rename = "Dark Sector Defense")]
+    DarkSectorDefense,
+    /// DarkSectorDisruption
+    #[serde(rename = "Dark Sector Disruption")]
+    DarkSectorDisruption,
+    /// DarkSectorExcavation
+    #[serde(rename = "Dark Sector Excavation")]
+    DarkSectorExcavation,
+    /// DarkSectorSabotage
+    #[serde(rename = "Dark Sector Sabotage")]
+    DarkSectorSabotage,
+    /// DarkSectorSurvival
+    #[serde(rename = "Dark Sector Survival")]
+    DarkSectorSurvival,
+    /// Defense
     Defense,
-    :"Disruption"
+    /// Disruption
     Disruption,
-    :"Excavation"
+    /// Excavation
     Excavation,
-    :"ExterminationArchwing"
-    ExterminationArchwing = "Extermination (Archwing)",
-    :"Extermination"
+    /// ExterminationArchwing
+    #[serde(rename = "Extermination (Archwing)")]
+    ExterminationArchwing,
+    /// Extermination
     Extermination,
-    :"FreeRoam"
-    FreeRoam = "Free Roam",
-    :"Hijack"
+    /// FreeRoam
+    #[serde(rename = "Free Roam")]
+    FreeRoam,
+    /// Hijack
     Hijack,
-    :"Hive"
+    /// Hive
     Hive,
-    :"HiveSabotage"
-    HiveSabotage = "Hive Sabotage",
-    :"Interception"
+    /// HiveSabotage
+    #[serde(rename = "Hive Sabotage")]
+    HiveSabotage,
+    /// Interception
     Interception,
-    :"InterceptionArchwing"
-    InterceptionArchwing = "Interception (Archwing)",
-    :"MobileDefense"
-    MobileDefense = "Mobile Defense",
-    :"MobileDefenseArchwing"
-    MobileDefenseArchwing = "Mobile Defense (Archwing)",
-    :"OrokinSabotage"
-    OrokinSabotage = "Orokin Sabotage",
-    :"Orphix"
+    /// InterceptionArchwing
+    #[serde(rename = "Interception (Archwing)")]
+    InterceptionArchwing,
+    /// MobileDefense
+    #[serde(rename = "Mobile Defense")]
+    MobileDefense,
+    /// MobileDefenseArchwing
+    #[serde(rename = "Mobile Defense (Archwing)")]
+    MobileDefenseArchwing,
+    /// OrokinSabotage
+    #[serde(rename = "Orokin Sabotage")]
+    OrokinSabotage,
+    /// Orphix
     Orphix,
-    :"PursuitArchwing"
-    PursuitArchwing = "Pursuit (Archwing)",
-    :"Relay"
+    /// PursuitArchwing
+    #[serde(rename = "Pursuit (Archwing)")]
+    PursuitArchwing,
+    /// Relay
     Relay,
-    :"Rescue"
+    /// Rescue
     Rescue,
-    :"RushArchwing"
-    RushArchwing = "Rush (Archwing)",
-    :"Sabotage"
+    /// RushArchwing
+    #[serde(rename = "Rush (Archwing)")]
+    RushArchwing,
+    /// Sabotage
     Sabotage,
-    :"SabotageArchwing"
-    SabotageArchwing = "Sabotage (Archwing)",
-    :"Skirmish"
+    /// SabotageArchwing
+    #[serde(rename = "Sabotage (Archwing)")]
+    SabotageArchwing,
+    /// Skirmish
     Skirmish,
-    :"Spy"
+    /// Spy
     Spy,
-    :"Survival"
+    /// Survival
     Survival,
-    :"Volatile"
+    /// Volatile
     Volatile,
-    :"Alchemy"
+    /// Alchemy
     Alchemy,
-    :"Corruption"
+    /// Corruption
     Corruption,
-    :"VoidCascade"
-    VoidCascade = "Void Cascade",
-    :"Defection"
+    /// VoidCascade
+    #[serde(rename = "Void Cascade")]
+    VoidCascade,
+    /// Defection
     Defection,
-    :"Unknown"
+    /// Unknown
     Unknown,
 }
