@@ -19,32 +19,28 @@ pub struct Alert {
 }
 
 #[cfg(test)]
-mod test {
+mod test_alert {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Alert;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::alert::{
+            alert,
+            alert_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_alert() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Alert as Queryable>::Return;
 
-        match client.fetch::<Alert>().await {
-            Ok(_alerts) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(alert_en: &str) {
+        from_str::<R>(alert_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_alert_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Alert>(Language::ZH).await {
-            Ok(_alerts) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(alert: &str) {
+        from_str::<R>(alert).unwrap();
     }
 }

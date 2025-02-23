@@ -80,52 +80,28 @@ impl Arbitration {
 }
 
 #[cfg(test)]
-mod test {
+mod test_arbitration {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Arbitration;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::arbitration::{
+            arbitration,
+            arbitration_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_arbitration() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Arbitration as Queryable>::Return;
 
-        match client.fetch::<Arbitration>().await {
-            Ok(_arbitration) => Ok(()),
-            Err(why) => {
-                if let Error::ApiError(error) = why {
-                    if error.code == 404 {
-                        Ok(())
-                    } else {
-                        Err(Error::ApiError(error))
-                    }
-                } else {
-                    Err(why)
-                }
-            }
-        }
+    #[rstest]
+    fn test(arbitration_en: &str) {
+        from_str::<R>(arbitration_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_arbitration_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Arbitration>(Language::ZH).await {
-            Ok(_arbitration) => Ok(()),
-            Err(why) => {
-                if let Error::ApiError(error) = why {
-                    if error.code == 404 {
-                        Ok(())
-                    } else {
-                        Err(Error::ApiError(error))
-                    }
-                } else {
-                    Err(why)
-                }
-            }
-        }
+    #[rstest]
+    fn test_ml(arbitration: &str) {
+        from_str::<R>(arbitration).unwrap();
     }
 }

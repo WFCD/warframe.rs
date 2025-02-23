@@ -23,6 +23,9 @@ pub mod models;
 
 pub mod language;
 
+#[cfg(test)]
+pub(crate) mod fixtures;
+
 /// Represents what has happened to the nested Item.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Change {

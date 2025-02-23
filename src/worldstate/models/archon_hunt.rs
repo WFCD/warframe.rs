@@ -59,32 +59,28 @@ pub struct ArchonHunt {
 }
 
 #[cfg(test)]
-mod test {
+mod test_archonhunt {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::ArchonHunt;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::archon_hunt::{
+            archon_hunt,
+            archon_hunt_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_archonhunt() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <ArchonHunt as Queryable>::Return;
 
-        match client.fetch::<ArchonHunt>().await {
-            Ok(_archonhunt) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(archon_hunt_en: &str) {
+        from_str::<R>(archon_hunt_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_archonhunt_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<ArchonHunt>(Language::ZH).await {
-            Ok(_archonhunt) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(archon_hunt: &str) {
+        from_str::<R>(archon_hunt).unwrap();
     }
 }
