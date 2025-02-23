@@ -9,24 +9,21 @@ To install, simply run `cargo add warframe`.
 
 ### Example
 ```rust,no_run
-use warframe::worldstate::prelude::*;
+use warframe::worldstate::{client::Client, error::Error, models::{Cetus, Opposite, TimedEvent}};
 
 #[tokio::main]
-async fn main() -> Result<(), ApiError> {
+async fn main() -> Result<(), Error> {
     let client = Client::new();
 
-    match client.fetch::<Cetus>().await {
-        Ok(cetus) => {
-            println!(
-                "It is currently {} on cetus. It will be {} in {}",
-                cetus.state,
-                cetus.state.opposite(),
-                cetus.eta()
-            );
-            Ok(())
-        }
-        Err(why) => Err(why),
-    }
+    let cetus = client.fetch::<Cetus>().await?;
+    println!(
+        "It is currently {} on cetus. It will be {} in {}",
+        cetus.state,
+        cetus.state.opposite(),
+        cetus.eta()
+    );
+    
+    Ok(())
 }
 ```
 

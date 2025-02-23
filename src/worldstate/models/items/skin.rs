@@ -22,12 +22,3 @@ pub struct Skin {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_skin_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _skin = reqwest::get("https://api.warframestat.us/items/Academe%20Ink/")
-        .await?
-        .json::<Skin>()
-        .await?;
-    Ok(())
-}

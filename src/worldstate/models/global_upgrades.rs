@@ -1,67 +1,47 @@
-use chrono::Utc;
+use warframe_macros::model;
 
-use super::macros::model_builder;
-
-type DateTime = chrono::DateTime<Utc>;
-
-model_builder! {
-    :"[POSSIBLY UNSTABLE] Any current modifiers applied to all users, such as double drops, double XP, etc."
-    GlobalUpgrade: "/globalUpgrades",
-    rt = array,
-    timed = true;
-
-    :"The start of the upgrade"
-    pub start: DateTime,
-
-    :"The end of the upgrade"
-    pub end: DateTime,
-
-    :"What kind of upgrade"
+/// Any current modifiers applied to all users, such as double drops, double XP, etc.
+#[model(endpoint = "/globalUpgrades", return_style = Array, timed)]
+pub struct GlobalUpgrade {
+    /// What kind of upgrade
     pub upgrade: String,
 
-    :"Operation descriptor"
+    /// Operation descriptor
     pub operation: String,
 
-    :"Symbol corresponding to operation"
+    /// Symbol corresponding to operation
     pub operation_symbol: String,
 
-    :"Value corresponding to performing the operation"
+    /// Value corresponding to performing the operation
     pub upgrade_operation_value: i32,
 
-    :"Whether the upgrade has expired"
+    /// Whether the upgrade has expired
     pub expired: bool,
-
-    :"Formatted short string designating when the upgrade will expire"
-    pub eta: String,
 }
 
 #[cfg(test)]
-mod test {
+mod test_global_upgrade {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::GlobalUpgrade;
     use crate::worldstate::{
-        client::Client,
-        error::ApiError,
+        fixtures::global_upgrade::{
+            global_upgrade,
+            global_upgrade_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_globalupgrade() -> Result<(), ApiError> {
-        let client = Client::new();
+    type R = <GlobalUpgrade as Queryable>::Return;
 
-        match client.fetch::<GlobalUpgrade>().await {
-            Ok(_globalupgrades) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(global_upgrade_en: &str) {
+        from_str::<R>(global_upgrade_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_globalupgrade_ml() -> Result<(), ApiError> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<GlobalUpgrade>(Language::ZH).await {
-            Ok(_globalupgrades) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(global_upgrade: &str) {
+        from_str::<R>(global_upgrade).unwrap();
     }
 }

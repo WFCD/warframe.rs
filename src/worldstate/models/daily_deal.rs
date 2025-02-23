@@ -26,32 +26,28 @@ pub struct DailyDeal {
 }
 
 #[cfg(test)]
-mod test {
+mod test_daily_deal {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::DailyDeal;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::daily_deal::{
+            daily_deal,
+            daily_deal_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_dailydeal() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <DailyDeal as Queryable>::Return;
 
-        match client.fetch::<DailyDeal>().await {
-            Ok(_dailydeals) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(daily_deal_en: &str) {
+        from_str::<R>(daily_deal_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_dailydeal_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<DailyDeal>(Language::ZH).await {
-            Ok(_dailydeals) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(daily_deal: &str) {
+        from_str::<R>(daily_deal).unwrap();
     }
 }

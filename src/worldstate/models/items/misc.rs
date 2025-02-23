@@ -22,12 +22,3 @@ pub struct Misc {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_misc_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _misc = reqwest::get("https://api.warframestat.us/items/Amethyst%20Nexifera%20Tag/")
-        .await?
-        .json::<Misc>()
-        .await?;
-    Ok(())
-}

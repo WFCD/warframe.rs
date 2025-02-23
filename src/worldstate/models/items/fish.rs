@@ -22,12 +22,3 @@ pub struct Fish {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_fish_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _fish = reqwest::get("https://api.warframestat.us/items/mawfish/")
-        .await?
-        .json::<Fish>()
-        .await?;
-    Ok(())
-}

@@ -21,32 +21,28 @@ pub struct CambionDrift {
 }
 
 #[cfg(test)]
-mod test {
+mod test_cambion_drift {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::CambionDrift;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::cambion_drift::{
+            cambion_drift,
+            cambion_drift_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_cambiondrift() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <CambionDrift as Queryable>::Return;
 
-        match client.fetch::<CambionDrift>().await {
-            Ok(_cambiondrift) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(cambion_drift_en: &str) {
+        from_str::<R>(cambion_drift_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_cambiondrift_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<CambionDrift>(Language::ZH).await {
-            Ok(_cambiondrift) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(cambion_drift: &str) {
+        from_str::<R>(cambion_drift).unwrap();
     }
 }

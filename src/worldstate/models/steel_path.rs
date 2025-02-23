@@ -23,3 +23,30 @@ pub struct SteelPath {
     /// Items that are always available
     pub evergreens: Vec<SteelPathShopItem>,
 }
+
+#[cfg(test)]
+mod test_steel_path {
+    use rstest::rstest;
+    use serde_json::from_str;
+
+    use super::SteelPath;
+    use crate::worldstate::{
+        fixtures::steel_path::{
+            steel_path,
+            steel_path_en,
+        },
+        models::Queryable,
+    };
+
+    type R = <SteelPath as Queryable>::Return;
+
+    #[rstest]
+    fn test(steel_path_en: &str) {
+        from_str::<R>(steel_path_en).unwrap();
+    }
+
+    #[rstest]
+    fn test_ml(steel_path: &str) {
+        from_str::<R>(steel_path).unwrap();
+    }
+}

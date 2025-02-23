@@ -59,11 +59,3 @@ pub struct Archwing {
     pub unique_name: String,
 }
 
-#[tokio::test]
-async fn test_archwing_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _archwing = reqwest::get("https://api.warframestat.us/items/amesha/")
-        .await?
-        .json::<Archwing>()
-        .await?;
-    Ok(())
-}

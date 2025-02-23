@@ -23,32 +23,28 @@ pub struct FlashSale {
 }
 
 #[cfg(test)]
-mod test {
+mod test_flash_sale {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::FlashSale;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::flash_sale::{
+            flash_sale,
+            flash_sale_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_flashsale() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <FlashSale as Queryable>::Return;
 
-        match client.fetch::<FlashSale>().await {
-            Ok(_flashsales) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(flash_sale_en: &str) {
+        from_str::<R>(flash_sale_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_flashsale_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<FlashSale>(Language::ZH).await {
-            Ok(_flashsales) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(flash_sale: &str) {
+        from_str::<R>(flash_sale).unwrap();
     }
 }

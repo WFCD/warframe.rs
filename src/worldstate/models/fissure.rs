@@ -41,15 +41,18 @@ pub struct Fissure {
     pub node_key: String,
 
     /// The tier i18n of the relic
+    #[serde(rename = "tier")]
     pub tier_name: String,
 
     /// The Tier of the relic
+    #[serde(rename = "tierNum")]
     pub tier: Tier,
 
     /// The i18n name of the enemy
     pub enemy: String,
 
     /// The type of the enemy
+    #[serde(rename = "enemyKey")]
     pub faction: Faction,
 
     /// Whether the fissure is a storm
@@ -60,32 +63,28 @@ pub struct Fissure {
 }
 
 #[cfg(test)]
-mod test {
+mod test_fissure {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Fissure;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::fissure::{
+            fissure,
+            fissure_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_fissure() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Fissure as Queryable>::Return;
 
-        match client.fetch::<Fissure>().await {
-            Ok(_fissures) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(fissure_en: &str) {
+        from_str::<R>(fissure_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_fissure_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Fissure>(Language::ZH).await {
-            Ok(_fissures) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(fissure: &str) {
+        from_str::<R>(fissure).unwrap();
     }
 }

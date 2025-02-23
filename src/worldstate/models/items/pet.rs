@@ -35,11 +35,3 @@ pub struct Pet {
     pub unique_name: String,
 }
 
-#[tokio::test]
-async fn test_pet_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _pet = reqwest::get("https://api.warframestat.us/items/smeeta%20kavat/")
-        .await?
-        .json::<Pet>()
-        .await?;
-    Ok(())
-}

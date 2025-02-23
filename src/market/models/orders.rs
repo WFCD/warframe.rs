@@ -59,6 +59,7 @@ pub enum Region {
     Ru,
     Uk,
     Cs,
+    Sv,
 
     #[serde(rename = "zh-hans")]
     ZhHans,

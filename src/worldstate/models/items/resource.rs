@@ -32,11 +32,3 @@ pub struct Resource {
     unique_name: String,
 }
 
-#[tokio::test]
-async fn test_resource_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _resource = reqwest::get("https://api.warframestat.us/items/nano%20spores/")
-        .await?
-        .json::<Resource>()
-        .await?;
-    Ok(())
-}

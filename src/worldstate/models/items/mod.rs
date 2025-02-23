@@ -245,26 +245,30 @@ pub(crate) fn map_category_to_item(
 
 #[cfg(test)]
 mod test {
+    use rstest::rstest;
 
     use crate::worldstate::{
-        client::Client,
         error::Error,
-        language::Language,
-        models::items::Item,
+        fixtures::item::{
+            item_sigil_en,
+            nanospores_de,
+        },
+        models::items::{
+            Category,
+            Item,
+            map_category_to_item,
+        },
     };
 
-    #[tokio::test]
-    async fn test_item_query() -> Result<(), Error> {
-        let client = Client::new();
+    #[rstest]
+    fn test_item_query(item_sigil_en: &str, nanospores_de: &str) -> Result<(), Error> {
+        let sigil = map_category_to_item(Category::Sigils, item_sigil_en)?;
 
-        let sigil = client.query_item("Accord Sigil").await?;
-        assert!(matches!(sigil, Some(Item::Sigil(_))));
+        assert!(matches!(sigil, Item::Sigil(_)));
 
-        let nano_spores_de = client
-            .query_item_using_lang("Nanosporen", Language::DE)
-            .await?;
+        let nanospores = map_category_to_item(Category::Misc, nanospores_de)?;
 
-        assert!(matches!(nano_spores_de, Some(Item::Misc(_))));
+        assert!(matches!(nanospores, Item::Misc(_)));
 
         Ok(())
     }

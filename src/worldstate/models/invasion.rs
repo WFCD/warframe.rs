@@ -69,32 +69,28 @@ pub struct Invasion {
 }
 
 #[cfg(test)]
-mod test {
+mod test_invasion {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Invasion;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::invasion::{
+            invasion,
+            invasion_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_invasion() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Invasion as Queryable>::Return;
 
-        match client.fetch::<Invasion>().await {
-            Ok(_invasions) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(invasion_en: &str) {
+        from_str::<R>(invasion_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_invasion_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Invasion>(Language::ZH).await {
-            Ok(_invasions) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(invasion: &str) {
+        from_str::<R>(invasion).unwrap();
     }
 }

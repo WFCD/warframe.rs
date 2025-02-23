@@ -32,12 +32,3 @@ pub struct Gear {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_gear_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _gear = reqwest::get("https://api.warframestat.us/items/lanzo%20fishing%20spear/")
-        .await?
-        .json::<Gear>()
-        .await?;
-    Ok(())
-}
