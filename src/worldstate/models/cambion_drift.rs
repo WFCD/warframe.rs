@@ -2,12 +2,11 @@ use warframe_macros::model;
 
 /// The State of the Cambion Drift
 #[model]
+#[serde(rename_all = "lowercase")]
 pub enum CambionDriftState {
     /// The 'Vome' state
-    #[serde(rename(deserialize = "vome"))]
     Vome,
     /// The 'Fass' state
-    #[serde(rename(deserialize = "fass"))]
     Fass,
 }
 

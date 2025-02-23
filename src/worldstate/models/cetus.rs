@@ -1,13 +1,12 @@
 use warframe_macros::model;
 
-#[model]
 /// Represents the current state on cetus
+#[model]
+#[serde(rename_all = "lowercase")]
 pub enum CetusState {
     /// Represents Cetus' day state
-    #[serde(rename(deserialize = "day"))]
     Day,
     /// Represents Cetus' night state
-    #[serde(rename(deserialize = "night"))]
     Night,
 }
 
