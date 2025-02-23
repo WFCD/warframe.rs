@@ -7,6 +7,8 @@ Use this crate if you want to make a Warframe-related rust project that is async
 ## Getting started
 To install, simply run `cargo add warframe`.
 
+Note that the MSRV of this project is `1.85`.
+
 ### Example
 ```rust,no_run
 use warframe::worldstate::{client::Client, error::Error, models::{Cetus, Opposite, TimedEvent}};
@@ -22,7 +24,7 @@ async fn main() -> Result<(), Error> {
         cetus.state.opposite(),
         cetus.eta()
     );
-    
+
     Ok(())
 }
 ```
