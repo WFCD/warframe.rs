@@ -50,35 +50,28 @@ pub struct SyndicateMission {
 }
 
 #[cfg(test)]
-mod test {
+mod test_syndicate_mission {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::SyndicateMission;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::syndicate_mission::{
+            syndicate_mission,
+            syndicate_mission_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_syndicate() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <SyndicateMission as Queryable>::Return;
 
-        match client.fetch::<SyndicateMission>().await {
-            Ok(_syndicates) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(syndicate_mission_en: &str) {
+        from_str::<R>(syndicate_mission_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_syndicate_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client
-            .fetch_using_lang::<SyndicateMission>(Language::ZH)
-            .await
-        {
-            Ok(_syndicates) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(syndicate_mission: &str) {
+        from_str::<R>(syndicate_mission).unwrap();
     }
 }

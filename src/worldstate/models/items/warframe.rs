@@ -114,12 +114,3 @@ pub enum Sex {
     #[serde(rename(deserialize = "Non-binary (Pluriform)"))]
     Neutral,
 }
-
-#[tokio::test]
-async fn test_warframe_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _warframe = reqwest::get("https://api.warframestat.us/items/koumei/")
-        .await?
-        .json::<Warframe>()
-        .await?;
-    Ok(())
-}

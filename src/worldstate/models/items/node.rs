@@ -36,11 +36,3 @@ pub struct Node {
     pub unique_name: String,
 }
 
-#[tokio::test]
-async fn test_node_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _node = reqwest::get("https://api.warframestat.us/items/oro/")
-        .await?
-        .json::<Node>()
-        .await?;
-    Ok(())
-}

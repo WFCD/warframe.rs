@@ -27,32 +27,28 @@ pub struct VoidTrader {
 }
 
 #[cfg(test)]
-mod test {
+mod test_void_trader {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::VoidTrader;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::void_trader::{
+            void_trader,
+            void_trader_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_voidtrader() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <VoidTrader as Queryable>::Return;
 
-        match client.fetch::<VoidTrader>().await {
-            Ok(_voidtrader) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(void_trader_en: &str) {
+        from_str::<R>(void_trader_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_voidtrader_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<VoidTrader>(Language::ZH).await {
-            Ok(_voidtrader) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(void_trader: &str) {
+        from_str::<R>(void_trader).unwrap();
     }
 }

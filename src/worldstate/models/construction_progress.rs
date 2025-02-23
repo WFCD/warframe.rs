@@ -19,35 +19,28 @@ pub struct ConstructionProgress {
 }
 
 #[cfg(test)]
-mod test {
+mod test_construction_progress {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::ConstructionProgress;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::construction_progress::{
+            construction_progress,
+            construction_progress_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_constructionprogress() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <ConstructionProgress as Queryable>::Return;
 
-        match client.fetch::<ConstructionProgress>().await {
-            Ok(_constructionprogress) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(construction_progress_en: &str) {
+        from_str::<R>(construction_progress_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_constructionprogress_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client
-            .fetch_using_lang::<ConstructionProgress>(Language::ZH)
-            .await
-        {
-            Ok(_constructionprogress) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(construction_progress: &str) {
+        from_str::<R>(construction_progress).unwrap();
     }
 }

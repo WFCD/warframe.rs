@@ -26,14 +26,21 @@ use crate::worldstate::{
 ///
 /// ## Example
 /// ```rust,no_run
-/// use warframe::worldstate::prelude as wf;
+/// use warframe::worldstate::{
+///     client::Client,
+///     error::Error,
+///     models::{
+///         Cetus,
+///         Fissure,
+///     },
+/// };
 ///
 /// #[tokio::main]
-/// async fn main() -> Result<(), wf::ApiError> {
-///     let client = wf::Client::new();
+/// async fn main() -> Result<(), Error> {
+///     let client = Client::new();
 ///
-///     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
-///     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+///     let cetus: Cetus = client.fetch::<Cetus>().await?;
+///     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;
 ///
 ///     Ok(())
 /// }
@@ -58,17 +65,23 @@ impl Client {
 impl Client {
     /// Fetches an instance of a specified model.
     ///
-    /// # Examples
-    ///
-    /// ```rust
-    /// use warframe::worldstate::prelude as wf;
+    /// # Example
+    /// ```rust,no_run
+    /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     error::Error,
+    ///     models::{
+    ///         Cetus,
+    ///         Fissure,
+    ///     },
+    /// };
     ///
     /// #[tokio::main]
-    /// async fn main() -> Result<(), wf::ApiError> {
-    ///     let client = wf::Client::new();
+    /// async fn main() -> Result<(), Error> {
+    ///     let client = Client::new();
     ///
-    ///     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
-    ///     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+    ///     let cetus: Cetus = client.fetch::<Cetus>().await?;
+    ///     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;
     ///
     ///     Ok(())
     /// }
@@ -84,19 +97,23 @@ impl Client {
     ///
     /// # Examples
     ///
-    /// ```rust
-    /// use warframe::worldstate::prelude as wf;
+    /// ```rust,no_run
+    /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     error::Error,
+    ///     language::Language,
+    ///     models::{
+    ///         Cetus,
+    ///         Fissure,
+    ///     },
+    /// };
     ///
     /// #[tokio::main]
-    /// async fn main() -> Result<(), wf::ApiError> {
-    ///     let client = wf::Client::new();
+    /// async fn main() -> Result<(), Error> {
+    ///     let client = Client::new();
     ///
-    ///     let cetus: wf::Cetus = client
-    ///         .fetch_using_lang::<wf::Cetus>(wf::Language::ZH)
-    ///         .await?;
-    ///     let fissures: Vec<wf::Fissure> = client
-    ///         .fetch_using_lang::<wf::Fissure>(wf::Language::ZH)
-    ///         .await?;
+    ///     let cetus: Cetus = client.fetch_using_lang::<Cetus>(Language::ZH).await?;
+    ///     let fissures: Vec<Fissure> = client.fetch_using_lang::<Fissure>(Language::ZH).await?;
     ///
     ///     Ok(())
     /// }
@@ -112,15 +129,16 @@ impl Client {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```rust,no_run
     /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     error::Error,
     ///     models::items::Item,
-    ///     prelude as wf,
     /// };
     ///
     /// #[tokio::main]
-    /// async fn main() -> Result<(), wf::ApiError> {
-    ///     let client = wf::Client::new();
+    /// async fn main() -> Result<(), Error> {
+    ///     let client = Client::new();
     ///
     ///     let sigil = client.query_item("Accord Sigil").await?;
     ///
@@ -141,18 +159,20 @@ impl Client {
     ///
     /// # Examples
     ///
-    /// ```rust
+    /// ```rust,no_run
     /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     error::Error,
+    ///     language::Language,
     ///     models::items::Item,
-    ///     prelude as wf,
     /// };
     ///
     /// #[tokio::main]
-    /// async fn main() -> Result<(), wf::ApiError> {
-    ///     let client = wf::Client::new();
+    /// async fn main() -> Result<(), Error> {
+    ///     let client = Client::new();
     ///
     ///     let nano_spores = client
-    ///         .query_item_using_lang("Nanosporen", wf::Language::DE)
+    ///         .query_item_using_lang("Nanosporen", Language::DE)
     ///         .await?;
     ///
     ///     assert!(matches!(nano_spores, Some(Item::Misc(_))));
@@ -214,15 +234,18 @@ impl Client {
     ///
     /// # Returns
     ///
-    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns
-    ///   an `ApiError`.
+    /// - `Result<(), Error>`: Returns `Ok(())` if the operation is successful, otherwise returns an
+    ///   `Error`.
     ///
     /// # Example
     ///
     /// ```rust
     /// use std::error::Error;
     ///
-    /// use warframe::worldstate::prelude::*;
+    /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     models::Cetus,
+    /// };
     ///
     /// async fn on_cetus_update(before: &Cetus, after: &Cetus) {
     ///     println!("BEFORE : {before:?}");
@@ -294,15 +317,19 @@ impl Client {
     ///
     /// # Returns
     ///
-    /// - `Result<(), ApiError>`: Returns `Ok(())` if the operation is successful, otherwise returns
-    ///   an `ApiError`.
+    /// - `Result<(), Error>`: Returns `Ok(())` if the operation is successful, otherwise returns an
+    ///   `Error`.
     ///
     /// # Example
     ///
     /// ```rust
     /// use std::error::Error;
     ///
-    /// use warframe::worldstate::{listener::Change, prelude::*};
+    /// use warframe::worldstate::{
+    ///     client::Client,
+    ///     models::Fissure,
+    ///     Change,
+    /// };
     ///
     /// /// This function will be called once a fissure updates.
     /// /// This will send a request to the corresponding endpoint once every 30s
@@ -391,14 +418,14 @@ impl Client {
     /// # Returns
     ///
     /// This method returns a `Result` indicating whether the operation was successful or an
-    /// `ApiError` occurred. The result is `Ok(())` if the operation was successful.
+    /// `Error` occurred. The result is `Ok(())` if the operation was successful.
     ///
     /// # Examples
     ///
     /// ```rust
     /// use std::{error::Error, sync::Arc};
     ///
-    /// use warframe::worldstate::prelude::*;
+    /// use warframe::worldstate::{client::Client, models::Cetus};
     ///
     /// // Define some state
     /// #[derive(Debug)]
@@ -490,14 +517,14 @@ impl Client {
     /// # Returns
     ///
     /// Returns `Ok(())` if the callback function is successfully called on each change, or an
-    /// `ApiError` if an error occurs.
+    /// `Error` if an error occurs.
     ///
     /// # Example
     ///
     /// ```rust
     /// use std::{error::Error, sync::Arc};
     ///
-    /// use warframe::worldstate::{listener::Change, prelude::*};
+    /// use warframe::worldstate::{Change, client::Client, models::Fissure};
     ///
     /// // Define some state
     /// #[derive(Debug)]

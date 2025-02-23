@@ -53,32 +53,28 @@ pub struct Event {
 }
 
 #[cfg(test)]
-mod test {
+mod test_event {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Event;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::event::{
+            event,
+            event_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_event() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Event as Queryable>::Return;
 
-        match client.fetch::<Event>().await {
-            Ok(_events) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(event_en: &str) {
+        from_str::<R>(event_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_event_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Event>(Language::ZH).await {
-            Ok(_events) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(event: &str) {
+        from_str::<R>(event).unwrap();
     }
 }

@@ -12,15 +12,20 @@
 //! ### ...via the [Queryable] trait
 //! ```rust
 //! use warframe::worldstate::{
-//!     prelude as wf,
-//!     prelude::Queryable,
+//!     client::Client,
+//!     error::Error,
+//!     models::{
+//!         Cetus,
+//!         Fissure,
+//!         Queryable,
+//!     },
 //! };
 //! #[tokio::main]
-//! async fn main() -> Result<(), wf::ApiError> {
+//! async fn main() -> Result<(), Error> {
 //!     let reqwest_client = reqwest::Client::new();
 //!
-//!     let cetus: wf::Cetus = wf::Cetus::query(&reqwest_client).await?;
-//!     let fissures: Vec<wf::Fissure> = wf::Fissure::query(&reqwest_client).await?;
+//!     let cetus: Cetus = Cetus::query(&reqwest_client).await?;
+//!     let fissures: Vec<Fissure> = Fissure::query(&reqwest_client).await?;
 //!
 //!     Ok(())
 //! }
@@ -41,6 +46,7 @@ mod flash_sale;
 pub mod items;
 // mod global_upgrades;
 mod damage_type;
+pub mod global_upgrades;
 mod invasion;
 mod mission;
 mod mission_type;

@@ -28,7 +28,8 @@ pub struct NightwaveChallenge {
     pub is_elite: bool,
 
     /// The Description of this challenge (what you need to do in order to complete it)
-    description: String,
+    #[serde(rename = "desc")]
+    pub description: String,
 
     /// The Title of this Challenge
     pub title: String,
@@ -86,32 +87,28 @@ pub struct Nightwave {
 }
 
 #[cfg(test)]
-mod test {
+mod test_nightwave {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Nightwave;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::nightwave::{
+            nightwave,
+            nightwave_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_nightwave() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Nightwave as Queryable>::Return;
 
-        match client.fetch::<Nightwave>().await {
-            Ok(_nightwave) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(nightwave_en: &str) {
+        from_str::<R>(nightwave_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_nightwave_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Nightwave>(Language::ZH).await {
-            Ok(_nightwave) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(nightwave: &str) {
+        from_str::<R>(nightwave).unwrap();
     }
 }

@@ -32,36 +32,33 @@ pub struct Sortie {
     pub faction: Faction,
 
     /// The 3 missions corresponding to this sortie
+    #[serde(rename = "variants")]
     pub missions: [SortieMission; 3],
 }
 
 #[cfg(test)]
-mod test {
+mod test_sortie {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Sortie;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::sortie::{
+            sortie,
+            sortie_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_sortie() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Sortie as Queryable>::Return;
 
-        match client.fetch::<Sortie>().await {
-            Ok(_sortie) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(sortie_en: &str) {
+        from_str::<R>(sortie_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_sortie_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Sortie>(Language::ZH).await {
-            Ok(_sortie) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(sortie: &str) {
+        from_str::<R>(sortie).unwrap();
     }
 }

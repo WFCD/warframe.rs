@@ -2,6 +2,7 @@
 #![allow(clippy::missing_errors_doc)]
 //! Provides a client that acts as the baseline for interacting with the market API
 
+#[cfg(feature = "market_cache")]
 use std::{
     sync::Arc,
     time::Duration,
@@ -197,7 +198,7 @@ pub mod cached {
                         Ok(item)
                     } else {
                         panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                                                                         // msg
+                        // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -229,7 +230,7 @@ pub mod cached {
                         Ok(item)
                     } else {
                         panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                                                                         // msg
+                        // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -261,7 +262,7 @@ pub mod cached {
                         Ok(item)
                     } else {
                         panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                                                                         // msg
+                        // msg
                     }
                 }
                 FetchResult::Fetched(response) => {
@@ -295,7 +296,7 @@ pub mod cached {
                         Ok(item)
                     } else {
                         panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                                                                         // msg
+                        // msg
                     }
                 }
                 FetchResult::Fetched(response) => {

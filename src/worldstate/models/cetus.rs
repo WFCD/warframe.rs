@@ -19,43 +19,29 @@ pub struct Cetus {
     /// The state of Cetus (day/night)
     pub state: CetusState,
 }
-
 #[cfg(test)]
-mod test {
+mod test_cetus {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::Cetus;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
-        models::{
-            CetusState,
-            Opposite,
+        fixtures::cetus::{
+            cetus,
+            cetus_en,
         },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_cetus() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <Cetus as Queryable>::Return;
 
-        match client.fetch::<Cetus>().await {
-            Ok(_cetus) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(cetus_en: &str) {
+        from_str::<R>(cetus_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_cetus_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<Cetus>(Language::ZH).await {
-            Ok(_cetus) => Ok(()),
-            Err(why) => Err(why),
-        }
-    }
-
-    #[test]
-    fn test_cetus_state_opposite() {
-        assert_eq!(CetusState::Day.opposite(), CetusState::Night);
+    #[rstest]
+    fn test_ml(cetus: &str) {
+        from_str::<R>(cetus).unwrap();
     }
 }

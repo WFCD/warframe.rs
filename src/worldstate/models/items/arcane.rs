@@ -31,12 +31,3 @@ pub struct Arcane {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_arcane_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _arcane = reqwest::get("https://api.warframestat.us/items/arcane%20energize/")
-        .await?
-        .json::<Arcane>()
-        .await?;
-    Ok(())
-}

@@ -342,26 +342,34 @@ pub enum ShotType {
     Thrown,
 }
 
-#[tokio::test]
-async fn test_weapon_query_primary() -> Result<(), Box<dyn std::error::Error>> {
-    let weapon = reqwest::get("https://api.warframestat.us/items/acceltra%20prime/")
-        .await?
-        .json::<Weapon>()
-        .await?;
+#[cfg(test)]
+mod test_weapon {
+    use rstest::rstest;
+    use serde_json::from_str;
 
-    assert!(matches!(weapon, Weapon::Ranged(_)));
+    use crate::worldstate::{
+        fixtures::weapon::{
+            melee_weapon_en,
+            ranged_weapon_en,
+        },
+        models::items::weapon::Weapon,
+    };
 
-    Ok(())
-}
+    #[rstest]
+    fn test_weapon_query_primary(ranged_weapon_en: &str) -> Result<(), Box<dyn std::error::Error>> {
+        let weapon = from_str::<Weapon>(ranged_weapon_en)?;
 
-#[tokio::test]
-async fn test_weapon_query_melee() -> Result<(), Box<dyn std::error::Error>> {
-    let weapon = reqwest::get("https://api.warframestat.us/items/pathocyst/")
-        .await?
-        .json::<Weapon>()
-        .await?;
+        assert!(matches!(weapon, Weapon::Ranged(_)));
 
-    assert!(matches!(weapon, Weapon::Melee(_)));
+        Ok(())
+    }
 
-    Ok(())
+    #[rstest]
+    fn test_weapon_query_melee(melee_weapon_en: &str) -> Result<(), Box<dyn std::error::Error>> {
+        let weapon = from_str::<Weapon>(melee_weapon_en)?;
+
+        assert!(matches!(weapon, Weapon::Melee(_)));
+
+        Ok(())
+    }
 }

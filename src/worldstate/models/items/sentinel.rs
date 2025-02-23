@@ -53,11 +53,3 @@ pub struct Sentinel {
     pub unique_name: String,
 }
 
-#[tokio::test]
-async fn test_sentinel_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _sentinel = reqwest::get("https://api.warframestat.us/items/nautilus%20prime/")
-        .await?
-        .json::<Sentinel>()
-        .await?;
-    Ok(())
-}

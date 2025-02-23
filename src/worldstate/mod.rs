@@ -5,13 +5,21 @@
 //!
 //! ## Quickstart
 //! ```rust,no_run
-//! use warframe::worldstate::prelude as wf;
-//! #[tokio::main]
-//! async fn main() -> Result<(), wf::ApiError> {
-//!     let client = wf::Client::new();
+//! use warframe::worldstate::{
+//!     client::Client,
+//!     error::Error,
+//!     models::{
+//!         Cetus,
+//!         Fissure,
+//!     },
+//! };
 //!
-//!     let cetus: wf::Cetus = client.fetch::<wf::Cetus>().await?;
-//!     let fissures: Vec<wf::Fissure> = client.fetch::<wf::Fissure>().await?;
+//! #[tokio::main]
+//! async fn main() -> Result<(), Error> {
+//!     let client = Client::new();
+//!
+//!     let cetus: Cetus = client.fetch::<Cetus>().await?;
+//!     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;
 //!
 //!     Ok(())
 //! }

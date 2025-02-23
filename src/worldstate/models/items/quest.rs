@@ -22,12 +22,3 @@ pub struct Quest {
 
     pub unique_name: String,
 }
-
-#[tokio::test]
-async fn test_quest_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _quest = reqwest::get("https://api.warframestat.us/items/second%20dream/")
-        .await?
-        .json::<Quest>()
-        .await?;
-    Ok(())
-}

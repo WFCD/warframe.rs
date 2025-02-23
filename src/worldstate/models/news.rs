@@ -39,32 +39,28 @@ pub struct News {
 }
 
 #[cfg(test)]
-mod test {
+mod test_news {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::News;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::news::{
+            news,
+            news_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_news() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <News as Queryable>::Return;
 
-        match client.fetch::<News>().await {
-            Ok(_newss) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(news_en: &str) {
+        from_str::<R>(news_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_news_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<News>(Language::ZH).await {
-            Ok(_newss) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(news: &str) {
+        from_str::<R>(news).unwrap();
     }
 }

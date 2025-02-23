@@ -56,11 +56,3 @@ pub struct RewardItem {
     pub warframe_market: MarketInfo,
 }
 
-#[tokio::test]
-async fn test_relic_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _relic = reqwest::get("https://api.warframestat.us/items/axi%20a1/")
-        .await?
-        .json::<Relic>()
-        .await?;
-    Ok(())
-}

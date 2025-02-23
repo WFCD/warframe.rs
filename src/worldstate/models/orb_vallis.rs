@@ -21,32 +21,28 @@ pub struct OrbVallis {
 }
 
 #[cfg(test)]
-mod test {
+mod test_orb_vallis {
+    use rstest::rstest;
+    use serde_json::from_str;
+
     use super::OrbVallis;
     use crate::worldstate::{
-        client::Client,
-        error::Error,
+        fixtures::orb_vallis::{
+            orb_vallis,
+            orb_vallis_en,
+        },
+        models::Queryable,
     };
 
-    #[tokio::test]
-    async fn test_orbvallis() -> Result<(), Error> {
-        let client = Client::new();
+    type R = <OrbVallis as Queryable>::Return;
 
-        match client.fetch::<OrbVallis>().await {
-            Ok(_orbvallis) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test(orb_vallis_en: &str) {
+        from_str::<R>(orb_vallis_en).unwrap();
     }
 
-    #[tokio::test]
-    async fn test_orbvallis_ml() -> Result<(), Error> {
-        use crate::worldstate::language::Language;
-
-        let client = Client::new();
-
-        match client.fetch_using_lang::<OrbVallis>(Language::ZH).await {
-            Ok(_orbvallis) => Ok(()),
-            Err(why) => Err(why),
-        }
+    #[rstest]
+    fn test_ml(orb_vallis: &str) {
+        from_str::<R>(orb_vallis).unwrap();
     }
 }

@@ -99,11 +99,3 @@ pub enum ModType {
     Posture,
 }
 
-#[tokio::test]
-async fn test_mod_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _mod = reqwest::get("https://api.warframestat.us/items/primed%20sure%20footed/")
-        .await?
-        .json::<Mod>()
-        .await?;
-    Ok(())
-}

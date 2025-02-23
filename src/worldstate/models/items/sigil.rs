@@ -23,11 +23,3 @@ pub struct Sigil {
     unique_name: String,
 }
 
-#[tokio::test]
-async fn test_sigil_query() -> Result<(), Box<dyn std::error::Error>> {
-    let _sigil = reqwest::get("https://api.warframestat.us/items/Accord%20Sigil/")
-        .await?
-        .json::<Sigil>()
-        .await?;
-    Ok(())
-}

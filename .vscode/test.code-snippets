@@ -1,39 +1,4 @@
 {
-    // ${1/(.*)/${1:/downcase}/}
-    // ${1:model}
-    // "Test a model": {
-    //     "scope": "rust",
-    //     "prefix": "model_test",
-    //     "body": [
-    //         "#[cfg(test)]",
-    //         "mod test {",
-    //         "    use super::${1:model};",
-    //         "    use crate::worldstate::{client::Client, error::ApiError};",
-    //         "",
-    //         "    #[tokio::test]",
-    //         "    async fn test_${1/(.*)/${1:/downcase}/}() -> Result<(), ApiError> {",
-    //         "        let client = Client::new();",
-    //         "",
-    //         "        match client.fetch::<${1:model}>().await {",
-    //         "            Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),",
-    //         "            Err(why) => Err(why),",
-    //         "        }",
-    //         "    }",
-    //         "",
-    //         "    #[tokio::test]",
-    //         "    async fn test_${1/(.*)/${1:/downcase}/}_ml() -> Result<(), ApiError> {",
-    //         "        use crate::worldstate::prelude::Language;",
-    //         "",
-    //         "        let client = Client::new();",
-    //         "",
-    //         "        match client.fetch_using_lang::<${1:model}>(Language::ZH).await {",
-    //         "            Ok(_${1/(.*)/${1:/downcase}/}) => Ok(()),",
-    //         "            Err(why) => Err(why),",
-    //         "        }",
-    //         "    }",
-    //         "}",
-    //     ]
-    // },
     "Test a model": {
         "scope": "rust",
         "prefix": "model_test",
@@ -68,4 +33,22 @@
             "}",
         ]
     },
+    "Fixture": {
+        "scope": "rust",
+        "prefix": "fixture",
+        "body": [
+            "use crate::fixture;",
+            "",
+            "fixture! {",
+            "    $1,",
+            "r#\"",
+            "$2",
+            "\"#",
+            "---",
+            "r#\"",
+            "$3",
+            "\"#",
+            "}",
+        ]
+    }
 }
