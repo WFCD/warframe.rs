@@ -1,10 +1,12 @@
 use warframe_macros::model;
 
+use super::ItemStringWrapper;
+
 /// Popular Deals, discounts, featured deals
 #[model(endpoint = "/flashSales", return_style = Array, timed)]
 pub struct FlashSale {
     /// The item being sold
-    pub item: String,
+    pub item: ItemStringWrapper,
 
     /// The discount of the Item
     pub discount: i32,

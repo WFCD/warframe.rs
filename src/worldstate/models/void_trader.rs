@@ -1,10 +1,12 @@
 use warframe_macros::model;
 
+use super::ItemStringWrapper;
+
 /// An Item in Baro's inventory
 #[model]
 pub struct VoidTraderInventoryItem {
     /// The item that is being sold
-    pub item: String,
+    pub item: ItemStringWrapper,
 
     /// The Ducat cost of this item
     pub ducats: i32,
