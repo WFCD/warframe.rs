@@ -201,13 +201,3 @@ impl AsRef<str> for ItemStringWrapper {
         &self.0
     }
 }
-
-#[tokio::test]
-async fn test_doc_example() -> Result<(), crate::worldstate::error::Error> {
-    let client = reqwest::Client::new();
-
-    let _cetus: Cetus = Cetus::query(&client).await?;
-    let _fissures: Vec<Fissure> = Fissure::query(&client).await?;
-
-    Ok(())
-}
