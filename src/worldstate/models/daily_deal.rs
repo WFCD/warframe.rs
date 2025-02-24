@@ -1,10 +1,12 @@
 use warframe_macros::model;
 
+use super::ItemStringWrapper;
+
 /// Info about the Daily Deal(s)
 #[model(endpoint = "/dailyDeals", return_style = Array, timed)]
 pub struct DailyDeal {
     /// The Item being sold
-    pub item: String,
+    pub item: ItemStringWrapper,
 
     /// The unique name of the Item
     pub unique_name: String,
