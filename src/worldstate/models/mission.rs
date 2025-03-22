@@ -1,9 +1,9 @@
 use warframe_macros::model;
 
 use super::{
-    Faction,
-    MissionType,
-    Reward,
+    faction::Faction,
+    mission_type::MissionType,
+    reward::Reward,
 };
 
 /// A mission

@@ -27,11 +27,11 @@ mod test_cambion_drift {
 
     use super::CambionDrift;
     use crate::worldstate::{
+        Queryable,
         fixtures::cambion_drift::{
             cambion_drift,
             cambion_drift_en,
         },
-        models::Queryable,
     };
 
     type R = <CambionDrift as Queryable>::Return;

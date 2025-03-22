@@ -1,9 +1,9 @@
 use warframe_macros::model;
 
 use super::{
-    Faction,
-    Reward,
-    Syndicate,
+    faction::Faction,
+    reward::Reward,
+    syndicate::Syndicate,
 };
 
 /// An Event in Warframe
@@ -59,11 +59,11 @@ mod test_event {
 
     use super::Event;
     use crate::worldstate::{
+        Queryable,
         fixtures::event::{
             event,
             event_en,
         },
-        models::Queryable,
     };
 
     type R = <Event as Queryable>::Return;

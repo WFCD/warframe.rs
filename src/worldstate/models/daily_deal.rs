@@ -34,11 +34,11 @@ mod test_daily_deal {
 
     use super::DailyDeal;
     use crate::worldstate::{
+        Queryable,
         fixtures::daily_deal::{
             daily_deal,
             daily_deal_en,
         },
-        models::Queryable,
     };
 
     type R = <DailyDeal as Queryable>::Return;

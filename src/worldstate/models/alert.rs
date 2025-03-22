@@ -1,8 +1,8 @@
 use warframe_macros::model;
 
 use super::{
-    Mission,
-    RewardType,
+    mission::Mission,
+    reward_type::RewardType,
 };
 
 /// An alert in Warframe
@@ -25,11 +25,11 @@ mod test_alert {
 
     use super::Alert;
     use crate::worldstate::{
+        Queryable,
         fixtures::alert::{
             alert,
             alert_en,
         },
-        models::Queryable,
     };
 
     type R = <Alert as Queryable>::Return;

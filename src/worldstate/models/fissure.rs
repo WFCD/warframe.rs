@@ -69,11 +69,11 @@ mod test_fissure {
 
     use super::Fissure;
     use crate::worldstate::{
+        Queryable,
         fixtures::fissure::{
             fissure,
             fissure_en,
         },
-        models::Queryable,
     };
 
     type R = <Fissure as Queryable>::Return;

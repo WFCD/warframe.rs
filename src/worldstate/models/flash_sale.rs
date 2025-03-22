@@ -31,11 +31,11 @@ mod test_flash_sale {
 
     use super::FlashSale;
     use crate::worldstate::{
+        Queryable,
         fixtures::flash_sale::{
             flash_sale,
             flash_sale_en,
         },
-        models::Queryable,
     };
 
     type R = <FlashSale as Queryable>::Return;

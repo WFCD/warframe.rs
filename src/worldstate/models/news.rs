@@ -45,11 +45,11 @@ mod test_news {
 
     use super::News;
     use crate::worldstate::{
+        Queryable,
         fixtures::news::{
             news,
             news_en,
         },
-        models::Queryable,
     };
 
     type R = <News as Queryable>::Return;

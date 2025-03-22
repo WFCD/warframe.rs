@@ -26,11 +26,11 @@ mod test_global_upgrade {
 
     use super::GlobalUpgrade;
     use crate::worldstate::{
+        Queryable,
         fixtures::global_upgrade::{
             global_upgrade,
             global_upgrade_en,
         },
-        models::Queryable,
     };
 
     type R = <GlobalUpgrade as Queryable>::Return;

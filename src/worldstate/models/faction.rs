@@ -37,7 +37,7 @@ pub enum Faction {
 
 impl Faction {
     #[must_use]
-    pub fn vulnerable_to(self) -> Vec<super::DamageType> {
+    pub fn vulnerable_to(self) -> Vec<DamageType> {
         use CombinedElementalDamage::{
             Corrosive,
             Magnetic,

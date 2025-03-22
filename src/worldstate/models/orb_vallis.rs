@@ -27,11 +27,11 @@ mod test_orb_vallis {
 
     use super::OrbVallis;
     use crate::worldstate::{
+        Queryable,
         fixtures::orb_vallis::{
             orb_vallis,
             orb_vallis_en,
         },
-        models::Queryable,
     };
 
     type R = <OrbVallis as Queryable>::Return;

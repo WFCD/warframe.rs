@@ -25,11 +25,11 @@ mod test_construction_progress {
 
     use super::ConstructionProgress;
     use crate::worldstate::{
+        Queryable,
         fixtures::construction_progress::{
             construction_progress,
             construction_progress_en,
         },
-        models::Queryable,
     };
 
     type R = <ConstructionProgress as Queryable>::Return;

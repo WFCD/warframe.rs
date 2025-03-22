@@ -9,7 +9,7 @@ use super::{
     Introduced,
     Polarity,
 };
-use crate::worldstate::models::DamageType;
+use crate::worldstate::models::damage_type::DamageType;
 
 fn as_f64<'de, D>(deserializer: D) -> Result<f64, D::Error>
 where
