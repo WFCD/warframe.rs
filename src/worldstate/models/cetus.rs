@@ -26,11 +26,11 @@ mod test_cetus {
 
     use super::Cetus;
     use crate::worldstate::{
+        Queryable,
         fixtures::cetus::{
             cetus,
             cetus_en,
         },
-        models::Queryable,
     };
 
     type R = <Cetus as Queryable>::Return;

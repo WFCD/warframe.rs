@@ -31,11 +31,11 @@ mod test_steel_path {
 
     use super::SteelPath;
     use crate::worldstate::{
+        Queryable,
         fixtures::steel_path::{
             steel_path,
             steel_path_en,
         },
-        models::Queryable,
     };
 
     type R = <SteelPath as Queryable>::Return;

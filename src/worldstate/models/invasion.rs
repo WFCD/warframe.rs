@@ -1,9 +1,9 @@
 use warframe_macros::model;
 
 use super::{
-    Faction,
-    Reward,
-    RewardType,
+    faction::Faction,
+    reward::Reward,
+    reward_type::RewardType,
 };
 
 type DateTime = chrono::DateTime<chrono::Utc>;
@@ -75,11 +75,11 @@ mod test_invasion {
 
     use super::Invasion;
     use crate::worldstate::{
+        Queryable,
         fixtures::invasion::{
             invasion,
             invasion_en,
         },
-        models::Queryable,
     };
 
     type R = <Invasion as Queryable>::Return;

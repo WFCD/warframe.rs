@@ -1,6 +1,6 @@
 use warframe_macros::model;
 
-use super::Faction;
+use super::faction::Faction;
 
 /// A Mission corresponding to a Sortie
 #[model]
@@ -43,11 +43,11 @@ mod test_sortie {
 
     use super::Sortie;
     use crate::worldstate::{
+        Queryable,
         fixtures::sortie::{
             sortie,
             sortie_en,
         },
-        models::Queryable,
     };
 
     type R = <Sortie as Queryable>::Return;

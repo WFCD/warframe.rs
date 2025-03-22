@@ -35,11 +35,11 @@ mod test_void_trader {
 
     use super::VoidTrader;
     use crate::worldstate::{
+        Queryable,
         fixtures::void_trader::{
             void_trader,
             void_trader_en,
         },
-        models::Queryable,
     };
 
     type R = <VoidTrader as Queryable>::Return;

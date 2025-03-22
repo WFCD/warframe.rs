@@ -9,9 +9,9 @@ use serde::{
 use warframe_macros::model;
 
 use super::{
-    Faction,
-    MissionType,
     base::TimedEvent,
+    faction::Faction,
+    mission_type::MissionType,
 };
 
 fn deserialize_expiry<'de, D>(deserializer: D) -> Result<DateTime<Utc>, D::Error>
@@ -86,11 +86,11 @@ mod test_arbitration {
 
     use super::Arbitration;
     use crate::worldstate::{
+        Queryable,
         fixtures::arbitration::{
             arbitration,
             arbitration_en,
         },
-        models::Queryable,
     };
 
     type R = <Arbitration as Queryable>::Return;

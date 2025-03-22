@@ -5,20 +5,18 @@
 use reqwest::StatusCode;
 
 use super::{
-    Change,
+    Queryable,
+    TimedEvent,
     error::Error,
-    language::Language,
-    models::{
-        Queryable,
-        TimedEvent,
-        items::Item,
-    },
-};
-use crate::worldstate::{
-    CrossDiff,
-    models::items::{
+    items::{
         Category,
         map_category_to_item,
+    },
+    language::Language,
+    models::items::Item,
+    utils::{
+        Change,
+        CrossDiff,
     },
 };
 
@@ -254,10 +252,6 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::Debug)
-    ///         .init();
-    ///
     ///     let client = Client::new();
     ///     
     ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
@@ -270,15 +264,16 @@ impl Client {
         T: TimedEvent + Queryable<Return = T>,
         for<'any> Callback: AsyncFn(&'any T, &'any T),
     {
-        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
+        tracing::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
         let mut item = self.fetch::<T>().await?;
 
         loop {
             if item.expiry() <= chrono::offset::Utc::now() {
-                log::debug!(
-                    "{} (LISTENER) :: Fetching new possible update",
-                    std::any::type_name::<T>()
+                tracing::debug!(
+                    listener = %std::any::type_name::<T>(),
+                    "(LISTENER) Fetching new possible update"
                 );
+
                 tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
                 let new_item = self.fetch::<T>().await?;
@@ -286,17 +281,19 @@ impl Client {
                 if item.expiry() >= new_item.expiry() {
                     continue;
                 }
+
                 callback(&item, &new_item).await;
                 item = new_item;
             }
 
             let time_to_sleep = item.expiry() - chrono::offset::Utc::now();
 
-            log::debug!(
-                "{} (LISTENER) :: Sleeping {} seconds",
-                std::any::type_name::<T>(),
-                time_to_sleep.num_seconds()
+            tracing::debug!(
+                listener = %std::any::type_name::<T>(),
+                sleep_duration = %time_to_sleep.num_seconds(),
+                "(LISTENER) Sleeping"
             );
+
             tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
         }
     }
@@ -343,11 +340,6 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     // Logging setup
-    ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::Debug)
-    ///         .init();
-    ///
     ///     // initialize a client (included in the prelude)
     ///     let client = Client::new();
     ///
@@ -364,16 +356,21 @@ impl Client {
         T: TimedEvent + Queryable<Return = Vec<T>> + PartialEq,
         for<'any> Callback: AsyncFn(&'any T, Change),
     {
-        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
+        tracing::debug!(
+            listener = %std::any::type_name::<Vec<T>>(),
+            "(LISTENER) Started"
+        );
+
         let mut items = self.fetch::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
-            log::debug!(
-                "{} (LISTENER) :: Fetching new possible state",
-                std::any::type_name::<Vec<T>>()
+            tracing::debug!(
+                listener = %std::any::type_name::<Vec<T>>(),
+                "(LISTENER) Fetching new possible state"
             );
+
             let new_items = self.fetch::<T>().await?;
 
             let diff = CrossDiff::new(&items, &new_items);
@@ -382,9 +379,9 @@ impl Client {
             let added_items = diff.added();
 
             if !removed_items.is_empty() || !added_items.is_empty() {
-                log::debug!(
-                    "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
-                    std::any::type_name::<Vec<T>>()
+                tracing::debug!(
+                    listener = %std::any::type_name::<Vec<T>>(),
+                    "(LISTENER) Found changes, proceeding to call callback with every change"
                 );
 
                 for (item, change) in removed_items.into_iter().chain(added_items) {
@@ -395,11 +392,7 @@ impl Client {
             }
         }
     }
-}
 
-// impl UPDATE LISTENER (with state)
-
-impl Client {
     /// Asynchronous method that calls a callback function with state on update.
     ///
     /// # Arguments
@@ -442,10 +435,6 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::Debug)
-    ///         .init();
-    ///
     ///     let client = Client::new();
     ///
     ///     // Note that the state will be cloned into the handler, so Arc is preferred
@@ -474,10 +463,11 @@ impl Client {
 
         loop {
             if item.expiry() <= chrono::offset::Utc::now() {
-                log::debug!(
-                    "{} (LISTENER) :: Fetching possible update",
-                    std::any::type_name::<T>()
+                tracing::debug!(
+                    listener = %std::any::type_name::<T>(),
+                    "(LISTENER) Fetching new possible state"
                 );
+
                 tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
                 let new_item = self.fetch::<T>().await?;
@@ -491,11 +481,12 @@ impl Client {
 
             let time_to_sleep = item.expiry() - chrono::offset::Utc::now();
 
-            log::debug!(
-                "{} (LISTENER) :: Sleeping {} seconds",
-                std::any::type_name::<T>(),
-                time_to_sleep.num_seconds()
+            tracing::debug!(
+                listener = %std::any::type_name::<T>(),
+                sleep_duration = %time_to_sleep.num_seconds(),
+                "(LISTENER) Sleeping"
             );
+
             tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
         }
     }
@@ -543,10 +534,6 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     env_logger::builder()
-    ///         .filter_level(log::LevelFilter::Debug)
-    ///         .init();
-    ///
     ///     let client = Client::new();
     ///
     ///     // Note that the state will be cloned into the handler, so Arc is preferred
@@ -571,16 +558,21 @@ impl Client {
         T: Queryable<Return = Vec<T>> + TimedEvent + PartialEq,
         for<'any> Callback: AsyncFn(S, &'any T, Change),
     {
-        log::debug!("{} (LISTENER) :: Started", std::any::type_name::<Vec<T>>());
+        tracing::debug!(
+            listener = %std::any::type_name::<Vec<T>>(),
+            "(LISTENER) Started"
+        );
+
         let mut items = self.fetch::<T>().await?;
 
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(30)).await;
 
-            log::debug!(
-                "{} (LISTENER) :: Fetching new possible state",
-                std::any::type_name::<Vec<T>>()
+            tracing::debug!(
+                listener = %std::any::type_name::<Vec<T>>(),
+                "(LISTENER) Fetching new possible state"
             );
+
             let new_items = self.fetch::<T>().await?;
 
             let diff = CrossDiff::new(&items, &new_items);
@@ -589,9 +581,9 @@ impl Client {
             let added_items = diff.added();
 
             if !removed_items.is_empty() || !added_items.is_empty() {
-                log::debug!(
-                    "{} (LISTENER) :: Found changes, proceeding to call callback with every change",
-                    std::any::type_name::<Vec<T>>()
+                tracing::debug!(
+                    listener = %std::any::type_name::<Vec<T>>(),
+                    "(LISTENER) Found changes, proceeding to call callback with every change"
                 );
 
                 for (item, change) in removed_items.into_iter().chain(added_items) {

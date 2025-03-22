@@ -27,57 +27,76 @@
 
 pub mod client;
 pub mod error;
-pub mod models;
+mod models;
+pub mod utils;
 
 pub mod language;
 
 #[cfg(test)]
 pub(crate) mod fixtures;
 
-/// Represents what has happened to the nested Item.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum Change {
-    /// The Item has been added to the collection
-    Added,
-    /// The Item has been removed the collection
-    Removed,
+/// A module that re=exports every type that is queryable
+pub mod queryable {
+    pub use super::models::{
+        alert::Alert,
+        arbitration::Arbitration,
+        archon_hunt::ArchonHunt,
+        cambion_drift::CambionDrift,
+        cetus::Cetus,
+        construction_progress::ConstructionProgress,
+        daily_deal::DailyDeal,
+        event::Event,
+        fissure::Fissure,
+        flash_sale::FlashSale,
+        global_upgrades::GlobalUpgrade,
+        invasion::Invasion,
+        news::News,
+        nightwave::Nightwave,
+        orb_vallis::OrbVallis,
+        sortie::Sortie,
+        steel_path::SteelPath,
+        syndicate::Syndicate,
+        void_trader::VoidTrader,
+    };
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct CrossDiff<'a, T>
-where
-    T: PartialEq,
-{
-    current: &'a [T],
-    incoming: &'a [T],
-}
-
-impl<'a, T> CrossDiff<'a, T>
-where
-    T: PartialEq,
-{
-    /// Creates a [`CrossDiff`]
-    pub fn new(current: &'a [T], incoming: &'a [T]) -> Self {
-        Self { current, incoming }
-    }
-
-    /// Gets all the removed items
-    #[must_use]
-    pub fn removed(&self) -> Vec<(&'a T, Change)> {
-        self.current
-            .iter()
-            .filter(|&item| !self.incoming.contains(item))
-            .map(|item| (item, Change::Removed))
-            .collect()
-    }
-
-    /// Gets all the added items
-    #[must_use]
-    pub fn added(&self) -> Vec<(&'a T, Change)> {
-        self.incoming
-            .iter()
-            .filter(|&item| !self.current.contains(item))
-            .map(|item| (item, Change::Added))
-            .collect()
-    }
-}
+pub use models::{
+    archon_hunt::ArchonHuntMission,
+    base::{
+        Endpoint,
+        Opposite,
+        Queryable,
+        TimedEvent,
+    },
+    cambion_drift::CambionDriftState,
+    cetus::CetusState,
+    damage_type::{
+        CombinedElementalDamage,
+        DamageType,
+        ElementalDamage,
+        PhysicalDamage,
+    },
+    faction::Faction,
+    fissure::Tier,
+    invasion::InvasionMember,
+    items,
+    mission::Mission,
+    mission_type::MissionType,
+    nightwave::{
+        NightwaveChallenge,
+        NightwaveChallengeType,
+    },
+    orb_vallis::OrbVallisState,
+    reward::Reward,
+    reward_type::RewardType,
+    sortie::SortieMission,
+    steel_path::SteelPathShopItem,
+    syndicate_mission::{
+        SyndicateJob,
+        SyndicateMission,
+    },
+    void_trader::VoidTraderInventoryItem,
+};
+/// This is a re-export of the `model` macro in case you want to use it in your own code.
+/// To implement a, for example, missing model.
+pub use warframe_macros::model;

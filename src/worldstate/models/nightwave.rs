@@ -1,6 +1,6 @@
 use warframe_macros::model;
 
-use super::RewardType;
+use super::reward_type::RewardType;
 
 /// Represents the difficulty of a [Nightwave Challenge](NightwaveChallenge)
 #[model]
@@ -93,11 +93,11 @@ mod test_nightwave {
 
     use super::Nightwave;
     use crate::worldstate::{
+        Queryable,
         fixtures::nightwave::{
             nightwave,
             nightwave_en,
         },
-        models::Queryable,
     };
 
     type R = <Nightwave as Queryable>::Return;

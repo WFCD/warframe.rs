@@ -1,41 +1,45 @@
 //! Everything to do with the item type - whether it's Warframes, Weapons, Mods, everything.
 
-use arcane::Arcane;
-use archwing::Archwing;
-use chrono::NaiveDate;
-use fish::Fish;
-use gear::Gear;
-use glyph::Glyph;
-use misc::Misc;
-use modification::Mod;
-use node::Node;
-use pet::Pet;
-use quest::Quest;
-use relic::Relic;
-use resource::Resource;
-use sentinel::Sentinel;
-use serde::Deserialize;
-use sigil::Sigil;
-use skin::Skin;
-use warframe::Warframe;
+pub use arcane::Arcane;
+pub use archwing::Archwing;
+pub use chrono::NaiveDate;
+pub use fish::Fish;
+pub use gear::Gear;
+pub use glyph::Glyph;
+pub use misc::Misc;
+pub use modification::Mod;
+pub use node::Node;
+pub use pet::Pet;
+pub use quest::Quest;
+pub use relic::Relic;
+pub use resource::Resource;
+pub use sentinel::Sentinel;
+pub use serde::Deserialize;
+pub use sigil::Sigil;
+pub use skin::Skin;
+pub use warframe::{
+    Ability,
+    Sex,
+    Warframe,
+};
 use weapon::Weapon;
 
-pub mod arcane;
-pub mod archwing;
-pub mod fish;
-pub mod gear;
-pub mod glyph;
-pub mod misc;
-pub mod modification;
-pub mod node;
-pub mod pet;
-pub mod quest;
-pub mod relic;
-pub mod resource;
-pub mod sentinel;
-pub mod sigil;
-pub mod skin;
-pub mod warframe;
+mod arcane;
+mod archwing;
+mod fish;
+mod gear;
+mod glyph;
+mod misc;
+mod modification;
+mod node;
+mod pet;
+mod quest;
+mod relic;
+mod resource;
+mod sentinel;
+mod sigil;
+mod skin;
+mod warframe;
 pub mod weapon;
 
 /// Represents a polarity

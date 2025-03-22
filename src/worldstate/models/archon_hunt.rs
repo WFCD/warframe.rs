@@ -1,8 +1,8 @@
 use warframe_macros::model;
 
 use super::{
-    Faction,
-    MissionType,
+    faction::Faction,
+    mission_type::MissionType,
 };
 
 /// An archon hunt mission
@@ -65,11 +65,11 @@ mod test_archonhunt {
 
     use super::ArchonHunt;
     use crate::worldstate::{
+        Queryable,
         fixtures::archon_hunt::{
             archon_hunt,
             archon_hunt_en,
         },
-        models::Queryable,
     };
 
     type R = <ArchonHunt as Queryable>::Return;

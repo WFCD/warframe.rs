@@ -56,11 +56,11 @@ mod test_syndicate_mission {
 
     use super::SyndicateMission;
     use crate::worldstate::{
+        Queryable,
         fixtures::syndicate_mission::{
             syndicate_mission,
             syndicate_mission_en,
         },
-        models::Queryable,
     };
 
     type R = <SyndicateMission as Queryable>::Return;
