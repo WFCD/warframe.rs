@@ -23,11 +23,11 @@ use super::{
 /// The client that acts as a convenient way to query models.
 ///
 /// ## Example
-/// ```rust,no_run
+/// ```rust
 /// use warframe::worldstate::{
-///     client::Client,
-///     error::Error,
-///     models::{
+///     Client,
+///     Error,
+///     queryable::{
 ///         Cetus,
 ///         Fissure,
 ///     },
@@ -66,9 +66,9 @@ impl Client {
     /// # Example
     /// ```rust,no_run
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     error::Error,
-    ///     models::{
+    ///     Client,
+    ///     Error,
+    ///     queryable::{
     ///         Cetus,
     ///         Fissure,
     ///     },
@@ -97,10 +97,10 @@ impl Client {
     ///
     /// ```rust,no_run
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     error::Error,
-    ///     language::Language,
-    ///     models::{
+    ///     Client,
+    ///     Error,
+    ///     Language,
+    ///     queryable::{
     ///         Cetus,
     ///         Fissure,
     ///     },
@@ -129,9 +129,9 @@ impl Client {
     ///
     /// ```rust,no_run
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     error::Error,
-    ///     models::items::Item,
+    ///     Client,
+    ///     Error,
+    ///     items::Item,
     /// };
     ///
     /// #[tokio::main]
@@ -159,10 +159,10 @@ impl Client {
     ///
     /// ```rust,no_run
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     error::Error,
-    ///     language::Language,
-    ///     models::items::Item,
+    ///     Client,
+    ///     Error,
+    ///     Language,
+    ///     items::Item,
     /// };
     ///
     /// #[tokio::main]
@@ -211,11 +211,7 @@ impl Client {
 
         Ok(Some(item))
     }
-}
 
-// impl UPDATE LISTENER
-
-impl Client {
     /// Asynchronous method that continuously fetches updates for a given type `T` and invokes a
     /// callback function.
     ///
@@ -241,8 +237,8 @@ impl Client {
     /// use std::error::Error;
     ///
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     models::Cetus,
+    ///     Client,
+    ///     queryable::Cetus,
     /// };
     ///
     /// async fn on_cetus_update(before: &Cetus, after: &Cetus) {
@@ -323,9 +319,9 @@ impl Client {
     /// use std::error::Error;
     ///
     /// use warframe::worldstate::{
-    ///     client::Client,
-    ///     models::Fissure,
+    ///     Client,
     ///     Change,
+    ///     queryable::Fissure,
     /// };
     ///
     /// /// This function will be called once a fissure updates.
@@ -418,7 +414,7 @@ impl Client {
     /// ```rust
     /// use std::{error::Error, sync::Arc};
     ///
-    /// use warframe::worldstate::{client::Client, models::Cetus};
+    /// use warframe::worldstate::{Client, queryable::Cetus};
     ///
     /// // Define some state
     /// #[derive(Debug)]
@@ -515,7 +511,7 @@ impl Client {
     /// ```rust
     /// use std::{error::Error, sync::Arc};
     ///
-    /// use warframe::worldstate::{Change, client::Client, models::Fissure};
+    /// use warframe::worldstate::{Change, Client, queryable::Fissure};
     ///
     /// // Define some state
     /// #[derive(Debug)]

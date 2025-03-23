@@ -12,12 +12,12 @@
 //! ### ...via the [Queryable] trait
 //! ```rust
 //! use warframe::worldstate::{
-//!     client::Client,
-//!     error::Error,
-//!     models::{
+//!     Client,
+//!     Error,
+//!     Queryable,
+//!     queryable::{
 //!         Cetus,
 //!         Fissure,
-//!         Queryable,
 //!     },
 //! };
 //! #[tokio::main]

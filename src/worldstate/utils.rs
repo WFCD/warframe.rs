@@ -8,7 +8,7 @@ pub enum Change {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct CrossDiff<'a, T> {
+pub(crate) struct CrossDiff<'a, T> {
     current: &'a [T],
     incoming: &'a [T],
 }
