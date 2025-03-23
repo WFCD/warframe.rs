@@ -11,7 +11,7 @@ Note that the MSRV of this project is `1.85`.
 
 ### Example
 ```rust,no_run
-use warframe::worldstate::{client::Client, error::Error, models::{Cetus, Opposite, TimedEvent}};
+use warframe::worldstate::{Client, Error, queryable::Cetus, Opposite, TimedEvent};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {

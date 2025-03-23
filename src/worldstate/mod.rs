@@ -6,9 +6,9 @@
 //! ## Quickstart
 //! ```rust,no_run
 //! use warframe::worldstate::{
-//!     client::Client,
-//!     error::Error,
-//!     models::{
+//!     Client,
+//!     Error,
+//!     queryable::{
 //!         Cetus,
 //!         Fissure,
 //!     },
@@ -60,6 +60,12 @@ pub mod queryable {
     };
 }
 
+pub use client::Client;
+pub use error::{
+    ApiErrorResponse,
+    Error,
+};
+pub use language::Language;
 pub use models::{
     archon_hunt::ArchonHuntMission,
     base::{
@@ -97,6 +103,7 @@ pub use models::{
     },
     void_trader::VoidTraderInventoryItem,
 };
+pub use utils::Change;
 /// This is a re-export of the `model` macro in case you want to use it in your own code.
 /// To implement a, for example, missing model.
 pub use warframe_macros::model;

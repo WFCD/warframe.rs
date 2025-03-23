@@ -14,6 +14,8 @@ rust-version = "1.85"
 [features]
 default = []
 
+full = ["market_ratelimit", "market_cache"]
+
 market_ratelimit = ["dep:governor"]
 market_cache = ["dep:moka"]
 
