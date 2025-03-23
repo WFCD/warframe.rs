@@ -1,0 +1,35 @@
+{
+    "apiVersion": "0.12.2",
+    "data": {
+        "id": "5a2feeb2c2c9e90cbdaa23d3",
+        "slug": "mirage_prime_set",
+        "gameRef": "/Lotus/Powersuits/Harlequin/MiragePrime",
+        "tags": [
+            "warframe",
+            "prime",
+            "set"
+        ],
+        "setRoot": true,
+        "setParts": [
+            "5a2feeb2c2c9e90cbdaa23d4",
+            "5a2feeb2c2c9e90cbdaa23d5",
+            "5a2feeb2c2c9e90cbdaa23d6",
+            "5a2feeb2c2c9e90cbdaa23d3",
+            "5a2feeb1c2c9e90cbdaa23d2"
+        ],
+        "ducats": 175,
+        "reqMasteryRank": 0,
+        "tradingTax": 8000,
+        "tradable": true,
+        "i18n": {
+            "en": {
+                "name": "Mirage Prime Set",
+                "description": "Dazzle the opposition with this golden master of illusion and mayhem. Featuring altered mod polarities allow for greater customization.",
+                "wikiLink": "https://wiki.warframe.com/w/Mirage_Prime",
+                "icon": "items/images/en/mirage_prime_set.e7f8f484dd6ae6c35f0767fff35a5109.png",
+                "thumb": "items/images/en/thumbs/mirage_prime_set.e7f8f484dd6ae6c35f0767fff35a5109.128x128.png"
+            }
+        }
+    },
+    "error": null
+}

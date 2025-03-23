@@ -1,334 +1,190 @@
-#![allow(clippy::missing_panics_doc)]
-#![allow(clippy::missing_errors_doc)]
-//! Provides a client that acts as the baseline for interacting with the market API
-
-#[cfg(feature = "market_cache")]
 use std::{
+    any::{
+        Any,
+        TypeId,
+        type_name,
+    },
+    num::NonZeroU32,
     sync::Arc,
     time::Duration,
 };
 
+#[cfg(feature = "market_ratelimit")]
+use governor::{
+    DefaultDirectRateLimiter,
+    Quota,
+};
+#[cfg(feature = "market_cache")]
+use moka::future::Cache;
+
 use super::{
-    error::ApiError,
-    models::{
-        item::Item,
-        item_info::ItemInfo,
-        orders::Order,
-        statistic_item::{
-            StatisticItem,
-            StatisticItemPayload,
-        },
-    },
+    Error,
+    Queryable,
+    ResponseBase,
+    models::item::Item,
 };
 
-#[cfg(feature = "market_cache")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
-#[doc = "A cached value"]
-pub enum CacheValue {
-    /// `StatisticItem`
-    StatisticItem(Arc<StatisticItem>),
-    /// `ItemInfo`
-    ItemInfo(Arc<ItemInfo>),
-    /// Items
-    Items(Arc<Vec<Item>>),
-    /// Orders
-    Orders(Arc<Vec<Order>>),
-}
-
-/// The client
-#[derive(Debug, Clone)]
-#[cfg_attr(not(feature = "market_cache"), derive(Default))]
 pub struct Client {
-    session: reqwest::Client,
+    client: reqwest::Client,
+
+    #[cfg(feature = "market_ratelimit")]
+    ratelimiter: DefaultDirectRateLimiter,
+
     #[cfg(feature = "market_cache")]
-    cache: moka::future::Cache<String, CacheValue>,
+    cache: Cache<TypeId, Arc<dyn Any + Send + Sync>>,
+}
+
+impl Default for Client {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Client {
-    /// Creates a new [Client]
     #[must_use]
+    #[cfg_attr(
+        feature = "market_ratelimit",
+        expect(
+            clippy::missing_panics_doc,
+            reason = "NonZeroU32::new(3) is guaranteed to succeed"
+        )
+    )]
     pub fn new() -> Self {
-        Self::default()
-    }
-}
+        Self {
+            client: reqwest::Client::new(),
 
-#[cfg(not(feature = "market_cache"))]
-impl Client {
-    /// Fetches the statistics of an item via its url_name
-    pub async fn item_statistics(&self, item_url: &str) -> Result<StatisticItem, ApiError> {
-        let response = self
-            .session
-            .get(format!(
-                "https://api.warframe.market/v1/items/{item_url}/statistics"
-            ))
-            .send()
-            .await?;
+            #[cfg(feature = "market_ratelimit")]
+            ratelimiter: DefaultDirectRateLimiter::direct(Quota::per_second(
+                NonZeroU32::new(3).unwrap(),
+            )),
 
-        if response.status().is_success() {
-            let json_result = response.json::<StatisticItemPayload>().await?;
-            Ok(json_result.payload)
-        } else {
-            Err(response.status().into())
+            #[cfg(feature = "market_cache")]
+            cache: Cache::builder()
+                .time_to_live(Duration::from_secs(600))
+                .max_capacity(1000)
+                .build(),
         }
     }
 
-    /// Fetches info about an item via its url_name
-    pub async fn item_info(&self, item_url: &str) -> Result<ItemInfo, ApiError> {
-        let response = self
-            .session
-            .get(format!("https://api.warframe.market/v1/items/{item_url}"))
-            .send()
-            .await?;
-
-        if response.status().is_success() {
-            let json_result = response
-                .json::<crate::market::models::ItemInfoPayload>()
-                .await?;
-            Ok(json_result.payload.item)
-        } else {
-            Err(response.status().into())
-        }
-    }
-
-    /// Fetches all tradable items
-    pub async fn items(&self) -> Result<Vec<Item>, ApiError> {
-        let response = self
-            .session
-            .get("https://api.warframe.market/v1/items")
-            .send()
-            .await?;
-
-        if response.status().is_success() {
-            let json_result = response
-                .json::<crate::market::models::ItemsPayload>()
-                .await?;
-            Ok(json_result.payload.items)
-        } else {
-            Err(response.status().into())
-        }
-    }
-
-    /// Fetches all orders of a specific item via its url_name
-    pub async fn orders(&self, item_url: &str) -> Result<Vec<Order>, ApiError> {
-        let response = self
-            .session
-            .get(format!(
-                "https://api.warframe.market/v1/items/{item_url}/orders"
-            ))
-            .send()
-            .await?;
-
-        if response.status().is_success() {
-            let json_result = response
-                .json::<crate::market::models::OrderPayload>()
-                .await?;
-            Ok(json_result.payload.orders)
-        } else {
-            Err(response.status().into())
-        }
-    }
-}
-
-/// The cached version of the client
-#[cfg(feature = "market_cache")]
-pub mod cached {
-    use std::sync::Arc;
-
-    pub use moka;
-    use moka::future::Cache;
-    use reqwest::Response;
-
-    use super::{
-        ApiError,
-        CacheValue,
-        Client,
-        Duration,
-        Item,
-        ItemInfo,
-        Order,
-        StatisticItem,
-        StatisticItemPayload,
-    };
-    use crate::market::models::{
-        item::ItemsPayload,
-        item_info::ItemInfoPayload,
-        orders::OrderPayload,
-    };
-
-    /// Whether an item has been gotten via a cache hit or freshly fetched.
-    pub enum FetchResult {
-        /// Cache hit
-        Cached(CacheValue),
-        /// Fetched
-        Fetched(Result<Response, ApiError>),
+    #[cfg(feature = "market_ratelimit")]
+    async fn ratelimit(&self) {
+        self.ratelimiter.until_ready().await;
     }
 
     #[cfg(feature = "market_cache")]
-    impl Client {
-        /// Creates a new client with a custom cache
-        #[must_use]
-        pub fn new_with_cache(cache: Cache<String, CacheValue>) -> Self {
-            Self {
-                session: reqwest::Client::default(),
-                cache,
-            }
-        }
-
-        async fn get_cached_or_new(&self, url: &str) -> FetchResult {
-            if let Some(value) = self.cache.get(url).await {
-                FetchResult::Cached(value)
-            } else {
-                FetchResult::Fetched(self.session.get(url).send().await.map_err(ApiError::from))
-            }
-        }
-
-        /// Fetches the statistics of an item via its `url_name`
-        pub async fn item_statistics(
-            &self,
-            item_url: &str,
-        ) -> Result<Arc<StatisticItem>, ApiError> {
-            match self
-                .get_cached_or_new(&format!(
-                    "https://api.warframe.market/v1/items/{item_url}/statistics"
-                ))
-                .await
-            {
-                FetchResult::Cached(value) => {
-                    if let CacheValue::StatisticItem(item) = value {
-                        Ok(item)
-                    } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                        // msg
-                    }
-                }
-                FetchResult::Fetched(response) => {
-                    let response = response?;
-                    if response.status().is_success() {
-                        let url = response.url().to_string();
-                        let json_result = response.json::<StatisticItemPayload>().await?;
-
-                        let item = Arc::new(json_result.payload);
-                        self.cache
-                            .insert(url, CacheValue::StatisticItem(item.clone()))
-                            .await;
-                        Ok(item)
-                    } else {
-                        Err(response.status().into())
-                    }
-                }
-            }
-        }
-
-        /// Fetches info about an item via its `url_name`
-        pub async fn item_info(&self, item_url: &str) -> Result<Arc<ItemInfo>, ApiError> {
-            match self
-                .get_cached_or_new(&format!("https://api.warframe.market/v1/items/{item_url}"))
-                .await
-            {
-                FetchResult::Cached(value) => {
-                    if let CacheValue::ItemInfo(item) = value {
-                        Ok(item)
-                    } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                        // msg
-                    }
-                }
-                FetchResult::Fetched(response) => {
-                    let response = response?;
-                    if response.status().is_success() {
-                        let url = response.url().to_string();
-                        let json_result = response.json::<ItemInfoPayload>().await?;
-
-                        let item = Arc::new(json_result.payload.item);
-                        self.cache
-                            .insert(url, CacheValue::ItemInfo(item.clone()))
-                            .await;
-                        Ok(item)
-                    } else {
-                        Err(response.status().into())
-                    }
-                }
-            }
-        }
-
-        /// Fetches all tradable items
-        pub async fn items(&self) -> Result<Arc<Vec<Item>>, ApiError> {
-            match self
-                .get_cached_or_new("https://api.warframe.market/v1/items")
-                .await
-            {
-                FetchResult::Cached(value) => {
-                    if let CacheValue::Items(item) = value {
-                        Ok(item)
-                    } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                        // msg
-                    }
-                }
-                FetchResult::Fetched(response) => {
-                    let response = response?;
-                    if response.status().is_success() {
-                        let url = response.url().to_string();
-                        let json_result = response.json::<ItemsPayload>().await?;
-
-                        let item = Arc::new(json_result.payload.items);
-                        self.cache
-                            .insert(url, CacheValue::Items(item.clone()))
-                            .await;
-                        Ok(item)
-                    } else {
-                        Err(response.status().into())
-                    }
-                }
-            }
-        }
-
-        /// Fetches all orders of a specific item via its `url_name`
-        pub async fn orders(&self, item_url: &str) -> Result<Arc<Vec<Order>>, ApiError> {
-            match self
-                .get_cached_or_new(&format!(
-                    "https://api.warframe.market/v1/items/{item_url}/orders"
-                ))
-                .await
-            {
-                FetchResult::Cached(value) => {
-                    if let CacheValue::Orders(item) = value {
-                        Ok(item)
-                    } else {
-                        panic!("FATAL: Wrong cache insertion was made!") // TODO: Improve this error
-                        // msg
-                    }
-                }
-                FetchResult::Fetched(response) => {
-                    let response = response?;
-                    if response.status().is_success() {
-                        let url = response.url().to_string();
-                        let json_result = response.json::<OrderPayload>().await?;
-
-                        let item = Arc::new(json_result.payload.orders);
-                        self.cache
-                            .insert(url, CacheValue::Orders(item.clone()))
-                            .await;
-                        Ok(item)
-                    } else {
-                        Err(response.status().into())
-                    }
-                }
-            }
-        }
+    async fn get_from_cache<T>(&self) -> Option<T>
+    where
+        T: 'static + Send + Sync + Clone,
+    {
+        self.cache
+            .get(&TypeId::of::<T>())
+            .await
+            .and_then(|item| item.downcast_ref::<T>().cloned())
     }
 
     #[cfg(feature = "market_cache")]
-    impl Default for Client {
-        fn default() -> Self {
-            Self {
-                session: reqwest::Client::default(),
-                cache: Cache::builder()
-                    .max_capacity(10_000)
-                    .time_to_live(Duration::from_secs(1800))
-                    .name("warframe_market_cache")
-                    .build(),
+    async fn insert_into_cache<T>(&self, data: T)
+    where
+        T: 'static + Send + Sync + Clone,
+    {
+        self.cache.insert(TypeId::of::<T>(), Arc::new(data)).await;
+    }
+
+    /// Fetches the data of a queryable model.
+    ///
+    /// Note that this function will not cache the data.
+    pub async fn fetch<T>(&self) -> Result<T::Data, Error>
+    where
+        T: Queryable,
+        T::Data: Send + Sync + 'static,
+    {
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.get_from_cache::<T::Data>().await {
+            tracing::debug!(t = type_name::<T>(), "Cache hit");
+            return Ok(data);
+        }
+
+        ratelimit!(self);
+
+        let fetched = T::query(&self.client).await;
+
+        #[cfg(feature = "market_cache")]
+        if let Ok(ref data) = fetched {
+            self.insert_into_cache(data.clone()).await;
+        }
+
+        fetched
+    }
+
+    /// Fetches an item by its slug.
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_item(&self, item_slug: &str) -> Result<Option<Item>, Error> {
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.get_from_cache::<Item>().await {
+            tracing::debug!(t = type_name::<Item>(), "Cache hit");
+            return Ok(Some(data));
+        }
+
+        ratelimit!(self);
+
+        let response = self
+            .client
+            .get(format!("https://api.warframe.market/v2/item/{item_slug}"))
+            .send()
+            .await?
+            .json::<ResponseBase<Item>>()
+            .await?;
+
+        match response.error {
+            Some(error) if error == "app.item.notFound" => Ok(None),
+            Some(error) => Err(Error::Api(error)),
+            None => {
+                let res = response.data.map(Some).ok_or(Error::EmptyErrorAndData);
+                #[cfg(feature = "market_cache")]
+                if let Ok(Some(ref item)) = res {
+                    self.insert_into_cache(item.clone()).await;
+                    tracing::debug!(t = type_name::<Item>(), "Cache insertion");
+                }
+
+                res
             }
         }
+    }
+}
+
+macro_rules! ratelimit {
+    ($self:expr) => {
+        #[cfg(feature = "market_ratelimit")]
+        $self.ratelimit().await;
+    };
+}
+
+use ratelimit;
+
+#[cfg(test)]
+mod test {
+    use super::Client;
+    use crate::market::{
+        error::Error,
+        queryable::ItemShort,
+    };
+
+    #[tokio::test]
+    async fn test_cache() -> Result<(), Error> {
+        tracing_subscriber::fmt()
+            .with_max_level(tracing::Level::DEBUG)
+            .init();
+
+        let client = Client::new();
+
+        let a = client.fetch::<ItemShort>().await?;
+        let b = client.fetch::<ItemShort>().await?;
+
+        assert_eq!(a, b);
+
+        Ok(())
     }
 }

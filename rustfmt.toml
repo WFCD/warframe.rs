@@ -15,3 +15,4 @@ group_imports = "StdExternalCrate"
 use_field_init_shorthand = true
 format_macro_bodies = true
 format_macro_matchers = true
+# struct_field_align_threshold = 20

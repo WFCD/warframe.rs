@@ -1,23 +1,20 @@
-//! This module defines error types
+use thiserror::Error;
 
-/// The market's error type
-#[derive(Debug, thiserror::Error)]
-pub enum ApiError {
-    /// An error from the sent request
-    #[error("Couldn't send request: {0}")]
-    FaultyRequest(#[from] reqwest::Error),
+#[derive(Debug, Error)]
+#[error(transparent)]
+pub enum Error {
+    Reqwest(#[from] reqwest::Error),
+    Serde(#[from] serde_json::Error),
 
-    /// An error that occurs when the deserialization of `serde_json` fails
-    #[error("Couldn't deserialize json body: {0}")]
-    FailedDeserialization(#[from] serde_json::Error),
+    #[error("API responded with error: {0}")]
+    Api(String),
 
-    /// Any error directly from the API (status code only)
-    #[error("Error response from the API: {0}")]
-    ApiError(reqwest::StatusCode),
+    /// The API has an error field, which may be empty.
+    /// If the error field is empty, the data field should not be empty.
+    ///
+    /// This error represents the case where the both fields are empty.
+    #[error("API responded with both an empty error and empty data")]
+    EmptyErrorAndData,
 }
 
-impl From<reqwest::StatusCode> for ApiError {
-    fn from(value: reqwest::StatusCode) -> Self {
-        ApiError::ApiError(value)
-    }
-}
+pub type Result<T> = std::result::Result<T, Error>;

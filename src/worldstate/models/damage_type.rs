@@ -7,7 +7,9 @@ macro_rules! unordered_pattern {
     };
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::From, Hash)]
+#[derive(
+    Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::From, Hash, derive_more::Display,
+)]
 #[serde(untagged)]
 pub enum DamageType {
     // Physical Damage

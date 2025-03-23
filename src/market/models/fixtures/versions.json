@@ -1,0 +1,23 @@
+{
+    "apiVersion": "0.12.2",
+    "data": {
+        "id": "67dd61cecedcd0be6d135927",
+        "apps": {
+            "ios": "0.0.1",
+            "android": "0.0.1",
+            "minIos": "",
+            "minAndroid": ""
+        },
+        "collections": {
+            "items": "MjAyNS0wMy0yMVQxMjo1NTo0Mg==",
+            "rivens": "MjAyNS0wMy0yMFQwMDo1ODo1OQ==",
+            "liches": "MjAyNC0xMS0yNVQyMDowODowMQ==",
+            "sisters": "MjAyNS0wMy0yMFQwMDoxODo0OQ==",
+            "missions": "MjAyNS0wMy0yMVQxMjo0OToyNw==",
+            "npcs": "MjAyNS0wMy0yMFQwMDoxNDowMg==",
+            "locations": "MjAyNS0wMy0yMVQxMjo1NTo0Mg=="
+        },
+        "updatedAt": "2025-03-21T12:55:42Z"
+    },
+    "error": null
+}
