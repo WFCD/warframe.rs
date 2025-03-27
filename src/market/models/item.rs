@@ -1,7 +1,4 @@
-use serde::{
-    Deserialize,
-    Serialize,
-};
+use serde::Deserialize;
 
 use super::i18n::I18N;
 
@@ -40,7 +37,7 @@ pub struct Item {
     pub i18n: I18N<ItemI18N>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Clone, Hash)]
 #[serde(rename_all = "camelCase")]
 pub struct ItemI18N {
     pub name: String,
