@@ -1,8 +1,14 @@
 use std::collections::HashMap;
 
+use derive_more::derive::{
+    Display,
+    FromStr,
+};
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Clone, Copy, Hash)]
+#[derive(
+    Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Clone, Copy, Hash, FromStr, Display, Default,
+)]
 pub enum Language {
     #[serde(rename = "ko")]
     Ko,
@@ -27,6 +33,7 @@ pub enum Language {
     #[serde(rename = "uk")]
     Uk,
     #[serde(rename = "en")]
+    #[default]
     En,
 }
 

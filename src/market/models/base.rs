@@ -3,6 +3,7 @@ use serde::{
     de::DeserializeOwned,
 };
 
+use super::i18n::Language;
 use crate::market::error::Error;
 
 #[derive(Debug, Deserialize, PartialEq, PartialOrd)]
@@ -17,14 +18,18 @@ pub trait Endpoint {
     fn endpoint() -> &'static str;
 }
 
-pub trait Queryable: Endpoint + DeserializeOwned {
+pub trait Queryable: Endpoint {
     type Data: DeserializeOwned + Clone;
 
     #[must_use]
-    fn query(client: &reqwest::Client) -> impl Future<Output = Result<Self::Data, Error>> + Send {
-        async {
+    fn query(
+        client: &reqwest::Client,
+        language: Language,
+    ) -> impl Future<Output = Result<Self::Data, Error>> + Send {
+        async move {
             let response = client
                 .get(Self::endpoint())
+                .header("Language", language.to_string())
                 .send()
                 .await?
                 .json::<ResponseBase<Self::Data>>()

@@ -12,7 +12,7 @@ pub enum Error {
     /// The API has an error field, which may be empty.
     /// If the error field is empty, the data field should not be empty.
     ///
-    /// This error represents the case where the both fields are empty.
+    /// This error represents the case where the both fields are empty. (should not happen though)
     #[error("API responded with both an empty error and empty data")]
     EmptyErrorAndData,
 }

@@ -2,7 +2,7 @@
 name = "warframe-macros"
 version = "6.2.0"
 edition = "2024"
-description = "An async crate to wrap Warframe's Worldstate API."
+description = "Macros for the `warframe` crate."
 readme = "../README.md"
 documentation = "https://docs.rs/warframe"
 homepage = "https://docs.rs/warframe"
