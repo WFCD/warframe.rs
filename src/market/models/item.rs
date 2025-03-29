@@ -52,17 +52,14 @@ pub struct ItemI18N {
 mod test {
 
     use super::Item;
-    use crate::market::{
-        error::Error,
-        models::base::ResponseBase,
-    };
+    use crate::market::models::ResponseBase;
 
     #[rstest::rstest]
     fn test_item(
         #[files("src/market/models/fixtures/item.json")]
         #[mode = str]
         json: &str,
-    ) -> Result<(), Error> {
+    ) -> Result<(), serde_json::Error> {
         serde_json::from_str::<ResponseBase<Item>>(json)?;
 
         Ok(())
