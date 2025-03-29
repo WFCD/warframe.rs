@@ -6,6 +6,7 @@ pub enum Error {
     /// A reqwest error
     Reqwest(#[from] reqwest::Error),
 
+    /// The [error](crate::market::models::ResponseBase::error) field of the API's base response
     #[error("API responded with error: {0}")]
     Api(String),
 

@@ -38,6 +38,7 @@ use crate::market::{
 };
 
 type StdResult<T, E> = std::result::Result<T, E>;
+type Slugs = Arc<HashSet<String>>;
 
 #[derive(Debug, Builder)]
 #[builder(pattern = "owned")]
@@ -79,7 +80,7 @@ pub struct Client {
             .max_capacity(1000)
             .build()
     )]
-    slug_cache: Cache<(), Arc<HashSet<String>>>,
+    slug_cache: Cache<(), Slugs>,
 }
 
 impl Default for Client {
@@ -144,7 +145,7 @@ impl Client {
     /// # Errors
     ///
     /// This function will return an error if the request fails or if the API returns an error.
-    pub async fn fetch_item(&self, item_slug: &str) -> Result<Option<Item>> {
+    pub async fn fetch_item<S: AsRef<str>>(&self, item_slug: &S) -> Result<Option<Item>> {
         self.fetch_item_using_language(item_slug, Language::En)
             .await
     }
@@ -173,12 +174,12 @@ impl Client {
     /// # Errors
     ///
     /// This function will return an error if the request fails or if the API returns an error.
-    pub async fn fetch_item_using_language(
+    pub async fn fetch_item_using_language<S: AsRef<str>>(
         &self,
-        slug: &str,
+        slug: &S,
         language: Language,
     ) -> Result<Option<Item>> {
-        let endpoint = format!("/item/{slug}");
+        let endpoint = format!("/item/{}", slug.as_ref());
 
         try_get_cache!(option self, Item, CacheKey::new(language, &endpoint));
 
@@ -215,8 +216,12 @@ impl Client {
     ///
     /// # Errors
     /// See [Error](crate::market::error::Error) for more information.
-    pub async fn set_items_of(&self, slug: &str, language: Language) -> Result<Option<SetItems>> {
-        let endpoint = format!("/item/{slug}/set");
+    pub async fn set_items_of<S: AsRef<str>>(
+        &self,
+        slug: &S,
+        language: Language,
+    ) -> Result<Option<SetItems>> {
+        let endpoint = format!("/item/{}/set", slug.as_ref());
 
         try_get_cache!(option self, SetItems, CacheKey::new(language, &endpoint));
 
@@ -271,7 +276,7 @@ impl Client {
         Ok(items)
     }
 
-    async fn get_slugs(&self) -> Result<Arc<HashSet<String>>> {
+    async fn get_slugs(&self) -> Result<Slugs> {
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.slug_cache.get(&()).await {
             tracing::debug!("cache hit for slugs");
@@ -302,8 +307,8 @@ impl Client {
     ///
     /// # Errors
     /// Whenever [items](crate::market::client::Client::items) errors.
-    pub async fn is_slug_valid(&self, slug: &str) -> Result<bool> {
-        Ok(self.get_slugs().await?.contains(slug))
+    pub async fn is_slug_valid<S: AsRef<str>>(&self, slug: &S) -> Result<bool> {
+        Ok(self.get_slugs().await?.contains(slug.as_ref()))
     }
 
     /// Invalidates the items cache and all dependant caches (mainly the slug cache)
