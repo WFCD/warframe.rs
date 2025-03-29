@@ -3,8 +3,8 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 #[error(transparent)]
 pub enum Error {
+    /// A reqwest error
     Reqwest(#[from] reqwest::Error),
-    Serde(#[from] serde_json::Error),
 
     #[error("API responded with error: {0}")]
     Api(String),

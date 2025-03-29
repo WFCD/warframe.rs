@@ -1,17 +1,7 @@
 use serde::Deserialize;
 
-use super::{
-    base::{
-        impl_endpoint,
-        impl_queryable,
-    },
-    i18n::I18N,
-};
+use super::i18n::I18N;
 
-impl_endpoint!(ItemShort, "/items");
-impl_queryable!(ItemShort, Array);
-
-/// Represents the /items endpoint
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct ItemShort {
@@ -65,17 +55,14 @@ pub struct ItemShortI18N {
 #[cfg(test)]
 mod test {
     use super::ItemShort;
-    use crate::market::{
-        error::Error,
-        models::base::ResponseBase,
-    };
+    use crate::market::models::ResponseBase;
 
     #[rstest::rstest]
     fn test_item_short(
         #[files("src/market/models/fixtures/items.json")]
         #[mode = str]
         json: &str,
-    ) -> Result<(), Error> {
+    ) -> Result<(), serde_json::Error> {
         serde_json::from_str::<ResponseBase<Vec<ItemShort>>>(json)?;
 
         Ok(())

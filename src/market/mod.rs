@@ -12,16 +12,17 @@ pub use error::{
     Error,
     Result,
 };
-pub use models::base::{
-    Endpoint,
+pub use models::{
     Queryable,
     ResponseBase,
 };
 
+/// Re-export of all the models that are queryable
 pub mod queryable {
     pub use super::models::{
         item::Item,
         item_short::ItemShort,
+        set_items::SetItems,
         versions::Versions,
     };
 }

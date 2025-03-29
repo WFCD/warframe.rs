@@ -1,12 +1,8 @@
 use serde::Deserialize;
 
-use super::base::{
-    impl_endpoint,
-    impl_queryable,
-};
+use super::impl_queryable;
 
-impl_endpoint!(Versions, "/versions");
-impl_queryable!(Versions, Object);
+impl_queryable!(Versions, Object, "/versions");
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -46,17 +42,14 @@ pub struct Collections {
 #[cfg(test)]
 mod test {
     use super::Versions;
-    use crate::market::{
-        error::Error,
-        models::base::ResponseBase,
-    };
+    use crate::market::models::ResponseBase;
 
     #[rstest::rstest]
     fn test_versions(
         #[files("src/market/models/fixtures/versions.json")]
         #[mode = str]
         json: &str,
-    ) -> Result<(), Error> {
+    ) -> Result<(), serde_json::Error> {
         serde_json::from_str::<ResponseBase<Versions>>(json)?;
 
         Ok(())
