@@ -12,7 +12,7 @@ rust-version = "1.85"
 
 
 [features]
-default = ["market_ratelimit"]
+default = ["market_ratelimit", "market_cache"]
 
 full = ["market_ratelimit", "market_cache"]
 

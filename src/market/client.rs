@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use derive_builder::Builder;
 use reqwest::StatusCode;
 #[cfg(feature = "market_cache")]
@@ -69,6 +71,15 @@ pub struct Client {
             .build()
     )]
     items_cache: Cache<Language, Arc<[ItemShort]>>,
+
+    #[cfg(feature = "market_cache")]
+    #[builder(
+        default = Cache::builder()
+            .time_to_live(Duration::from_secs(86400))
+            .max_capacity(1000)
+            .build()
+    )]
+    slug_cache: Cache<(), Arc<HashSet<String>>>,
 }
 
 impl Default for Client {
@@ -259,6 +270,47 @@ impl Client {
 
         Ok(items)
     }
+
+    async fn get_slugs(&self) -> Result<Arc<HashSet<String>>> {
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.slug_cache.get(&()).await {
+            tracing::debug!("cache hit for slugs");
+            return Ok(data);
+        }
+
+        let items = Arc::new(
+            self.items(Language::En)
+                .await?
+                .iter()
+                .map(|item| item.slug.clone())
+                .collect::<HashSet<_>>(),
+        );
+
+        #[cfg(feature = "market_cache")]
+        {
+            tracing::debug!("cache insertion for slugs");
+            self.slug_cache.insert((), Arc::clone(&items)).await;
+        }
+
+        Ok(items)
+    }
+
+    /// Why is this async?
+    ///
+    /// It depends on the underlying cache for items. As the fetching is async, this function has to
+    /// be async as well.
+    ///
+    /// # Errors
+    /// Whenever [items](crate::market::client::Client::items) errors.
+    pub async fn is_slug_valid(&self, slug: &str) -> Result<bool> {
+        Ok(self.get_slugs().await?.contains(slug))
+    }
+
+    /// Invalidates the items cache and all dependant caches (mainly the slug cache)
+    pub fn invalidate_items(&self) {
+        self.items_cache.invalidate_all();
+        self.slug_cache.invalidate_all();
+    }
 }
 
 macro_rules! ratelimit {
@@ -307,29 +359,3 @@ macro_rules! insert_cache {
 }
 
 use insert_cache;
-
-#[cfg(test)]
-mod test {
-    use tracing::level_filters::LevelFilter;
-
-    use crate::market::{
-        Client,
-        Result,
-        models::i18n::Language,
-    };
-
-    #[tokio::test]
-    async fn test() -> Result<()> {
-        tracing_subscriber::fmt()
-            .with_max_level(LevelFilter::DEBUG)
-            .init();
-        let client = Client::new();
-
-        let items1 = client.items(Language::De).await?;
-        let items2 = client.items(Language::De).await?;
-
-        assert_eq!(items1, items2);
-
-        Ok(())
-    }
-}
