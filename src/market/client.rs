@@ -1,7 +1,6 @@
-use std::collections::HashSet;
-
 use derive_builder::Builder;
 use reqwest::StatusCode;
+use serde::de::DeserializeOwned;
 #[cfg(feature = "market_cache")]
 use {
     super::cache::CacheKey,
@@ -9,6 +8,7 @@ use {
     moka::future::Cache,
     std::{
         any::Any,
+        collections::HashSet,
         sync::Arc,
         time::Duration,
     },
@@ -38,6 +38,8 @@ use crate::market::{
 };
 
 type StdResult<T, E> = std::result::Result<T, E>;
+
+#[cfg(feature = "market_cache")]
 type Slugs = Arc<HashSet<String>>;
 
 #[derive(Debug, Builder)]
@@ -102,14 +104,21 @@ impl Client {
     }
 
     #[cfg(feature = "market_cache")]
-    async fn get_from_cache<T>(&self, key: CacheKey) -> Option<T>
+    async fn get_from_cache<T>(&self, key: &CacheKey) -> Option<T>
     where
         T: 'static + Send + Sync + Clone,
     {
-        self.cache
-            .get(&key)
+        if let Some(item) = self
+            .cache
+            .get(key)
             .await
             .and_then(|item| item.downcast_ref::<T>().cloned())
+        {
+            tracing::debug!("cache hit for {key:?}");
+            return Some(item);
+        }
+
+        None
     }
 
     #[cfg(feature = "market_cache")]
@@ -117,6 +126,7 @@ impl Client {
     where
         T: 'static + Send + Sync + Clone,
     {
+        tracing::debug!("cache insertion for {key:?}");
         self.cache.insert(key, Arc::new(data)).await;
     }
 
@@ -158,13 +168,20 @@ impl Client {
     where
         T: Queryable,
     {
-        try_get_cache!(self, T::Data, CacheKey::new(language, T::ENDPOINT));
+        #[cfg(feature = "market_cache")]
+        let key = CacheKey::new(language, T::ENDPOINT);
+
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.get_from_cache::<T::Data>(&key).await {
+            return Ok(data);
+        }
 
         ratelimit!(self);
 
         let data = T::query(&self.client, language).await?;
 
-        insert_cache!(self, CacheKey::new(language, T::ENDPOINT), data.clone());
+        #[cfg(feature = "market_cache")]
+        self.insert_into_cache(key, data.clone()).await;
 
         Ok(data)
     }
@@ -181,27 +198,7 @@ impl Client {
     ) -> Result<Option<Item>> {
         let endpoint = format!("/item/{}", slug.as_ref());
 
-        try_get_cache!(option self, Item, CacheKey::new(language, &endpoint));
-
-        ratelimit!(self);
-
-        let response = self.fetch_from_api(&endpoint, language).await?;
-
-        if response.status() == StatusCode::NOT_FOUND {
-            return Ok(None);
-        }
-
-        let item = response.json::<ResponseBase<Item>>().await?;
-
-        if let Some(error) = item.error {
-            return Err(Error::Api(error));
-        }
-
-        let item = item.data.ok_or(Error::EmptyErrorAndData)?;
-
-        insert_cache!(self, CacheKey::new(language, &endpoint), item.clone());
-
-        Ok(Some(item))
+        self.try_get_item(&endpoint, language).await
     }
 
     /// Retrieve Information on Item Sets
@@ -223,39 +220,54 @@ impl Client {
     ) -> Result<Option<SetItems>> {
         let endpoint = format!("/item/{}/set", slug.as_ref());
 
-        try_get_cache!(option self, SetItems, CacheKey::new(language, &endpoint));
+        self.try_get_item(&endpoint, language).await
+    }
+
+    async fn try_get_item<T>(&self, endpoint: &str, language: Language) -> Result<Option<T>>
+    where
+        T: Send + Sync + Clone + DeserializeOwned + 'static,
+    {
+        #[cfg(feature = "market_cache")]
+        let key = CacheKey::new(language, endpoint);
+
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.get_from_cache::<T>(&key).await {
+            return Ok(Some(data));
+        }
 
         ratelimit!(self);
 
-        let response = self.fetch_from_api(&endpoint, language).await?;
+        let response = self.fetch_from_api(endpoint, language).await?;
 
         if response.status() == StatusCode::NOT_FOUND {
             return Ok(None);
         }
 
-        let item = response.json::<ResponseBase<SetItems>>().await?;
+        let item = response.json::<ResponseBase<T>>().await?;
+        match item.data {
+            Some(data) => {
+                #[cfg(feature = "market_cache")]
+                self.insert_into_cache(key, data.clone()).await;
 
-        if let Some(error) = item.error {
-            return Err(Error::Api(error));
+                Ok(Some(data))
+            }
+            None => Err(Error::Api(item.error.ok_or(Error::EmptyErrorAndData)?)),
         }
-
-        let item = item.data.ok_or(Error::EmptyErrorAndData)?;
-
-        insert_cache!(self, CacheKey::new(language, &endpoint), item.clone());
-
-        Ok(Some(item))
     }
 
     /// Returns all available items on warframe.market.
     ///
     /// # Errors
     /// See [Error](crate::market::error::Error) for more information.
+    #[cfg(feature = "market_cache")]
     pub async fn items(&self, language: Language) -> Result<Arc<[ItemShort]>> {
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.items_cache.get(&language).await {
             tracing::debug!("cache hit for items with language `{:?}`", language);
             return Ok(data);
         }
+
+        ratelimit!(self);
 
         let response = self.fetch_from_api("/items", language).await?;
 
@@ -276,6 +288,7 @@ impl Client {
         Ok(items)
     }
 
+    #[cfg(feature = "market_cache")]
     async fn get_slugs(&self) -> Result<Slugs> {
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.slug_cache.get(&()).await {
@@ -302,16 +315,18 @@ impl Client {
 
     /// Why is this async?
     ///
-    /// It depends on the underlying cache for items. As the fetching is async, this function has to
-    /// be async as well.
+    /// -> It depends on the underlying cache for items. As the fetching is async, this function has
+    /// to be async as well.
     ///
     /// # Errors
     /// Whenever [items](crate::market::client::Client::items) errors.
+    #[cfg(feature = "market_cache")]
     pub async fn is_slug_valid<S: AsRef<str>>(&self, slug: &S) -> Result<bool> {
         Ok(self.get_slugs().await?.contains(slug.as_ref()))
     }
 
     /// Invalidates the items cache and all dependant caches (mainly the slug cache)
+    #[cfg(feature = "market_cache")]
     pub fn invalidate_items(&self) {
         self.items_cache.invalidate_all();
         self.slug_cache.invalidate_all();
@@ -326,41 +341,3 @@ macro_rules! ratelimit {
 }
 
 use ratelimit;
-
-macro_rules! try_get_cache {
-    ($self:expr, $ty:ty, $key:expr) => {
-        #[cfg(feature = "market_cache")]
-        let __key = $key;
-
-        #[cfg(feature = "market_cache")]
-        if let Some(data) = $self.get_from_cache::<$ty>(__key.clone()).await {
-            tracing::debug!("cache hit for {__key:?}",);
-            return Ok(data);
-        }
-    };
-
-    (option $self:expr, $ty:ty, $key:expr) => {
-        #[cfg(feature = "market_cache")]
-        let __key = $key;
-
-        #[cfg(feature = "market_cache")]
-        if let Some(data) = $self.get_from_cache::<$ty>(__key.clone()).await {
-            tracing::debug!("cache hit for {__key:?}",);
-            return Ok(Some(data));
-        }
-    };
-}
-
-use try_get_cache;
-
-macro_rules! insert_cache {
-    ($self:expr, $key:expr, $data:expr) => {
-        #[cfg(feature = "market_cache")]
-        {
-            tracing::debug!("cache insertion for {:?}", $key);
-            $self.insert_into_cache($key, $data).await;
-        }
-    };
-}
-
-use insert_cache;
