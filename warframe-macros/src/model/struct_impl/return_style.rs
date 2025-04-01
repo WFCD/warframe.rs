@@ -25,9 +25,9 @@ impl Parse for ReturnStyle {
             .get_ident()
             .ok_or_else(|| syn::Error::new_spanned(path.clone(), "expected ident"))?;
 
-        match ident.to_string().to_lowercase().as_str() {
-            "object" => Ok(Self::Object),
-            "array" => Ok(Self::Array),
+        match ident.to_string().as_str() {
+            "Object" => Ok(Self::Object),
+            "Array" => Ok(Self::Array),
             _ => Err(syn::Error::new_spanned(
                 ident,
                 "expected `Object` or `Array`",
