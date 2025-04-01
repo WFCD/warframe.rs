@@ -10,7 +10,7 @@ pub struct SteelPathShopItem {
     pub cost: i32,
 }
 
-/// Data about the missions for the current sortie
+/// Data about steel path offerings
 #[model(endpoint = "/steelPath", return_style = Object, timed)]
 pub struct SteelPath {
     /// The current weekly offer

@@ -44,8 +44,7 @@ use super::{
 /// }
 /// ```
 ///
-/// Check [Models](crate::worldstate::models) for an alternative way of
-/// querying/[`fetch`](Client::fetch)ing.
+/// Check the [queryable](crate::worldstate::queryable) module for all queryable types.
 #[derive(Default, Debug, Clone)]
 pub struct Client {
     session: reqwest::Client,

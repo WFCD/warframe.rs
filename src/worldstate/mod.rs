@@ -1,7 +1,6 @@
 //! # The worldstate module
 //!
-//! Get information about various different parts of the game.
-//! Check []
+//! Get information about various parts of the game.
 //!
 //! ## Quickstart
 //! ```rust,no_run
@@ -35,7 +34,7 @@ pub mod language;
 #[cfg(test)]
 pub(crate) mod fixtures;
 
-/// A module that re=exports every type that is queryable
+/// A module that re-exports every type that is queryable
 pub mod queryable {
     pub use super::models::{
         alert::Alert,
