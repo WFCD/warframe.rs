@@ -169,7 +169,7 @@ impl Parse for Args {
             }
         };
 
-        if !timed.value && expiry_attrs.is_some() {
+        if !timed.value && (expiry_attrs.is_some() || activation_attrs.is_some()) {
             return Err(Error::new(
                 Span::call_site(),
                 "`expiry` and `activation` can only be used when `timed` is set to true.",
