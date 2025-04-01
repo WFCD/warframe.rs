@@ -89,7 +89,8 @@ pub enum CombinedElementalDamage {
 }
 
 impl CombinedElementalDamage {
-    /// Breaks down a combined element into both of its [`PrimaryElement`]s.
+    /// Breaks down a combined element into both of its
+    /// [`ElementalDamage`](crate::worldstate::ElementalDamage) components.
     ///
     /// The order in which they are returned follows classic HCET.
     #[must_use]
