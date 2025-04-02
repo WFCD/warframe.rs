@@ -5,6 +5,7 @@ pub mod cambion_drift;
 pub mod cetus;
 pub mod construction_progress;
 pub mod daily_deal;
+pub mod deep_archimedea;
 pub mod event;
 pub mod fissure;
 pub mod flash_sale;
