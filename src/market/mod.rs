@@ -7,6 +7,11 @@ mod client;
 pub mod error;
 pub(crate) mod models;
 
+#[cfg(feature = "market_cache")]
+pub use cache::{
+    SlugContext,
+    Slugs,
+};
 pub use client::Client;
 use derive_more::{
     AsRef,
@@ -33,10 +38,23 @@ pub use models::{
         ItemShort,
         ItemShortI18N,
     },
+    lich_ephemera::LichEphemeraI18N,
+    lich_quirk::LichQuirkI18N,
+    lich_weapon::LichWeaponI18N,
+    location::LocationI18N,
+    mission::MissionI18N,
+    npc::NpcI18N,
     riven::RivenI18N,
+    riven_attribute::{
+        RivenAttributeI18N,
+        Unit,
+    },
     riven_group::RivenGroup,
     riven_type::RivenType,
     set_items::SetItems,
+    sister_ephemera::SisterEphemeraI18N,
+    sister_quirk::SisterQuirkI18N,
+    sister_weapon::SisterWeaponI18N,
     versions::{
         VersionApps,
         VersionCollections,
@@ -46,7 +64,17 @@ pub use models::{
 /// Re-export of all the models that are queryable
 pub mod queryable {
     pub use super::models::{
+        lich_ephemera::LichEphemera,
+        lich_quirk::LichQuirk,
+        lich_weapon::LichWeapon,
+        location::Location,
+        mission::Mission,
+        npc::Npc,
         riven::Riven,
+        riven_attribute::RivenAttribute,
+        sister_ephemera::SisterEphemera,
+        sister_quirk::SisterQuirk,
+        sister_weapon::SisterWeapon,
         versions::Versions,
     };
 }
@@ -56,7 +84,7 @@ pub const BASE_URL: &str = "https://api.warframe.market/v2";
 /// This is a utility newtype struct to help convert user inputs (such as `Acceltra Prime Set`) into
 /// slugs (e.g. `acceltra_prime_set`).
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Display, Into, AsRef)]
-#[as_ref(str)]
+#[as_ref(str, String)]
 pub struct Slug(String);
 
 impl Slug {

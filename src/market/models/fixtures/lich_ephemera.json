@@ -1,0 +1,104 @@
+{
+    "apiVersion": "0.13.0",
+    "data": [
+        {
+            "id": "5e98548a3d9f64004f9136bb",
+            "slug": "vengeful_charge",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaLightningEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_charge.9682a7978dd10f8c63fa160d5ba1660e.webp",
+            "element": "electricity",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Charge Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_charge.68e07295ec11cdb303755a9f26e87f0e.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_charge.68e07295ec11cdb303755a9f26e87f0e.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9854b93d9f64004f9136bd",
+            "slug": "vengeful_shockwave",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaImpactEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_shockwave.7e4b599ef5c6c80a4130fecb9d9283cd.webp",
+            "element": "impact",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Shockwave Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_shockwave.6020e14eb5e9516d4bc6ccf5023c864c.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_shockwave.6020e14eb5e9516d4bc6ccf5023c864c.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9854ec3d9f64004f9136bf",
+            "slug": "vengeful_trickster",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaTricksterEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_trickster.67975a6fe8161b7cd5d7522bfd380bfa.webp",
+            "element": "radiation",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Trickster Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_trickster.3b85b181837a55263dbd3e1a529c39cc.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_trickster.3b85b181837a55263dbd3e1a529c39cc.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e98545e3d9f64004f9136b9",
+            "slug": "vengeful_pull",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaMagneticEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_pull.9845f38d9403bcda43a04618e6f9766b.webp",
+            "element": "magnetic",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Pull Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_pull.e80eed69fd9cc1995a514df3a4e64596.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_pull.e80eed69fd9cc1995a514df3a4e64596.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9854a23d9f64004f9136bc",
+            "slug": "vengeful_chill",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaIceEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_chill.ad315100d13553ec46de9a3da6c1a50d.webp",
+            "element": "cold",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Chill Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_chill.ad1a1cb39a4bc8bf34c7d4c1e18814a0.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_chill.ad1a1cb39a4bc8bf34c7d4c1e18814a0.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9854ce3d9f64004f9136be",
+            "slug": "vengeful_toxin",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaToxinEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_toxin.65b862a6210de26b1ec94243a4b71f48.webp",
+            "element": "toxin",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Toxin Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_toxin.4b0f7027e99675f64183a0abadf28c5e.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_toxin.4b0f7027e99675f64183a0abadf28c5e.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e98546d3d9f64004f9136ba",
+            "slug": "vengeful_flame",
+            "gameRef": "/Lotus/Upgrades/Skins/Effects/Kuva/KuvaFireEphemera",
+            "animation": "lich_ephemeras/animations/vengeful_flame.d2b5e53f9eb160103d354d96b46a14ea.webp",
+            "element": "heat",
+            "i18n": {
+                "en": {
+                    "name": "Vengeful Flame Ephemera",
+                    "icon": "lich_ephemeras/images/vengeful_flame.1c2faa83c219e6d6699524495b578d7f.png",
+                    "thumb": "lich_ephemeras/images/thumbs/vengeful_flame.1c2faa83c219e6d6699524495b578d7f.128x128.png"
+                }
+            }
+        }
+    ],
+    "error": null
+}
