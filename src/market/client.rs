@@ -3,8 +3,8 @@ use reqwest::StatusCode;
 use serde::de::DeserializeOwned;
 #[cfg(feature = "market_cache")]
 use {
+    super::ItemShort,
     super::cache::CacheKey,
-    super::queryable::ItemShort,
     moka::future::Cache,
     std::{
         any::Any,

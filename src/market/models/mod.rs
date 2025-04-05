@@ -1,6 +1,9 @@
 pub mod i18n;
 pub mod item;
 pub mod item_short;
+pub mod riven;
+pub mod riven_group;
+pub mod riven_type;
 pub mod set_items;
 pub mod versions;
 
