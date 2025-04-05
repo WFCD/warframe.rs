@@ -1,6 +1,6 @@
 # warframe.rs
 
-An async crate to wrap the [Worldstate API](https://docs.warframestat.us).
+An async crate to wrap the [Worldstate API](https://docs.warframestat.us) and the [warframe.market API](https://42bytes.notion.site/WFM-Api-v2-Documentation-5d987e4aa2f74b55a80db1a09932459d).
 
 Use this crate if you want to make a Warframe-related rust project that is async.
 
