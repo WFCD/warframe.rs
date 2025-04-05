@@ -46,7 +46,7 @@ pub mod flash_sale;
 pub mod items;
 // mod global_upgrades;
 pub mod damage_type;
-pub mod deep_archimedia;
+pub mod deep_archimedea;
 pub mod global_upgrades;
 pub mod invasion;
 pub mod mission;

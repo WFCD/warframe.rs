@@ -44,7 +44,7 @@ pub mod queryable {
         cetus::Cetus,
         construction_progress::ConstructionProgress,
         daily_deal::DailyDeal,
-        deep_archimedia::DeepArchimedia,
+        deep_archimedea::DeepArchimedea,
         event::Event,
         fissure::Fissure,
         flash_sale::FlashSale,
@@ -82,9 +82,9 @@ pub use models::{
         ElementalDamage,
         PhysicalDamage,
     },
-    deep_archimedia::{
+    deep_archimedea::{
+        DeepArchimedeaMission,
         DeepArchimedeaModifier,
-        DeepArchimediaMission,
     },
     faction::Faction,
     fissure::Tier,
