@@ -21,14 +21,32 @@ use heck::ToSnakeCase;
 pub use models::{
     Queryable,
     ResponseBase,
+    i18n::{
+        I18N,
+        Language,
+    },
+    item::{
+        Item,
+        ItemI18N,
+    },
+    item_short::{
+        ItemShort,
+        ItemShortI18N,
+    },
+    riven::RivenI18N,
+    riven_group::RivenGroup,
+    riven_type::RivenType,
+    set_items::SetItems,
+    versions::{
+        VersionApps,
+        VersionCollections,
+    },
 };
 
 /// Re-export of all the models that are queryable
 pub mod queryable {
     pub use super::models::{
-        item::Item,
-        item_short::ItemShort,
-        set_items::SetItems,
+        riven::Riven,
         versions::Versions,
     };
 }

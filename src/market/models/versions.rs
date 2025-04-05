@@ -8,14 +8,14 @@ impl_queryable!(Versions, Object, "/versions");
 #[serde(rename_all = "camelCase")]
 pub struct Versions {
     pub id: String,
-    pub apps: Apps,
-    pub collections: Collections,
+    pub apps: VersionApps,
+    pub collections: VersionCollections,
     pub updated_at: String,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Apps {
+pub struct VersionApps {
     pub ios: String,
     pub android: String,
     pub min_ios: String,
@@ -23,7 +23,7 @@ pub struct Apps {
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
-pub struct Collections {
+pub struct VersionCollections {
     pub items: String,
 
     pub rivens: String,
