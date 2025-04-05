@@ -3,14 +3,14 @@ use warframe_macros::model;
 use crate::worldstate::MissionType;
 
 #[model(endpoint = "/deepArchimedea", return_style = Object, timed)]
-pub struct DeepArchimedia {
+pub struct DeepArchimedea {
     pub id: String,
-    pub missions: [DeepArchimediaMission; 3],
+    pub missions: [DeepArchimedeaMission; 3],
     pub personal_modifiers: Vec<DeepArchimedeaModifier>,
 }
 
 #[model]
-pub struct DeepArchimediaMission {
+pub struct DeepArchimedeaMission {
     #[serde(rename = "mission")]
     pub r#type: MissionType,
     pub deviation: DeepArchimedeaModifier,
@@ -69,7 +69,7 @@ mod test_deep_archimedea {
     use rstest::rstest;
     use serde_json::from_str;
 
-    use super::DeepArchimedia;
+    use super::DeepArchimedea;
     use crate::worldstate::{
         Queryable,
         fixtures::deep_archimedea::{
@@ -78,7 +78,7 @@ mod test_deep_archimedea {
         },
     };
 
-    type R = <DeepArchimedia as Queryable>::Return;
+    type R = <DeepArchimedea as Queryable>::Return;
 
     #[rstest]
     fn test(deep_archimedea_en: &str) {
