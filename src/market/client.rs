@@ -4,11 +4,29 @@ use serde::de::DeserializeOwned;
 #[cfg(feature = "market_cache")]
 use {
     super::ItemShort,
-    super::cache::CacheKey,
+    super::cache::{
+        CacheKey,
+        SlugContext,
+        Slugs,
+    },
+    super::queryable::LichWeapon,
+    crate::market::{
+        models::{
+            lich_ephemera::LichEphemera,
+            sister_ephemera::SisterEphemera,
+            sister_weapon::SisterWeapon,
+        },
+        queryable::{
+            Location,
+            Mission,
+            Npc,
+        },
+    },
     moka::future::Cache,
+    std::any::type_name,
+    std::collections::HashSet,
     std::{
         any::Any,
-        collections::HashSet,
         sync::Arc,
         time::Duration,
     },
@@ -31,6 +49,7 @@ use super::{
         item::Item,
         set_items::SetItems,
     },
+    queryable::Riven,
 };
 use crate::market::{
     BASE_URL,
@@ -38,9 +57,6 @@ use crate::market::{
 };
 
 type StdResult<T, E> = std::result::Result<T, E>;
-
-#[cfg(feature = "market_cache")]
-type Slugs = Arc<HashSet<String>>;
 
 #[derive(Debug, Builder)]
 #[builder(pattern = "owned")]
@@ -70,7 +86,7 @@ pub struct Client {
     #[builder(
         default = Cache::builder()
             .time_to_live(Duration::from_secs(86400))
-            .max_capacity(1000)
+            .max_capacity(12) // 1 for each language
             .build()
     )]
     items_cache: Cache<Language, Arc<[ItemShort]>>,
@@ -79,10 +95,10 @@ pub struct Client {
     #[builder(
         default = Cache::builder()
             .time_to_live(Duration::from_secs(86400))
-            .max_capacity(1000)
+            .max_capacity(7) // 1 for each slug category
             .build()
     )]
-    slug_cache: Cache<(), Slugs>,
+    slug_cache: Cache<SlugContext, Slugs>,
 }
 
 impl Default for Client {
@@ -95,7 +111,9 @@ impl Client {
     #[must_use]
     #[allow(clippy::missing_panics_doc)]
     pub fn new() -> Self {
-        ClientBuilder::default().build().unwrap()
+        ClientBuilder::default()
+            .build()
+            .expect("default client builder should never fail")
     }
 
     #[must_use]
@@ -155,7 +173,7 @@ impl Client {
     /// # Errors
     ///
     /// This function will return an error if the request fails or if the API returns an error.
-    pub async fn fetch_item<S: AsRef<str>>(&self, item_slug: &S) -> Result<Option<Item>> {
+    pub async fn fetch_item(&self, item_slug: &impl AsRef<str>) -> Result<Option<Item>> {
         self.fetch_item_using_language(item_slug, Language::En)
             .await
     }
@@ -191,9 +209,9 @@ impl Client {
     /// # Errors
     ///
     /// This function will return an error if the request fails or if the API returns an error.
-    pub async fn fetch_item_using_language<S: AsRef<str>>(
+    pub async fn fetch_item_using_language(
         &self,
-        slug: &S,
+        slug: &impl AsRef<str>,
         language: Language,
     ) -> Result<Option<Item>> {
         let endpoint = format!("/item/{}", slug.as_ref());
@@ -213,12 +231,26 @@ impl Client {
     ///
     /// # Errors
     /// See [Error](crate::market::error::Error) for more information.
-    pub async fn set_items_of<S: AsRef<str>>(
+    pub async fn set_items_of(
         &self,
-        slug: &S,
+        slug: &impl AsRef<str>,
         language: Language,
     ) -> Result<Option<SetItems>> {
         let endpoint = format!("/item/{}/set", slug.as_ref());
+
+        self.try_get_item(&endpoint, language).await
+    }
+
+    /// Fetches a riven item by its slug.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_riven_item(
+        &self,
+        slug: &impl AsRef<str>,
+        language: Language,
+    ) -> Result<Option<Riven>> {
+        let endpoint = format!("/riven/weapon/{}", slug.as_ref());
 
         self.try_get_item(&endpoint, language).await
     }
@@ -232,6 +264,11 @@ impl Client {
 
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.get_from_cache::<T>(&key).await {
+            tracing::debug!(
+                "cache hit for {} with language `{}`",
+                type_name::<T>(),
+                language
+            );
             return Ok(Some(data));
         }
 
@@ -247,7 +284,14 @@ impl Client {
         match item.data {
             Some(data) => {
                 #[cfg(feature = "market_cache")]
-                self.insert_into_cache(key, data.clone()).await;
+                {
+                    tracing::debug!(
+                        "cache insertion for {} with language `{}`",
+                        type_name::<T>(),
+                        language
+                    );
+                    self.insert_into_cache(key, data.clone()).await;
+                }
 
                 Ok(Some(data))
             }
@@ -289,28 +333,36 @@ impl Client {
     }
 
     #[cfg(feature = "market_cache")]
-    async fn get_slugs(&self) -> Result<Slugs> {
-        #[cfg(feature = "market_cache")]
-        if let Some(data) = self.slug_cache.get(&()).await {
+    async fn get_slugs(&self, context: SlugContext) -> Result<Slugs> {
+        if let Some(data) = self.slug_cache.get(&context).await {
             tracing::debug!("cache hit for slugs");
             return Ok(data);
         }
 
-        let items = Arc::new(
-            self.items(Language::En)
+        let slugs = match context {
+            SlugContext::Items => self
+                .items(Language::En)
                 .await?
                 .iter()
                 .map(|item| item.slug.clone())
                 .collect::<HashSet<_>>(),
-        );
 
-        #[cfg(feature = "market_cache")]
-        {
-            tracing::debug!("cache insertion for slugs");
-            self.slug_cache.insert((), Arc::clone(&items)).await;
-        }
+            SlugContext::Rivens => to_hashset!(self, Riven),
+            SlugContext::LichWeapons => to_hashset!(self, LichWeapon),
+            SlugContext::LichEphemeras => to_hashset!(self, LichEphemera),
+            SlugContext::SisterWeapons => to_hashset!(self, SisterWeapon),
+            SlugContext::SisterEphemeras => to_hashset!(self, SisterEphemera),
+            SlugContext::Locations => to_hashset!(self, Location),
+            SlugContext::Npcs => to_hashset!(self, Npc),
+            SlugContext::Missions => to_hashset!(self, Mission),
+        };
 
-        Ok(items)
+        let slugs = Arc::new(slugs);
+
+        tracing::debug!("cache insertion for slugs");
+        self.slug_cache.insert(context, Arc::clone(&slugs)).await;
+
+        Ok(slugs)
     }
 
     /// Why is this async?
@@ -318,11 +370,19 @@ impl Client {
     /// -> It depends on the underlying cache for items. As the fetching is async, this function has
     /// to be async as well.
     ///
+    /// IMPORTANT NOTE:
+    /// Slug validity is dependant on the context. For example, general weapon slugs are likely only
+    /// valid for the [`SlugCategory::Rivens`].
+    ///
     /// # Errors
     /// Whenever [items](crate::market::client::Client::items) errors.
     #[cfg(feature = "market_cache")]
-    pub async fn is_slug_valid<S: AsRef<str>>(&self, slug: &S) -> Result<bool> {
-        Ok(self.get_slugs().await?.contains(slug.as_ref()))
+    pub async fn is_slug_valid(
+        &self,
+        context: SlugContext,
+        slug: &impl AsRef<str>,
+    ) -> Result<bool> {
+        Ok(self.get_slugs(context).await?.contains(slug.as_ref()))
     }
 
     /// Invalidates the items cache and all dependant caches (mainly the slug cache)
@@ -341,3 +401,18 @@ macro_rules! ratelimit {
 }
 
 use ratelimit;
+
+#[cfg(feature = "market_cache")]
+macro_rules! to_hashset {
+    ($self:expr, $ty:ty) => {
+        $self
+            .fetch::<$ty>()
+            .await?
+            .iter()
+            .map(|item| item.slug.clone())
+            .collect::<HashSet<_>>()
+    };
+}
+
+#[cfg(feature = "market_cache")]
+use to_hashset;

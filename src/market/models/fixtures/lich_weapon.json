@@ -1,0 +1,266 @@
+{
+    "apiVersion": "0.13.0",
+    "data": [
+        {
+            "id": "5e9855993d9f64005cd702e6",
+            "slug": "kuva_drakgoon",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Drakgoon/KuvaDrakgoon",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Drakgoon",
+                    "icon": "lich_weapons/images/kuva_drakgoon.1c7452cc19e0d37f8403777906f06f7a.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_drakgoon.1c7452cc19e0d37f8403777906f06f7a.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855993d9f64005cd702e9",
+            "slug": "kuva_brakk",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/Secondaries/Brakk/KuvaBrakk",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Brakk",
+                    "icon": "lich_weapons/images/kuva_brakk.c9024c7ca1061849149a6c369905b357.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_brakk.c9024c7ca1061849149a6c369905b357.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e98559a3d9f64005cd702eb",
+            "slug": "kuva_bramma",
+            "gameRef": "/Lotus/Weapons/Grineer/Bows/GrnBow/GrnBowWeapon",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Bramma",
+                    "icon": "lich_weapons/images/kuva_bramma.17dd34e07e8d3228514a95b0852c0aa0.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_bramma.17dd34e07e8d3228514a95b0852c0aa0.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855973d9f64005cd702e3",
+            "slug": "kuva_chakkhurr",
+            "gameRef": "/Lotus/Weapons/Grineer/LongGuns/GrnKuvaLichRifle/GrnKuvaLichRifleWeapon",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Chakkhurr",
+                    "icon": "lich_weapons/images/kuva_chakkhurr.c8ae46ec1358d74e80e1cad8c74fe62b.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_chakkhurr.c8ae46ec1358d74e80e1cad8c74fe62b.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855983d9f64005cd702e4",
+            "slug": "kuva_karak",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Karak/KuvaKarak",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Karak",
+                    "icon": "lich_weapons/images/kuva_karak.0f177fd58167a1d99403bafbb8002261.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_karak.0f177fd58167a1d99403bafbb8002261.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855983d9f64005cd702e5",
+            "slug": "kuva_twin_stubbas",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/Secondaries/Stubba/KuvaStubba",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Twin Stubbas",
+                    "icon": "lich_weapons/images/kuva_twin_stubbas.5a3db1dfc19808a7c0e2f55659c5dfd8.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_twin_stubbas.5a3db1dfc19808a7c0e2f55659c5dfd8.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855993d9f64005cd702e7",
+            "slug": "kuva_nukor",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/Secondaries/Nukor/KuvaNukor",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Nukor",
+                    "icon": "lich_weapons/images/kuva_nukor.0a0d118ccf2b40a6323c8be28fed7cd8.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_nukor.0a0d118ccf2b40a6323c8be28fed7cd8.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855993d9f64005cd702e8",
+            "slug": "kuva_tonkor",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Tonkor/KuvaTonkor",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Tonkor",
+                    "icon": "lich_weapons/images/kuva_tonkor.994564ca588b4618eba74255e2991f0e.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_tonkor.994564ca588b4618eba74255e2991f0e.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e98559a3d9f64005cd702ea",
+            "slug": "kuva_kraken",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/Secondaries/Kraken/KuvaKraken",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Kraken",
+                    "icon": "lich_weapons/images/kuva_kraken.0989fa722c36b1bff23be1c9225bca3c.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_kraken.0989fa722c36b1bff23be1c9225bca3c.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855963d9f64005cd702dc",
+            "slug": "kuva_hind",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Hind/KuvaHind",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Hind",
+                    "icon": "lich_weapons/images/kuva_hind.d1b0fe6fa47a41c144ee2061dbc2e4bf.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_hind.d1b0fe6fa47a41c144ee2061dbc2e4bf.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855963d9f64005cd702dd",
+            "slug": "kuva_ayanga",
+            "gameRef": "/Lotus/Weapons/Grineer/HeavyWeapons/GrnHeavyGrenadeLauncher",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Ayanga",
+                    "icon": "lich_weapons/images/kuva_ayanga.26966415815f338dd697922c5a60548c.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_ayanga.26966415815f338dd697922c5a60548c.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855963d9f64005cd702de",
+            "slug": "kuva_seer",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/Secondaries/Seer/KuvaSeer",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Seer",
+                    "icon": "lich_weapons/images/kuva_seer.9b0112c7f74af198e75031ebded81247.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_seer.9b0112c7f74af198e75031ebded81247.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855973d9f64005cd702df",
+            "slug": "kuva_shildeg",
+            "gameRef": "/Lotus/Weapons/Grineer/Melee/GrnKuvaLichScythe/GrnKuvaLichScytheWeapon",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Shildeg",
+                    "icon": "lich_weapons/images/kuva_shildeg.47590eb4b2c5287e2439b854597ffbb5.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_shildeg.47590eb4b2c5287e2439b854597ffbb5.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855973d9f64005cd702e0",
+            "slug": "kuva_quartakk",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Quartakk/KuvaQuartakk",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Quartakk",
+                    "icon": "lich_weapons/images/kuva_quartakk.2e1afaadacb52e87658f580186909cbd.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_quartakk.2e1afaadacb52e87658f580186909cbd.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855973d9f64005cd702e1",
+            "slug": "kuva_kohm",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Kohm/KuvaKohm",
+            "reqMasteryRank": 13,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Kohm",
+                    "icon": "lich_weapons/images/kuva_kohm.73012940121135681c03a6a4c06217f2.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_kohm.73012940121135681c03a6a4c06217f2.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855973d9f64005cd702e2",
+            "slug": "kuva_ogris",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Ogris/KuvaOgris",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Ogris",
+                    "icon": "lich_weapons/images/kuva_ogris.a26e82525e40ead8dc42fd164c9483fe.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_ogris.a26e82525e40ead8dc42fd164c9483fe.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "60e5b9014794450053e9996c",
+            "slug": "kuva_zarr",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Zarr/KuvaZarr",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Zarr",
+                    "icon": "lich_weapons/images/kuva_zarr.cdd90308a83389d132aebb6ff355450d.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_zarr.cdd90308a83389d132aebb6ff355450d.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "60e5b9014794450053e9996d",
+            "slug": "kuva_grattler",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/HeavyWeapons/Grattler/KuvaGrattler",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Grattler",
+                    "icon": "lich_weapons/images/kuva_grattler.c837078c24d1ef6577457f362278dc1a.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_grattler.c837078c24d1ef6577457f362278dc1a.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "60e5b9014794450053e9996e",
+            "slug": "kuva_hek",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Hek/KuvaHekWeapon",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Hek",
+                    "icon": "lich_weapons/images/kuva_hek.e29029bfcaf0e8105318d24455db8fa8.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_hek.e29029bfcaf0e8105318d24455db8fa8.128x128.png"
+                }
+            }
+        },
+        {
+            "id": "664538cd6cf5812870c33d27",
+            "slug": "kuva_sobek",
+            "gameRef": "/Lotus/Weapons/Grineer/KuvaLich/LongGuns/Sobek/KuvaSobek",
+            "reqMasteryRank": 15,
+            "i18n": {
+                "en": {
+                    "name": "Kuva Sobek",
+                    "icon": "lich_weapons/images/kuva_sobek.baeb38a91e138bf51b24cd666667c62f.png",
+                    "thumb": "lich_weapons/images/thumbs/kuva_sobek.baeb38a91e138bf51b24cd666667c62f.128x128.png"
+                }
+            }
+        }
+    ],
+    "error": null
+}

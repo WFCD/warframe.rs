@@ -1,0 +1,266 @@
+{
+    "apiVersion": "0.13.0",
+    "data": [
+        {
+            "id": "5e9855a43d9f6400697e895c",
+            "slug": "poor_sense_of_balance",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Poor Sense of Balance",
+                    "description": "The lich will retreat after kneeling down and without stabbing",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8961",
+            "slug": "pyromaniac",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Pyromaniac",
+                    "description": "Talks when the player is on fire",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8963",
+            "slug": "bloodhound",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Bloodhound",
+                    "description": "Makes comments when the player turns invisible",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8964",
+            "slug": "fear_of_kubrows",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Fear of Kubrows",
+                    "description": "Is afraid of Feral Kubrows and Drahks",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8966",
+            "slug": "prone_to_vertigo",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Prone to Vertigo",
+                    "description": "Stays on the ground level of the map. Avoids going up stairs and catwalks",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e895d",
+            "slug": "deserter",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Deserter",
+                    "description": "Can leave the mission unexpectedly",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e895f",
+            "slug": "trophy_hunter",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Trophy Hunter",
+                    "description": "Reward tax is higher than usual, allowing the Lich to steal more rewards",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8960",
+            "slug": "fear_of_children",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Fear of Children",
+                    "description": "Is afraid of the player's Operator",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8962",
+            "slug": "none",
+            "group": "top",
+            "i18n": {
+                "en": {
+                    "name": "None",
+                    "description": "Doesn't have any quirks",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8965",
+            "slug": "always_hungry",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Always Hungry",
+                    "description": "Talks about getting a snack after appearing on a mission",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a43d9f6400697e8967",
+            "slug": "paranoid",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Paranoid",
+                    "description": "Attacks allied Grineer troops; prevents the conversion of nearby Grineer into thralls",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e8968",
+            "slug": "allergic_to_nature",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Allergic to Nature",
+                    "description": "Talks about being allergic to nature",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e8969",
+            "slug": "vain",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Vain",
+                    "description": "Talks about how beautiful they are after appearing on a mission",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896a",
+            "slug": "hatred_of_infested",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Hatred of Infested",
+                    "description": "Talks about hating Infested when spawned on Infested tilesets",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896b",
+            "slug": "fear_of_space_travel",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Fear of Space Travel",
+                    "description": "Upon spawning on a ship, sometimes stands frightened and does not attack first",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896c",
+            "slug": "fear_of_being_alone",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Fear of Being Alone",
+                    "description": "Is afraid of fighting without backup",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896d",
+            "slug": "coward",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Coward",
+                    "description": "Can leave the mission at low health",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896e",
+            "slug": "loner",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Loner",
+                    "description": "Talks about preferring to fight alone",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "5e9855a53d9f6400697e896f",
+            "slug": "hatred_of_corpus",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Hatred of Corpus",
+                    "description": "Talks about hating Corpus when spawned on Corpus tilesets",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        },
+        {
+            "id": "653833f4123a401b2563081f",
+            "slug": "hatered_of_children",
+            "group": "default",
+            "i18n": {
+                "en": {
+                    "name": "Hatred of Children",
+                    "description": "Makes aggressive comments if the player's Operator appears.",
+                    "icon": "lich_quirks/unknown.png",
+                    "thumb": "lich_quirks/unknown.thumb.png"
+                }
+            }
+        }
+    ],
+    "error": null
+}
