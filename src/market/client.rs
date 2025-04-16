@@ -49,7 +49,10 @@ use super::{
         item::Item,
         set_items::SetItems,
     },
-    queryable::Riven,
+    queryable::{
+        OrderWithUser,
+        Riven,
+    },
 };
 use crate::market::{
     BASE_URL,
@@ -251,6 +254,20 @@ impl Client {
         language: Language,
     ) -> Result<Option<Riven>> {
         let endpoint = format!("/riven/weapon/{}", slug.as_ref());
+
+        self.try_get_item(&endpoint, language).await
+    }
+
+    /// Get a list of all orders for an item from users who were online within the last 7 days.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_orders_by_slug(
+        &self,
+        slug: &impl AsRef<str>,
+        language: Language,
+    ) -> Result<Option<Vec<OrderWithUser>>> {
+        let endpoint = format!("/orders/item/{}", slug.as_ref());
 
         self.try_get_item(&endpoint, language).await
     }

@@ -26,6 +26,10 @@ use heck::ToSnakeCase;
 pub use models::{
     Queryable,
     ResponseBase,
+    activity::{
+        Activity,
+        ActivityType,
+    },
     i18n::{
         I18N,
         Language,
@@ -44,6 +48,7 @@ pub use models::{
     location::LocationI18N,
     mission::MissionI18N,
     npc::NpcI18N,
+    order::Order,
     riven::RivenI18N,
     riven_attribute::{
         RivenAttributeI18N,
@@ -55,6 +60,10 @@ pub use models::{
     sister_ephemera::SisterEphemeraI18N,
     sister_quirk::SisterQuirkI18N,
     sister_weapon::SisterWeaponI18N,
+    user_short::{
+        Status,
+        UserShort,
+    },
     versions::{
         VersionApps,
         VersionCollections,
@@ -70,6 +79,7 @@ pub mod queryable {
         location::Location,
         mission::Mission,
         npc::Npc,
+        order_with_user::OrderWithUser,
         riven::Riven,
         riven_attribute::RivenAttribute,
         sister_ephemera::SisterEphemera,
