@@ -4,7 +4,7 @@ use super::item::Item;
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct SetItems {
-    id: String,
+    pub id: String,
 
-    items: Vec<Item>,
+    pub items: Vec<Item>,
 }
