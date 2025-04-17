@@ -1,3 +1,7 @@
+use chrono::{
+    DateTime,
+    Utc,
+};
 use serde::Deserialize;
 
 use super::activity::Activity;
@@ -23,7 +27,7 @@ pub struct UserShort {
     /// Addition to the status, current activity of the user.
     pub activity: Activity,
     /// Timestamp of the user's last online presence.
-    pub last_seen: String,
+    pub last_seen: DateTime<Utc>,
 }
 
 #[derive(Debug, Clone, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash, Copy)]

@@ -1,0 +1,274 @@
+{
+    "apiVersion": "0.13.0",
+    "data": {
+        "sell": [
+            {
+                "id": "68010dc4353ea10008fb19cf",
+                "type": "sell",
+                "platinum": 25,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2025-04-17T14:18:44Z",
+                "updatedAt": "2025-04-17T14:18:44Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "64a9e80d3545812a1f41259f",
+                    "ingameName": "VoyageZombie",
+                    "slug": "voyagezombie",
+                    "avatar": "user/avatar/64a9e80d3545812a1f41259f.png?21e949c678c3b642ddbc851843d14f66",
+                    "reputation": 20,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "ingame",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:56:44Z"
+                    },
+                    "lastSeen": "2025-04-17T14:56:44Z"
+                }
+            },
+            {
+                "id": "6800dbc4f5ba0a00085df1df",
+                "type": "sell",
+                "platinum": 25,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2025-04-17T10:45:24Z",
+                "updatedAt": "2025-04-17T10:45:24Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "59c7d7b30f3139070bfcb1b2",
+                    "ingameName": "GreyMan-GoodMan",
+                    "slug": "greyman-goodman",
+                    "reputation": 5,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "online",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:11:55Z"
+                    },
+                    "lastSeen": "2025-04-17T14:11:55Z"
+                }
+            },
+            {
+                "id": "67efffdcff901600087fdcf7",
+                "type": "sell",
+                "platinum": 25,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2025-04-04T15:50:52Z",
+                "updatedAt": "2025-04-04T15:50:52Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "65cf7b60f8d3be001f58cb99",
+                    "ingameName": "JonasTerrible",
+                    "slug": "jonasterrible",
+                    "reputation": 11,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "online",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:00:15Z"
+                    },
+                    "lastSeen": "2025-04-17T14:00:15Z"
+                }
+            },
+            {
+                "id": "67bd8dbe63ca6a0007d6d299",
+                "type": "sell",
+                "platinum": 25,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2025-02-25T09:30:38Z",
+                "updatedAt": "2025-03-04T10:08:02Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "67335843979d310009ff6bfe",
+                    "ingameName": "ForestBreeze",
+                    "slug": "forestbreeze",
+                    "reputation": 2,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "zh-hans",
+                    "status": "online",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T13:15:02Z"
+                    },
+                    "lastSeen": "2025-04-17T13:15:02Z"
+                }
+            },
+            {
+                "id": "678edabe3ba9d801b742acf6",
+                "type": "sell",
+                "platinum": 25,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2025-01-20T23:22:38Z",
+                "updatedAt": "2025-02-27T15:34:28Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "678ec9c2822e0000a27b8182",
+                    "ingameName": "musclelam10",
+                    "slug": "musclelam10",
+                    "reputation": 2,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "zh-hant",
+                    "status": "online",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T13:50:21Z"
+                    },
+                    "lastSeen": "2025-04-17T13:50:21Z"
+                }
+            }
+        ],
+        "buy": [
+            {
+                "id": "67f0a54dfb9ffe0008d92442",
+                "type": "buy",
+                "platinum": 21,
+                "quantity": 2992,
+                "visible": true,
+                "createdAt": "2025-04-05T03:36:45Z",
+                "updatedAt": "2025-04-15T18:08:27Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "636242fc71a5c50120760b7f",
+                    "ingameName": "kukolook",
+                    "slug": "kukolook",
+                    "avatar": "user/avatar/636242fc71a5c50120760b7f.png?de43aa0ff5d151b165aa69e4b6ed7eaf",
+                    "reputation": 38,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "zh-hans",
+                    "status": "ingame",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:47:24Z"
+                    },
+                    "lastSeen": "2025-04-17T14:47:24Z"
+                }
+            },
+            {
+                "id": "67fc1ef18e487d0009adcf76",
+                "type": "buy",
+                "platinum": 20,
+                "quantity": 8,
+                "visible": true,
+                "createdAt": "2025-04-13T20:30:41Z",
+                "updatedAt": "2025-04-13T20:30:41Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "607b60dfea937400b8a51973",
+                    "ingameName": "Zdepka",
+                    "slug": "zdepka",
+                    "avatar": "user/avatar/607b60dfea937400b8a51973.png?6e1f5d04f5f588e800506871d39ed447",
+                    "reputation": 410,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "pl",
+                    "status": "online",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:40:54Z"
+                    },
+                    "lastSeen": "2025-04-17T14:40:54Z"
+                }
+            },
+            {
+                "id": "67d181ddd4600b00bb298597",
+                "type": "buy",
+                "platinum": 20,
+                "quantity": 90,
+                "visible": true,
+                "createdAt": "2025-03-12T12:45:17Z",
+                "updatedAt": "2025-04-02T09:53:45Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "66db7b2dadc83a2e826b5500",
+                    "ingameName": "ToperaS2",
+                    "slug": "toperas2",
+                    "reputation": 34,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "ingame",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:34:06Z"
+                    },
+                    "lastSeen": "2025-04-17T14:34:06Z"
+                }
+            },
+            {
+                "id": "67af2e173ba9d80823bfd1fa",
+                "type": "buy",
+                "platinum": 17,
+                "quantity": 90,
+                "visible": true,
+                "createdAt": "2025-02-14T11:50:47Z",
+                "updatedAt": "2025-04-09T15:13:17Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "6430ab41abd2ae03a2f80a70",
+                    "ingameName": "NEFFEXyyds",
+                    "slug": "neffexyyds",
+                    "avatar": "user/avatar/6430ab41abd2ae03a2f80a70.png?10513907b7d571679b6bc2e53840b2ce",
+                    "reputation": 1605,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "ingame",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T12:16:46Z"
+                    },
+                    "lastSeen": "2025-04-17T12:16:46Z"
+                }
+            },
+            {
+                "id": "674a0ff4ba450c00072b2f74",
+                "type": "buy",
+                "platinum": 16,
+                "quantity": 1,
+                "visible": true,
+                "createdAt": "2024-11-29T19:03:16Z",
+                "updatedAt": "2025-02-05T22:08:53Z",
+                "itemId": "65a7fcc4ed5b0d2e3eb462ce",
+                "user": {
+                    "id": "5a95f01ff629d70ad274854f",
+                    "ingameName": "Vevorium",
+                    "slug": "vevorium",
+                    "reputation": 807,
+                    "platform": "pc",
+                    "crossplay": true,
+                    "locale": "en",
+                    "status": "ingame",
+                    "activity": {
+                        "type": "UNKNOWN",
+                        "details": "unknown",
+                        "startedAt": "2025-04-17T14:31:05Z"
+                    },
+                    "lastSeen": "2025-04-17T14:31:05Z"
+                }
+            }
+        ]
+    },
+    "error": null
+}

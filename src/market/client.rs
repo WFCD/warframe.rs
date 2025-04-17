@@ -42,12 +42,16 @@ use {
 
 use super::{
     Error,
+    Order,
     Queryable,
     ResponseBase,
     Result,
+    TopOrders,
+    UserShort,
     models::{
         item::Item,
         set_items::SetItems,
+        top_orders_query_params::TopOrdersQueryParams,
     },
     queryable::{
         OrderWithUser,
@@ -272,6 +276,67 @@ impl Client {
         self.try_get_item(&endpoint, language).await
     }
 
+    /// Get a specific order by its id.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_order_by_id(&self, order_id: &str) -> Result<Option<Order>> {
+        let endpoint = format!("/order/{order_id}");
+
+        self.try_get_item(&endpoint, Language::En).await
+    }
+
+    /// Get a list of all orders for a specific user via slug.
+    ///
+    /// Returns [`None`] if the user couldn't be found.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_user_orders_by_slug(
+        &self,
+        slug: &impl AsRef<str>,
+    ) -> Result<Option<Vec<Order>>> {
+        let endpoint = format!("/orders/user/{}", slug.as_ref());
+
+        self.try_get_item(&endpoint, Language::En).await
+    }
+
+    /// Get a list of all orders for a specific user via user id.
+    ///
+    /// Returns [`None`] if the user couldn't be found.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_user_orders_by_id(&self, user_id: &str) -> Result<Option<Vec<Order>>> {
+        let endpoint = format!("/orders/userId/{user_id}");
+
+        self.try_get_item(&endpoint, Language::En).await
+    }
+
+    /// Get a specific user by their slug.
+    ///
+    /// Returns [`None`] if the user couldn't be found.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_user_by_slug(&self, slug: &impl AsRef<str>) -> Result<Option<UserShort>> {
+        let endpoint = format!("/user/{}", slug.as_ref());
+
+        self.try_get_item(&endpoint, Language::En).await
+    }
+
+    /// Get a specific user by their id.
+    ///
+    /// Returns [`None`] if the user couldn't be found.
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_user_by_id(&self, user_id: &str) -> Result<Option<UserShort>> {
+        let endpoint = format!("/userId/{user_id}");
+
+        self.try_get_item(&endpoint, Language::En).await
+    }
+
     async fn try_get_item<T>(&self, endpoint: &str, language: Language) -> Result<Option<T>>
     where
         T: Send + Sync + Clone + DeserializeOwned + 'static,
@@ -300,13 +365,73 @@ impl Client {
         let item = response.json::<ResponseBase<T>>().await?;
         match item.data {
             Some(data) => {
+                tracing::debug!(
+                    "cache insertion for {} with language `{}`",
+                    type_name::<T>(),
+                    language
+                );
                 #[cfg(feature = "market_cache")]
                 {
-                    tracing::debug!(
-                        "cache insertion for {} with language `{}`",
-                        type_name::<T>(),
-                        language
-                    );
+                    self.insert_into_cache(key, data.clone()).await;
+                }
+
+                Ok(Some(data))
+            }
+            None => Err(Error::Api(item.error.ok_or(Error::EmptyErrorAndData)?)),
+        }
+    }
+
+    /// Fetches the top orders for an item.
+    ///
+    /// For more information on the query parameters, see [the WFM docs](https://42bytes.notion.site/WFM-Api-v2-Documentation-5d987e4aa2f74b55a80db1a09932459d#1f263b87fd0a49da9ce617f46017c224).
+    ///
+    /// # Errors
+    /// This function will return an error if the request fails or if the API returns an error.
+    pub async fn fetch_top_orders(
+        &self,
+        slug: &impl AsRef<str>,
+        language: Language,
+        query_params: TopOrdersQueryParams,
+    ) -> Result<Option<TopOrders>> {
+        let endpoint = format!("{BASE_URL}/orders/item/{}/top", slug.as_ref());
+
+        #[cfg(feature = "market_cache")]
+        let key = CacheKey::new(language, &endpoint);
+
+        #[cfg(feature = "market_cache")]
+        if let Some(data) = self.get_from_cache::<TopOrders>(&key).await {
+            tracing::debug!(
+                "cache hit for {} with language `{}`",
+                type_name::<TopOrders>(),
+                language
+            );
+            return Ok(Some(data));
+        }
+
+        let request = self
+            .client
+            .get(endpoint)
+            .header("Language", language.to_string());
+
+        let request = query_params.apply_to(request);
+
+        ratelimit!(self);
+        let response = request.send().await?;
+
+        if response.status() == StatusCode::NOT_FOUND {
+            return Ok(None);
+        }
+
+        let item = response.json::<ResponseBase<TopOrders>>().await?;
+        match item.data {
+            Some(data) => {
+                tracing::debug!(
+                    "cache insertion for {} with language `{}`",
+                    type_name::<TopOrders>(),
+                    language
+                );
+                #[cfg(feature = "market_cache")]
+                {
                     self.insert_into_cache(key, data.clone()).await;
                 }
 
