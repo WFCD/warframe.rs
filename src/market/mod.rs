@@ -60,6 +60,8 @@ pub use models::{
     sister_ephemera::SisterEphemeraI18N,
     sister_quirk::SisterQuirkI18N,
     sister_weapon::SisterWeaponI18N,
+    top_orders::TopOrders,
+    top_orders_query_params::TopOrdersQueryParams,
     user_short::{
         Status,
         UserShort,
@@ -101,6 +103,14 @@ impl Slug {
     #[must_use]
     pub fn new(input: &str) -> Self {
         Self(input.to_snake_case())
+    }
+
+    /// Creates a new `Slug` from a raw string without converting it to snake case.
+    ///
+    /// Useful when you already checked a string, and just want the type.
+    #[must_use]
+    pub fn new_raw(input: &str) -> Self {
+        Self(input.to_string())
     }
 }
 

@@ -18,6 +18,8 @@ pub mod set_items;
 pub mod sister_ephemera;
 pub mod sister_quirk;
 pub mod sister_weapon;
+pub mod top_orders;
+pub mod top_orders_query_params;
 pub mod user_short;
 pub mod versions;
 
