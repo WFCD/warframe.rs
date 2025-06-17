@@ -1,13 +1,9 @@
 use serde::Deserialize;
 
-use super::Category;
-
 #[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Pet {
     pub armor: i64,
-
-    pub category: Category,
 
     pub description: String,
 
@@ -34,4 +30,3 @@ pub struct Pet {
 
     pub unique_name: String,
 }
-

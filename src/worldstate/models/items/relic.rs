@@ -1,12 +1,8 @@
 use serde::Deserialize;
 
-use super::Category;
-
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Relic {
-    pub category: Category,
-
     pub description: String,
 
     pub image_name: String,
@@ -55,4 +51,3 @@ pub struct RewardItem {
 
     pub warframe_market: MarketInfo,
 }
-

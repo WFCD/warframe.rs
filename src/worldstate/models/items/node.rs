@@ -1,12 +1,9 @@
 use serde::Deserialize;
 
-use super::Category;
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Node {
-    pub category: Category,
-
     pub faction_index: i64,
 
     pub masterable: bool,
@@ -35,4 +32,3 @@ pub struct Node {
 
     pub unique_name: String,
 }
-

@@ -3,20 +3,16 @@
 pub use arcane::Arcane;
 pub use archwing::Archwing;
 pub use chrono::NaiveDate;
-pub use fish::Fish;
 pub use gear::Gear;
-pub use glyph::Glyph;
+pub use minimal_item::MinimalItem;
 pub use misc::Misc;
 pub use modification::Mod;
 pub use node::Node;
 pub use pet::Pet;
-pub use quest::Quest;
 pub use relic::Relic;
 pub use resource::Resource;
 pub use sentinel::Sentinel;
 pub use serde::Deserialize;
-pub use sigil::Sigil;
-pub use skin::Skin;
 pub use warframe::{
     Ability,
     Sex,
@@ -26,19 +22,15 @@ use weapon::Weapon;
 
 mod arcane;
 mod archwing;
-mod fish;
 mod gear;
-mod glyph;
+mod minimal_item;
 mod misc;
 mod modification;
 mod node;
 mod pet;
-mod quest;
 mod relic;
 mod resource;
 mod sentinel;
-mod sigil;
-mod skin;
 mod warframe;
 pub mod weapon;
 
@@ -193,60 +185,46 @@ pub enum Rarity {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq)]
-#[serde(untagged)]
+#[serde(tag = "category")]
 pub enum Item {
+    #[serde(rename = "Arcanes")]
     Arcane(Arcane),
     Archwing(Archwing),
-    Fish(Fish),
+    Fish(MinimalItem),
     Gear(Gear),
-    Glyph(Glyph),
+    #[serde(rename = "Glyphs")]
+    Glyph(MinimalItem),
     Misc(Misc),
+    #[serde(rename = "Mods")]
     Mod(Mod),
     Node(Node),
+    #[serde(rename = "Pets")]
     Pet(Pet),
-    Quest(Quest),
+    #[serde(rename = "Quests")]
+    Quest(MinimalItem),
+    #[serde(rename = "Relics")]
     Relic(Relic),
+    #[serde(rename = "Resources")]
     Resource(Resource),
+    #[serde(rename = "Sentinels")]
     Sentinel(Sentinel),
-    Sigil(Sigil),
-    Skin(Skin),
+    #[serde(rename = "Sigils")]
+    Sigil(MinimalItem),
+    #[serde(rename = "Skins")]
+    Skin(MinimalItem),
     // boxed because it's fairly large - enums always take as much space as the largest element
+    #[serde(rename = "Warframes")]
     Warframe(Box<Warframe>),
+
+    #[serde(
+        alias = "Primary",
+        alias = "Secondary",
+        alias = "Melee",
+        alias = "Arch-Gun",
+        alias = "Arch-Melee"
+    )]
     Weapon(Box<Weapon>),
 }
-
-pub(crate) fn map_category_to_item(
-    category: Category,
-    json: &str,
-) -> Result<Item, serde_json::Error> {
-    use serde_json::from_str;
-    let item = match category {
-        Category::Arcanes => Item::Arcane(from_str::<Arcane>(json)?),
-        Category::Archwing => Item::Archwing(from_str::<Archwing>(json)?),
-        Category::Fish => Item::Fish(from_str::<Fish>(json)?),
-        Category::Gear => Item::Gear(from_str::<Gear>(json)?),
-        Category::Glyphs => Item::Glyph(from_str::<Glyph>(json)?),
-        Category::Misc => Item::Misc(from_str::<Misc>(json)?),
-        Category::Mods => Item::Mod(from_str::<Mod>(json)?),
-        Category::Node => Item::Node(from_str::<Node>(json)?),
-        Category::Pets => Item::Pet(from_str::<Pet>(json)?),
-        Category::Quests => Item::Quest(from_str::<Quest>(json)?),
-        Category::Relics => Item::Relic(from_str::<Relic>(json)?),
-        Category::Resources => Item::Resource(from_str::<Resource>(json)?),
-        Category::Sentinels => Item::Sentinel(from_str::<Sentinel>(json)?),
-        Category::Sigils => Item::Sigil(from_str::<Sigil>(json)?),
-        Category::Skins => Item::Skin(from_str::<Skin>(json)?),
-        Category::Warframes => Item::Warframe(Box::new(from_str::<Warframe>(json)?)),
-        Category::Primary
-        | Category::Secondary
-        | Category::ArchGun
-        | Category::Melee
-        | Category::ArchMelee => Item::Weapon(Box::new(from_str::<Weapon>(json)?)),
-    };
-
-    Ok(item)
-}
-
 #[cfg(test)]
 mod test {
     use rstest::rstest;
@@ -257,20 +235,16 @@ mod test {
             item_sigil_en,
             nanospores_de,
         },
-        models::items::{
-            Category,
-            Item,
-            map_category_to_item,
-        },
+        models::items::Item,
     };
 
     #[rstest]
     fn test_item_query(item_sigil_en: &str, nanospores_de: &str) -> Result<(), Error> {
-        let sigil = map_category_to_item(Category::Sigils, item_sigil_en)?;
+        let sigil = serde_json::from_str::<Item>(item_sigil_en).unwrap();
 
         assert!(matches!(sigil, Item::Sigil(_)));
 
-        let nanospores = map_category_to_item(Category::Misc, nanospores_de)?;
+        let nanospores = serde_json::from_str::<Item>(nanospores_de).unwrap();
 
         assert!(matches!(nanospores, Item::Misc(_)));
 

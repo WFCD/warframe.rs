@@ -2,7 +2,6 @@ use chrono::NaiveDate;
 use serde::Deserialize;
 
 use super::{
-    Category,
     Introduced,
     LevelStat,
     Polarity,
@@ -14,8 +13,6 @@ use super::{
 #[serde(rename_all = "camelCase")]
 pub struct Mod {
     pub base_drain: i64,
-
-    pub category: Category,
 
     pub compat_name: String,
 
@@ -98,4 +95,3 @@ pub enum ModType {
     #[serde(rename = "Posture Mod")]
     Posture,
 }
-

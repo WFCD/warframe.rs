@@ -32,10 +32,24 @@ where
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq)]
-#[serde(untagged)]
+#[serde(tag = "type")]
 pub enum Weapon {
+    Rifle(RangedWeapon),
+
+    Shotgun(RangedWeapon),
+
+    Pistol(RangedWeapon),
+
+    #[serde(rename = "Arch-Gun")]
+    ArchGun(RangedWeapon),
+
     Melee(MeleeWeapon),
-    Ranged(RangedWeapon),
+
+    #[serde(rename = "Arch-Melee")]
+    ArchMelee(MeleeWeapon),
+
+    #[serde(rename = "Companion Weapon")]
+    CompanionWeapon(RangedWeapon),
 }
 
 #[allow(clippy::struct_excessive_bools)]
@@ -113,9 +127,6 @@ pub struct RangedWeapon {
     pub tradable: bool,
 
     pub trigger: Trigger,
-
-    #[serde(rename = "type")]
-    pub weapon_type: String,
 
     pub unique_name: String,
 
@@ -220,9 +231,6 @@ pub struct MeleeWeapon {
     pub total_damage: f64,
 
     pub tradable: bool,
-
-    #[serde(rename = "type")]
-    pub weapon_type: String,
 
     pub unique_name: String,
 
@@ -359,7 +367,7 @@ mod test_weapon {
     fn test_weapon_query_primary(ranged_weapon_en: &str) -> Result<(), Box<dyn std::error::Error>> {
         let weapon = from_str::<Weapon>(ranged_weapon_en)?;
 
-        assert!(matches!(weapon, Weapon::Ranged(_)));
+        assert!(matches!(weapon, Weapon::Rifle(_)));
 
         Ok(())
     }

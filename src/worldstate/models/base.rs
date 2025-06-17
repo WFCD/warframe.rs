@@ -1,8 +1,11 @@
 //! Here lies what powers the models.
 
-use std::ops::{
-    Div,
-    Rem,
+use std::{
+    fmt::Write,
+    ops::{
+        Div,
+        Rem,
+    },
 };
 
 use chrono::{
@@ -141,7 +144,7 @@ pub(crate) fn get_short_format_time_string(dt: DateTime<Utc>) -> String {
     for &(suffix, divisor) in &components {
         let (div_time, mod_time) = divmod(time_in_between, divisor);
         if div_time > 0 {
-            formatted_time.push_str(&format!("{div_time}{suffix} "));
+            write!(formatted_time, "{div_time}{suffix} ").expect("Error `write!`-ing into string");
             time_in_between = mod_time;
         }
     }

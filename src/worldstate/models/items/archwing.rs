@@ -3,9 +3,8 @@
 use serde::Deserialize;
 
 use super::{
-    warframe::Ability,
-    Category,
     Component,
+    warframe::Ability,
 };
 
 #[allow(clippy::struct_excessive_bools)]
@@ -21,8 +20,6 @@ pub struct Archwing {
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub components: Vec<Component>,
 
@@ -58,4 +55,3 @@ pub struct Archwing {
 
     pub unique_name: String,
 }
-

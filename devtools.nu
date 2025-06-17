@@ -31,10 +31,12 @@ export def market_req [
 export def worldstate_req [
     endpoint:string, # The endpoint to request
     language?:string # The language to request the endpoint in
+    --no-prefix (-n)
 ]: nothing -> table {
+    let prefix = if $no_prefix { "" } else {"pc"} 
     if $language == null {
-        return (http get $"https://api.warframestat.us/pc($endpoint)")
+        return (http get $"https://api.warframestat.us/($prefix)($endpoint)")
     } else {
-        return (http get $"https://api.warframestat.us/pc($endpoint)?language=($language)")
+        return (http get $"https://api.warframestat.us/($prefix)($endpoint)?language=($language)")
     }
 }
