@@ -8,10 +8,6 @@ use super::{
     Queryable,
     TimedEvent,
     error::Error,
-    items::{
-        Category,
-        map_category_to_item,
-    },
     language::Language,
     models::items::Item,
     utils::{
@@ -130,16 +126,22 @@ impl Client {
     /// use warframe::worldstate::{
     ///     Client,
     ///     Error,
-    ///     items::Item,
+    ///     items::{
+    ///         Item,
+    ///         weapon::Weapon,
+    ///     },
     /// };
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Error> {
     ///     let client = Client::new();
     ///
-    ///     let sigil = client.query_item("Accord Sigil").await?;
+    ///     let weapon = client.query_item("Acceltra Prime").await?;
     ///
-    ///     assert!(matches!(sigil, Some(Item::Sigil(_))));
+    ///     assert!(match weapon {
+    ///         Some(Item::Weapon(weapon)) => matches!(*weapon, Weapon::Rifle(_)),
+    ///         _ => false,
+    ///     });
     ///
     ///     Ok(())
     /// }
@@ -191,11 +193,6 @@ impl Client {
     }
 
     async fn query_by_url(&self, url: String) -> Result<Option<Item>, Error> {
-        #[derive(serde::Deserialize)]
-        struct DummyCategory {
-            category: Category,
-        }
-
         let response = self.session.get(url).send().await?;
 
         if response.status() == StatusCode::NOT_FOUND {
@@ -204,9 +201,7 @@ impl Client {
 
         let json = response.text().await?;
 
-        let category = serde_json::from_str::<DummyCategory>(&json)?.category;
-
-        let item = map_category_to_item(category, &json)?;
+        let item = serde_json::from_str::<Item>(&json)?;
 
         Ok(Some(item))
     }

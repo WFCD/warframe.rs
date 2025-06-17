@@ -69,7 +69,7 @@ type StdResult<T, E> = std::result::Result<T, E>;
 #[builder(pattern = "owned")]
 pub struct Client {
     #[builder(default)]
-    client: reqwest::Client,
+    http: reqwest::Client,
 
     #[cfg(feature = "market_ratelimit")]
     #[builder(
@@ -160,7 +160,7 @@ impl Client {
         endpoint: &str,
         language: Language,
     ) -> StdResult<reqwest::Response, reqwest::Error> {
-        self.client
+        self.http
             .get(format!("{BASE_URL}{endpoint}"))
             .header("Language", language.to_string())
             .send()
@@ -168,6 +168,7 @@ impl Client {
     }
 
     /// Fetches the data of a queryable model.
+    #[allow(clippy::missing_errors_doc)]
     pub async fn fetch<T>(&self) -> Result<T::Data>
     where
         T: Queryable,
@@ -189,6 +190,7 @@ impl Client {
     /// This function allows you to specify the language to use.
     ///
     /// Translations can be found in the i18n fields.
+    #[allow(clippy::missing_errors_doc)]
     pub async fn fetch_using_language<T>(&self, language: Language) -> Result<T::Data>
     where
         T: Queryable,
@@ -203,7 +205,7 @@ impl Client {
 
         ratelimit!(self);
 
-        let data = T::query(&self.client, language).await?;
+        let data = T::query(&self.http, language).await?;
 
         #[cfg(feature = "market_cache")]
         self.insert_into_cache(key, data.clone()).await;
@@ -409,7 +411,7 @@ impl Client {
         }
 
         let request = self
-            .client
+            .http
             .get(endpoint)
             .header("Language", language.to_string());
 

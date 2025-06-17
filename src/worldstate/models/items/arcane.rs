@@ -3,7 +3,6 @@
 use serde::Deserialize;
 
 use super::{
-    Category,
     Drop,
     LevelStat,
     Rarity,
@@ -13,8 +12,6 @@ use super::{
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Arcane {
-    pub category: Category,
-
     pub drops: Vec<Drop>,
 
     pub image_name: String,

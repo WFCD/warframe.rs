@@ -1,9 +1,6 @@
 use serde::Deserialize;
 
-use super::{
-    Category,
-    Component,
-};
+use super::Component;
 
 #[derive(Clone, Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -13,8 +10,6 @@ pub struct Gear {
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub components: Vec<Component>,
 

@@ -1,9 +1,6 @@
 use serde::Deserialize;
 
-use super::{
-    Category,
-    Component,
-};
+use super::Component;
 
 #[allow(clippy::struct_excessive_bools)]
 #[derive(Clone, Debug, Deserialize, PartialEq)]
@@ -16,8 +13,6 @@ pub struct Sentinel {
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub components: Vec<Component>,
 
@@ -52,4 +47,3 @@ pub struct Sentinel {
 
     pub unique_name: String,
 }
-

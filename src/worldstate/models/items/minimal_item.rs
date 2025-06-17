@@ -1,12 +1,8 @@
 use serde::Deserialize;
 
-use super::Category;
-
 #[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
-pub struct Glyph {
-    pub category: Category,
-
+pub struct MinimalItem {
     pub description: String,
 
     pub image_name: String,
