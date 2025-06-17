@@ -410,7 +410,7 @@ impl Client {
             .expect("Building query parameters shouldn't fail.");
 
         #[cfg(feature = "market_cache")]
-        let key = CacheKey::new(language, request.url().to_string().as_str());
+        let key = CacheKey::new(language, request.url().as_str());
 
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.get_from_cache::<TopOrders>(&key).await {
