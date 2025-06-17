@@ -42,8 +42,7 @@ pub struct Sentinel {
 
     pub tradable: bool,
 
-    #[serde(rename = "type")]
-    pub sentinel_type: String,
+    pub r#type: String,
 
     pub unique_name: String,
 }

@@ -1,3 +1,5 @@
+use std::any::type_name;
+
 use derive_builder::Builder;
 use reqwest::StatusCode;
 use serde::de::DeserializeOwned;
@@ -23,7 +25,6 @@ use {
         },
     },
     moka::future::Cache,
-    std::any::type_name,
     std::collections::HashSet,
     std::{
         any::Any,
@@ -389,6 +390,7 @@ impl Client {
     ///
     /// # Errors
     /// This function will return an error if the request fails or if the API returns an error.
+    #[allow(clippy::missing_panics_doc)]
     pub async fn fetch_top_orders(
         &self,
         slug: &impl AsRef<str>,
@@ -397,8 +399,18 @@ impl Client {
     ) -> Result<Option<TopOrders>> {
         let endpoint = format!("{BASE_URL}/orders/item/{}/top", slug.as_ref());
 
+        let request = self
+            .http
+            .get(endpoint)
+            .header("Language", language.to_string());
+
+        let request = query_params
+            .apply_to(request)
+            .build()
+            .expect("Building query parameters shouldn't fail.");
+
         #[cfg(feature = "market_cache")]
-        let key = CacheKey::new(language, &endpoint);
+        let key = CacheKey::new(language, request.url().to_string().as_str());
 
         #[cfg(feature = "market_cache")]
         if let Some(data) = self.get_from_cache::<TopOrders>(&key).await {
@@ -410,15 +422,8 @@ impl Client {
             return Ok(Some(data));
         }
 
-        let request = self
-            .http
-            .get(endpoint)
-            .header("Language", language.to_string());
-
-        let request = query_params.apply_to(request);
-
         ratelimit!(self);
-        let response = request.send().await?;
+        let response = self.http.execute(request).await?;
 
         if response.status() == StatusCode::NOT_FOUND {
             return Ok(None);
