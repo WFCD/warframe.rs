@@ -1,0 +1,11 @@
+pub mod affiliation;
+pub mod color_load_out;
+pub mod focus_school;
+pub mod guild_tier;
+pub mod load_out_inventory;
+pub mod load_out_preset;
+pub mod operator_load_out;
+pub mod platform;
+pub mod player_skill;
+pub mod profile;
+pub mod stats;
