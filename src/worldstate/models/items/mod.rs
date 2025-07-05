@@ -230,7 +230,6 @@ mod test {
     use rstest::rstest;
 
     use crate::worldstate::{
-        error::Error,
         fixtures::item::{
             item_sigil_en,
             nanospores_de,
@@ -239,7 +238,7 @@ mod test {
     };
 
     #[rstest]
-    fn test_item_query(item_sigil_en: &str, nanospores_de: &str) -> Result<(), Error> {
+    fn test_item_query(item_sigil_en: &str, nanospores_de: &str) {
         let sigil = serde_json::from_str::<Item>(item_sigil_en).unwrap();
 
         assert!(matches!(sigil, Item::Sigil(_)));
@@ -247,7 +246,5 @@ mod test {
         let nanospores = serde_json::from_str::<Item>(nanospores_de).unwrap();
 
         assert!(matches!(nanospores, Item::Misc(_)));
-
-        Ok(())
     }
 }
