@@ -109,7 +109,7 @@ impl Slug {
     ///
     /// Useful when you already checked a string, and just want the type.
     #[must_use]
-    pub fn new_raw(input: &str) -> Self {
+    pub fn new_unchecked(input: &str) -> Self {
         Self(input.to_string())
     }
 }
