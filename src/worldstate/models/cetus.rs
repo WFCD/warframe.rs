@@ -19,6 +19,7 @@ pub struct Cetus {
     /// The state of Cetus (day/night)
     pub state: CetusState,
 }
+
 #[cfg(test)]
 mod test_cetus {
     use rstest::rstest;
