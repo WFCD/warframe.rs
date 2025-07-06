@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/WFCD/warframe.rs/compare/v7.0.0...v7.0.1) (2025-07-06)
+
+
+### Bug Fixes
+
+* listeners can now run in tasks ([#25](https://github.com/WFCD/warframe.rs/issues/25)) ([c22822c](https://github.com/WFCD/warframe.rs/commit/c22822c81744c98006726f5eacf6290293490686))
+
 # [7.0.0](https://github.com/WFCD/warframe.rs/compare/v6.2.0...v7.0.0) (2025-07-06)
 
 
