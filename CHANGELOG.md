@@ -1,3 +1,54 @@
+# [7.0.0](https://github.com/WFCD/warframe.rs/compare/v6.2.0...v7.0.0) (2025-07-06)
+
+
+### Bug Fixes
+
+* cache issue and add item set endpoint ([3a6ed0f](https://github.com/WFCD/warframe.rs/commit/3a6ed0f4b496a22fabb96fcc6cb999da170ebb8a))
+* coderabbit catches ([1467a02](https://github.com/WFCD/warframe.rs/commit/1467a02fd5fb473be724fe6b5eeb30f7b9cd2f30))
+* deep archimedea naming ([2a17686](https://github.com/WFCD/warframe.rs/commit/2a1768679a8b1870b163616f5a73ed971cd0cd7d))
+* missing check + consistency ([cc78161](https://github.com/WFCD/warframe.rs/commit/cc78161e1a849005b34e0bd875ce10d68d94bcf7))
+* module tree ([d914de7](https://github.com/WFCD/warframe.rs/commit/d914de775392a4f362ff2c5272456c1570bc5cb7))
+* revamped tests, fixed tests and docs ([822f0e2](https://github.com/WFCD/warframe.rs/commit/822f0e2b5128e90a49fd1ab0ce8ff20160d056a2))
+* setitems fields not public ([91f898c](https://github.com/WFCD/warframe.rs/commit/91f898c26c37c22f5348ced12ba7ca8df22b1441))
+
+
+### Features
+
+* add tags to items ([2241334](https://github.com/WFCD/warframe.rs/commit/22413349a12e3faf9f1d69becd3d989a12933913))
+* added pedantic lint ([fa777ef](https://github.com/WFCD/warframe.rs/commit/fa777efe5bda2af8b97f7a9c06e73bf92c51a1e9))
+* cached slug validation ([9106988](https://github.com/WFCD/warframe.rs/commit/91069889828776d552d17d439d02d3f19dd58a01))
+* change function name to be more explicit ([90e8d7a](https://github.com/WFCD/warframe.rs/commit/90e8d7a0385950a247b3723d36e2b99eb185c6fd))
+* deep archimedea model ([05066a5](https://github.com/WFCD/warframe.rs/commit/05066a56af15ec385d32293933bc1a7698eea2df))
+* every "data endpoint" model ([4896069](https://github.com/WFCD/warframe.rs/commit/48960698686e5a554c78237fb42ec50bbfcf39c6))
+* item wrapper for easier queries ([26ee76d](https://github.com/WFCD/warframe.rs/commit/26ee76dcc54c2ee45fc3f3df9a19a067ad6e6ad4))
+* orders ([73d9950](https://github.com/WFCD/warframe.rs/commit/73d99505d95c0336c577f95f34db1b1dcc42d3c6))
+* part of market V2 + cache ([3da50bc](https://github.com/WFCD/warframe.rs/commit/3da50bc0252428b439df7491194d1d089ef3dbd5))
+* refactor, updated cache to by-url instead of type id ([155f785](https://github.com/WFCD/warframe.rs/commit/155f78587ddebbe65c5c8168af082d3a616b3afd))
+* riven/weapons endpoint and refactor ([2278566](https://github.com/WFCD/warframe.rs/commit/2278566e8d5640d3705e106af2d3ef18954222fc))
+* the rest of all public market endpoints ([f9d8a81](https://github.com/WFCD/warframe.rs/commit/f9d8a8174d18f1d7f297d9347a273f2627bc3d53))
+* unstable profile impl, wont be included in release ([1d1e995](https://github.com/WFCD/warframe.rs/commit/1d1e99504aa2fc3cf106feabca9be4ac1025aebf))
+* utilities for slugs ([fafa137](https://github.com/WFCD/warframe.rs/commit/fafa137d149069c0aea94e742f8c5f836e096da5))
+
+
+### Performance Improvements
+
+* remove unnecessary ([2b1be51](https://github.com/WFCD/warframe.rs/commit/2b1be5180e8262f34ee938f17653b25c4cb4114c))
+
+
+### Styles
+
+* replaced model builder macro with a new proc macro ([085daa7](https://github.com/WFCD/warframe.rs/commit/085daa7b63e6c6498483b630b6a42c75322d3564))
+
+
+### BREAKING CHANGES
+
+* changed items api
+* removed the market V1 api
+* changed module tree structure to be more intuitive
+* .item fields changed to the new wrapper type
+* renamedApiError to Error and removed worldstate prelude
+* removed feature flags
+
 # [6.2.0](https://github.com/WFCD/warframe.rs/compare/v6.1.0...v6.2.0) (2024-10-28)
 
 
