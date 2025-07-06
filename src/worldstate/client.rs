@@ -252,7 +252,7 @@ impl Client {
     pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), Error>
     where
         T: TimedEvent + Queryable<Return = T>,
-        for<'any> Callback: AsyncFn(&'any T, &'any T),
+        for<'a, 'b> Callback: AsyncFn(&'a T, &'b T),
     {
         tracing::debug!("{} (LISTENER) :: Started", std::any::type_name::<T>());
         let mut item = self.fetch::<T>().await?;
@@ -447,7 +447,7 @@ impl Client {
     where
         S: Sized + Send + Sync + Clone,
         T: TimedEvent + Queryable<Return = T>,
-        for<'any> Callback: AsyncFn(S, &'any T, &'any T),
+        for<'a, 'b> Callback: AsyncFn(S, &'a T, &'b T),
     {
         let mut item = self.fetch::<T>().await?;
 
