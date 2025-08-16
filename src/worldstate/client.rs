@@ -41,16 +41,32 @@ use super::{
 /// ```
 ///
 /// Check the [queryable](crate::worldstate::queryable) module for all queryable types.
-#[derive(Default, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct Client {
-    session: reqwest::Client,
+    http: reqwest::Client,
+    base_url: String,
+}
+
+impl Default for Client {
+    /// Creates a new [Client].
+    ///
+    /// Requests are sent to `https://api.warframestat.us/` by default.
+    fn default() -> Self {
+        Self {
+            http: reqwest::Client::new(),
+            base_url: "https://api.warframestat.us".to_string(),
+        }
+    }
 }
 
 impl Client {
-    /// Creates a new [Client].
+    /// Creates a new [Client] with the option to supply a custom reqwest client and a base url.
     #[must_use]
-    pub fn new() -> Self {
-        Self::default()
+    pub fn new(reqwest_client: reqwest::Client, base_url: String) -> Self {
+        Self {
+            http: reqwest_client,
+            base_url,
+        }
     }
 }
 
@@ -83,7 +99,7 @@ impl Client {
     where
         T: Queryable,
     {
-        <T as Queryable>::query(&self.session).await
+        <T as Queryable>::query(&self.base_url, &self.http).await
     }
 
     /// Fetches an instance of a specified model in a supplied Language.
@@ -115,7 +131,7 @@ impl Client {
     where
         T: Queryable,
     {
-        T::query_with_language(&self.session, language).await
+        T::query_with_language(&self.base_url, &self.http, language).await
     }
 
     /// Queries an item by its name and returns the closest matching item.
@@ -193,7 +209,7 @@ impl Client {
     }
 
     async fn query_by_url(&self, url: String) -> Result<Option<Item>, Error> {
-        let response = self.session.get(url).send().await?;
+        let response = self.http.get(url).send().await?;
 
         if response.status() == StatusCode::NOT_FOUND {
             return Ok(None);
