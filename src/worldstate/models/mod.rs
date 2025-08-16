@@ -24,8 +24,9 @@
 //! async fn main() -> Result<(), Error> {
 //!     let reqwest_client = reqwest::Client::new();
 //!
-//!     let cetus: Cetus = Cetus::query(&reqwest_client).await?;
-//!     let fissures: Vec<Fissure> = Fissure::query(&reqwest_client).await?;
+//!     let cetus: Cetus = Cetus::query("https://api.warframestat.us/", &reqwest_client).await?;
+//!     let fissures: Vec<Fissure> =
+//!         Fissure::query("https://api.warframestat.us/", &reqwest_client).await?;
 //!
 //!     Ok(())
 //! }

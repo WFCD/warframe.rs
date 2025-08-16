@@ -35,19 +35,17 @@ pub struct QueryableImpl {
 fn get_endpoint_impl(struct_name: &Ident, endpoint: &LitStr) -> syn::Result<TokenStream> {
     let endpoint_value = endpoint.value();
 
-    let endpoint_en = format!(
-        "https://api.warframestat.us/pc{}/?language=en",
-        endpoint.value()
-    );
+    let endpoint_en = format!("/pc{endpoint_value}/?language=en");
 
     Ok(quote! {
         impl crate::worldstate::models::base::Endpoint for #struct_name {
-            fn endpoint_en() -> &'static str {
-                #endpoint_en
+            fn endpoint_en(base_url: &str) -> String {
+                format!("{}{}", base_url, #endpoint_en)
             }
-            fn endpoint(language: crate::worldstate::language::Language) -> String {
+            fn endpoint(base_url: &str, language: crate::worldstate::language::Language) -> String {
                 format!(
-                    "https://api.warframestat.us/pc{}/?language={}",
+                    "{}/pc{}/?language={}",
+                    base_url,
                     #endpoint_value,
                     language
                 )
