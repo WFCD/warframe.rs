@@ -2,6 +2,7 @@ use warframe_macros::model;
 
 /// A Syndicate in Warframe
 #[model]
+#[non_exhaustive]
 pub enum Syndicate {
     /// ArbitersOfHexis
     #[serde(rename = "Arbiters of Hexis")]
@@ -42,7 +43,7 @@ pub enum Syndicate {
     /// Entrati
     Entrati,
     /// Cavia
-    #[serde(rename = "EntratiLabSyndicate")]
+    #[serde(alias = "EntratiLabSyndicate")]
     Cavia,
     /// VentKids
     #[serde(rename = "Operations Syndicate")]
@@ -52,4 +53,12 @@ pub enum Syndicate {
     KahlsGarrison,
     /// Necraloid
     Necraloid,
+    /// The Hex
+    #[serde(rename = "HexSyndicate")]
+    TheHex,
+
+    /// Other Syndicates, look at syndicate itself.
+    /// A bit inconvenient, but necessary for completeness.
+    #[serde(other)]
+    Other,
 }
