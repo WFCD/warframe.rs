@@ -1,5 +1,7 @@
 use warframe_macros::model;
 
+use crate::worldstate::queryable::Syndicate;
+
 type DateTime = chrono::DateTime<chrono::Utc>;
 
 /// A Syndicate Job (aka Bounty)
@@ -40,7 +42,7 @@ pub struct SyndicateMission {
     pub syndicate: String,
 
     /// The Syndicate TYPE
-    pub syndicate_key: String,
+    pub syndicate_key: Syndicate,
 
     /// The Nodes some missions related to the syndicate are on
     pub nodes: Vec<String>,
