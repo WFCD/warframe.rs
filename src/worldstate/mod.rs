@@ -15,7 +15,7 @@
 //!
 //! #[tokio::main]
 //! async fn main() -> Result<(), Error> {
-//!     let client = Client::new();
+//!     let client = Client::default();
 //!
 //!     let cetus: Cetus = client.fetch::<Cetus>().await?;
 //!     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;

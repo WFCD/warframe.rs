@@ -31,7 +31,7 @@ use super::{
 ///
 /// #[tokio::main]
 /// async fn main() -> Result<(), Error> {
-///     let client = Client::new();
+///     let client = Client::default();
 ///
 ///     let cetus: Cetus = client.fetch::<Cetus>().await?;
 ///     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;
@@ -87,7 +87,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Error> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     let cetus: Cetus = client.fetch::<Cetus>().await?;
     ///     let fissures: Vec<Fissure> = client.fetch::<Fissure>().await?;
@@ -119,7 +119,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Error> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     let cetus: Cetus = client.fetch_using_lang::<Cetus>(Language::ZH).await?;
     ///     let fissures: Vec<Fissure> = client.fetch_using_lang::<Fissure>(Language::ZH).await?;
@@ -150,7 +150,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Error> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     let weapon = client.query_item("Acceltra Prime").await?;
     ///
@@ -164,7 +164,8 @@ impl Client {
     /// ```
     pub async fn query_item(&self, query: &str) -> Result<Option<Item>, Error> {
         self.query_by_url(format!(
-            "https://api.warframestat.us/items/{}/?language=en",
+            "{}/items/{}/?language=en",
+            self.base_url,
             urlencoding::encode(query),
         ))
         .await
@@ -184,7 +185,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Error> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     let nano_spores = client
     ///         .query_item_using_lang("Nanosporen", Language::DE)
@@ -201,7 +202,8 @@ impl Client {
         language: Language,
     ) -> Result<Option<Item>, Error> {
         self.query_by_url(format!(
-            "https://api.warframestat.us/items/{}/?language={}",
+            "{}/items/{}/?language={}",
+            self.base_url,
             urlencoding::encode(query),
             language
         ))
@@ -258,7 +260,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///     
     ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
     ///     Ok(())
@@ -347,7 +349,7 @@ impl Client {
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
     ///     // initialize a client (included in the prelude)
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     // Pass the function to the handler
     ///     // (will return a Future)
@@ -441,7 +443,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     // Note that the state will be cloned into the handler, so Arc is preferred
     ///     let state = Arc::new(MyState {
@@ -540,7 +542,7 @@ impl Client {
     ///
     /// #[tokio::main]
     /// async fn main() -> Result<(), Box<dyn Error>> {
-    ///     let client = Client::new();
+    ///     let client = Client::default();
     ///
     ///     // Note that the state will be cloned into the handler, so Arc is preferred
     ///     let state = Arc::new(MyState {

@@ -43,7 +43,7 @@ pub enum Syndicate {
     /// Entrati
     Entrati,
     /// Cavia
-    #[serde(alias = "EntratiLabSyndicate")]
+    #[serde(rename = "EntratiLabSyndicate", alias = "Cavia")]
     Cavia,
     /// VentKids
     #[serde(rename = "Operations Syndicate")]
