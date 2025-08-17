@@ -15,7 +15,7 @@ use warframe::worldstate::{Client, Error, queryable::Cetus, Opposite, TimedEvent
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let client = Client::new();
+    let client = Client::default();
 
     let cetus = client.fetch::<Cetus>().await?;
     println!(
