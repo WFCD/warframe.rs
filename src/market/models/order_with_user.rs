@@ -14,8 +14,8 @@ impl_queryable!(OrderWithUser, Array, "/orders/recent");
 /// field.
 #[derive(Debug, Clone, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct OrderWithUser {
-    #[serde(flatten)]
     /// The order details.
+    #[serde(flatten)]
     pub order: Order,
 
     /// Represents the user who created the order, with basic profile information.
@@ -31,7 +31,7 @@ mod test {
     };
 
     #[rstest::rstest]
-    fn riven(
+    fn order_with_user(
         #[files("src/market/models/fixtures/orders.json")]
         #[mode = str]
         json: &str,

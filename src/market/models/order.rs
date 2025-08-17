@@ -1,4 +1,15 @@
+use chrono::{
+    DateTime,
+    Utc,
+};
 use serde::Deserialize;
+
+#[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "camelCase")]
+pub enum OrderType {
+    Sell,
+    Buy,
+}
 
 #[derive(Debug, Clone, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "camelCase")]
@@ -7,7 +18,7 @@ pub struct Order {
     pub id: String,
 
     /// Specifies whether the order is a 'buy' or 'sell'.
-    pub r#type: String,
+    pub r#type: OrderType,
 
     /// Is the total platinum currency involved in the order.
     pub platinum: u32,
@@ -37,10 +48,10 @@ pub struct Order {
     pub visible: bool,
 
     /// Records the creation time of the order.
-    pub created_at: String,
+    pub created_at: DateTime<Utc>,
 
     /// Records the last modification time of the order.
-    pub updated_at: String,
+    pub updated_at: DateTime<Utc>,
 
     /// Is the unique identifier of the item involved in the order.
     pub item_id: String,
