@@ -48,7 +48,10 @@ pub use models::{
     location::LocationI18N,
     mission::MissionI18N,
     npc::NpcI18N,
-    order::Order,
+    order::{
+        Order,
+        OrderType,
+    },
     riven::RivenI18N,
     riven_attribute::{
         RivenAttributeI18N,
