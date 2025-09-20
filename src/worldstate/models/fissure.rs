@@ -32,7 +32,7 @@ pub struct Fissure {
     pub mission_type: String,
 
     /// The type of the mission
-    pub mission_key: MissionType,
+    pub mission_type_key: MissionType,
 
     /// The i18n of the node
     pub node: String,
