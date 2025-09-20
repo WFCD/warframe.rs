@@ -1,3 +1,4 @@
+#![allow(clippy::doc_markdown)]
 use warframe_macros::model;
 
 /// A Syndicate in Warframe
