@@ -79,9 +79,6 @@ pub struct Nightwave {
     /// The phase of the nightwave
     pub phase: i32,
 
-    /// The reward types
-    pub reward_types: Vec<RewardType>,
-
     /// The active challenges (most likely the weekly rotation)
     pub active_challenges: Vec<NightwaveChallenge>,
 }
