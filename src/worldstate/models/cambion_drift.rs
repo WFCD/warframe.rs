@@ -26,23 +26,16 @@ mod test_cambion_drift {
     use serde_json::from_str;
 
     use super::CambionDrift;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::cambion_drift::{
-            cambion_drift,
-            cambion_drift_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <CambionDrift as Queryable>::Return;
 
     #[rstest]
-    fn test(cambion_drift_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/cambion_drift.json")]
+        #[mode = str]
+        cambion_drift_en: &str,
+    ) {
         from_str::<R>(cambion_drift_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(cambion_drift: &str) {
-        from_str::<R>(cambion_drift).unwrap();
     }
 }

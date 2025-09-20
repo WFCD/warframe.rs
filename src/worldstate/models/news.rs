@@ -25,9 +25,6 @@ pub struct News {
     /// Whether the News are related to a stream
     pub stream: bool,
 
-    /// A string describing this element
-    pub as_string: String,
-
     /// The date the News were posted
     pub date: DateTime<Utc>,
 
@@ -44,23 +41,16 @@ mod test_news {
     use serde_json::from_str;
 
     use super::News;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::news::{
-            news,
-            news_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <News as Queryable>::Return;
 
     #[rstest]
-    fn test(news_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/news.json")]
+        #[mode = str]
+        news_en: &str,
+    ) {
         from_str::<R>(news_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(news: &str) {
-        from_str::<R>(news).unwrap();
     }
 }

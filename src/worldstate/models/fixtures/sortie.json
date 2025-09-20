@@ -1,0 +1,36 @@
+{
+  "id": "68cd7a7e534783e4a689b03e",
+  "activation": "2025-09-19T16:00:00.000Z",
+  "expiry": "2025-09-20T16:00:00.000Z",
+  "rewardPool": "Sortie Rewards",
+  "variants": [
+    {
+      "missionType": "Mobile Defense",
+      "missionTypeKey": "Mobile Defense",
+      "modifier": "Environmental Hazard: Dense Fog",
+      "modifierDescription": "Limited visibility in the tileset due to dense fog. Forced night cycle on planets like earth.",
+      "node": "Eurasia (Earth)",
+      "nodeKey": "Eurasia (Earth)"
+    },
+    {
+      "missionType": "Rescue",
+      "missionTypeKey": "Rescue",
+      "modifier": "Energy Reduction",
+      "modifierDescription": "Maximum Warframe Energy capacity is quartered. Energy Siphon is less effective.",
+      "node": "Grimaldi (Lua)",
+      "nodeKey": "Grimaldi (Lua)"
+    },
+    {
+      "missionType": "Spy",
+      "missionTypeKey": "Spy",
+      "modifier": "Enemy Elemental Enhancement: Radiation",
+      "modifierDescription": "Enemies deal increased Radiation damage and also have increased Immunity to said damage type.",
+      "node": "Calypso (Saturn)",
+      "nodeKey": "Calypso (Saturn)"
+    }
+  ],
+  "missions": [],
+  "boss": "Councilor Vay Hek",
+  "faction": "Grineer",
+  "factionKey": "Grineer"
+}

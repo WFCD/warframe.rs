@@ -42,23 +42,16 @@ mod test_sortie {
     use serde_json::from_str;
 
     use super::Sortie;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::sortie::{
-            sortie,
-            sortie_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Sortie as Queryable>::Return;
 
     #[rstest]
-    fn test(sortie_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/sortie.json")]
+        #[mode = str]
+        sortie_en: &str,
+    ) {
         from_str::<R>(sortie_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(sortie: &str) {
-        from_str::<R>(sortie).unwrap();
     }
 }

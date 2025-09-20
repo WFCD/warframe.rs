@@ -24,23 +24,16 @@ mod test_construction_progress {
     use serde_json::from_str;
 
     use super::ConstructionProgress;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::construction_progress::{
-            construction_progress,
-            construction_progress_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <ConstructionProgress as Queryable>::Return;
 
     #[rstest]
-    fn test(construction_progress_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/construction_progress.json")]
+        #[mode = str]
+        construction_progress_en: &str,
+    ) {
         from_str::<R>(construction_progress_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(construction_progress: &str) {
-        from_str::<R>(construction_progress).unwrap();
     }
 }

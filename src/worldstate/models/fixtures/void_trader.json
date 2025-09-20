@@ -1,0 +1,222 @@
+{
+  "id": "5d1e07a0a38e4a4fdd7cefca",
+  "activation": "2025-09-19T13:00:00.000Z",
+  "expiry": "2025-09-21T13:00:00.000Z",
+  "character": "Baro Ki'Teer",
+  "location": "Strata Relay (Earth)",
+  "inventory": [
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Rifle/Expert/PrimedWeaponFactionDamageMurmurs",
+      "item": "Primed Weapon Faction Damage Murmurs",
+      "ducats": 375,
+      "credits": 130000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Melee/Expert/WeaponImpactDamageModExpert",
+      "item": "Primed Heavy Trauma",
+      "ducats": 350,
+      "credits": 100000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Melee/Expert/WeaponMeleeDamageModExpert",
+      "item": "Primed Pressure Point",
+      "ducats": 385,
+      "credits": 300000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Rifle/DualStat/FireEventRifleMod",
+      "item": "Thermite Rounds",
+      "ducats": 300,
+      "credits": 150000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Shotgun/Expert/WeaponFreezeDamageModExpert",
+      "item": "Primed Chilling Grasp",
+      "ducats": 350,
+      "credits": 125000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Weapons/Corpus/LongGuns/CrpShockRifle/QuantaVandal",
+      "item": "Quanta Vandal",
+      "ducats": 450,
+      "credits": 300000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Liset/Gyroscope/LisetGyroscopeSkinPrimeTrader",
+      "item": "Xiphos Prisma Skin",
+      "ducats": 220,
+      "credits": 400000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Liset/LisetBlueSkySkinPrimeTrader",
+      "item": "Scimitar Prisma Skin",
+      "ducats": 210,
+      "credits": 450000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Weapons/Grineer/Pistols/WraithSingleViper/WraithSingleViper",
+      "item": "Viper Wraith",
+      "ducats": 400,
+      "credits": 75000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/VoidTrader/ElixisOdonataSkin",
+      "item": "Odonata Elixis Skin",
+      "ducats": 350,
+      "credits": 250000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Weapons/Tenno/Pistols/ConclaveLeverPistol/ConclaveLeverPistol",
+      "item": "Zylok",
+      "ducats": 500,
+      "credits": 200000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Harlequin/MirageAlternateSkin",
+      "item": "Mirage Immortal Skin",
+      "ducats": 550,
+      "credits": 100000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Sentinel/SentinelLootRadarEnemyRadarExpertMod",
+      "item": "Primed Animal Instinct",
+      "ducats": 300,
+      "credits": 200000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/Sentinel/Kubrow/Expert/KubrowPackLeaderExpertMod",
+      "item": "Primed Pack Leader",
+      "ducats": 300,
+      "credits": 200000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Armor/FurisArmor/PrismaFurisCArmor",
+      "item": "Prisma Avia Chest Plate",
+      "ducats": 250,
+      "credits": 220000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Armor/FurisArmor/PrismaFurisAArmor",
+      "item": "Prisma Avia Shoulder Plate",
+      "ducats": 300,
+      "credits": 200000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Armor/FurisArmor/PrismaFurisLArmor",
+      "item": "Prisma Avia Ankle Plate",
+      "ducats": 225,
+      "credits": 175000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/BaroKiTeerDecorationG",
+      "item": "Sima Luxxum Ornament",
+      "ducats": 100,
+      "credits": 100000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/TarotCardTennoConF",
+      "item": "Deimos Jugulus Prex",
+      "ducats": 75,
+      "credits": 100000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/TNWTeshinBobbleHead",
+      "item": "T N W Teshin Bobble Head",
+      "ducats": 75,
+      "credits": 300000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Sigils/WeGameNewYearFreeTigerSigil",
+      "item": "Lunar Renewal Tiger Sigil",
+      "ducats": 55,
+      "credits": 45000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Operator/Hoods/HoodDuviriOperator",
+      "item": "The Stranger's Hood (Operator)",
+      "ducats": 550,
+      "credits": 500000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Scarves/BaroCape3Scarf",
+      "item": "Baro Cape3 Scarf",
+      "ducats": 500,
+      "credits": 500000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Effects/BaroEphemeraB",
+      "item": "Ki'Teer Reverence Ephemera",
+      "ducats": 250,
+      "credits": 350000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Sentinels/Tails/GaussSentinelTail",
+      "item": "Altra Sentinel Tail",
+      "ducats": 400,
+      "credits": 500000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/VoidTrader/ElixisNikana",
+      "item": "Nikana Elixis Skin",
+      "ducats": 375,
+      "credits": 275000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Game/Projections/T4VoidProjectionBaroAkmagnusPrimeBronze",
+      "item": "Axi M5 Relic",
+      "ducats": 125,
+      "credits": 55000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Items/SongItems/DeimosLoginSongItem",
+      "item": "Deimos Login Song Item",
+      "ducats": 155,
+      "credits": 160000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Catbrows/Armor/CatbrowArmorHalloweenA",
+      "item": "Wysar Day Of The Dead Kavat Armor",
+      "ducats": 400,
+      "credits": 175000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/VoidTrader/VTHalloweenDarkSword",
+      "item": "Dark Sword Day of the Dead Skin",
+      "ducats": 320,
+      "credits": 250000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Halloween/HalloweenDread",
+      "item": "Halloween Dread",
+      "ducats": 300,
+      "credits": 275000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/StoreItems/AvatarImages/Seasonal/Halloween2019GrendelTreat",
+      "item": "In Mah Belly Glyph",
+      "ducats": 80,
+      "credits": 50000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/Keys/MummyQuestKeyBlueprint",
+      "item": "Sands Of Inaros Blueprint",
+      "ducats": 100,
+      "credits": 25000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Effects/FootstepsMaple",
+      "item": "Fae Path Ephemera",
+      "ducats": 15,
+      "credits": 1000
+    },
+    {
+      "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/BaroTreasureBox",
+      "item": "Baro Treasure Box",
+      "ducats": 0,
+      "credits": 50000
+    }
+  ],
+  "psId": "5d1e07a0a38e4a4fdd7cefca35",
+  "initialStart": "1970-01-01T00:00:00.000Z",
+  "schedule": []
+}

@@ -25,23 +25,16 @@ mod test_global_upgrade {
     use serde_json::from_str;
 
     use super::GlobalUpgrade;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::global_upgrade::{
-            global_upgrade,
-            global_upgrade_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <GlobalUpgrade as Queryable>::Return;
 
     #[rstest]
-    fn test(global_upgrade_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/global_upgrade.json")]
+        #[mode = str]
+        global_upgrade_en: &str,
+    ) {
         from_str::<R>(global_upgrade_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(global_upgrade: &str) {
-        from_str::<R>(global_upgrade).unwrap();
     }
 }

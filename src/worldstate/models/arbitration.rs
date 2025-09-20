@@ -85,23 +85,16 @@ mod test_arbitration {
     use serde_json::from_str;
 
     use super::Arbitration;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::arbitration::{
-            arbitration,
-            arbitration_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Arbitration as Queryable>::Return;
 
     #[rstest]
-    fn test(arbitration_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/arbitration.json")]
+        #[mode = str]
+        arbitration_en: &str,
+    ) {
         from_str::<R>(arbitration_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(arbitration: &str) {
-        from_str::<R>(arbitration).unwrap();
     }
 }

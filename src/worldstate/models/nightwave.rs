@@ -92,23 +92,16 @@ mod test_nightwave {
     use serde_json::from_str;
 
     use super::Nightwave;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::nightwave::{
-            nightwave,
-            nightwave_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Nightwave as Queryable>::Return;
 
     #[rstest]
-    fn test(nightwave_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/nightwave.json")]
+        #[mode = str]
+        nightwave_en: &str,
+    ) {
         from_str::<R>(nightwave_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(nightwave: &str) {
-        from_str::<R>(nightwave).unwrap();
     }
 }

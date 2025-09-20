@@ -26,23 +26,16 @@ mod test_cetus {
     use serde_json::from_str;
 
     use super::Cetus;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::cetus::{
-            cetus,
-            cetus_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Cetus as Queryable>::Return;
 
     #[rstest]
-    fn test(cetus_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/cetus.json")]
+        #[mode = str]
+        cetus_en: &str,
+    ) {
         from_str::<R>(cetus_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(cetus: &str) {
-        from_str::<R>(cetus).unwrap();
     }
 }

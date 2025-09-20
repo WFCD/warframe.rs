@@ -1,0 +1,242 @@
+[
+    {
+        "id": "TNWMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "T N W Market Bundle",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 145,
+        "isShownInMarket": true
+    },
+    {
+        "id": "VeilbreakerSupporterPack1895849220000",
+        "activation": "2023-01-01T16:46:00.000Z",
+        "expiry": "2030-01-28T16:47:00.000Z",
+        "item": "Veilbreaker Warrior Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "AOTZMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "A O T Z Market Bundle",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 35,
+        "isShownInMarket": true
+    },
+    {
+        "id": "HODMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "H O D Market Bundle",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 465,
+        "isShownInMarket": true
+    },
+    {
+        "id": "TnDeimosSupporterArmourBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "Tn Deimos Supporter Armour Bundle",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 110,
+        "isShownInMarket": true
+    },
+    {
+        "id": "WinterSolsticeArcaArmourBundle1767363540000",
+        "activation": "2025-01-02T14:19:00.000Z",
+        "expiry": "2026-01-02T14:19:00.000Z",
+        "item": "Winter Solstice Arca Armour Bundle",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 100,
+        "isShownInMarket": true
+    },
+    {
+        "id": "ShrineMaidenSupporterPack1894358760000",
+        "activation": "2025-05-22T07:00:00.000Z",
+        "expiry": "2030-01-11T10:46:00.000Z",
+        "item": "Shrine Maiden Supporter Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "VoltNovaSumoDeluxePack1894358760000",
+        "activation": "2025-05-22T07:00:00.000Z",
+        "expiry": "2030-01-11T10:46:00.000Z",
+        "item": "Volt Nova Sumo Deluxe Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "DanteChroniclesPack1767290400000",
+        "activation": "2024-12-04T18:00:00.000Z",
+        "expiry": "2026-01-01T18:00:00.000Z",
+        "item": "Dante Chronicles Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "JadeShadowsSupporterPack1895961600000",
+        "activation": "2025-02-26T16:00:00.000Z",
+        "expiry": "2030-01-30T00:00:00.000Z",
+        "item": "Jade Shadows Supporter Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "EmberHeirloomPack1766156400000",
+        "activation": "2024-07-20T15:00:00.000Z",
+        "expiry": "2025-12-19T15:00:00.000Z",
+        "item": "Ember Heirloom Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "InitiateIIIConsolePack1893456000000",
+        "activation": "2024-09-30T10:25:00.000Z",
+        "expiry": "2030-01-01T00:00:00.000Z",
+        "item": "Initiate I I I Console Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 150,
+        "isShownInMarket": true
+    },
+    {
+        "id": "RhinoHeirloomPack1893492420000",
+        "activation": "2025-07-21T15:00:00.000Z",
+        "expiry": "2030-01-01T10:07:00.000Z",
+        "item": "Rhino Heirloom Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "TC2025DigitalPack1895570760000",
+        "activation": "2025-07-25T11:00:00.000Z",
+        "expiry": "2030-01-25T11:26:00.000Z",
+        "item": "T C2025 Digital Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "InitiateIIIPCPack1893498780000",
+        "activation": "2025-08-18T11:52:00.000Z",
+        "expiry": "2030-01-01T11:53:00.000Z",
+        "item": "Initiate I I I P C Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "GeminiSkinsSupporterPack1893498840000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:54:00.000Z",
+        "item": "Gemini Skins Supporter Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "Cyte09SupporterPack1893498900000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:55:00.000Z",
+        "item": "Cyte09 Supporter Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "EncoreGeminiSupPack1893498960000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:56:00.000Z",
+        "item": "Encore Gemini Sup Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "GlamrockSupporterPack1893499020000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:57:00.000Z",
+        "item": "Glamrock Supporter Pack",
+        "discount": 0,
+        "regularOverride": 0,
+        "premiumOverride": 1,
+        "isShownInMarket": true
+    },
+    {
+        "id": "UnlockInfestationNoble1758412800000",
+        "activation": "2025-09-16T00:00:00.000Z",
+        "expiry": "2025-09-21T00:00:00.000Z",
+        "item": "Unlock Infestation Noble",
+        "discount": 20,
+        "regularOverride": 0,
+        "premiumOverride": 40,
+        "isShownInMarket": true
+    },
+    {
+        "id": "LokiDeluxeSkinBundle1758499200000",
+        "activation": "2025-09-17T00:00:00.000Z",
+        "expiry": "2025-09-22T00:00:00.000Z",
+        "item": "Loki Deluxe Skin Bundle",
+        "discount": 18,
+        "regularOverride": 0,
+        "premiumOverride": 265,
+        "isShownInMarket": true
+    },
+    {
+        "id": "GrendelVoidshellSkinBundle1758585600000",
+        "activation": "2025-09-18T00:00:00.000Z",
+        "expiry": "2025-09-23T00:00:00.000Z",
+        "item": "Grendel Voidshell Skin Bundle",
+        "discount": 17,
+        "regularOverride": 0,
+        "premiumOverride": 75,
+        "isShownInMarket": true
+    },
+    {
+        "id": "UnlockVoltAgile1758672000000",
+        "activation": "2025-09-19T00:00:00.000Z",
+        "expiry": "2025-09-24T00:00:00.000Z",
+        "item": "Unlock Volt Agile",
+        "discount": 20,
+        "regularOverride": 0,
+        "premiumOverride": 40,
+        "isShownInMarket": true
+    },
+    {
+        "id": "SetOneArmorPack1758758400000",
+        "activation": "2025-09-20T00:00:00.000Z",
+        "expiry": "2025-09-25T00:00:00.000Z",
+        "item": "Eos Armor Bundle",
+        "discount": 20,
+        "regularOverride": 0,
+        "premiumOverride": 80,
+        "isShownInMarket": true
+    }
+]

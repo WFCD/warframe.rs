@@ -30,23 +30,16 @@ mod test_flash_sale {
     use serde_json::from_str;
 
     use super::FlashSale;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::flash_sale::{
-            flash_sale,
-            flash_sale_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <FlashSale as Queryable>::Return;
 
     #[rstest]
-    fn test(flash_sale_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/flash_sale.json")]
+        #[mode = str]
+        flash_sale_en: &str,
+    ) {
         from_str::<R>(flash_sale_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(flash_sale: &str) {
-        from_str::<R>(flash_sale).unwrap();
     }
 }

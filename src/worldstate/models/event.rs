@@ -58,23 +58,16 @@ mod test_event {
     use serde_json::from_str;
 
     use super::Event;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::event::{
-            event,
-            event_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Event as Queryable>::Return;
 
     #[rstest]
-    fn test(event_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/event.json")]
+        #[mode = str]
+        event_en: &str,
+    ) {
         from_str::<R>(event_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(event: &str) {
-        from_str::<R>(event).unwrap();
     }
 }

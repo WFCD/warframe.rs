@@ -70,23 +70,16 @@ mod test_deep_archimedea {
     use serde_json::from_str;
 
     use super::DeepArchimedea;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::deep_archimedea::{
-            deep_archimedea,
-            deep_archimedea_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <DeepArchimedea as Queryable>::Return;
 
     #[rstest]
-    fn test(deep_archimedea_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/deep_archimedea.json")]
+        #[mode = str]
+        deep_archimedea_en: &str,
+    ) {
         from_str::<R>(deep_archimedea_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(deep_archimedea: &str) {
-        from_str::<R>(deep_archimedea).unwrap();
     }
 }

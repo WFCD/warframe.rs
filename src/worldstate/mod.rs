@@ -31,9 +31,6 @@ pub mod utils;
 
 pub mod language;
 
-#[cfg(test)]
-pub(crate) mod fixtures;
-
 /// A module that re-exports every type that is queryable
 pub mod queryable {
     pub use super::models::{
