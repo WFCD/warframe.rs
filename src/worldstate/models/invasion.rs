@@ -40,9 +40,6 @@ pub struct Invasion {
     #[serde(rename = "desc")]
     pub description: String,
 
-    /// Short-formatted string estimating the time until the Invasion is closed
-    pub eta: String,
-
     /// The i18n of the node
     pub node: String,
 
@@ -60,9 +57,6 @@ pub struct Invasion {
 
     /// The defending faction information
     pub defender: InvasionMember,
-
-    /// Short-time-formatted duration string of the start of the Invasion
-    pub start_string: String,
 
     /// A list of reward types
     pub reward_types: Vec<RewardType>,
