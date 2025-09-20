@@ -1,3 +1,33 @@
+# [8.0.0](https://github.com/WFCD/warframe.rs/compare/v7.0.1...v8.0.0) (2025-09-20)
+
+
+### Bug Fixes
+
+* api changes for rewards ([65b043c](https://github.com/WFCD/warframe.rs/commit/65b043c9e3c2915a308c3357aef55065f011febf))
+* fissure api changes ([1f2e510](https://github.com/WFCD/warframe.rs/commit/1f2e5105f803e20d29c6dade3c2d28961b4c9c4f))
+* fixes [#26](https://github.com/WFCD/warframe.rs/issues/26) ([683e2a5](https://github.com/WFCD/warframe.rs/commit/683e2a5bd72b817bf47f2a455f445e3c4933268d))
+* invasion api changes ([cf01d21](https://github.com/WFCD/warframe.rs/commit/cf01d21cf7dce91a96879f5ad83a456e0d22a212))
+* items are now also affected by the base url changes ([8c45c16](https://github.com/WFCD/warframe.rs/commit/8c45c16d6df0a80a21c13222e28c3d04963ca0a0))
+* nightwave api changes ([a1aae04](https://github.com/WFCD/warframe.rs/commit/a1aae04f56a9eba2878c0a25f5dbb547962603c6))
+* order::created_at and updated_at are now datetime. order::type is now its own enum ([38cdd3f](https://github.com/WFCD/warframe.rs/commit/38cdd3fa56fb676aaf9b1e790d32ca1199e78d91))
+
+
+### Features
+
+* new fixtures ([5ead9c6](https://github.com/WFCD/warframe.rs/commit/5ead9c61fd150dfd3823503131f1550694e1f268))
+* option to supply a base url ([89a0478](https://github.com/WFCD/warframe.rs/commit/89a04785f0f55fdc5646cdbc7f84324225beb79f))
+
+
+### BREAKING CHANGES
+
+* removed the reward_types field
+* removed the eta and start_string field
+* renamned mission_key to mission_type_key
+* removed as_string and item_string
+* SyndicateMission::syndicate_key is now the enum
+* API changes for Order::created_at, Order::updated_at, Order::type
+* API change for Client::new and Queryable::query
+
 ## [7.0.1](https://github.com/WFCD/warframe.rs/compare/v7.0.0...v7.0.1) (2025-07-06)
 
 
