@@ -68,23 +68,16 @@ mod test_fissure {
     use serde_json::from_str;
 
     use super::Fissure;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::fissure::{
-            fissure,
-            fissure_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Fissure as Queryable>::Return;
 
     #[rstest]
-    fn test(fissure_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/fissure.json")]
+        #[mode = str]
+        fissure_en: &str,
+    ) {
         from_str::<R>(fissure_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(fissure: &str) {
-        from_str::<R>(fissure).unwrap();
     }
 }

@@ -74,23 +74,16 @@ mod test_invasion {
     use serde_json::from_str;
 
     use super::Invasion;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::invasion::{
-            invasion,
-            invasion_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Invasion as Queryable>::Return;
 
     #[rstest]
-    fn test(invasion_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/invasion.json")]
+        #[mode = str]
+        invasion_en: &str,
+    ) {
         from_str::<R>(invasion_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(invasion: &str) {
-        from_str::<R>(invasion).unwrap();
     }
 }

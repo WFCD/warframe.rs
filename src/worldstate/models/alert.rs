@@ -24,23 +24,16 @@ mod test_alert {
     use serde_json::from_str;
 
     use super::Alert;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::alert::{
-            alert,
-            alert_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <Alert as Queryable>::Return;
 
     #[rstest]
-    fn test(alert_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/alert.json")]
+        #[mode = str]
+        alert_en: &str,
+    ) {
         from_str::<R>(alert_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(alert: &str) {
-        from_str::<R>(alert).unwrap();
     }
 }

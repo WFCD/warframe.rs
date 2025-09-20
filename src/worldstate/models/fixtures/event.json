@@ -1,0 +1,158 @@
+[
+    {
+        "id": "68c192700000000000000000",
+        "activation": "2025-09-10T15:00:00.000Z",
+        "expiry": "2025-09-24T15:00:00.000Z",
+        "jobs": [
+            {
+                "id": "InfestedPlainsBounty1758726000000",
+                "expiry": "2025-09-24T15:00:00.000Z",
+                "rewardPool": [
+                    "Augur Message",
+                    "100X Kuva",
+                    "Naramon Lens",
+                    "300 Endo",
+                    "Lith C13 Relic",
+                    "Lith E2 Relic",
+                    "Lith A10 Relic",
+                    "Meso A8 Relic",
+                    "Neo D10 Relic",
+                    "Neo A15 Relic",
+                    "Neo D9 Relic",
+                    "Axi S18 Relic",
+                    "Axi P8 Relic",
+                    "Axi C10 Relic",
+                    "Cetus Wisp",
+                    "Vigilante Pursuit",
+                    "Revenant Chassis Blueprint",
+                    "Lith K12 Relic",
+                    "Lith O4 Relic",
+                    "Meso T8 Relic",
+                    "Meso V11 Relic",
+                    "Meso G9 Relic",
+                    "Neo C6 Relic",
+                    "Neo T9 Relic",
+                    "Neo A14 Relic",
+                    "Axi O7 Relic",
+                    "Axi Y1 Relic",
+                    "Axi V13 Relic",
+                    "Gladiator Finesse",
+                    "Lith N17 Relic",
+                    "Lith Q2 Relic",
+                    "Meso A7 Relic",
+                    "Meso P16 Relic",
+                    "Neo X1 Relic"
+                ],
+                "type": "Plague Star",
+                "enemyLevels": [
+                    15,
+                    25
+                ],
+                "standingStages": [
+                    50,
+                    300,
+                    100,
+                    575
+                ],
+                "minMR": 0
+            },
+            {
+                "id": "InfestedPlainsBountyAdvanced1758726000000",
+                "expiry": "2025-09-24T15:00:00.000Z",
+                "rewardPool": [
+                    "Augur Message",
+                    "100X Kuva",
+                    "Naramon Lens",
+                    "300 Endo",
+                    "Lith C13 Relic",
+                    "Lith E2 Relic",
+                    "Lith A10 Relic",
+                    "Meso A8 Relic",
+                    "Neo D10 Relic",
+                    "Neo A15 Relic",
+                    "Neo D9 Relic",
+                    "Axi S18 Relic",
+                    "Axi P8 Relic",
+                    "Axi C10 Relic",
+                    "Cetus Wisp",
+                    "Vigilante Pursuit",
+                    "Revenant Chassis Blueprint",
+                    "Lith K12 Relic",
+                    "Lith O4 Relic",
+                    "Meso T8 Relic",
+                    "Meso V11 Relic",
+                    "Meso G9 Relic",
+                    "Neo C6 Relic",
+                    "Neo T9 Relic",
+                    "Neo A14 Relic",
+                    "Axi O7 Relic",
+                    "Axi Y1 Relic",
+                    "Axi V13 Relic",
+                    "Gladiator Finesse",
+                    "Lith N17 Relic",
+                    "Lith Q2 Relic",
+                    "Meso A7 Relic",
+                    "Meso P16 Relic",
+                    "Neo X1 Relic"
+                ],
+                "type": "Infested Plains Bounty Advanced",
+                "enemyLevels": [
+                    55,
+                    65
+                ],
+                "standingStages": [
+                    200,
+                    1000,
+                    300,
+                    1700
+                ],
+                "minMR": 0
+            },
+            {
+                "id": "InfestedPlainsBountySteelPath1758726000000",
+                "expiry": "2025-09-24T15:00:00.000Z",
+                "rewardPool": [
+                    "Pattern Mismatch. Results inaccurate."
+                ],
+                "type": "Infested Plains Bounty Steel Path",
+                "enemyLevels": [
+                    100,
+                    110
+                ],
+                "standingStages": [
+                    200,
+                    1100,
+                    400,
+                    2100
+                ],
+                "minMR": 10
+            }
+        ],
+        "previousJobs": [],
+        "maximumScore": null,
+        "currentScore": null,
+        "smallInterval": null,
+        "largeInterval": null,
+        "faction": "Infested",
+        "description": "Plague Star",
+        "tooltip": "Steal Vay Hek's Thrax Toxin, mix it, and poison the Infested Boil growing in the center of the plains.",
+        "concurrentNodes": [],
+        "rewards": [],
+        "interimSteps": [],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isCommunity": false,
+        "regionDrops": [],
+        "archwingDrops": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "affiliatedWith": "Operations Syndicate",
+        "tag": "InfestedPlains"
+    }
+]

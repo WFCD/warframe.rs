@@ -30,23 +30,16 @@ mod test_steel_path {
     use serde_json::from_str;
 
     use super::SteelPath;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::steel_path::{
-            steel_path,
-            steel_path_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <SteelPath as Queryable>::Return;
 
     #[rstest]
-    fn test(steel_path_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/steel_path.json")]
+        #[mode = str]
+        steel_path_en: &str,
+    ) {
         from_str::<R>(steel_path_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(steel_path: &str) {
-        from_str::<R>(steel_path).unwrap();
     }
 }

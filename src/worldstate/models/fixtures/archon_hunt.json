@@ -1,0 +1,48 @@
+{
+  "id": "68c7537e41f5afad4589b03e",
+  "activation": "2025-09-15T00:00:00.000Z",
+  "expiry": "2025-09-22T00:00:00.000Z",
+  "rewardPool": "Archon Sortie Rewards",
+  "variants": [],
+  "missions": [
+    {
+      "node": "Spear (Mars)",
+      "nodeKey": "Spear (Mars)",
+      "type": "Rescue",
+      "typeKey": "Rescue",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "levelAuras": []
+    },
+    {
+      "node": "Martialis (Mars)",
+      "nodeKey": "Martialis (Mars)",
+      "type": "Defense",
+      "typeKey": "Defense",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "levelAuras": []
+    },
+    {
+      "node": "War (Mars)",
+      "nodeKey": "War (Mars)",
+      "type": "Assassination",
+      "typeKey": "Assassination",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "levelAuras": []
+    }
+  ],
+  "boss": "Archon Amar",
+  "faction": "Narmer",
+  "factionKey": "Narmer"
+}

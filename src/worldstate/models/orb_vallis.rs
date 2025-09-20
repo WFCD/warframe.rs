@@ -26,23 +26,16 @@ mod test_orb_vallis {
     use serde_json::from_str;
 
     use super::OrbVallis;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::orb_vallis::{
-            orb_vallis,
-            orb_vallis_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <OrbVallis as Queryable>::Return;
 
     #[rstest]
-    fn test(orb_vallis_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/orb_vallis.json")]
+        #[mode = str]
+        orb_vallis_en: &str,
+    ) {
         from_str::<R>(orb_vallis_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(orb_vallis: &str) {
-        from_str::<R>(orb_vallis).unwrap();
     }
 }

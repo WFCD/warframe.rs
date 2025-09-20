@@ -1,0 +1,260 @@
+[
+    {
+        "id": "68cd1dea896f1a099089b045",
+        "activation": "2025-09-19T09:26:08.546Z",
+        "node": "Marid (Sedna)",
+        "nodeKey": "Marid (Sedna)",
+        "desc": "Corpus Siege",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 3,
+                        "type": "Fieldron",
+                        "key": "Fieldron"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/fieldron.png",
+                "color": 5068118
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 3,
+                        "type": "Detonite Injector",
+                        "key": "Detonite Injector"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/detonite-injector.png",
+                "color": 5068118
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": false,
+        "count": 12995,
+        "requiredRuns": 39000,
+        "completion": 66.6602564102564,
+        "completed": false,
+        "rewardTypes": [
+            "fieldron",
+            "detonite"
+        ]
+    },
+    {
+        "id": "68cd6d9a7bf9e3adca89b041",
+        "activation": "2025-09-19T15:01:22.531Z",
+        "node": "Naga (Sedna)",
+        "nodeKey": "Naga (Sedna)",
+        "desc": "Corpus Siege",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 1,
+                        "type": "Dera Vandal Barrel",
+                        "key": "Dera Vandal Barrel"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/dera-vandal.png",
+                "color": 6052435
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 1,
+                        "type": "Latron Wraith Receiver",
+                        "key": "Latron Wraith Receiver"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/furax-wraith.png",
+                "color": 6052435
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": false,
+        "count": -20277,
+        "requiredRuns": 46000,
+        "completion": 27.9597826086956,
+        "completed": false,
+        "rewardTypes": [
+            "vandal",
+            "wraith"
+        ]
+    },
+    {
+        "id": "68cd5d32e4c011157f89b03f",
+        "activation": "2025-09-19T13:40:02.029Z",
+        "node": "Psamathe (Neptune)",
+        "nodeKey": "Psamathe (Neptune)",
+        "desc": "Phorid Manifestation",
+        "attacker": {
+            "faction": "Infested",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 1,
+                        "type": "Mutalist Alad V Nav Coordinate",
+                        "key": "Mutalist Alad V Nav Coordinate"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/mutalist-alad-v-nav-coordinate.png",
+                "color": 158519
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": true,
+        "count": -19560,
+        "requiredRuns": 30000,
+        "completion": 34.8,
+        "completed": false,
+        "rewardTypes": [
+            "mutalist"
+        ]
+    },
+    {
+        "id": "68cd724b243f7b00b189b03e",
+        "activation": "2025-09-20T05:00:20.086Z",
+        "node": "Adrastea (Jupiter)",
+        "nodeKey": "Adrastea (Jupiter)",
+        "desc": "Grineer Offensive",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 1,
+                        "type": "Karak Wraith Blueprint",
+                        "key": "Karak Wraith Blueprint"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/furax-wraith.png",
+                "color": 6052435
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 1,
+                        "type": "Snipetron Vandal Stock",
+                        "key": "Snipetron Vandal Stock"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/dera-vandal.png",
+                "color": 6052435
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": false,
+        "count": 6530,
+        "requiredRuns": 49000,
+        "completion": 56.6632653061225,
+        "completed": false,
+        "rewardTypes": [
+            "wraith",
+            "vandal"
+        ]
+    },
+    {
+        "id": "68cdc452eff860d30a89b03e",
+        "activation": "2025-09-19T21:00:02.035Z",
+        "node": "Venera (Venus)",
+        "nodeKey": "Venera (Venus)",
+        "desc": "Infested Outbreak",
+        "attacker": {
+            "faction": "Infested",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 3,
+                        "type": "Fieldron",
+                        "key": "Fieldron"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/fieldron.png",
+                "color": 5068118
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": true,
+        "count": -36090,
+        "requiredRuns": 36000,
+        "completion": -0.249999999999995,
+        "completed": true,
+        "rewardTypes": [
+            "fieldron"
+        ]
+    },
+    {
+        "id": "68cdc452eff860d30a89b03f",
+        "activation": "2025-09-19T21:00:02.035Z",
+        "node": "Fossa (Venus)",
+        "nodeKey": "Fossa (Venus)",
+        "desc": "Phorid Manifestation",
+        "attacker": {
+            "faction": "Infested",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "count": 3,
+                        "type": "Fieldron",
+                        "key": "Fieldron"
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/fieldron.png",
+                "color": 5068118
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": true,
+        "count": -21014,
+        "requiredRuns": 30000,
+        "completion": 29.9533333333333,
+        "completed": false,
+        "rewardTypes": [
+            "fieldron"
+        ]
+    }
+]

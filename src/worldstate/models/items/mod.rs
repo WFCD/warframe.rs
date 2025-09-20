@@ -229,16 +229,17 @@ pub enum Item {
 mod test {
     use rstest::rstest;
 
-    use crate::worldstate::{
-        fixtures::item::{
-            item_sigil_en,
-            nanospores_de,
-        },
-        models::items::Item,
-    };
+    use crate::worldstate::models::items::Item;
 
     #[rstest]
-    fn test_item_query(item_sigil_en: &str, nanospores_de: &str) {
+    fn test_item_query(
+        #[files("src/worldstate/models/fixtures/item_sigil.json")]
+        #[mode = str]
+        item_sigil_en: &str,
+        #[files("src/worldstate/models/fixtures/item_nanospores.json")]
+        #[mode = str]
+        nanospores_de: &str,
+    ) {
         let sigil = serde_json::from_str::<Item>(item_sigil_en).unwrap();
 
         assert!(matches!(sigil, Item::Sigil(_)));

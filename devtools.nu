@@ -40,3 +40,12 @@ export def worldstate_req [
         return (http get $"https://api.warframestat.us/($prefix)($endpoint)?language=($language)")
     }
 }
+
+
+
+export def "worldstate-fixture create" [
+    file_name:string, # The name of the fixture file to create
+]: nothing -> nothing {
+    let file_path = $"src/worldstate/models/fixtures/($file_name).json"
+    clipboard paste | save $file_path
+}

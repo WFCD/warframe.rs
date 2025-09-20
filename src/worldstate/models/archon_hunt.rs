@@ -64,23 +64,16 @@ mod test_archonhunt {
     use serde_json::from_str;
 
     use super::ArchonHunt;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::archon_hunt::{
-            archon_hunt,
-            archon_hunt_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <ArchonHunt as Queryable>::Return;
 
     #[rstest]
-    fn test(archon_hunt_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/archon_hunt.json")]
+        #[mode = str]
+        archon_hunt_en: &str,
+    ) {
         from_str::<R>(archon_hunt_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(archon_hunt: &str) {
-        from_str::<R>(archon_hunt).unwrap();
     }
 }

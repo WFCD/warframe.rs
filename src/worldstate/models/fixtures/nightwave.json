@@ -1,0 +1,122 @@
+{
+  "id": "nightwave1765756800000",
+  "activation": "2025-05-21T18:15:00.000Z",
+  "expiry": "2025-12-15T00:00:00.000Z",
+  "season": 15,
+  "tag": "Radio Legion Intermission13 Syndicate",
+  "phase": 0,
+  "params": {},
+  "possibleChallenges": [],
+  "activeChallenges": [
+    {
+      "id": "1758412800000seasondailymercykill",
+      "activation": "2025-09-18T00:00:00.000Z",
+      "expiry": "2025-09-21T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Mercy Kill an Enemy",
+      "title": "No Mercy",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasondailypickupenergy",
+      "activation": "2025-09-19T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Pick up 20 Energy Orbs",
+      "title": "Energizing",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1758585600000seasondailycollectcredits",
+      "activation": "2025-09-20T00:00:00.000Z",
+      "expiry": "2025-09-23T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Pick up 15,000 Credits",
+      "title": "Saver",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklypermanentcompletemissions18",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Complete any 15 missions",
+      "title": "Mission Complete XVIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklypermanentkilleximus18",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Kill 30 Eximus",
+      "title": "Eximus Eliminator XVIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklypermanentkillenemies18",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Kill 500 Enemies",
+      "title": "Not a Warning Shot XVIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklycompletesortie",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Complete 1 Sorties",
+      "title": "Sortie Specialist",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklycompletevenusrace",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Complete 3 different K-Drive races in Orb Vallis on Venus or in Cambion Drift on Deimos",
+      "title": "Now Boarding",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklyhardterminated",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": true,
+      "desc": "Destroy 3 Necramech vault guardians",
+      "title": "Terminated",
+      "reputation": 7000,
+      "isPermanent": false
+    },
+    {
+      "id": "1758499200000seasonweeklyhardkillenemies",
+      "activation": "2025-09-15T00:00:00.000Z",
+      "expiry": "2025-09-22T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": true,
+      "desc": "Kill 1,500 Enemies",
+      "title": "Kill Shot",
+      "reputation": 7000,
+      "isPermanent": false
+    }
+  ]
+}

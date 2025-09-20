@@ -1,0 +1,13 @@
+{
+    "id": "00585e073437d864ee23b57f467c6890d6726025c4f6ad09f9a86e7f86544e4a",
+    "node": "SolNode000",
+    "nodeKey": "SolNode000",
+    "activation": "1970-01-01T00:00:00.000Z",
+    "expiry": "+275760-09-13T00:00:00.000Z",
+    "enemy": "Tenno",
+    "type": "Unknown",
+    "typeKey": "Unknown",
+    "archwing": false,
+    "sharkwing": false,
+    "expired": true
+}

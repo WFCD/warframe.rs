@@ -34,23 +34,16 @@ mod test_void_trader {
     use serde_json::from_str;
 
     use super::VoidTrader;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::void_trader::{
-            void_trader,
-            void_trader_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <VoidTrader as Queryable>::Return;
 
     #[rstest]
-    fn test(void_trader_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/void_trader.json")]
+        #[mode = str]
+        void_trader_en: &str,
+    ) {
         from_str::<R>(void_trader_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(void_trader: &str) {
-        from_str::<R>(void_trader).unwrap();
     }
 }

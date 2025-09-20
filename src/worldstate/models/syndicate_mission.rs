@@ -57,23 +57,16 @@ mod test_syndicate_mission {
     use serde_json::from_str;
 
     use super::SyndicateMission;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::syndicate_mission::{
-            syndicate_mission,
-            syndicate_mission_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <SyndicateMission as Queryable>::Return;
 
     #[rstest]
-    fn test(syndicate_mission_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/syndicate_mission.json")]
+        #[mode = str]
+        syndicate_mission_en: &str,
+    ) {
         from_str::<R>(syndicate_mission_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(syndicate_mission: &str) {
-        from_str::<R>(syndicate_mission).unwrap();
     }
 }

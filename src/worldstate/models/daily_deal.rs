@@ -33,23 +33,16 @@ mod test_daily_deal {
     use serde_json::from_str;
 
     use super::DailyDeal;
-    use crate::worldstate::{
-        Queryable,
-        fixtures::daily_deal::{
-            daily_deal,
-            daily_deal_en,
-        },
-    };
+    use crate::worldstate::Queryable;
 
     type R = <DailyDeal as Queryable>::Return;
 
     #[rstest]
-    fn test(daily_deal_en: &str) {
+    fn test(
+        #[files("src/worldstate/models/fixtures/daily_deal.json")]
+        #[mode = str]
+        daily_deal_en: &str,
+    ) {
         from_str::<R>(daily_deal_en).unwrap();
-    }
-
-    #[rstest]
-    fn test_ml(daily_deal: &str) {
-        from_str::<R>(daily_deal).unwrap();
     }
 }
