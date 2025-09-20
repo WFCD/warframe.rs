@@ -1,7 +1,5 @@
 use warframe_macros::model;
 
-use super::reward_type::RewardType;
-
 /// Represents the difficulty of a [Nightwave Challenge](NightwaveChallenge)
 #[model]
 pub enum NightwaveChallengeType {
