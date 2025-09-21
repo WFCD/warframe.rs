@@ -1,8 +1,14 @@
+#![allow(clippy::struct_excessive_bools)]
+
+use std::collections::HashMap;
+
 use chrono::{
     DateTime,
     Utc,
 };
 use warframe_macros::model;
+
+use crate::worldstate::Language;
 
 /// A news item
 #[model(endpoint = "/news", return_style = Array)]
@@ -33,6 +39,18 @@ pub struct News {
 
     /// When the event that is associated with the News ends
     pub end_date: Option<DateTime<Utc>>,
+
+    /// The translations of the News message
+    pub translations: HashMap<Language, String>,
+
+    /// The link to the News
+    pub link: String,
+
+    /// Whether the News are mobile-only
+    pub mobile_only: bool,
+
+    /// The time when the News expire
+    pub expiry: Option<DateTime<Utc>>,
 }
 
 #[cfg(test)]

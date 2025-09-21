@@ -56,9 +56,7 @@ fn append_activation_and_expiry(
 pub fn parse_struct(args: TokenStream, mut item: ItemStruct) -> syn::Result<TokenStream> {
     let mut vdq = VecDeque::from(item.attrs.clone());
     vdq.push_front(syn::parse_quote!(#[serde(rename_all = "camelCase")]));
-    vdq.push_front(
-        syn::parse_quote!(#[derive(Debug, Clone, PartialEq, PartialOrd, serde::Deserialize)]),
-    );
+    vdq.push_front(syn::parse_quote!(#[derive(Debug, Clone, PartialEq, serde::Deserialize)]));
     item.attrs = vdq.into();
 
     // panic!("{:?}", item.attrs);
