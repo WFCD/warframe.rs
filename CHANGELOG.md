@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/WFCD/warframe.rs/compare/v8.0.0...v8.0.1) (2025-09-21)
+
+
+### Bug Fixes
+
+* add missing fields to news ([6c8ca78](https://github.com/WFCD/warframe.rs/commit/6c8ca78c04950c0403d95c785c0a1be2bfa4e1a1))
+
 # [8.0.0](https://github.com/WFCD/warframe.rs/compare/v7.0.1...v8.0.0) (2025-09-20)
 
 
