@@ -10,6 +10,9 @@ repository = "https://github.com/Mettwasser/warframe.rs"
 license = "MIT"
 rust-version = "1.91"
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
 
 [features]
 default = ["market_ratelimit", "market_cache"]
