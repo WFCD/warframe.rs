@@ -26,8 +26,8 @@ pub struct ClientConfig {
 impl Default for ClientConfig {
     fn default() -> Self {
         Self {
-            nested_listener_sleep: Duration::from_mins(2),
-            listener_sleep_timeout: Duration::from_mins(1),
+            nested_listener_sleep: Duration::from_mins(5),
+            listener_sleep_timeout: Duration::from_mins(5),
         }
     }
 }
