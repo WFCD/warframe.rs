@@ -2,8 +2,17 @@
 
 //! A client to do all sorts of things with the API
 
-use std::time::Duration;
+use std::{
+    any::{
+        Any,
+        TypeId,
+        type_name,
+    },
+    sync::Arc,
+    time::Duration,
+};
 
+use moka::future::Cache;
 use reqwest::StatusCode;
 
 use super::{
@@ -21,6 +30,14 @@ pub struct ClientConfig {
     /// The time a listener sleeps upon reaching it's expiry until it tries to fetch the updated
     /// data
     pub listener_sleep_timeout: Duration,
+
+    /// Whether the items cache should create entries of items not found by the API.
+    /// # Advantage
+    /// If the same mistake happens multiple times, only a single request will be sent
+    ///
+    /// # Disadvantage
+    /// Can bloat memory usage.
+    pub cache_404_item_requests: bool,
 }
 
 impl Default for ClientConfig {
@@ -28,9 +45,13 @@ impl Default for ClientConfig {
         Self {
             nested_listener_sleep: Duration::from_mins(5),
             listener_sleep_timeout: Duration::from_mins(5),
+            cache_404_item_requests: false,
         }
     }
 }
+
+type TypeCache = Cache<(Language, TypeId), Arc<dyn Any + Send + Sync>>;
+type ItemCache = Cache<(Language, Box<str>), Option<Item>>;
 
 /// The client that acts as a convenient way to query models.
 ///
@@ -62,6 +83,8 @@ pub struct Client {
     pub(crate) http: reqwest::Client,
     pub(crate) base_url: String,
     pub(crate) config: ClientConfig,
+    type_cache: TypeCache,
+    items_cache: ItemCache,
 }
 
 impl Default for Client {
@@ -71,8 +94,14 @@ impl Default for Client {
     fn default() -> Self {
         Self {
             http: reqwest::Client::new(),
-            base_url: "https://api.warframestat.us".to_string(),
+            base_url: "https://api.warframestat.us".to_owned(),
             config: ClientConfig::default(),
+            type_cache: Cache::builder()
+                .time_to_live(Duration::from_mins(5))
+                .build(),
+            items_cache: Cache::builder()
+                .time_to_live(Duration::from_hours(12))
+                .build(),
         }
     }
 }
@@ -80,12 +109,46 @@ impl Default for Client {
 impl Client {
     /// Creates a new [Client] with the option to supply a custom reqwest client and a base url.
     #[must_use]
-    pub fn new(reqwest_client: reqwest::Client, base_url: String, config: ClientConfig) -> Self {
+    pub fn new(
+        reqwest_client: reqwest::Client,
+        base_url: String,
+        config: ClientConfig,
+        type_cache: TypeCache,
+        items_cache: ItemCache,
+    ) -> Self {
         Self {
             http: reqwest_client,
             base_url,
             config,
+            type_cache,
+            items_cache,
         }
+    }
+
+    async fn type_cached<T, F>(&self, language: Language, fallback: F) -> Result<T::Return, Error>
+    where
+        T: Queryable,
+        F: AsyncFn() -> Result<T::Return, Error>,
+    {
+        let type_id = TypeId::of::<T::Return>();
+
+        if let Some(item) = self
+            .type_cache
+            .get(&(language, type_id))
+            .await
+            .and_then(|any| any.downcast_ref::<T::Return>().cloned())
+        {
+            tracing::debug!("cache hit for type {}", type_name::<T::Return>());
+            return Ok(item);
+        }
+
+        let item = fallback().await?;
+
+        self.type_cache
+            .insert((language, type_id), Arc::new(item.clone()))
+            .await;
+
+        Ok(item)
     }
 
     /// Fetches an instance of a specified model.
@@ -115,7 +178,8 @@ impl Client {
     where
         T: Queryable,
     {
-        <T as Queryable>::query(&self.base_url, &self.http).await
+        self.type_cached::<T, _>(Language::EN, || T::query(&self.base_url, &self.http))
+            .await
     }
 
     /// Fetches an instance of a specified model in a supplied Language.
@@ -147,7 +211,34 @@ impl Client {
     where
         T: Queryable,
     {
-        T::query_with_language(&self.base_url, &self.http, language).await
+        self.type_cached::<T, _>(language, || {
+            T::query_with_language(&self.base_url, &self.http, language)
+        })
+        .await
+    }
+
+    async fn cached_item<F>(
+        &self,
+        language: Language,
+        query: &str,
+        fallback: F,
+    ) -> Result<Option<Item>, Error>
+    where
+        F: AsyncFn() -> Result<Option<Item>, Error>,
+    {
+        let key = (language, Box::from(query));
+        if let Some(item) = self.items_cache.get(&key).await {
+            tracing::debug!("cache hit for {key:?}");
+            return Ok(item);
+        }
+
+        let maybe_item = fallback().await?;
+
+        if maybe_item.is_some() || self.config.cache_404_item_requests {
+            self.items_cache.insert(key, maybe_item.clone()).await;
+        }
+
+        Ok(maybe_item)
     }
 
     /// Queries an item by its name and returns the closest matching item.
@@ -179,11 +270,13 @@ impl Client {
     /// }
     /// ```
     pub async fn query_item(&self, query: &str) -> Result<Option<Item>, Error> {
-        self.query_by_url(format!(
-            "{}/items/{}/?language=en",
-            self.base_url,
-            urlencoding::encode(query),
-        ))
+        self.cached_item(Language::EN, query, || {
+            self.query_by_url(format!(
+                "{}/items/{}/?language=en",
+                self.base_url,
+                urlencoding::encode(query),
+            ))
+        })
         .await
     }
 
@@ -217,12 +310,14 @@ impl Client {
         query: &str,
         language: Language,
     ) -> Result<Option<Item>, Error> {
-        self.query_by_url(format!(
-            "{}/items/{}/?language={}",
-            self.base_url,
-            urlencoding::encode(query),
-            language
-        ))
+        self.cached_item(language, query, || {
+            self.query_by_url(format!(
+                "{}/items/{}/?language={}",
+                self.base_url,
+                urlencoding::encode(query),
+                language
+            ))
+        })
         .await
     }
 
