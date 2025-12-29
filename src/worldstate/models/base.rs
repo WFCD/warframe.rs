@@ -1,6 +1,7 @@
 //! Here lies what powers the models.
 
 use std::{
+    self,
     fmt::Write,
     ops::{
         Div,
@@ -70,9 +71,9 @@ pub trait TimedEvent {
 /// Marks a struct as `Queryable`.
 ///
 /// Comes with a default implementation that works universally.
-pub trait Queryable: Endpoint {
+pub trait Queryable: Endpoint + Clone + 'static {
     /// The Type returned by the [query](Queryable::query).
-    type Return: DeserializeOwned;
+    type Return: DeserializeOwned + Send + Sync + Clone + 'static;
 
     /// Queries a model and returns an instance of [`itself`](Queryable::Return).
     #[must_use]
