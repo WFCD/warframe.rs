@@ -4,7 +4,6 @@ use chrono::NaiveDate;
 use serde::Deserialize;
 
 use super::{
-    Category,
     Component,
     Introduced,
     Polarity,
@@ -65,8 +64,6 @@ pub struct RangedWeapon {
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub components: Vec<Component>,
 
@@ -178,8 +175,6 @@ pub struct MeleeWeapon {
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub components: Vec<Component>,
 

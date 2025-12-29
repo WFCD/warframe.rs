@@ -3,7 +3,6 @@
 use serde::Deserialize;
 
 use super::{
-    Category,
     Component,
     Introduced,
     Polarity,
@@ -18,15 +17,13 @@ pub struct Warframe {
 
     pub armor: i64,
 
-    pub aura: String,
+    pub aura: Option<String>,
 
     pub build_price: i64,
 
     pub build_quantity: i64,
 
     pub build_time: i64,
-
-    pub category: Category,
 
     pub color: i64,
 
@@ -83,9 +80,9 @@ pub struct Warframe {
 
     pub unique_name: String,
 
-    pub wikia_thumbnail: String,
+    pub wikia_thumbnail: Option<String>,
 
-    pub wikia_url: String,
+    pub wikia_url: Option<String>,
 }
 
 /// An ability
