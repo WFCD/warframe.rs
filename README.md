@@ -5,11 +5,13 @@ An async crate to wrap the [Worldstate API](https://docs.warframestat.us) and th
 Use this crate if you want to make a Warframe-related rust project that is async.
 
 ## Getting started
+
 To install, simply run `cargo add warframe`.
 
-Note that the MSRV of this project is `1.85`.
+Note that the MSRV of this project is `1.91`.
 
 ### Example
+
 ```rust,no_run
 use warframe::worldstate::{Client, Error, queryable::Cetus, Opposite, TimedEvent};
 
@@ -30,6 +32,7 @@ async fn main() -> Result<(), Error> {
 ```
 
 ## Contributing
+
 See [CONTRIBUTING](CONTRIBUTING.md)
 
 ### Commitlint
