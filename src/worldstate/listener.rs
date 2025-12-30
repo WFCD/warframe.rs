@@ -1,6 +1,8 @@
+use chrono::TimeDelta;
+
 use crate::worldstate::{
+    self,
     Client,
-    Error,
     Queryable,
     TimedEvent,
 };
@@ -10,6 +12,20 @@ where
     F: AsyncFn(&T, &T),
 {
     async move |(), before, after| f(before, after).await
+}
+
+#[derive(Debug, thiserror::Error)]
+#[error(transparent)]
+pub enum ListenerError {
+    Worldstate(#[from] worldstate::Error),
+
+    /// An error raised when [`chrono::TimeDelta::to_std`] fails.
+    ///
+    /// # Note
+    /// This error should in theory never happen. The only time this would fail is when, for some
+    /// reason, the [`TimedEvent::expiry`] field on [`TimedEvent`]s is negative/in the past.
+    #[error("Failed to convert time")]
+    FailedToConvertTime(TimeDelta),
 }
 
 impl Client {
@@ -40,7 +56,7 @@ impl Client {
     /// }
     /// ```
     #[allow(clippy::missing_panics_doc, clippy::missing_errors_doc)]
-    pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), Error>
+    pub async fn call_on_update<T, Callback>(&self, callback: Callback) -> Result<(), ListenerError>
     where
         T: TimedEvent + Queryable<Return = T>,
         for<'a, 'b> Callback: AsyncFn(&'a T, &'b T),
@@ -90,7 +106,7 @@ impl Client {
         &self,
         callback: Callback,
         state: S,
-    ) -> Result<(), Error>
+    ) -> Result<(), ListenerError>
     where
         S: Sized + Send + Sync + Clone,
         T: TimedEvent + Queryable<Return = T>,
@@ -107,7 +123,7 @@ impl Client {
         &self,
         callback: Callback,
         state: S,
-    ) -> Result<(), Error>
+    ) -> Result<(), ListenerError>
     where
         S: Sized + Send + Sync + Clone,
         T: TimedEvent + Queryable<Return = T>,
@@ -122,6 +138,8 @@ impl Client {
                     "(LISTENER) Fetching new possible state"
                 );
 
+                // A buffer-sleep. The API does NOT update on the minute.
+                // So we wait again to avoid sending another request too soon
                 tokio::time::sleep(self.config.listener_sleep_timeout).await;
 
                 let new_item = self.fetch::<T>().await?;
@@ -133,15 +151,19 @@ impl Client {
                 item = new_item;
             }
 
-            let time_to_sleep = item.expiry() - chrono::Utc::now();
+            let chrono_time_to_sleep = item.expiry() - chrono::Utc::now();
+
+            let time_to_sleep = chrono_time_to_sleep
+                .to_std()
+                .map_err(|_| ListenerError::FailedToConvertTime(chrono_time_to_sleep))?;
 
             tracing::debug!(
                 listener = %std::any::type_name::<T>(),
-                sleep_duration = %time_to_sleep.num_seconds(),
+                sleep_duration_seconds = %time_to_sleep.as_secs(),
                 "(LISTENER) Sleeping"
             );
 
-            tokio::time::sleep(time_to_sleep.to_std().unwrap()).await;
+            tokio::time::sleep(time_to_sleep).await;
         }
     }
 }
