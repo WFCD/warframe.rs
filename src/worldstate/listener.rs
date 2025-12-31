@@ -51,7 +51,7 @@ impl Client {
     /// async fn main() -> Result<(), Box<dyn Error>> {
     ///     let client = Client::default();
     ///     
-    ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)s
+    ///     client.call_on_update(on_cetus_update); // don't forget to start it as a bg task (or .await it)
     ///     Ok(())
     /// }
     /// ```
