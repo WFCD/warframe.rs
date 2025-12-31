@@ -1,3 +1,28 @@
+# [9.0.0](https://github.com/WFCD/warframe.rs/compare/v8.0.1...v9.0.0) (2025-12-31)
+
+
+### Bug Fixes
+
+* deserialization fails due to category field ([afdb895](https://github.com/WFCD/warframe.rs/commit/afdb895bb7cf19a85e5202bcac76935c27768afb))
+* possible panic in call_on_update listeners ([e8686bb](https://github.com/WFCD/warframe.rs/commit/e8686bb6bae1f0bcec93ba6cb22a0d5343ee2bb8))
+
+
+### Features
+
+* cache for worldstate ([2ff7321](https://github.com/WFCD/warframe.rs/commit/2ff73219261ae150423c2eab25ef32e82b087ff2))
+* refactor listeners and add config ([c6e5662](https://github.com/WFCD/warframe.rs/commit/c6e566296b6e2533958d2632997ab6ab42e5897b))
+
+
+### Performance Improvements
+
+* update default listener frequency ([ad3c798](https://github.com/WFCD/warframe.rs/commit/ad3c798e1b0476f7aeac2cae331934a46c682ae2))
+
+
+### BREAKING CHANGES
+
+* call_on_update now returns a new error type
+* added config to ws client
+
 ## [8.0.1](https://github.com/WFCD/warframe.rs/compare/v8.0.0...v8.0.1) (2025-09-21)
 
 
