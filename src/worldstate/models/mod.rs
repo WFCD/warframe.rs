@@ -14,6 +14,7 @@
 //! use warframe::worldstate::{
 //!     Client,
 //!     Error,
+//!     Language,
 //!     Queryable,
 //!     queryable::{
 //!         Cetus,
@@ -24,9 +25,18 @@
 //! async fn main() -> Result<(), Error> {
 //!     let reqwest_client = reqwest::Client::new();
 //!
-//!     let cetus: Cetus = Cetus::query("https://api.warframestat.us/", &reqwest_client).await?;
-//!     let fissures: Vec<Fissure> =
-//!         Fissure::query("https://api.warframestat.us/", &reqwest_client).await?;
+//!     let cetus: Cetus = Cetus::query(
+//!         "https://api.warframestat.us/",
+//!         &reqwest_client,
+//!         Language::EN,
+//!     )
+//!     .await?;
+//!     let fissures: Vec<Fissure> = Fissure::query(
+//!         "https://api.warframestat.us/",
+//!         &reqwest_client,
+//!         Language::EN,
+//!     )
+//!     .await?;
 //!
 //!     Ok(())
 //! }

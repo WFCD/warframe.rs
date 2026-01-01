@@ -13,7 +13,6 @@ use std::{
 };
 
 use moka::future::Cache;
-use reqwest::StatusCode;
 
 use super::{
     Queryable,
@@ -81,8 +80,8 @@ type ItemCache = Cache<(Language, Box<str>), Option<Item>>;
 #[derive(Debug, Clone)]
 pub struct Client {
     pub(crate) http: reqwest::Client,
-    pub(crate) base_url: String,
-    pub(crate) config: ClientConfig,
+    pub(crate) base_url: Arc<str>,
+    pub(crate) config: Arc<ClientConfig>,
     type_cache: TypeCache,
     items_cache: ItemCache,
 }
@@ -94,8 +93,8 @@ impl Default for Client {
     fn default() -> Self {
         Self {
             http: reqwest::Client::new(),
-            base_url: "https://api.warframestat.us".to_owned(),
-            config: ClientConfig::default(),
+            base_url: "https://api.warframestat.us".into(),
+            config: Arc::new(ClientConfig::default()),
             type_cache: Cache::builder()
                 .time_to_live(Duration::from_mins(5))
                 .build(),
@@ -111,15 +110,15 @@ impl Client {
     #[must_use]
     pub fn new(
         reqwest_client: reqwest::Client,
-        base_url: String,
+        base_url: &str,
         config: ClientConfig,
         type_cache: TypeCache,
         items_cache: ItemCache,
     ) -> Self {
         Self {
             http: reqwest_client,
-            base_url,
-            config,
+            base_url: base_url.into(),
+            config: Arc::new(config),
             type_cache,
             items_cache,
         }
@@ -128,7 +127,7 @@ impl Client {
     async fn type_cached<T, F>(&self, language: Language, fallback: F) -> Result<T::Return, Error>
     where
         T: Queryable,
-        F: AsyncFn() -> Result<T::Return, Error>,
+        F: AsyncFnOnce() -> Result<T::Return, Error>,
     {
         let type_id = TypeId::of::<T::Return>();
 
@@ -178,8 +177,7 @@ impl Client {
     where
         T: Queryable,
     {
-        self.type_cached::<T, _>(Language::EN, || T::query(&self.base_url, &self.http))
-            .await
+        self.fetch_using_lang::<T>(Language::EN).await
     }
 
     /// Fetches an instance of a specified model in a supplied Language.
@@ -211,8 +209,8 @@ impl Client {
     where
         T: Queryable,
     {
-        self.type_cached::<T, _>(language, || {
-            T::query_with_language(&self.base_url, &self.http, language)
+        self.type_cached::<T, _>(language, async || {
+            T::query(&self.base_url.clone(), &self.http.clone(), language).await
         })
         .await
     }
@@ -224,7 +222,7 @@ impl Client {
         fallback: F,
     ) -> Result<Option<Item>, Error>
     where
-        F: AsyncFn() -> Result<Option<Item>, Error>,
+        F: AsyncFnOnce() -> Result<Option<Item>, Error>,
     {
         let key = (language, Box::from(query));
         if let Some(item) = self.items_cache.get(&key).await {
@@ -270,14 +268,7 @@ impl Client {
     /// }
     /// ```
     pub async fn query_item(&self, query: &str) -> Result<Option<Item>, Error> {
-        self.cached_item(Language::EN, query, || {
-            self.query_by_url(format!(
-                "{}/items/{}/?language=en",
-                self.base_url,
-                urlencoding::encode(query),
-            ))
-        })
-        .await
+        self.query_item_using_lang(query, Language::EN).await
     }
 
     /// Queries an item by its name and returns the closest matching item.
@@ -310,28 +301,18 @@ impl Client {
         query: &str,
         language: Language,
     ) -> Result<Option<Item>, Error> {
-        self.cached_item(language, query, || {
-            self.query_by_url(format!(
-                "{}/items/{}/?language={}",
-                self.base_url,
-                urlencoding::encode(query),
-                language
-            ))
+        self.cached_item(language, query, async move || {
+            Item::query(
+                self.http.clone(),
+                format!(
+                    "{}/items/{}/?language={}",
+                    self.base_url,
+                    urlencoding::encode(query),
+                    language
+                ),
+            )
+            .await
         })
         .await
-    }
-
-    async fn query_by_url(&self, url: String) -> Result<Option<Item>, Error> {
-        let response = self.http.get(url).send().await?;
-
-        if response.status() == StatusCode::NOT_FOUND {
-            return Ok(None);
-        }
-
-        let json = response.text().await?;
-
-        let item = serde_json::from_str::<Item>(&json)?;
-
-        Ok(Some(item))
     }
 }

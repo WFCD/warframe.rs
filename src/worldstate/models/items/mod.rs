@@ -10,6 +10,7 @@ pub use modification::Mod;
 pub use node::Node;
 pub use pet::Pet;
 pub use relic::Relic;
+use reqwest::StatusCode;
 pub use resource::Resource;
 pub use sentinel::Sentinel;
 pub use serde::Deserialize;
@@ -19,6 +20,8 @@ pub use warframe::{
     Warframe,
 };
 use weapon::Weapon;
+
+use crate::worldstate::Error;
 
 mod arcane;
 mod archwing;
@@ -225,6 +228,23 @@ pub enum Item {
     )]
     Weapon(Box<Weapon>),
 }
+
+impl Item {
+    pub(crate) async fn query(http: reqwest::Client, url: String) -> Result<Option<Item>, Error> {
+        let response = http.get(url).send().await?;
+
+        if response.status() == StatusCode::NOT_FOUND {
+            return Ok(None);
+        }
+
+        let json = response.text().await?;
+
+        let item = serde_json::from_str::<Item>(&json)?;
+
+        Ok(Some(item))
+    }
+}
+
 #[cfg(test)]
 mod test {
     use rstest::rstest;

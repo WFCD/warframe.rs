@@ -22,11 +22,6 @@ use crate::worldstate::language::Language;
 
 /// Types implementing this have an actual endpoint on the API.
 pub trait Endpoint {
-    /// Returns the URL to the english endpoint.
-    ///
-    /// Getting the english endpoint is free, as concatenating is done at compile time.
-    fn endpoint_en(base_url: &str) -> String;
-
     /// Returns the URL to the endpoint of the specified language.
     ///
     /// Getting this endpoint is __NOT__ free, as concatenating is done at runtime.
@@ -78,23 +73,6 @@ pub trait Queryable: Endpoint + Clone + 'static {
     /// Queries a model and returns an instance of [`itself`](Queryable::Return).
     #[must_use]
     fn query(
-        base_url: &str,
-        request_executor: &reqwest::Client,
-    ) -> impl std::future::Future<Output = Result<Self::Return, Error>> + Send {
-        async {
-            Ok(request_executor
-                .get(Self::endpoint_en(base_url))
-                .send()
-                .await?
-                .json::<Self::Return>()
-                .await?)
-        }
-    }
-
-    /// Queries a model with the specified language and returns an instance of
-    /// [`itself`](Queryable::Return).
-    #[must_use]
-    fn query_with_language(
         base_url: &str,
         request_executor: &reqwest::Client,
         language: Language,
