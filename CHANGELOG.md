@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/WFCD/warframe.rs/compare/v9.0.0...v9.0.1) (2026-01-01)
+
+
+### Bug Fixes
+
+* implementation of `std::marker::Send` is not general enough for ws client ([d79c52d](https://github.com/WFCD/warframe.rs/commit/d79c52d453024bbfa3e4f07ace0ea918dad598dd))
+
 # [9.0.0](https://github.com/WFCD/warframe.rs/compare/v8.0.1...v9.0.0) (2025-12-31)
 
 
