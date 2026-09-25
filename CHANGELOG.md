@@ -1,3 +1,10 @@
+## [9.0.2](https://github.com/WFCD/warframe.rs/compare/v9.0.1...v9.0.2) (2026-09-25)
+
+
+### Bug Fixes
+
+* add void flood to fix [#34](https://github.com/WFCD/warframe.rs/issues/34) ([81ceef7](https://github.com/WFCD/warframe.rs/commit/81ceef7d0e18e95a912e8e6e867c8f19bfca1c7a))
+
 ## [9.0.1](https://github.com/WFCD/warframe.rs/compare/v9.0.0...v9.0.1) (2026-01-01)
 
 

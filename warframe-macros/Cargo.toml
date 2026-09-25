@@ -1,6 +1,6 @@
 [package]
 name = "warframe-macros"
-version = "9.0.1"
+version = "9.0.2"
 edition = "2024"
 description = "Macros for the `warframe` crate."
 readme = "../README.md"
