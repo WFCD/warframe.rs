@@ -7,6 +7,7 @@ use warframe_macros::model;
 /// An enumeration representing various supported languages.
 #[model]
 #[derive(Ord)]
+#[display(rename_all = "lowercase")]
 #[serde(rename_all = "lowercase")]
 pub enum Language {
     /// German (`DE`)

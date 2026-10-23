@@ -10,10 +10,22 @@ use syn::{
     spanned::Spanned,
 };
 
+/// Parses and transforms a model enum, adding standard derives and serde deserialization.
 pub fn parse_enum(_args: TokenStream, mut item: ItemEnum) -> syn::Result<TokenStream> {
     // this is here to be able to have the derives at the very top
     let mut vdq = VecDeque::from(item.attrs.clone());
-    vdq.push_front(syn::parse_quote!( #[derive(Debug, PartialEq, PartialOrd, Clone, Eq, Copy, Hash, derive_more::Display)] ));
+
+    // Only derive Copy when all variants are unit variants (no data-carrying fields)
+    let all_unit = item
+        .variants
+        .iter()
+        .all(|v| matches!(v.fields, syn::Fields::Unit));
+
+    if all_unit {
+        vdq.push_front(syn::parse_quote!( #[derive(Debug, PartialEq, PartialOrd, Clone, Eq, Copy, Hash, derive_more::Display)] ));
+    } else {
+        vdq.push_front(syn::parse_quote!( #[derive(Debug, PartialEq, PartialOrd, Clone, Eq, Hash, derive_more::Display)] ));
+    }
 
     // check whether the enum has a discriminant, and maybe implement Deserialize_repr
     match item
@@ -40,7 +52,7 @@ pub fn parse_enum(_args: TokenStream, mut item: ItemEnum) -> syn::Result<TokenSt
     };
 
     let opposite_trait_impl = match item.variants.len() {
-        2 => {
+        2 if all_unit => {
             let (a, b) = (
                 &item.variants.first().unwrap().ident,
                 &item.variants.last().unwrap().ident,

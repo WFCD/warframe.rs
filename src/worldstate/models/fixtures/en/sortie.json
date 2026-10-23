@@ -1,0 +1,36 @@
+{
+  "id": "6ac122fef207c1f8adbc192c",
+  "activation": "2026-10-03T16:00:00.000Z",
+  "expiry": "2026-10-04T16:00:00.000Z",
+  "rewardPool": "Sortie Rewards",
+  "variants": [
+    {
+      "missionType": "Hijack",
+      "missionTypeKey": "Hijack",
+      "modifier": "Energy Reduction",
+      "modifierDescription": "Maximum Warframe Energy capacity is quartered. Energy Siphon is less effective.",
+      "node": "Orias (Europa)",
+      "nodeKey": "Orias (Europa)"
+    },
+    {
+      "missionType": "Rescue",
+      "missionTypeKey": "Rescue",
+      "modifier": "Enemy Elemental Enhancement: Blast",
+      "modifierDescription": "Enemies deal increased Blast damage and also have increased Immunity to said damage type.",
+      "node": "Proteus (Neptune)",
+      "nodeKey": "Proteus (Neptune)"
+    },
+    {
+      "missionType": "Spy",
+      "missionTypeKey": "Spy",
+      "modifier": "Weapon Restriction: Assault Rifle Only",
+      "modifierDescription": "Only assault rifles may be used in this mission. Surprisingly, launchers work too. Other weapon types will be removed automatically if equipped.",
+      "node": "Ishtar (Venus)",
+      "nodeKey": "Ishtar (Venus)"
+    }
+  ],
+  "missions": [],
+  "boss": "Raptor",
+  "faction": "Corpus",
+  "factionKey": "Corpus"
+}

@@ -1,0 +1,1334 @@
+[
+    {
+        "id": "5c7cb0d00000000000000000",
+        "activation": "2026-10-07T16:00:00.000Z",
+        "expiry": "2026-10-21T16:00:00.000Z",
+        "jobs": [],
+        "previousJobs": [],
+        "maximumScore": 100,
+        "currentScore": 20,
+        "smallInterval": null,
+        "largeInterval": null,
+        "description": "\u70ed\u7f8e\u4e9a\u88c2\u7f1d",
+        "tooltip": "\u5c01\u5370\u5965\u5e03\u5c71\u8c37\u7684\u88c2\u7f1d",
+        "node": "\u5965\u5e03\u5c71\u8c37 (\u91d1\u661f)",
+        "concurrentNodes": [],
+        "scoreLocTag": "\u5df2\u5c01\u5370\u70ed\u7f8e\u4e9a\u88c2\u7f1d",
+        "rewards": [
+            {
+                "items": [
+                    "\u5965\u5824\u514b\u5149\u5b50\u67aa \u7834\u574f\u8005"
+                ],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/StoreItems/Weapons/Corpus/LongGuns/CrpBFG/Vandal/VandalCrpBFG",
+                        "type": "\u5965\u5824\u514b\u5149\u5b50\u67aa \u7834\u574f\u8005",
+                        "key": "Opticor Vandal",
+                        "count": 1
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/dera-vandal.png",
+                "color": 6052435
+            }
+        ],
+        "health": 20,
+        "interimSteps": [
+            {
+                "goal": 5,
+                "reward": {
+                    "items": [
+                        "\u96ea\u85cf\u7684\u6069\u6028\u5fbd\u7ae0"
+                    ],
+                    "countedItems": [
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Clan/OrbBadgeItem",
+                            "type": "\u96ea\u85cf\u7684\u6069\u6028\u5fbd\u7ae0",
+                            "key": "Buried Debts Emblem",
+                            "count": 1
+                        }
+                    ],
+                    "credits": 0,
+                    "thumbnail": "",
+                    "color": 5198940
+                },
+                "message": {}
+            },
+            {
+                "goal": 25,
+                "reward": {
+                    "items": [
+                        "\u5e76\u5408 \u9730\u5f39\u901f\u5c04",
+                        "\u5e76\u5408 \u819b\u7ebf"
+                    ],
+                    "countedItems": [
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Shotgun/ShotgunMedicMod",
+                            "type": "\u5e76\u5408 \u9730\u5f39\u901f\u5c04",
+                            "key": "Amalgam Shotgun Spazz",
+                            "count": 1
+                        },
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Rifle/SerratedRushMod",
+                            "type": "\u5e76\u5408 \u819b\u7ebf",
+                            "key": "Amalgam Serration",
+                            "count": 1
+                        }
+                    ],
+                    "credits": 0,
+                    "thumbnail": "",
+                    "color": 5198940
+                },
+                "message": {}
+            },
+            {
+                "goal": 50,
+                "reward": {
+                    "items": [
+                        "\u5e76\u5408 \u5f39\u5934\u6269\u6563",
+                        "\u5e76\u5408 \u80a2\u89e3"
+                    ],
+                    "countedItems": [
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Pistol/MultishotDodgeMod",
+                            "type": "\u5e76\u5408 \u5f39\u5934\u6269\u6563",
+                            "key": "Amalgam Barrel Diffusion",
+                            "count": 1
+                        },
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Melee/CritDamageChargeSpeedMod",
+                            "type": "\u5e76\u5408 \u80a2\u89e3",
+                            "key": "Amalgam Organ Shatter",
+                            "count": 1
+                        }
+                    ],
+                    "credits": 0,
+                    "thumbnail": "",
+                    "color": 5198940
+                },
+                "message": {}
+            },
+            {
+                "goal": 75,
+                "reward": {
+                    "items": [
+                        "\u96ea\u85cf\u7684\u6069\u6028\u7eb9\u7ae0"
+                    ],
+                    "countedItems": [
+                        {
+                            "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Sigils/OrbSigil",
+                            "type": "\u96ea\u85cf\u7684\u6069\u6028\u7eb9\u7ae0",
+                            "key": "Buried Debts Sigil",
+                            "count": 1
+                        }
+                    ],
+                    "credits": 0,
+                    "thumbnail": "",
+                    "color": 5198940
+                },
+                "message": {}
+            }
+        ],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isPersonal": true,
+        "isCommunity": true,
+        "regionDrops": [],
+        "regionDropUniqueNames": [],
+        "archwingDrops": [],
+        "archwingDropUniqueNames": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "scoreVar": "FissuresClosed",
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "tag": "HeatFissure"
+    },
+    {
+        "id": "6abe756f0000000000000000",
+        "activation": "2026-10-01T14:59:59.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "jobs": [],
+        "previousJobs": [],
+        "maximumScore": 1,
+        "currentScore": 0,
+        "smallInterval": null,
+        "largeInterval": null,
+        "description": "\u6218\u672f\u8b66\u62a5\uff1a\u4e07\u5723\u5669\u68a6",
+        "node": "\u5730\u7403",
+        "concurrentNodes": [],
+        "rewards": [
+            {
+                "items": [
+                    "Pumpkin Melee Dangle",
+                    "Ten Year Anniversary Week4 Glyph",
+                    "Machete Manic Bobble Head"
+                ],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/MeleeDangles/PumpkinMeleeDangle",
+                        "type": "Pumpkin Melee Dangle",
+                        "key": "Pumpkin Melee Dangle",
+                        "count": 1
+                    },
+                    {
+                        "uniqueName": "/Lotus/StoreItems/Types/StoreItems/AvatarImages/TenYearAnniversaryWeek4Glyph",
+                        "type": "Ten Year Anniversary Week4 Glyph",
+                        "key": "Ten Year Anniversary Week4 Glyph",
+                        "count": 1
+                    },
+                    {
+                        "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/MacheteManicBobbleHead",
+                        "type": "Machete Manic Bobble Head",
+                        "key": "Machete Manic Bobble Head",
+                        "count": 1
+                    }
+                ],
+                "credits": 50000,
+                "thumbnail": "",
+                "color": 5198940
+            }
+        ],
+        "interimSteps": [],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isPersonal": true,
+        "isCommunity": false,
+        "regionDrops": [],
+        "regionDropUniqueNames": [],
+        "archwingDrops": [],
+        "archwingDropUniqueNames": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "tag": "Halloween"
+    },
+    {
+        "id": "6abe75700000000000000000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "jobs": [],
+        "previousJobs": [],
+        "maximumScore": 0,
+        "currentScore": 0,
+        "smallInterval": null,
+        "largeInterval": null,
+        "description": "Nights of Naberus",
+        "tooltip": "Visit Daughter for Naberus Treats",
+        "node": "Necralisk (Deimos)",
+        "concurrentNodes": [],
+        "rewards": [],
+        "interimSteps": [],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isPersonal": true,
+        "isCommunity": false,
+        "regionDrops": [],
+        "regionDropUniqueNames": [],
+        "archwingDrops": [],
+        "archwingDropUniqueNames": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "tag": "DeimosHalloween"
+    },
+    {
+        "id": "6ad0ea700000000000000000",
+        "activation": "2026-10-15T15:00:00.000Z",
+        "expiry": "2026-11-17T16:00:00.000Z",
+        "jobs": [],
+        "previousJobs": [],
+        "maximumScore": 0,
+        "currentScore": 17,
+        "smallInterval": null,
+        "largeInterval": null,
+        "faction": "Infested",
+        "description": "Road To Tau Event Name",
+        "tooltip": "Road To Tau Short Event Desc",
+        "concurrentNodes": [],
+        "scoreLocTag": "Road To Tau Event Score",
+        "rewards": [],
+        "health": 17.18,
+        "interimSteps": [],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isCommunity": true,
+        "regionDrops": [
+            "Road To Tau Event Pickup"
+        ],
+        "regionDropUniqueNames": [
+            "/Lotus/Types/Gameplay/Events/RoadToTauEvent/RoadToTauEventPickup"
+        ],
+        "archwingDrops": [],
+        "archwingDropUniqueNames": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "tag": "RoadToTauEvent"
+    },
+    {
+        "id": "6ad26f824a93aca30e002442",
+        "activation": "2026-10-19T17:52:07.067Z",
+        "expiry": "2026-11-09T17:52:07.067Z",
+        "jobs": [
+            {
+                "id": "GhoulAlertBountyRes1794246727067",
+                "expiry": "2026-11-09T17:52:07.067Z",
+                "uniqueName": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/GhoulBountyTableARewards",
+                "rewardPool": [
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "Hunter Track",
+                    "Nitain Extract",
+                    "Aya",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "Hunter Track",
+                    "Nitain Extract",
+                    "Aya"
+                ],
+                "rewardPoolDrops": [
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Uncommon",
+                        "chance": 26.47,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 8.74,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 19.42,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 18.45,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 6.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 14.29,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 13.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Track",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 15.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 18.87,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 17.92,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Track",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 20.75,
+                        "count": 1
+                    }
+                ],
+                "type": "Rescue the Ghoul Defector",
+                "enemyLevels": [
+                    15,
+                    25
+                ],
+                "standingStages": [
+                    240,
+                    240,
+                    240,
+                    350
+                ],
+                "minMR": 1
+            },
+            {
+                "id": "GhoulAlertBountyHunt1794246727067",
+                "expiry": "2026-11-09T17:52:07.067Z",
+                "uniqueName": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/GhoulBountyTableBRewards",
+                "rewardPool": [
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "Hunter Command",
+                    "Nitain Extract",
+                    "Aya",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "Hunter Command",
+                    "Nitain Extract",
+                    "Aya"
+                ],
+                "rewardPoolDrops": [
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Uncommon",
+                        "chance": 26.47,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 8.74,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 19.42,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 18.45,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 6.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 14.29,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 13.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Command",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 15.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 18.87,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 17.92,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Command",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 20.75,
+                        "count": 1
+                    }
+                ],
+                "type": "Purge a Massive Ghoul Burial Site",
+                "enemyLevels": [
+                    40,
+                    50
+                ],
+                "standingStages": [
+                    550,
+                    550,
+                    550,
+                    800
+                ],
+                "minMR": 3
+            }
+        ],
+        "previousJobs": [
+            {
+                "id": "GhoulAlertBountyHunt1794246727067",
+                "expiry": "2026-11-09T17:52:07.067Z",
+                "uniqueName": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/GhoulBountyTableARewards",
+                "rewardPool": [
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Adrenaline",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "Hunter Track",
+                    "Nitain Extract",
+                    "Aya",
+                    "Encrypted Journal Fragment",
+                    "Hunter Munitions",
+                    "Stubba Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo C7 Relic",
+                    "Hunter Track",
+                    "Nitain Extract",
+                    "Aya"
+                ],
+                "rewardPoolDrops": [
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Uncommon",
+                        "chance": 26.47,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 8.74,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 19.42,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 18.45,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 6.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Adrenaline",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 14.29,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 13.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Track",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 15.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 18.87,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Munitions",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Stubba Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo C7 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 17.92,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Track",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 20.75,
+                        "count": 1
+                    }
+                ],
+                "type": "Purge a Massive Ghoul Burial Site",
+                "enemyLevels": [
+                    15,
+                    25
+                ],
+                "standingStages": [
+                    240,
+                    240,
+                    240,
+                    350
+                ],
+                "minMR": 1
+            },
+            {
+                "id": "GhoulAlertBountyRes1794246727067",
+                "expiry": "2026-11-09T17:52:07.067Z",
+                "uniqueName": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/GhoulBountyTableBRewards",
+                "rewardPool": [
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "300 Endo",
+                    "3,000 Credits Cache",
+                    "Hunter Recovery",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "Hunter Command",
+                    "Nitain Extract",
+                    "Aya",
+                    "Encrypted Journal Fragment",
+                    "Hunter Synergy",
+                    "Quartakk Blueprint",
+                    "Cetus Wisp",
+                    "5X Breath Of The Eidolon",
+                    "Neo A16 Relic",
+                    "Hunter Command",
+                    "Nitain Extract",
+                    "Aya"
+                ],
+                "rewardPoolDrops": [
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Uncommon",
+                        "chance": 26.47,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Common",
+                        "chance": 36.76,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 8.74,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Uncommon",
+                        "chance": 12.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 19.42,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.85,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 18.45,
+                        "count": 1
+                    },
+                    {
+                        "item": "300 Endo",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "3,000 Credits Cache",
+                        "rarity": "Rare",
+                        "chance": 6.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Recovery",
+                        "rarity": "Rare",
+                        "chance": 8.93,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 14.29,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 13.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Command",
+                        "rarity": "Rare",
+                        "chance": 7.14,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 3.57,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 15.71,
+                        "count": 1
+                    },
+                    {
+                        "item": "Encrypted Journal Fragment",
+                        "rarity": "Uncommon",
+                        "chance": 18.87,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Synergy",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Quartakk Blueprint",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Cetus Wisp",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Breath Of The Eidolon",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 5
+                    },
+                    {
+                        "item": "Neo A16 Relic",
+                        "rarity": "Uncommon",
+                        "chance": 17.92,
+                        "count": 1
+                    },
+                    {
+                        "item": "Hunter Command",
+                        "rarity": "Rare",
+                        "chance": 9.43,
+                        "count": 1
+                    },
+                    {
+                        "item": "Nitain Extract",
+                        "rarity": "Rare",
+                        "chance": 4.72,
+                        "count": 1
+                    },
+                    {
+                        "item": "Aya",
+                        "rarity": "Uncommon",
+                        "chance": 20.75,
+                        "count": 1
+                    }
+                ],
+                "type": "Rescue the Ghoul Defector",
+                "enemyLevels": [
+                    40,
+                    50
+                ],
+                "standingStages": [
+                    500,
+                    500,
+                    500,
+                    730
+                ],
+                "minMR": 3
+            }
+        ],
+        "maximumScore": null,
+        "currentScore": null,
+        "smallInterval": null,
+        "largeInterval": null,
+        "description": "\u5c38\u9b3c\u51c0\u5316",
+        "tooltip": "Help Konzu rid the plains of Grineer Ghouls",
+        "concurrentNodes": [],
+        "victimNode": "\u591c\u7075\u5e73\u91ce(\u5730\u7403)",
+        "rewards": [],
+        "health": 89.53,
+        "previousId": "6ad6ea470000000000000010",
+        "interimSteps": [],
+        "progressSteps": [],
+        "showTotalAtEndOfMission": false,
+        "isCommunity": false,
+        "regionDrops": [],
+        "regionDropUniqueNames": [],
+        "archwingDrops": [],
+        "archwingDropUniqueNames": [],
+        "metadata": {},
+        "completionBonuses": [],
+        "altExpiry": "1970-01-01T00:00:00.000Z",
+        "altActivation": "1970-01-01T00:00:00.000Z",
+        "nextAlt": {
+            "expiry": "1970-01-01T00:00:00.000Z",
+            "activation": "1970-01-01T00:00:00.000Z"
+        },
+        "affiliatedWith": "Ostrons",
+        "tag": "GhoulEmergence"
+    }
+]

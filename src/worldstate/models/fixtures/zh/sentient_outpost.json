@@ -1,0 +1,12 @@
+{
+    "node": 550,
+    "id": "CrewBattleNode550:true",
+    "activation": "2021-08-06T13:38:05.000Z",
+    "expiry": "2021-08-06T14:08:05.000Z",
+    "mission": {
+        "node": "\u6069\u65af\u5c24\u533a\u683c (\u9762\u7eb1)",
+        "faction": "Grineer",
+        "type": "\u524d\u54e8\u6218"
+    },
+    "active": true
+}

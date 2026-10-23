@@ -1,0 +1,249 @@
+[
+  {
+    "id": "5c7cb0d00000000000000000",
+    "activation": "2026-10-07T16:00:00.000Z",
+    "expiry": "2026-10-21T16:00:00.000Z",
+    "jobs": [],
+    "previousJobs": [],
+    "maximumScore": 100,
+    "currentScore": 7,
+    "smallInterval": null,
+    "largeInterval": null,
+    "description": "Thermia Fractures",
+    "tooltip": "Seal fractures across the Orb Vallis",
+    "node": "Orb Vallis (Venus)",
+    "concurrentNodes": [],
+    "scoreLocTag": "Thermia Fractures Sealed",
+    "rewards": [
+      {
+        "items": [
+          "Opticor Vandal"
+        ],
+        "countedItems": [
+          {
+            "uniqueName": "/Lotus/StoreItems/Weapons/Corpus/LongGuns/CrpBFG/Vandal/VandalCrpBFG",
+            "type": "Opticor Vandal",
+            "key": "Opticor Vandal",
+            "count": 1
+          }
+        ],
+        "credits": 0,
+        "thumbnail": "https://cdn.warframestat.us/img/dera-vandal.png",
+        "color": 6052435
+      }
+    ],
+    "health": 7,
+    "interimSteps": [
+      {
+        "goal": 5,
+        "reward": {
+          "items": [
+            "Buried Debts Emblem"
+          ],
+          "countedItems": [
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Clan/OrbBadgeItem",
+              "type": "Buried Debts Emblem",
+              "key": "Buried Debts Emblem",
+              "count": 1
+            }
+          ],
+          "credits": 0,
+          "thumbnail": "",
+          "color": 5198940
+        },
+        "message": {}
+      },
+      {
+        "goal": 25,
+        "reward": {
+          "items": [
+            "Amalgam Shotgun Spazz",
+            "Amalgam Serration"
+          ],
+          "countedItems": [
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Shotgun/ShotgunMedicMod",
+              "type": "Amalgam Shotgun Spazz",
+              "key": "Amalgam Shotgun Spazz",
+              "count": 1
+            },
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Rifle/SerratedRushMod",
+              "type": "Amalgam Serration",
+              "key": "Amalgam Serration",
+              "count": 1
+            }
+          ],
+          "credits": 0,
+          "thumbnail": "",
+          "color": 5198940
+        },
+        "message": {}
+      },
+      {
+        "goal": 50,
+        "reward": {
+          "items": [
+            "Amalgam Barrel Diffusion",
+            "Amalgam Organ Shatter"
+          ],
+          "countedItems": [
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Pistol/MultishotDodgeMod",
+              "type": "Amalgam Barrel Diffusion",
+              "key": "Amalgam Barrel Diffusion",
+              "count": 1
+            },
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/DualSource/Melee/CritDamageChargeSpeedMod",
+              "type": "Amalgam Organ Shatter",
+              "key": "Amalgam Organ Shatter",
+              "count": 1
+            }
+          ],
+          "credits": 0,
+          "thumbnail": "",
+          "color": 5198940
+        },
+        "message": {}
+      },
+      {
+        "goal": 75,
+        "reward": {
+          "items": [
+            "Buried Debts Sigil"
+          ],
+          "countedItems": [
+            {
+              "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/Sigils/OrbSigil",
+              "type": "Buried Debts Sigil",
+              "key": "Buried Debts Sigil",
+              "count": 1
+            }
+          ],
+          "credits": 0,
+          "thumbnail": "",
+          "color": 5198940
+        },
+        "message": {}
+      }
+    ],
+    "progressSteps": [],
+    "showTotalAtEndOfMission": false,
+    "isPersonal": true,
+    "isCommunity": true,
+    "regionDrops": [],
+    "regionDropUniqueNames": [],
+    "archwingDrops": [],
+    "archwingDropUniqueNames": [],
+    "metadata": {},
+    "completionBonuses": [],
+    "scoreVar": "FissuresClosed",
+    "altExpiry": "1970-01-01T00:00:00.000Z",
+    "altActivation": "1970-01-01T00:00:00.000Z",
+    "nextAlt": {
+      "expiry": "1970-01-01T00:00:00.000Z",
+      "activation": "1970-01-01T00:00:00.000Z"
+    },
+    "tag": "HeatFissure"
+  },
+  {
+    "id": "6abe756f0000000000000000",
+    "activation": "2026-10-01T14:59:59.000Z",
+    "expiry": "2026-11-02T16:00:00.000Z",
+    "jobs": [],
+    "previousJobs": [],
+    "maximumScore": 1,
+    "currentScore": 0,
+    "smallInterval": null,
+    "largeInterval": null,
+    "description": "Hallowed Nightmares Tactical Alert",
+    "node": "Earth",
+    "concurrentNodes": [],
+    "rewards": [
+      {
+        "items": [
+          "Pumpkin Melee Dangle",
+          "Ten Year Anniversary Week4 Glyph",
+          "Machete Manic Bobble Head"
+        ],
+        "countedItems": [
+          {
+            "uniqueName": "/Lotus/StoreItems/Upgrades/Skins/MeleeDangles/PumpkinMeleeDangle",
+            "type": "Pumpkin Melee Dangle",
+            "key": "Pumpkin Melee Dangle",
+            "count": 1
+          },
+          {
+            "uniqueName": "/Lotus/StoreItems/Types/StoreItems/AvatarImages/TenYearAnniversaryWeek4Glyph",
+            "type": "Ten Year Anniversary Week4 Glyph",
+            "key": "Ten Year Anniversary Week4 Glyph",
+            "count": 1
+          },
+          {
+            "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/MacheteManicBobbleHead",
+            "type": "Machete Manic Bobble Head",
+            "key": "Machete Manic Bobble Head",
+            "count": 1
+          }
+        ],
+        "credits": 50000,
+        "thumbnail": "",
+        "color": 5198940
+      }
+    ],
+    "interimSteps": [],
+    "progressSteps": [],
+    "showTotalAtEndOfMission": false,
+    "isPersonal": true,
+    "isCommunity": false,
+    "regionDrops": [],
+    "regionDropUniqueNames": [],
+    "archwingDrops": [],
+    "archwingDropUniqueNames": [],
+    "metadata": {},
+    "completionBonuses": [],
+    "altExpiry": "1970-01-01T00:00:00.000Z",
+    "altActivation": "1970-01-01T00:00:00.000Z",
+    "nextAlt": {
+      "expiry": "1970-01-01T00:00:00.000Z",
+      "activation": "1970-01-01T00:00:00.000Z"
+    },
+    "tag": "Halloween"
+  },
+  {
+    "id": "6abe75700000000000000000",
+    "activation": "2026-10-01T15:00:00.000Z",
+    "expiry": "2026-11-02T16:00:00.000Z",
+    "jobs": [],
+    "previousJobs": [],
+    "maximumScore": 0,
+    "currentScore": 0,
+    "smallInterval": null,
+    "largeInterval": null,
+    "description": "Nights of Naberus",
+    "tooltip": "Visit Daughter for Naberus Treats",
+    "node": "Necralisk (Deimos)",
+    "concurrentNodes": [],
+    "rewards": [],
+    "interimSteps": [],
+    "progressSteps": [],
+    "showTotalAtEndOfMission": false,
+    "isPersonal": true,
+    "isCommunity": false,
+    "regionDrops": [],
+    "regionDropUniqueNames": [],
+    "archwingDrops": [],
+    "archwingDropUniqueNames": [],
+    "metadata": {},
+    "completionBonuses": [],
+    "altExpiry": "1970-01-01T00:00:00.000Z",
+    "altActivation": "1970-01-01T00:00:00.000Z",
+    "nextAlt": {
+      "expiry": "1970-01-01T00:00:00.000Z",
+      "activation": "1970-01-01T00:00:00.000Z"
+    },
+    "tag": "DeimosHalloween"
+  }
+]

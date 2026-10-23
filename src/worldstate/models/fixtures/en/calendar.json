@@ -1,0 +1,260 @@
+{
+  "activation": "2026-09-28T00:00:00.000Z",
+  "expiry": "2026-10-05T00:00:00.000Z",
+  "days": [
+    {
+      "date": "1999-04-01T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Ex-Eximus",
+            "description": "Kill 10 Eximus"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-04-07T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "Forma",
+          "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/Forma"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Archon Crystal Boreal",
+          "uniqueName": "/Lotus/StoreItems/Types/Gameplay/NarmerSorties/ArchonCrystalBoreal"
+        }
+      ]
+    },
+    {
+      "date": "1999-04-08T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Bottled Lightning",
+            "description": "Add 25% Status Damage and Electricity Status Chance to all weapons."
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Toxic Shot",
+            "description": "Add 25% Gas Status Chance to Primary and Secondary weapons."
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Thick Skin",
+            "description": "Gain +250 Armor."
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-04-09T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Demonstration of power",
+            "description": "Kill 150 Enemies with Abilities"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-04-26T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "Weapon Primary Arcane Unlocker",
+          "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/WeaponPrimaryArcaneUnlocker"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Exilus Adapter",
+          "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/UtilityUnlocker"
+        }
+      ]
+    },
+    {
+      "date": "1999-05-06T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Electronic waste Disposal",
+            "description": "Kill 200 Techrot with Melee Weapons"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-05-07T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "Secondary Arcane Adapter",
+          "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/WeaponSecondaryArcaneUnlocker"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Exilus Weapon Adapter Blueprint",
+          "uniqueName": "/Lotus/StoreItems/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+        }
+      ]
+    },
+    {
+      "date": "1999-05-15T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Purge the infection",
+            "description": "Kill 500 Techrot"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-05-18T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "Orokin Reactor Blueprint",
+          "uniqueName": "/Lotus/StoreItems/Types/Recipes/Components/OrokinReactorBlueprint"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Arcane Enhancements: Double Pack",
+          "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarMajorArtifactPack"
+        }
+      ]
+    },
+    {
+      "date": "1999-05-23T00:00:00.000Z",
+      "events": []
+    },
+    {
+      "date": "1999-05-25T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Friendly Fallout",
+            "description": "Attacks from Specters or Companions have a 25% chance to cause Radiation Status."
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Radial Javelin On Heavy",
+            "description": "[PH] Radial Javelin On Heavy Desc"
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Have A Blast",
+            "description": "Every 10th shot adds 10 Blast stacks on hit."
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-06-01T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Null and Void",
+            "description": "Kill 300 Techrot with Abilities"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-06-09T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "3 Day Mod Drop Chance Booster",
+          "uniqueName": "/Lotus/Types/StoreItems/Boosters/ModDropChanceBooster3DayStoreItem"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Arcane Enhancements: Double Pack",
+          "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarMajorArtifactPack"
+        }
+      ]
+    },
+    {
+      "date": "1999-06-15T00:00:00.000Z",
+      "events": []
+    },
+    {
+      "date": "1999-06-16T00:00:00.000Z",
+      "events": [
+        {
+          "type": "To Do",
+          "challenge": {
+            "title": "Shock and Awe",
+            "description": "Kill 150 Scaldra Troops with Abilities"
+          }
+        }
+      ]
+    },
+    {
+      "date": "1999-06-28T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Big Prize!",
+          "reward": "Riven",
+          "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarRivenPack"
+        },
+        {
+          "type": "Big Prize!",
+          "reward": "Arcane Enhancements",
+          "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarArtifactPack"
+        }
+      ]
+    },
+    {
+      "date": "1999-06-29T00:00:00.000Z",
+      "events": [
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Espresso Shots",
+            "description": "Increase energy restoration by 2/s."
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "Toxic Shot",
+            "description": "Add 25% Gas Status Chance to Primary and Secondary weapons."
+          }
+        },
+        {
+          "type": "Override",
+          "upgrade": {
+            "title": "No Quarter",
+            "description": "+25% Melee Attack Speed."
+          }
+        }
+      ]
+    }
+  ],
+  "season": "Spring",
+  "yearIteration": 23,
+  "version": 19,
+  "requirements": [
+    "/Lotus/Upgrades/Calendar/1999UpgradeApplicationRequirement"
+  ]
+}

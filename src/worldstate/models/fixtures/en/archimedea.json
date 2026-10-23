@@ -1,0 +1,214 @@
+[
+  {
+    "id": "2253a39572304885366e9178d63bf1b7",
+    "activation": "2026-10-05T00:00:00.000Z",
+    "expiry": "2026-10-12T00:00:00.000Z",
+    "type": "C T_ L A B",
+    "typeKey": "C T_ L A B",
+    "missions": [
+      {
+        "faction": "Man in the Wall",
+        "factionKey": "Man in the Wall",
+        "missionType": "Defense",
+        "missionTypeKey": "Defense",
+        "deviation": {
+          "key": "LostInTranslation",
+          "name": "Glyph Inflation",
+          "description": "The security system requires twice as many Vosphene Glyphs to activate."
+        },
+        "risks": [
+          {
+            "key": "AntiMaterialWeapons",
+            "name": "Commanding Culverins",
+            "description": "Rogue Culverins equip weapons that deal 5x Damage to Overguard and Necramechs.",
+            "isHard": false
+          },
+          {
+            "key": "ExplosiveCrawlers",
+            "name": "Explosive Potential",
+            "description": "Rupturing Fragments replace Shuffling Fragments.",
+            "isHard": true
+          }
+        ]
+      },
+      {
+        "faction": "Man in the Wall",
+        "factionKey": "Man in the Wall",
+        "missionType": "Disruption",
+        "missionTypeKey": "Disruption",
+        "deviation": {
+          "key": "DoubleTrouble",
+          "name": "Double Trouble",
+          "description": "Two Necramech Demolishers will attack any Conduit, but their health is reduced."
+        },
+        "risks": [
+          {
+            "key": "Deflectors",
+            "name": "Fortified Foes",
+            "description": "Guardian Eximus units may be encountered, including Guardian Eximus Necramechs.",
+            "isHard": false
+          },
+          {
+            "key": "AcceleratedEnemies",
+            "name": "Bold Venture",
+            "description": "Enemies deal -15% Damage and take +15% Damage but gain +15% Movement Speed, Attack Speed, and Fire Rate.",
+            "isHard": true
+          }
+        ]
+      },
+      {
+        "faction": "Man in the Wall",
+        "factionKey": "Man in the Wall",
+        "missionType": "Assassination",
+        "missionTypeKey": "Assassination",
+        "deviation": {
+          "key": "Reinforcements",
+          "name": "Coordinated Front",
+          "description": "Eximus units support The Fragmented Tide and its final form."
+        },
+        "risks": [
+          {
+            "key": "PointBlank",
+            "name": "Myopic Munitions",
+            "description": "Enemies will only take damage if a player is within 15m of them.",
+            "isHard": false
+          },
+          {
+            "key": "VoidAberration",
+            "name": "Vampyric Liminus",
+            "description": "Slow moving, immortal, Duviri Liminus drain health and energy from allies who get too close.",
+            "isHard": true
+          }
+        ]
+      }
+    ],
+    "personalModifiers": [
+      {
+        "key": "ChannelDrain",
+        "name": "Channel Drain",
+        "description": "[PH] Channel Drain Desc"
+      },
+      {
+        "key": "VoidEnergyOverload",
+        "name": "Ability Overload",
+        "description": "Using an Ability opens a Void Rift on top of you."
+      },
+      {
+        "key": "Starvation",
+        "name": "Ammo Deficit",
+        "description": "Ammo restored by drops and gear is reduced 75%."
+      },
+      {
+        "key": "Framecurse",
+        "name": "Framecurse syndrome",
+        "description": "Activating an Ability inflicts 50 damage upon you."
+      }
+    ]
+  },
+  {
+    "id": "ae2cbfe85f6d5c028635d41b0a5577b3",
+    "activation": "2026-10-05T00:00:00.000Z",
+    "expiry": "2026-10-12T00:00:00.000Z",
+    "type": "C T_ H E X",
+    "typeKey": "C T_ H E X",
+    "missions": [
+      {
+        "faction": "Techrot",
+        "factionKey": "Techrot",
+        "missionType": "Legacyte Harvest",
+        "missionTypeKey": "Legacyte Harvest",
+        "deviation": {
+          "key": "HighScalingLegacyte",
+          "name": "Growth Hormones",
+          "description": "Legacytes are more powerful with each generation but take longer to escape."
+        },
+        "risks": [
+          {
+            "key": "HostileOvergrowth",
+            "name": "It's Alive",
+            "description": "Within the underground, hostile overgrowths will attack if players stops moving.",
+            "isHard": false
+          },
+          {
+            "key": "MurmurIncursion",
+            "name": "Beyond The Wall",
+            "description": "Murmur enemies join Scaldra and Techrot forces.",
+            "isHard": true
+          }
+        ]
+      },
+      {
+        "faction": "Scaldra",
+        "factionKey": "Scaldra",
+        "missionType": "Defense",
+        "missionTypeKey": "Defense",
+        "deviation": {
+          "key": "ChemicalNoise",
+          "name": "Noise Suppression",
+          "description": "Drones fly above Flare, spraying them with Efervon gas."
+        },
+        "risks": [
+          {
+            "key": "CompetitionSpillover",
+            "name": "Competitive Streak",
+            "description": "Random negative penalties from Amir and Aoi's \"Faceoff\" mode will be applied throughout the mission.",
+            "isHard": false
+          },
+          {
+            "key": "RegeneratingEnemies",
+            "name": "Hostile Regeneration",
+            "description": "Enemy health slowly regenerates.",
+            "isHard": true
+          }
+        ]
+      },
+      {
+        "faction": "Scaldra",
+        "factionKey": "Scaldra",
+        "missionType": "Assassination",
+        "missionTypeKey": "Assassination",
+        "deviation": {
+          "key": "TankSuperToxic",
+          "name": "Toxic Tank",
+          "description": "The tank has a Toxin aura, leaves Toxin trails, and its attacks all deal Toxin damage."
+        },
+        "risks": [
+          {
+            "key": "EfervonFog",
+            "name": "Dense Fog",
+            "description": "Efervon gas blankets the level. Enemies may drop filters that can provide a temporary reprieve.",
+            "isHard": false
+          },
+          {
+            "key": "Voidburst",
+            "name": "Postmortal Surges",
+            "description": "Slain enemies burts with Void energy.",
+            "isHard": true
+          }
+        ]
+      }
+    ],
+    "personalModifiers": [
+      {
+        "key": "Armorless",
+        "name": "Fractured Armor",
+        "description": "Casting an ability reduces armor by 10% for 10s."
+      },
+      {
+        "key": "DullBlades",
+        "name": "Dull Blades",
+        "description": "-50% melee combo chance"
+      },
+      {
+        "key": "VoidEnergyOverload",
+        "name": "Ability Overload",
+        "description": "Using an Ability opens a Void Rift on top of you."
+      },
+      {
+        "key": "NoPets",
+        "name": "No Pets",
+        "description": "[PH] No Pets Desc"
+      }
+    ]
+  }
+]

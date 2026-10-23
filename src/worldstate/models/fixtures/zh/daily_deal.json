@@ -1,0 +1,14 @@
+[
+    {
+        "id": "Gauntlet1792558800000",
+        "activation": "2026-10-20T03:00:00.000Z",
+        "expiry": "2026-10-21T05:00:00.000Z",
+        "item": "Ankyros",
+        "uniqueName": "/Lotus/StoreItems/Weapons/Tenno/Melee/Gauntlet/Gauntlet",
+        "originalPrice": 125,
+        "salePrice": 87,
+        "total": 125,
+        "sold": 5,
+        "discount": 30
+    }
+]

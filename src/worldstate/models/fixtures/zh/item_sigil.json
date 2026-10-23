@@ -1,0 +1,18 @@
+{
+    "category": "Sigils",
+    "description": "A sigil representing prestige gained with the Conclave.",
+    "drops": [
+        {
+            "chance": 1,
+            "location": "Conclave, Hurricane",
+            "rarity": "Common",
+            "type": "Accord Sigil"
+        }
+    ],
+    "imageName": "accord-sigil-a11257c0bb.png",
+    "masterable": false,
+    "name": "Accord Sigil",
+    "tradable": false,
+    "type": "Sigil",
+    "uniqueName": "/Lotus/Upgrades/Skins/Sigils/SyndicateSigilConclaveN"
+}

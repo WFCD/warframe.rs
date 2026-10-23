@@ -1,0 +1,1247 @@
+[
+    {
+        "id": "Halloween2021GlyphBundle1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2021 Glyph Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2021GlyphBundle",
+        "premiumOverride": 65
+    },
+    {
+        "id": "Halloween2023GlyphBundleA1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2023 Glyph Bundle A",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2023GlyphBundleA",
+        "premiumOverride": 65
+    },
+    {
+        "id": "Halloween2019GlyphBundleA1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Glyph Bundle A",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2019GlyphBundleA",
+        "premiumOverride": 65
+    },
+    {
+        "id": "HalloweenScarfBundleB1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Threads II",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenScarfBundleB",
+        "premiumOverride": 80
+    },
+    {
+        "id": "HalloweenCrpCircArmorPack1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Porta Armor Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenCrpCircArmorPack",
+        "premiumOverride": 100
+    },
+    {
+        "id": "HalloweenGlyphBundle1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Calavera Glyph Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenGlyphBundle",
+        "premiumOverride": 65
+    },
+    {
+        "id": "Halloween2019GlyphBundleB1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Glyph Bundle B",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2019GlyphBundleB",
+        "premiumOverride": 65
+    },
+    {
+        "id": "HalloweenSkinPack1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day Of The Dead Weapon Skin Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenSkinPack",
+        "premiumOverride": 175
+    },
+    {
+        "id": "HalloweenShipSkinBundle1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Skin Rides",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenShipSkinBundle",
+        "premiumOverride": 80
+    },
+    {
+        "id": "Halloween2019GhostChibiWisp1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Ghost Chibi Wisp",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019GhostChibiWisp",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenBoltor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Boltor Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenBoltor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenBraton1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Braton Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenBraton",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenBuzlok1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Buzlok Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenBuzlok",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019CreepyClem1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Creepy Clem",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019CreepyClem",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageHalloween2016B1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Avatar",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageHalloween2016B",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenRegorAxeShield1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "\u8ba4\u77e5&\u51b2\u51fb \u4ea1\u7075\u8282 \u5916\u89c2",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenRegorAxeShield",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSkinPackC1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Weapon Skin Pack III",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenSkinPackC",
+        "premiumOverride": 175
+    },
+    {
+        "id": "AcolyteHeavyBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Heavy Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteHeavyBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "AcolyteStrikerBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Striker Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteStrikerBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "HalloweenScarfBundle1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Threads",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenScarfBundle",
+        "premiumOverride": 130
+    },
+    {
+        "id": "AcolyteRogueBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Rogue Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteRogueBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "PumpkinHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Dullahan Mask",
+        "uniqueName": "/Lotus/Upgrades/Skins/Festivities/PumpkinHead",
+        "regularOverride": 1
+    },
+    {
+        "id": "HalloweenAngstrum1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Angstrum Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenAngstrum",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AcolyteControlBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Control Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteControlBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "AvatarImageHalloween2016C1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Avatar",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageHalloween2016C",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AcolyteNoggleBundle1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Noggle Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/AcolyteNoggleBundle",
+        "premiumOverride": 160
+    },
+    {
+        "id": "AcolyteAreaCasterBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Area Caster Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteAreaCasterBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "AcolyteDuellistBobbleHead1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Acolyte Duellist Bobble Head",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/AcolyteDuellistBobbleHead",
+        "premiumOverride": 35
+    },
+    {
+        "id": "ColourPickerHalloweenItemA1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween",
+        "uniqueName": "/Lotus/Types/StoreItems/SuitCustomizations/ColourPickerHalloweenItemA",
+        "regularOverride": 1
+    },
+    {
+        "id": "HalloweenSkinPackII1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day Of The Dead Weapon Skin Pack II",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenSkinPackII",
+        "premiumOverride": 145
+    },
+    {
+        "id": "Halloween2014ArmArmor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Naeberus Wings",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/Halloween2014Wings/Halloween2014ArmArmor",
+        "premiumOverride": 50
+    },
+    {
+        "id": "AvatarImageHalloween2016D1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Avatar",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageHalloween2016D",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019CheshireKavat1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Cheshire Kavat",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019CheshireKavat",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageHalloween2016A1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Avatar",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageHalloween2016A",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019FrankenCorpus1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Franken Corpus",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019FrankenCorpus",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenFireFlyScarf1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Igaro Synandana",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/HalloweenFireFlyScarf",
+        "premiumOverride": 90
+    },
+    {
+        "id": "AvatarImageHalloween2021Grineer1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Halloween2021 Grineer",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageHalloween2021Grineer",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGalatine1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Galatine Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGalatine",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenTwinGremlins1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Twin Gremlins Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenTwinGremlins",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenKronen1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Kronen Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenKronen",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGorgon1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Gorgon Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGorgon",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageHalloween2021Dethcube1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Halloween2021 Dethcube",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageHalloween2021Dethcube",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGrinlok1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Grinlok Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGrinlok",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGrakata1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Grakata Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGrakata",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGlaxion1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Glaxion Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGlaxion",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenDualZoren1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Dual Zoren Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenDualZoren",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenJatKittag1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Jat Kittag Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenJatKittag",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenDaikyu1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Daiku Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenDaikyu",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageHalloween2021Lotus1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Halloween2021 Lotus",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageHalloween2021Lotus",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenGlaive1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Glaive Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenGlaive",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenDragonNikana1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Dragon Nikana Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenDragonNikana",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenImperator1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Imperator Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenImperator",
+        "premiumOverride": 20
+    },
+    {
+        "id": "LisetInsectSkinHalloween1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Mantis Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Liset/LisetInsectSkinHalloween",
+        "premiumOverride": 50
+    },
+    {
+        "id": "HalloweenSimulor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Simulor Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSimulor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenStradavar1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Stradavar Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenStradavar",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenOpticor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Opticor Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenOpticor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSilvaAndAegis1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Silva & Aegis Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSilvaAndAegis",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenNikana1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Nikana Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenNikana",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenCrpCircC1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Porta Chest Armor",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/CrpCircleArmour/HalloweenCrpCircC",
+        "premiumOverride": 45
+    },
+    {
+        "id": "HalloweenTonkor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Tonkor Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenTonkor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019TrickOrBalas1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Trick Or Balas",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019TrickOrBalas",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019Werefested1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Werefested",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019Werefested",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageChillingGlyphOne1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Chilling Glyph One",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageChillingGlyphOne",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageHalloween2021Loid1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Halloween2021 Loid",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageHalloween2021Loid",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSonicor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Sarpa Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSonicor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageChillingGlyphTwo1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Chilling Glyph Two",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageChillingGlyphTwo",
+        "premiumOverride": 20
+    },
+    {
+        "id": "AvatarImageChillingGlyphFour1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Chilling Glyph Four",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageChillingGlyphFour",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenParis1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Paris Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenParis",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSkana1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Skana Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSkana",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSobek1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Sobek Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSobek",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenOrthos1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Orthos Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenOrthos",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenCrpCircA1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Porta Armor",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/CrpCircleArmour/HalloweenCrpCircA",
+        "premiumOverride": 50
+    },
+    {
+        "id": "AvatarImageChillingGlyphThree1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Chilling Glyph Three",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageChillingGlyphThree",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenLato1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Lato Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenLato",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenKyropteraScarf1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Kyroptera Syandana",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/HalloweenKyropteraScarf",
+        "premiumOverride": 50
+    },
+    {
+        "id": "HalloweenKunai1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Kunai Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenKunai",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenNukor1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Nukor Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenNukor",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSarpa1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Sarpa Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSarpa",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSpira1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Spira Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSpira",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenArchSword1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Veritux Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenArchSword",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenMarelok1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Marelok Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenMarelok",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenTwinGrakatas1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Twin Grakata Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenTwinGrakatas",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenVasto1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Vasto Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenVasto",
+        "premiumOverride": 20
+    },
+    {
+        "id": "LisetSkinHalloween1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Liset Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Liset/LisetSkinHalloween",
+        "premiumOverride": 50
+    },
+    {
+        "id": "HalloweenCrpCircL1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Porta Leg Plates",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/CrpCircleArmour/HalloweenCrpCircL",
+        "premiumOverride": 35
+    },
+    {
+        "id": "AvatarImageHalloween2021Pumpkin1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Avatar Image Halloween2021 Pumpkin",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/AvatarImageHalloween2021Pumpkin",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019GhoulGrave1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Ghoul Grave",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019GhoulGrave",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenScindo1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Scindo Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenScindo",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenSoma1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Soma Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenSoma",
+        "premiumOverride": 20
+    },
+    {
+        "id": "Halloween2019SlimeLoki1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Halloween2019 Slime Loki",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/Seasonal/Halloween2019SlimeLoki",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenErosionCape1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Abrasys Syandana",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/HalloweenErosionCape",
+        "premiumOverride": 50
+    },
+    {
+        "id": "TC2026DigitalPack1894576500000",
+        "activation": "2026-07-17T15:00:00.000Z",
+        "expiry": "2030-01-13T23:15:00.000Z",
+        "item": "T C2026 Digital Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2026Bundles/TC2026DigitalPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "WukongDeluxeSupporterPack1895352120000",
+        "activation": "2026-08-10T15:00:00.000Z",
+        "expiry": "2030-01-22T22:42:00.000Z",
+        "item": "Wukong Deluxe Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/WukongDeluxeSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "HalloweenDarkSplitSword1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Dark Split Sword Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenDarkSplitSword",
+        "premiumOverride": 20
+    },
+    {
+        "id": "HalloweenAmprex1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Amprex Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenAmprex",
+        "premiumOverride": 20
+    },
+    {
+        "id": "JadeShadowsSupporterPack1895961600000",
+        "activation": "2025-02-26T16:00:00.000Z",
+        "expiry": "2030-01-30T00:00:00.000Z",
+        "item": "Jade Shadows Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/JadeShadowsSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "NokkoSupporterPack1895352120000",
+        "activation": "2026-08-10T15:00:00.000Z",
+        "expiry": "2030-01-22T22:42:00.000Z",
+        "item": "Nokko Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/NokkoSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "TnDeimosSupporterArmourBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "Tn Deimos Supporter Armour Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/TnDeimosSupporterArmourBundle",
+        "premiumOverride": 110
+    },
+    {
+        "id": "AOTZMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "A O T Z Market Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/AOTZMarketBundle",
+        "premiumOverride": 35
+    },
+    {
+        "id": "HalloweenGrnBannerScarf1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Vanquished Banner",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/HalloweenGrnBannerScarf",
+        "premiumOverride": 75
+    },
+    {
+        "id": "ZephyrQTCCSyandana1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Zephyr Q T C C Syandana",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/ZephyrQTCCSyandana",
+        "regularOverride": 1
+    },
+    {
+        "id": "VaubanHeirloomPack1893504780000",
+        "activation": "2026-07-11T15:00:00.000Z",
+        "expiry": "2030-01-01T13:33:00.000Z",
+        "item": "Vauban Heirloom Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2026Bundles/VaubanHeirloomPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "OraxiaSupporterPack1895352120000",
+        "activation": "2026-08-10T15:00:00.000Z",
+        "expiry": "2030-01-22T22:42:00.000Z",
+        "item": "Oraxia Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/OraxiaSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "RhinoHeirloomPack1893492420000",
+        "activation": "2025-07-21T15:00:00.000Z",
+        "expiry": "2030-01-01T10:07:00.000Z",
+        "item": "Rhino Heirloom Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/RhinoHeirloomPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "HalloweenSkinPackD1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Day of the Dead Weapon Skin Pack IV",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HalloweenSkinPackD",
+        "premiumOverride": 180
+    },
+    {
+        "id": "HalloweenDarkDagger1793635200000",
+        "activation": "2026-10-01T15:00:00.000Z",
+        "expiry": "2026-11-02T16:00:00.000Z",
+        "item": "Dark Dagger Day of the Dead Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Halloween/HalloweenDarkDagger",
+        "premiumOverride": 20
+    },
+    {
+        "id": "InitiateIIIConsolePack1893456000000",
+        "activation": "2024-09-30T10:25:00.000Z",
+        "expiry": "2030-01-01T00:00:00.000Z",
+        "item": "Initiate I I I Console Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/InitiateIIIConsolePack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "TNWMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "T N W Market Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/TNWMarketBundle",
+        "premiumOverride": 145
+    },
+    {
+        "id": "GeminiSkinsSupporterPack1893498840000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:54:00.000Z",
+        "item": "Gemini Skins Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/GeminiSkinsSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "Cyte09SupporterPack1893498900000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:55:00.000Z",
+        "item": "Cyte09 Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/Cyte09SupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "GeminiHexCompleteSupporterPack1893456000000",
+        "activation": "2025-12-03T16:05:00.000Z",
+        "expiry": "2030-01-01T00:00:00.000Z",
+        "item": "Gemini Hex Complete Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/GeminiHexCompleteSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "TattooTennoI1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Tattoo Tenno I",
+        "uniqueName": "/Lotus/Upgrades/Skins/Operator/Tattoos/TattooTennoI",
+        "regularOverride": 1
+    },
+    {
+        "id": "ZephyrQTCCBodySkin1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Zephyr Q T C C Body Skin",
+        "uniqueName": "/Lotus/Upgrades/Skins/Tengu/ZephyrQTCCBodySkin",
+        "regularOverride": 25000
+    },
+    {
+        "id": "VeilbreakerSupporterPack1895849220000",
+        "activation": "2023-01-01T16:46:00.000Z",
+        "expiry": "2030-01-28T16:47:00.000Z",
+        "item": "Veilbreaker Warrior Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/VeilbreakerSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "ShrineMaidenSupporterPack1894358760000",
+        "activation": "2025-05-22T07:00:00.000Z",
+        "expiry": "2030-01-11T10:46:00.000Z",
+        "item": "Shrine Maiden Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/ShrineMaidenSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "ValkyrHeirloomPack1893510000000",
+        "activation": "2026-02-11T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "Valkyr Heirloom Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/ValkyrHeirloomPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "TattooTennoH1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Tattoo Tenno H",
+        "uniqueName": "/Lotus/Upgrades/Skins/Operator/Tattoos/TattooTennoH",
+        "regularOverride": 1
+    },
+    {
+        "id": "EncoreCompSupPack1893456000000",
+        "activation": "2025-12-03T16:05:00.000Z",
+        "expiry": "2030-01-01T00:00:00.000Z",
+        "item": "Encore Comp Sup Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/EncoreCompSupPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "GlamrockSupporterPack1893499020000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:57:00.000Z",
+        "item": "Glamrock Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/GlamrockSupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "2025SupporterPack1893456000000",
+        "activation": "2026-02-18T16:00:00.000Z",
+        "expiry": "2030-01-01T00:00:00.000Z",
+        "item": "2025 Supporter Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/2025SupporterPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "HODMarketBundle1893510000000",
+        "activation": "2024-03-01T16:00:00.000Z",
+        "expiry": "2030-01-01T15:00:00.000Z",
+        "item": "H O D Market Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/HODMarketBundle",
+        "premiumOverride": 465
+    },
+    {
+        "id": "VoltNovaSumoDeluxePack1894358760000",
+        "activation": "2025-05-22T07:00:00.000Z",
+        "expiry": "2030-01-11T10:46:00.000Z",
+        "item": "Volt Nova Sumo Deluxe Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2024Bundles/VoltNovaSumoDeluxePack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "EncoreGeminiSupPack1893498960000",
+        "activation": "2025-09-11T15:00:00.000Z",
+        "expiry": "2030-01-01T11:56:00.000Z",
+        "item": "Encore Gemini Sup Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/EncoreGeminiSupPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "ImageConquera2021C1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera2021 C",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera2021C",
+        "regularOverride": 1
+    },
+    {
+        "id": "TC2025DigitalPack1895570760000",
+        "activation": "2025-07-25T11:00:00.000Z",
+        "expiry": "2030-01-25T11:26:00.000Z",
+        "item": "T C2025 Digital Pack",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/2025Bundles/TC2025DigitalPack",
+        "isShownInMarket": true
+    },
+    {
+        "id": "ImageConquera2021D1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera2021 D",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera2021D",
+        "regularOverride": 1
+    },
+    {
+        "id": "AvatarImageConqueraGlyphVI1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Avatar Image Conquera Glyph V I",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageConqueraGlyphVI",
+        "regularOverride": 1
+    },
+    {
+        "id": "ImageConquera2022A1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera2022 A",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera2022A",
+        "regularOverride": 1
+    },
+    {
+        "id": "ImageConquera2021A1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera2021 A",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera2021A",
+        "regularOverride": 1
+    },
+    {
+        "id": "TnCharityRibbonSyandana1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Tn Charity Ribbon Syandana",
+        "uniqueName": "/Lotus/Upgrades/Skins/Scarves/TnCharityRibbonSyandana",
+        "regularOverride": 1
+    },
+    {
+        "id": "ImageConquera1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraChestRibbon1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Chest Ribbon",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/TnCharityRibbonArmor/ConqueraChestRibbon",
+        "regularOverride": 1
+    },
+    {
+        "id": "QTCC2023ConqueraSigil1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Q T C C2023 Conquera Sigil",
+        "uniqueName": "/Lotus/Upgrades/Skins/Sigils/QTCC2023ConqueraSigil",
+        "regularOverride": 1
+    },
+    {
+        "id": "Conquera2021Deco1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera2021 Deco",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/Conquera2021Deco",
+        "regularOverride": 1
+    },
+    {
+        "id": "Conquera2022Ephemera1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera2022 Ephemera",
+        "uniqueName": "/Lotus/Upgrades/Skins/Effects/Conquera2022Ephemera",
+        "regularOverride": 1
+    },
+    {
+        "id": "QTCC2in1Display1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Q T C C2in1 Display",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/QTCC2in1Display",
+        "regularOverride": 1
+    },
+    {
+        "id": "Conquera2024Display1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera2024 Display",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/Conquera2024Display",
+        "regularOverride": 1
+    },
+    {
+        "id": "ImageConquera2021B1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Image Conquera2021 B",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/ImageConquera2021B",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraArmorA1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Armor A",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/TnCharityRibbonArmor/ConqueraArmorA",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraSigil1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Sigil",
+        "uniqueName": "/Lotus/Upgrades/Skins/Sigils/ConqueraSigil",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraArmorL1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Armor L",
+        "uniqueName": "/Lotus/Upgrades/Skins/Armor/TnCharityRibbonArmor/ConqueraArmorL",
+        "regularOverride": 1
+    },
+    {
+        "id": "AvatarImageConqueraGlyphVII1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Avatar Image Conquera Glyph V I I",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageConqueraGlyphVII",
+        "regularOverride": 1
+    },
+    {
+        "id": "QTCC2024EmblemItem1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Q T C C2024 Emblem Item",
+        "uniqueName": "/Lotus/Upgrades/Skins/Clan/QTCC2024EmblemItem",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraStyle1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Style",
+        "uniqueName": "/Lotus/Interface/Graphics/CustomUI/ConqueraStyle",
+        "regularOverride": 1
+    },
+    {
+        "id": "Conquera2023CommunityDisplay1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera2023 Community Display",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/Venus/Conquera2023CommunityDisplay",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraEphemera1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Ephemera",
+        "uniqueName": "/Lotus/Upgrades/Skins/Effects/ConqueraEphemera",
+        "regularOverride": 1
+    },
+    {
+        "id": "AvatarImageConqueraGlyphUpdated1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Avatar Image Conquera Glyph Updated",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageConqueraGlyphUpdated",
+        "regularOverride": 1
+    },
+    {
+        "id": "ConqueraBackground1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Conquera Background",
+        "uniqueName": "/Lotus/Interface/Graphics/CustomUI/Backgrounds/ConqueraBackground",
+        "regularOverride": 1
+    },
+    {
+        "id": "AvatarImageConqueraGlyphIX1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Avatar Image Conquera Glyph I X",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageConqueraGlyphIX",
+        "regularOverride": 1
+    },
+    {
+        "id": "AvatarImageConqueraGlyphVIII1798779540000",
+        "activation": "2026-10-01T14:00:00.000Z",
+        "expiry": "2027-01-01T04:59:00.000Z",
+        "item": "Avatar Image Conquera Glyph V I I I",
+        "uniqueName": "/Lotus/Types/StoreItems/AvatarImages/AvatarImageConqueraGlyphVIII",
+        "regularOverride": 1
+    },
+    {
+        "id": "MeleePetPowerSuit1792540800000",
+        "activation": "2026-10-16T00:00:00.000Z",
+        "expiry": "2026-10-21T00:00:00.000Z",
+        "item": "\u8d6b\u5229\u4fc4\u65af",
+        "uniqueName": "/Lotus/Types/Sentinels/SentinelPowersuits/MeleePetPowerSuit",
+        "discount": 20,
+        "premiumOverride": 60
+    },
+    {
+        "id": "UnlockRevenantAgile1792627200000",
+        "activation": "2026-10-17T00:00:00.000Z",
+        "expiry": "2026-10-22T00:00:00.000Z",
+        "item": "Unlock Revenant Agile",
+        "uniqueName": "/Lotus/Upgrades/Skins/Revenant/UnlockRevenantAgile",
+        "discount": 20,
+        "premiumOverride": 40
+    },
+    {
+        "id": "ZarimanVoidshellSkinBundle1792713600000",
+        "activation": "2026-10-18T00:00:00.000Z",
+        "expiry": "2026-10-23T00:00:00.000Z",
+        "item": "Zariman Voidshell Skin Bundle",
+        "uniqueName": "/Lotus/Types/StoreItems/Packages/ZarimanVoidshellSkinBundle",
+        "discount": 19,
+        "premiumOverride": 240
+    },
+    {
+        "id": "PagemasterOwl1792800000000",
+        "activation": "2026-10-19T00:00:00.000Z",
+        "expiry": "2026-10-24T00:00:00.000Z",
+        "item": "Pagemaster Owl",
+        "uniqueName": "/Lotus/Types/Items/ShipDecos/EntratiLabs/PagemasterOwl",
+        "discount": 20,
+        "premiumOverride": 60
+    },
+    {
+        "id": "UnlockAspAgile1792886400000",
+        "activation": "2026-10-20T00:00:00.000Z",
+        "expiry": "2026-10-25T00:00:00.000Z",
+        "item": "Unlock Asp Agile",
+        "uniqueName": "/Lotus/Upgrades/Skins/Asp/UnlockAspAgile",
+        "discount": 20,
+        "premiumOverride": 40
+    }
+]

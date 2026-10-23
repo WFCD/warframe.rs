@@ -19,24 +19,9 @@ pub struct ArchonHuntMission {
 
     /// The type of the mission
     pub type_key: MissionType,
-
-    /// Whether the mission requires an archwing
-    pub archwing_required: bool,
-
-    /// Whether the mission is a sharkwing mission
-    pub is_sharkwing: bool,
-
-    /// Any additional spawners
-    pub advanced_spawners: Vec<String>,
-
-    /// Items required to enter the mission
-    pub required_items: Vec<String>,
-
-    /// Affectors of this mission
-    pub level_auras: Vec<String>,
 }
 
-/// An alert in Warframe
+/// An Archon Hunt event
 #[model(endpoint = "/archonHunt", return_style = Object, timed)]
 pub struct ArchonHunt {
     /// ID of this event
@@ -70,10 +55,11 @@ mod test_archonhunt {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/archon_hunt.json")]
+        #[files("src/worldstate/models/fixtures/*/archon_hunt.json")]
         #[mode = str]
-        archon_hunt_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(archon_hunt_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "Halloween2023GlyphBundleA1793635200000",
+    "activation": "2026-10-01T15:00:00.000Z",
+    "expiry": "2026-11-02T16:00:00.000Z",
+    "item": "Halloween2023 Glyph Bundle A",
+    "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2023GlyphBundleA",
+    "premiumOverride": 65
+  },
+  {
+    "id": "Halloween2021GlyphBundle1793635200000",
+    "activation": "2026-10-01T15:00:00.000Z",
+    "expiry": "2026-11-02T16:00:00.000Z",
+    "item": "Halloween2021 Glyph Bundle",
+    "uniqueName": "/Lotus/Types/StoreItems/Packages/Halloween2021GlyphBundle",
+    "premiumOverride": 65
+  }
+]

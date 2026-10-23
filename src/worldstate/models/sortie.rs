@@ -1,6 +1,9 @@
 use warframe_macros::model;
 
-use super::faction::Faction;
+use super::{
+    faction::Faction,
+    mission_type::MissionType,
+};
 
 /// A Mission corresponding to a Sortie
 #[model]
@@ -8,15 +11,20 @@ pub struct SortieMission {
     /// The i18n Mission type of this mission
     pub mission_type: String,
 
+    /// The type of the mission
+    pub mission_type_key: MissionType,
+
     /// The Modifier of this mission (e.g. Augmented Enemy Armor)
     pub modifier: String,
 
-    /// The description of the modifier of this mission (e.g. Enemies have Improved/Added armor.
-    /// Corrosive Projection effects are halved.)
+    /// The description of the modifier of this mission
     pub modifier_description: String,
 
-    /// The i18n of the name
+    /// The i18n of the node
     pub node: String,
+
+    /// The name of the node
+    pub node_key: String,
 }
 
 /// Data about the missions for the current sortie
@@ -28,8 +36,14 @@ pub struct Sortie {
     /// The name of the boss
     pub boss: String,
 
-    /// The faction you are up against
-    pub faction: Faction,
+    /// The i18n of the faction you are up against
+    pub faction: String,
+
+    /// The key of the faction
+    pub faction_key: Option<Faction>,
+
+    /// The reward pool for this sortie
+    pub reward_pool: Option<String>,
 
     /// The 3 missions corresponding to this sortie
     #[serde(rename = "variants")]
@@ -48,10 +62,11 @@ mod test_sortie {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/sortie.json")]
+        #[files("src/worldstate/models/fixtures/*/sortie.json")]
         #[mode = str]
-        sortie_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(sortie_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

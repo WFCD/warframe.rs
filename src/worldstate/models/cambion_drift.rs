@@ -32,10 +32,11 @@ mod test_cambion_drift {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/cambion_drift.json")]
+        #[files("src/worldstate/models/fixtures/*/cambion_drift.json")]
         #[mode = str]
-        cambion_drift_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(cambion_drift_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

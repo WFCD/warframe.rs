@@ -1,0 +1,51 @@
+{
+  "id": "6ab9aa7e9b74836a49c1c5dc",
+  "activation": "2026-09-28T00:00:00.000Z",
+  "expiry": "2026-10-05T00:00:00.000Z",
+  "rewardPool": "Archon Sortie Rewards",
+  "variants": [],
+  "missions": [
+    {
+      "node": "Arval (Mars)",
+      "nodeKey": "Arval (Mars)",
+      "type": "Extermination",
+      "typeKey": "Extermination",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "requiredItemUniqueNames": [],
+      "levelAuras": []
+    },
+    {
+      "node": "Augustus (Mars)",
+      "nodeKey": "Augustus (Mars)",
+      "type": "Disruption",
+      "typeKey": "Disruption",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "requiredItemUniqueNames": [],
+      "levelAuras": []
+    },
+    {
+      "node": "War (Mars)",
+      "nodeKey": "War (Mars)",
+      "type": "Assassination",
+      "typeKey": "Assassination",
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "requiredItemUniqueNames": [],
+      "levelAuras": []
+    }
+  ],
+  "boss": "Archon Amar",
+  "faction": "Narmer",
+  "factionKey": "Narmer"
+}

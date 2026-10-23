@@ -32,10 +32,11 @@ mod test_cetus {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/cetus.json")]
+        #[files("src/worldstate/models/fixtures/*/cetus.json")]
         #[mode = str]
-        cetus_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(cetus_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

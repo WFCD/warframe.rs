@@ -1,0 +1,28 @@
+{
+    "id": "duviriCyclesorrow1792483200000",
+    "activation": "2026-10-20T06:00:00.000Z",
+    "expiry": "2026-10-20T08:00:00.000Z",
+    "state": "sorrow",
+    "choices": [
+        {
+            "category": "normal",
+            "categoryKey": "EXC_NORMAL",
+            "choices": [
+                "Hydroid",
+                "Mirage",
+                "Limbo"
+            ]
+        },
+        {
+            "category": "hard",
+            "categoryKey": "EXC_HARD",
+            "choices": [
+                "Dera",
+                "Cestra",
+                "Okina",
+                "Sybaris",
+                "Sicarus"
+            ]
+        }
+    ]
+}

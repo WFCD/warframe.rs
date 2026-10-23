@@ -1,0 +1,135 @@
+[
+    {
+        "id": "6ad0d7370dfe89c5d8229172",
+        "activation": "2026-10-20T06:30:00.000Z",
+        "expiry": "2026-10-20T08:00:00.000Z",
+        "mission": {
+            "description": "Event Alert Title",
+            "node": "Brugia (\u00c9ris)",
+            "nodeKey": "Brugia (Eris)",
+            "type": "Ruche",
+            "typeKey": "Hive",
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested",
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Gameplay/Events/RoadToTauEvent/RoadToTauEventResource",
+                        "type": "Road To Tau Event Resource",
+                        "key": "Road To Tau Event Resource",
+                        "count": 50
+                    }
+                ],
+                "credits": 17000,
+                "thumbnail": "",
+                "color": 5198940
+            },
+            "minEnemyLevel": 50,
+            "maxEnemyLevel": 50,
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "levelOverride": "Infested Corpus Ship Sabotage",
+            "enemySpec": "Infested Squad C",
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "leadersAlwaysAllowed": true,
+            "levelAuras": []
+        },
+        "rewardTypes": [
+            "other"
+        ],
+        "tag": "RoadToTauEvent"
+    },
+    {
+        "id": "6ad0d7370dfe89c5d8229174",
+        "activation": "2026-10-20T07:00:00.000Z",
+        "expiry": "2026-10-20T08:30:00.000Z",
+        "mission": {
+            "description": "Event Alert Title",
+            "node": "Saxis (\u00c9ris)",
+            "nodeKey": "Saxis (Eris)",
+            "type": "D\u00e9fense Mobile",
+            "typeKey": "Mobile Defense",
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested",
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Gameplay/Events/RoadToTauEvent/RoadToTauEventResource",
+                        "type": "Road To Tau Event Resource",
+                        "key": "Road To Tau Event Resource",
+                        "count": 50
+                    }
+                ],
+                "credits": 17000,
+                "thumbnail": "",
+                "color": 5198940
+            },
+            "minEnemyLevel": 50,
+            "maxEnemyLevel": 50,
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "levelOverride": "Infested Corpus Ship Mobile Defense",
+            "enemySpec": "Infested Squad D",
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "leadersAlwaysAllowed": true,
+            "levelAuras": []
+        },
+        "rewardTypes": [
+            "other"
+        ],
+        "tag": "RoadToTauEvent"
+    },
+    {
+        "id": "6ad0d7370dfe89c5d8229176",
+        "activation": "2026-10-20T07:30:00.000Z",
+        "expiry": "2026-10-20T09:00:00.000Z",
+        "mission": {
+            "description": "Event Alert Title",
+            "node": "Kala-azar (\u00c9ris)",
+            "nodeKey": "Kala-azar (Eris)",
+            "type": "Survie",
+            "typeKey": "Survival",
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested",
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Gameplay/Events/RoadToTauEvent/RoadToTauEventResource",
+                        "type": "Road To Tau Event Resource",
+                        "key": "Road To Tau Event Resource",
+                        "count": 50
+                    }
+                ],
+                "credits": 17000,
+                "thumbnail": "",
+                "color": 5198940
+            },
+            "minEnemyLevel": 50,
+            "maxEnemyLevel": 50,
+            "maxWaveNum": 5,
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "levelOverride": "Infested Corpus Ship Survival",
+            "enemySpec": "Infested Survival A",
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "leadersAlwaysAllowed": true,
+            "levelAuras": []
+        },
+        "rewardTypes": [
+            "other"
+        ],
+        "tag": "RoadToTauEvent"
+    }
+]

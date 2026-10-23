@@ -1,0 +1,377 @@
+{
+    "id": "48f1c2cebcaac9fbc2c750f4e54c135c",
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-26T00:00:00.000Z",
+    "seed": 3441662900,
+    "challenges": [
+        {
+            "index": 1,
+            "type": "D T_ E X T E R M I N A T E",
+            "typeKey": "DT_EXTERMINATE",
+            "challenge": "Freeze In Shoot",
+            "challengeKey": "FreezeInShoot",
+            "level": "Arena Grape.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaGrape.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHCorpusGasExterminateMixed",
+                    "name": "Co H Corpus Gas Exterminate Mixed"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/FreezeNShootEnhancementAura",
+                    "name": "Freeze N Shoot Enhancement Aura"
+                }
+            ]
+        },
+        {
+            "index": 2,
+            "type": "D T_ L O O T_ C R E A T U R E S",
+            "typeKey": "DT_LOOT_CREATURES",
+            "challenge": "Basic Loot Creatures",
+            "challengeKey": "BasicLootCreatures",
+            "level": "Arena Avocado.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaAvocado.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 3,
+            "type": "D T_ R A C E",
+            "typeKey": "DT_RACE",
+            "challenge": "Basic Race",
+            "challengeKey": "BasicRace",
+            "level": "Arena Melon.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaMelon.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 4,
+            "type": "D T_ N E T R A C E L L S",
+            "typeKey": "DT_NETRACELLS",
+            "challenge": "Jump Smash",
+            "challengeKey": "JumpSmash",
+            "level": "Arena Avocado.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaAvocado.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHPNWNarmerCorpusGasExterminate",
+                    "name": "Co H P N W Narmer Corpus Gas Exterminate"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/JumpSmashAura",
+                    "name": "Jump Smash Aura"
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "type": "D T_ E X C A V A T I O N",
+            "typeKey": "DT_EXCAVATION",
+            "challenge": "Arbitration Drones",
+            "challengeKey": "ArbitrationDrones",
+            "level": "Arena Eggplant.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaEggplant.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/VaniaExterminateTechrotSpec",
+                    "name": "Vania Exterminate Techrot Spec"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHArbitrationSupportAura",
+                    "name": "Co H Arbitration Support Aura"
+                }
+            ]
+        },
+        {
+            "index": 6,
+            "type": "D T_ B O S S",
+            "typeKey": "DT_BOSS",
+            "challenge": "Kullervo",
+            "challengeKey": "Kullervo",
+            "level": "Boss Arena Small.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/BossArenaSmall.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 7,
+            "type": "D T_ P R O T O F R A M E",
+            "typeKey": "DT_PROTOFRAME",
+            "challenge": "Wisp",
+            "challengeKey": "Wisp",
+            "level": "Protoframe Room Wisp.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ProtoframeRoomWisp.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 8,
+            "type": "D T_ C A P T U R E",
+            "typeKey": "DT_CAPTURE",
+            "challenge": "Manics",
+            "challengeKey": "Manics",
+            "level": "Arena Waffle.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHManicSpec",
+                    "name": "Co H Manic Spec"
+                }
+            ],
+            "auras": []
+        },
+        {
+            "index": 9,
+            "type": "D T_ D E F E N S E",
+            "typeKey": "DT_DEFENSE",
+            "challenge": "Shocking Leech",
+            "challengeKey": "ShockingLeech",
+            "level": "Arena Eggplant.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaEggplant.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Narmer/PNWNarmerDesertGrineerExterminate",
+                    "name": "P N W Narmer Desert Grineer Exterminate"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/ShockingLeechEnhancementAura",
+                    "name": "Shocking Leech Enhancement Aura"
+                }
+            ]
+        },
+        {
+            "index": 10,
+            "type": "D T_ I N T E R C E P T I O N",
+            "typeKey": "DT_INTERCEPTION",
+            "challenge": "Glass Maker",
+            "challengeKey": "GlassMaker",
+            "level": "Arena Grape.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaGrape.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHGrineerSealabExterminate",
+                    "name": "Co H Grineer Sealab Exterminate"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/GlassMakerAura",
+                    "name": "Glass Maker Aura"
+                }
+            ]
+        },
+        {
+            "index": 11,
+            "type": "D T_ P R E S U R E_ G A U G E",
+            "typeKey": "DT_PRESURE_GAUGE",
+            "challenge": "Narmer Phobia",
+            "challengeKey": "NarmerPhobia",
+            "level": "Arena Grape.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaGrape.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/TauOrokinEmpireSpec",
+                    "name": "Tau Orokin Empire Spec"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHNarmerPhobiaAura",
+                    "name": "Co H Narmer Phobia Aura"
+                }
+            ]
+        },
+        {
+            "index": 12,
+            "type": "D T_ U N I Q U E",
+            "typeKey": "DT_UNIQUE",
+            "challenge": "Race Horse",
+            "challengeKey": "RaceHorse",
+            "level": "Special Challenge Arena03.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/SpecialChallengeArena03.level",
+            "specs": [],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHHorseAura",
+                    "name": "Co H Horse Aura"
+                },
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/DisableSelfReviveAura",
+                    "name": "Disable Self Revive Aura"
+                }
+            ]
+        },
+        {
+            "index": 13,
+            "type": "D T_ S H R I N E_ D E F E N S E",
+            "typeKey": "DT_SHRINE_DEFENSE",
+            "challenge": "Head Shots Only",
+            "challengeKey": "HeadShotsOnly",
+            "level": "Arena Melon.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaMelon.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHInfestedMicroplanet",
+                    "name": "Co H Infested Microplanet"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Gameplay/EntratiLab/LabConquest/GenericFortifiedFoesWeakpointAura",
+                    "name": "Generic Fortified Foes Weakpoint Aura"
+                }
+            ]
+        },
+        {
+            "index": 14,
+            "type": "D T_ P R O T O F R A M E",
+            "typeKey": "DT_PROTOFRAME",
+            "challenge": "Harrow",
+            "challengeKey": "Harrow",
+            "level": "Protoframe Room Harrow.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ProtoframeRoomHarrow.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 15,
+            "type": "D T_ N E T R A C E L L S",
+            "typeKey": "DT_NETRACELLS",
+            "challenge": "Fiery Trail Rollers",
+            "challengeKey": "FieryTrailRollers",
+            "level": "Arena Coconut.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaCoconut.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHRollerSpec",
+                    "name": "Co H Roller Spec"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/FieryTrailAura",
+                    "name": "Fiery Trail Aura"
+                }
+            ]
+        },
+        {
+            "index": 16,
+            "type": "D T_ M I M I C S",
+            "typeKey": "DT_MIMICS",
+            "challenge": "Basic Mimics",
+            "challengeKey": "BasicMimics",
+            "level": "Arena Waffle.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+            "specs": [],
+            "auras": []
+        },
+        {
+            "index": 17,
+            "type": "D T_ I N F E S T E D_ S A L V A G E",
+            "typeKey": "DT_INFESTED_SALVAGE",
+            "challenge": "Sunlight",
+            "challengeKey": "Sunlight",
+            "level": "Arena Peach.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaPeach.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/OrokinExterminateB",
+                    "name": "Orokin Exterminate B"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/DarknessAura",
+                    "name": "Darkness Aura"
+                },
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/SunlightAura",
+                    "name": "Sunlight Aura"
+                }
+            ]
+        },
+        {
+            "index": 18,
+            "type": "D T_ E X T E R M I N A T E",
+            "typeKey": "DT_EXTERMINATE",
+            "challenge": "Spicy Knife",
+            "challengeKey": "SpicyKnife",
+            "level": "Arena Grape.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaGrape.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHVaniaScaldraTechrot",
+                    "name": "Co H Vania Scaldra Techrot"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/SpicyKnifeAura",
+                    "name": "Spicy Knife Aura"
+                }
+            ]
+        },
+        {
+            "index": 19,
+            "type": "D T_ B O S S",
+            "typeKey": "DT_BOSS",
+            "challenge": "99 Tank P1",
+            "challengeKey": "99TankP1",
+            "level": "Boss Arena Small.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/BossArenaSmall.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/VaniaExterminateScaldraNoBalloonSpec",
+                    "name": "Vania Exterminate Scaldra No Balloon Spec"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/RocketDropOnDeathAura",
+                    "name": "Rocket Drop On Death Aura"
+                }
+            ]
+        },
+        {
+            "index": 20,
+            "type": "D T_ S A B O T A G E_ D E F E N S E",
+            "typeKey": "DT_SABOTAGE_DEFENSE",
+            "challenge": "Security Spin",
+            "challengeKey": "SecuritySpin",
+            "level": "Arena Bagel.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/ArenaBagel.level",
+            "specs": [
+                {
+                    "uniqueName": "/Lotus/Types/Game/EnemySpecs/Tau/CoHCorpusExterminateHumans",
+                    "name": "Co H Corpus Exterminate Humans"
+                }
+            ],
+            "auras": [
+                {
+                    "uniqueName": "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHSecuritySpinAura",
+                    "name": "Co H Security Spin Aura"
+                }
+            ]
+        },
+        {
+            "index": 21,
+            "type": "D T_ P R O T O F R A M E",
+            "typeKey": "DT_PROTOFRAME",
+            "challenge": "Devil",
+            "challengeKey": "Devil",
+            "level": "Boss Arena Uriel.level",
+            "levelUniqueName": "/Lotus/Levels/DevilTower/BossArenaUriel.level",
+            "specs": [],
+            "auras": []
+        }
+    ]
+}

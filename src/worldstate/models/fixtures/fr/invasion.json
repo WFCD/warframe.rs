@@ -1,0 +1,269 @@
+[
+    {
+        "id": "6ad5279a74995d72ee6aaa22",
+        "activation": "2026-10-18T20:18:11.993Z",
+        "node": "Bode (C\u00e9r\u00e8s)",
+        "nodeKey": "Bode (Ceres)",
+        "desc": "Si\u00e8ge Corpus",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Recipes/Weapons/SnipetronVandalBlueprint",
+                        "type": "Sch\u00e9ma Snipetron Vandal",
+                        "key": "Snipetron Vandal Blueprint",
+                        "count": 1
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/dera-vandal.png",
+                "color": 6052435
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/GrineerCombatKnifeHilt",
+                        "type": "Sheev - Poign\u00e9e",
+                        "key": "Sheev Hilt",
+                        "count": 1
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "",
+                "color": 5198940
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": false,
+        "count": 44041,
+        "requiredRuns": 44000,
+        "completion": 100.0465909090909,
+        "completed": true,
+        "rewardTypes": [
+            "vandal",
+            "other"
+        ]
+    },
+    {
+        "id": "6ad7174e08578455f77c6685",
+        "activation": "2026-10-20T07:36:34.209Z",
+        "node": "Pallas (C\u00e9r\u00e8s)",
+        "nodeKey": "Pallas (Ceres)",
+        "desc": "Si\u00e8ge Corpus",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+                        "type": "Fieldron",
+                        "key": "Fieldron",
+                        "count": 3
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/fieldron.png",
+                "color": 5068118
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
+                        "type": "Injecteur de D\u00e9tonite",
+                        "key": "Detonite Injector",
+                        "count": 3
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/detonite-injector.png",
+                "color": 5068118
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": false,
+        "count": 11,
+        "requiredRuns": 36000,
+        "completion": 50.015277777777776,
+        "completed": false,
+        "rewardTypes": [
+            "fieldron",
+            "detonite"
+        ]
+    },
+    {
+        "id": "6ad580aa1ec81c3eef905242",
+        "activation": "2026-10-19T02:30:02.263Z",
+        "node": "Tethys (Saturne)",
+        "nodeKey": "Tethys (Saturn)",
+        "desc": "Manifestation de Phorid",
+        "attacker": {
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
+                        "type": "Injecteur de D\u00e9tonite",
+                        "key": "Detonite Injector",
+                        "count": 3
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/detonite-injector.png",
+                "color": 5068118
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": true,
+        "count": -30057,
+        "requiredRuns": 30000,
+        "completion": -0.19000000000000128,
+        "completed": true,
+        "rewardTypes": [
+            "detonite"
+        ]
+    },
+    {
+        "id": "6ad5bb423219136c549bb173",
+        "activation": "2026-10-19T06:40:01.854Z",
+        "node": "Hades (Pluton)",
+        "nodeKey": "Hades (Pluto)",
+        "desc": "Manifestation de Phorid",
+        "attacker": {
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/MiscItems/InfestedAladCoordinate",
+                        "type": "Coord. Nav Alad V Mutaliste",
+                        "key": "Mutalist Alad V Nav Coordinate",
+                        "count": 1
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/mutalist-alad-v-nav-coordinate.png",
+                "color": 158519
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": true,
+        "count": -21189,
+        "requiredRuns": 30000,
+        "completion": 29.369999999999997,
+        "completed": false,
+        "rewardTypes": [
+            "mutalist"
+        ]
+    },
+    {
+        "id": "6ad5aadaee3e65079d5017ea",
+        "activation": "2026-10-19T18:28:12.080Z",
+        "node": "Sorath (Europe)",
+        "nodeKey": "Sorath (Europa)",
+        "desc": "Offensive Grineer",
+        "attacker": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/ChemComponent",
+                        "type": "Injecteur de D\u00e9tonite",
+                        "key": "Detonite Injector",
+                        "count": 3
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/detonite-injector.png",
+                "color": 5068118
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/EnergyComponent",
+                        "type": "Fieldron",
+                        "key": "Fieldron",
+                        "count": 3
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/fieldron.png",
+                "color": 5068118
+            },
+            "faction": "Corpus",
+            "factionKey": "Corpus"
+        },
+        "vsInfestation": false,
+        "count": -6105,
+        "requiredRuns": 44000,
+        "completion": 43.0625,
+        "completed": false,
+        "rewardTypes": [
+            "detonite",
+            "fieldron"
+        ]
+    },
+    {
+        "id": "6ad7023673f1043081527908",
+        "activation": "2026-10-20T07:39:14.295Z",
+        "node": "Titan (Saturne)",
+        "nodeKey": "Titan (Saturn)",
+        "desc": "\u00c9pid\u00e9mie Infest\u00e9s",
+        "attacker": {
+            "faction": "Infest\u00e9",
+            "factionKey": "Infested"
+        },
+        "defender": {
+            "reward": {
+                "items": [],
+                "countedItems": [
+                    {
+                        "uniqueName": "/Lotus/Types/Items/Research/BioComponent",
+                        "type": "Masse Mutag\u00e8ne",
+                        "key": "Mutagen Mass",
+                        "count": 1
+                    }
+                ],
+                "credits": 0,
+                "thumbnail": "https://cdn.warframestat.us/img/mutagen-mass.png",
+                "color": 5068118
+            },
+            "faction": "Grineer",
+            "factionKey": "Grineer"
+        },
+        "vsInfestation": true,
+        "count": -128,
+        "requiredRuns": 47000,
+        "completion": 99.72765957446809,
+        "completed": false,
+        "rewardTypes": [
+            "mutagen"
+        ]
+    }
+]

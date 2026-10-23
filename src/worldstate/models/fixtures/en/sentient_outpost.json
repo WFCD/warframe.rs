@@ -1,0 +1,12 @@
+{
+  "node": 555,
+  "id": "CrewBattleNode555:true",
+  "activation": "2026-10-04T07:00:00.000Z",
+  "expiry": "2026-10-04T07:30:00.000Z",
+  "mission": {
+    "node": "R-9 Cloud (Veil)",
+    "faction": "Grineer",
+    "type": "Skirmish"
+  },
+  "active": true
+}

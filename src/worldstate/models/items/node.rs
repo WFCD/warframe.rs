@@ -1,6 +1,5 @@
 use serde::Deserialize;
 
-
 #[derive(Clone, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Node {

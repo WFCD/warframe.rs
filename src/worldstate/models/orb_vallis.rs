@@ -32,10 +32,11 @@ mod test_orb_vallis {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/orb_vallis.json")]
+        #[files("src/worldstate/models/fixtures/*/orb_vallis.json")]
         #[mode = str]
-        orb_vallis_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(orb_vallis_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

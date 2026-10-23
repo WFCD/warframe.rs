@@ -252,19 +252,23 @@ mod test {
     use crate::worldstate::models::items::Item;
 
     #[rstest]
-    fn test_item_query(
-        #[files("src/worldstate/models/fixtures/item_sigil.json")]
+    fn test_item_sigil(
+        #[files("src/worldstate/models/fixtures/*/item_sigil.json")]
         #[mode = str]
-        item_sigil_en: &str,
-        #[files("src/worldstate/models/fixtures/item_nanospores.json")]
-        #[mode = str]
-        nanospores_de: &str,
+        fixture: &str,
     ) {
-        let sigil = serde_json::from_str::<Item>(item_sigil_en).unwrap();
+        let sigil = serde_json::from_str::<Item>(fixture).unwrap();
 
         assert!(matches!(sigil, Item::Sigil(_)));
+    }
 
-        let nanospores = serde_json::from_str::<Item>(nanospores_de).unwrap();
+    #[rstest]
+    fn test_item_nanospores(
+        #[files("src/worldstate/models/fixtures/*/item_nanospores.json")]
+        #[mode = str]
+        fixture: &str,
+    ) {
+        let nanospores = serde_json::from_str::<Item>(fixture).unwrap();
 
         assert!(matches!(nanospores, Item::Misc(_)));
     }

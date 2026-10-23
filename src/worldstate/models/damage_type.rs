@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use serde_with::rust::deserialize_ignore_any;
+use warframe_macros::model;
 
 macro_rules! unordered_pattern {
     ($a:pat, $b:pat) => {
@@ -7,38 +7,73 @@ macro_rules! unordered_pattern {
     };
 }
 
+/// A damage type in Warframe
 #[derive(
-    Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::From, Hash, derive_more::Display,
+    Clone, Debug, PartialEq, Eq, derive_more::From, derive_more::TryInto, Hash, derive_more::Display,
 )]
-#[serde(untagged)]
 pub enum DamageType {
-    // Physical Damage
+    /// Physical Damage
     Physical(PhysicalDamage),
-    // Primary Elemental Damage
+    /// Primary Elemental Damage
     Elemental(ElementalDamage),
-    // Secondary Elemental Damage
+    /// Secondary Elemental Damage
     Combined(CombinedElementalDamage),
-
-    #[serde(deserialize_with = "deserialize_ignore_any")]
-    Other,
+    /// An unrecognized damage type
+    Unknown(String),
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::Display, Hash)]
+impl<'de> Deserialize<'de> for DamageType {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let value =
+            serde_json::Value::deserialize(deserializer).map_err(serde::de::Error::custom)?;
+
+        if let Ok(v) = PhysicalDamage::deserialize(&value) {
+            return Ok(DamageType::Physical(v));
+        }
+        if let Ok(v) = ElementalDamage::deserialize(&value) {
+            return Ok(DamageType::Elemental(v));
+        }
+        if let Ok(v) = CombinedElementalDamage::deserialize(&value) {
+            return Ok(DamageType::Combined(v));
+        }
+
+        match value.as_str() {
+            Some(s) => Ok(DamageType::Unknown(s.to_owned())),
+            None => Ok(DamageType::Unknown(value.to_string())),
+        }
+    }
+}
+
+/// Physical damage types
+#[model]
 #[serde(rename_all = "lowercase")]
 pub enum PhysicalDamage {
+    /// Impact
     Impact,
+    /// Puncture
     Puncture,
+    /// Slash
     Slash,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::Display, Hash)]
+/// Primary elemental damage types
+#[model]
 #[serde(rename_all = "lowercase")]
 pub enum ElementalDamage {
+    /// Heat
     Heat,
+    /// Cold
     Cold,
+    /// Electricity
     Electricity,
+    /// Toxin
     Toxin,
+    /// Void
     Void,
+    /// Tau
     Tau,
 }
 
@@ -77,14 +112,21 @@ impl ElementalDamage {
     }
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, derive_more::Display, Hash)]
+/// Combined (secondary) elemental damage types
+#[model]
 #[serde(rename_all = "lowercase")]
 pub enum CombinedElementalDamage {
+    /// Radiation
     Radiation,
+    /// Blast
     Blast,
+    /// Viral
     Viral,
+    /// Corrosive
     Corrosive,
+    /// Gas
     Gas,
+    /// Magnetic
     Magnetic,
 }
 

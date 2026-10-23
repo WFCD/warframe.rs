@@ -44,22 +44,29 @@
 
 pub mod alert;
 pub mod arbitration;
+pub mod archimedea;
 pub mod archon_hunt;
 pub mod base;
+pub mod calendar;
 pub mod cambion_drift;
 pub mod cetus;
+pub mod clan_weekly_initiative;
+pub mod conclave_challenge;
 pub mod construction_progress;
 pub mod daily_deal;
+pub mod damage_type;
+pub mod descendia;
+pub mod duviri_cycle;
+pub mod earth_cycle;
 pub mod event;
+pub mod faceoff_bonus;
 pub mod faction;
 pub mod fissure;
 pub mod flash_sale;
-pub mod items;
-// mod global_upgrades;
-pub mod damage_type;
-pub mod deep_archimedea;
 pub mod global_upgrades;
 pub mod invasion;
+pub mod items;
+pub mod kinepage;
 pub mod mission;
 pub mod mission_type;
 pub mod news;
@@ -67,11 +74,15 @@ pub mod nightwave;
 pub mod orb_vallis;
 pub mod reward;
 pub mod reward_type;
+pub mod sentient_outpost;
+pub mod simaris;
 pub mod sortie;
 pub mod steel_path;
 pub mod syndicate;
 pub mod syndicate_mission;
+pub mod vault_trader;
 pub mod void_trader;
+pub mod zariman_cycle;
 
 use items::Item;
 
@@ -129,11 +140,13 @@ impl ItemStringWrapper {
         client.query_item_using_lang(&self.0, language).await
     }
 
+    /// Returns a reference to the inner item name string.
     #[must_use]
     pub fn inner(&self) -> &str {
         &self.0
     }
 
+    /// Consumes the wrapper and returns the inner item name string.
     #[must_use]
     pub fn into_inner(self) -> String {
         self.0

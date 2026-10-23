@@ -1,0 +1,126 @@
+{
+    "currentReward": {
+        "name": "30 000 X Endo",
+        "cost": 150
+    },
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-25T23:59:59.000Z",
+    "remaining": "5d 16h 7m 58s",
+    "rotation": [
+        {
+            "name": "Sch\u00e9ma Forma Umbra",
+            "cost": 150
+        },
+        {
+            "name": "50 000 X Kuva",
+            "cost": 55
+        },
+        {
+            "name": "Kitgun Riven Mod",
+            "cost": 75
+        },
+        {
+            "name": "3x Forma",
+            "cost": 75
+        },
+        {
+            "name": "Zaw Riven Mod",
+            "cost": 75
+        },
+        {
+            "name": "30 000 X Endo",
+            "cost": 150
+        },
+        {
+            "name": "Rifle Riven Mod",
+            "cost": 75
+        },
+        {
+            "name": "Shotgun Riven Mod",
+            "cost": 75
+        }
+    ],
+    "evergreens": [
+        {
+            "name": "D\u00e9codeur de Riven Voil\u00e9",
+            "cost": 20
+        },
+        {
+            "name": "Sch\u00e9ma \u00c9pauli\u00e8res Bishamo",
+            "cost": 15
+        },
+        {
+            "name": "Sch\u00e9ma Cuirasse Bishamo",
+            "cost": 25
+        },
+        {
+            "name": "Sch\u00e9ma Casque Bishamo",
+            "cost": 20
+        },
+        {
+            "name": "Sch\u00e9ma Gr\u00e8ves Bishamo",
+            "cost": 25
+        },
+        {
+            "name": "10 000 X Kuva",
+            "cost": 15
+        },
+        {
+            "name": "Adaptateur D'Arcane Principale",
+            "cost": 15
+        },
+        {
+            "name": "Adaptateur D'Arcane Secondaire",
+            "cost": 15
+        },
+        {
+            "name": "Relic Pack",
+            "cost": 15
+        },
+        {
+            "name": "Forma Posture Sch\u00e9ma",
+            "cost": 10
+        },
+        {
+            "name": "Ephermera Trio Orbital",
+            "cost": 3
+        },
+        {
+            "name": "Ephemera Crania",
+            "cost": 85
+        },
+        {
+            "name": "Contrepoids",
+            "cost": 35
+        },
+        {
+            "name": "Statuette Noggle - Teshin",
+            "cost": 35
+        },
+        {
+            "name": "Glyphe Gauss En Action",
+            "cost": 15
+        },
+        {
+            "name": "Grendel en Action",
+            "cost": 15
+        },
+        {
+            "name": "Glyphe Protea En Action",
+            "cost": 15
+        },
+        {
+            "name": "Service \u00c0 Th\u00e9 Orokin",
+            "cost": 15
+        },
+        {
+            "name": "Glyphe Xaku En Action",
+            "cost": 15
+        }
+    ],
+    "incursions": {
+        "id": "spi:1792454400000",
+        "activation": "2026-10-20T00:00:00.000Z",
+        "expiry": "2026-10-20T23:59:59.000Z"
+    }
+}

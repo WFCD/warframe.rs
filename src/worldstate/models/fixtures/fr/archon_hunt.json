@@ -1,0 +1,51 @@
+{
+    "id": "6ad559fea1b55e551427d302",
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-26T00:00:00.000Z",
+    "rewardPool": "Archon Sortie Rewards",
+    "variants": [],
+    "missions": [
+        {
+            "node": "Tharsis (Mars)",
+            "nodeKey": "Tharsis (Mars)",
+            "type": "Sauvetage",
+            "typeKey": "Rescue",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        },
+        {
+            "node": "Ara (Mars)",
+            "nodeKey": "Ara (Mars)",
+            "type": "Interception",
+            "typeKey": "Interception",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        },
+        {
+            "node": "War (Mars)",
+            "nodeKey": "War (Mars)",
+            "type": "Assassinat",
+            "typeKey": "Assassination",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        }
+    ],
+    "boss": "Archonte Amar",
+    "faction": "Narmer",
+    "factionKey": "Narmer"
+}

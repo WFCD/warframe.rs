@@ -8,9 +8,13 @@ type DateTime = chrono::DateTime<chrono::Utc>;
 #[model]
 pub struct SyndicateJob {
     /// Unique identifier for this object/event/thing
-    pub id: String,
+    pub id: Option<String>,
+
+    /// The unique name of the job
+    pub unique_name: Option<String>,
 
     /// The Reward Pool of the Bounty
+    #[serde(default)]
     pub reward_pool: Vec<String>,
 
     /// The type (or name) of the syndicate job
@@ -31,8 +35,8 @@ pub struct SyndicateJob {
     pub expiry: DateTime,
 }
 
-/// All Syndicate Missions (including Cetus, etc.)\nNote that they *may* be empty, in which case
-/// they are not valid.
+/// All Syndicate Missions (including Cetus, etc.)
+/// Note that they *may* be empty, in which case they are not valid.
 #[model(endpoint =  "/syndicateMissions", return_style = Array, timed)]
 pub struct SyndicateMission {
     /// Unique identifier for this object/event/thing
@@ -63,10 +67,11 @@ mod test_syndicate_mission {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/syndicate_mission.json")]
+        #[files("src/worldstate/models/fixtures/*/syndicate_mission.json")]
         #[mode = str]
-        syndicate_mission_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(syndicate_mission_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

@@ -42,6 +42,9 @@ where
     expiry(serde(deserialize_with = "deserialize_expiry")),
 )]
 pub struct Arbitration {
+    /// Unique identifier for the arbitration
+    pub id: Option<String>,
+
     /// The i18n of the node
     pub node: String,
 
@@ -50,7 +53,7 @@ pub struct Arbitration {
 
     /// The i18n faction you are up against
     #[serde(rename(deserialize = "enemy"))]
-    pub faction: Faction,
+    pub faction: String,
 
     /// The faction you are up against
     #[serde(rename(deserialize = "enemyKey"))]
@@ -91,10 +94,11 @@ mod test_arbitration {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/arbitration.json")]
+        #[files("src/worldstate/models/fixtures/*/arbitration.json")]
         #[mode = str]
-        arbitration_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(arbitration_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

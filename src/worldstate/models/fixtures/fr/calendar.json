@@ -1,0 +1,264 @@
+{
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-26T00:00:00.000Z",
+    "days": [
+        {
+            "date": "1999-01-01T00:00:00.000Z",
+            "events": []
+        },
+        {
+            "date": "1999-01-03T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "By The Blade",
+                        "description": "Kill 300 Enemies with Melee Weapons"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-01-19T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Forma",
+                    "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/Forma"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "Archon Crystal Orange",
+                    "uniqueName": "/Lotus/StoreItems/Types/Gameplay/NarmerSorties/ArchonCrystalOrange"
+                }
+            ]
+        },
+        {
+            "date": "1999-01-20T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Toxic Shot",
+                        "description": "Add 25% Gas Status Chance to Primary and Secondary weapons."
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Power Gains",
+                        "description": "Increase Ability Strength +25%.\n+25% Ability Strength"
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Bottled Lightning",
+                        "description": "Add 25% Status Damage and Electricity Status Chance to all weapons."
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-01-23T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "Shock and Awe",
+                        "description": "Kill 75 Scaldra Troops with Abilities"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-01-28T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Weapon Primary Arcane Unlocker",
+                    "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/WeaponPrimaryArcaneUnlocker"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "Exilus Adapter",
+                    "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/UtilityUnlocker"
+                }
+            ]
+        },
+        {
+            "date": "1999-02-13T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "Ex-Eximus",
+                        "description": "Kill 20 Eximus"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-02-14T00:00:00.000Z",
+            "events": []
+        },
+        {
+            "date": "1999-02-16T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Weapon Primary Arcane Unlocker",
+                    "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/WeaponPrimaryArcaneUnlocker"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "Arcane Enhancements",
+                    "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarArtifactPack"
+                }
+            ]
+        },
+        {
+            "date": "1999-02-19T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Combo Killer",
+                        "description": "Combo Multiplier increases the chance of enemies being susceptible to finishers after a melee hit. 5% per Multiplier Max 65% with Venka Prime."
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "More the Merrier",
+                        "description": "Non-Tenno Allies within 20m all gain +5% Melee Attack Speed and +20% Fire Rate for each one in range."
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Hit'N'Split",
+                        "description": "Critical melee hits have a chance to increase attack and movement speed by 5% for 10sec."
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-02-22T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "Purge the infection",
+                        "description": "Kill 250 Techrot"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-02-25T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Arcane Enhancements: Double Pack",
+                    "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarMajorArtifactPack"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "Forma",
+                    "uniqueName": "/Lotus/StoreItems/Types/Items/MiscItems/Forma"
+                }
+            ]
+        },
+        {
+            "date": "1999-03-15T00:00:00.000Z",
+            "events": []
+        },
+        {
+            "date": "1999-03-18T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "Null and Void",
+                        "description": "Kill 300 Techrot with Abilities"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-03-21T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Exilus Weapon Adapter Blueprint",
+                    "uniqueName": "/Lotus/StoreItems/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "6,000 Endo",
+                    "uniqueName": "/Lotus/StoreItems/Upgrades/Mods/FusionBundles/CircuitSilverSteelPathFusionBundle"
+                }
+            ]
+        },
+        {
+            "date": "1999-03-24T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "To Do",
+                    "challenge": {
+                        "title": "Starve the beast",
+                        "description": "Destroy 300 Containers"
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-03-25T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "No Quarter",
+                        "description": "+25% Melee Attack Speed."
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Punchcard",
+                        "description": "Add +1.5m punch through to primary weapons."
+                    }
+                },
+                {
+                    "type": "Override",
+                    "upgrade": {
+                        "title": "Espresso Shots",
+                        "description": "Increase energy restoration by 2/s."
+                    }
+                }
+            ]
+        },
+        {
+            "date": "1999-03-27T00:00:00.000Z",
+            "events": [
+                {
+                    "type": "Big Prize!",
+                    "reward": "Arcane Enhancements: Double Pack",
+                    "uniqueName": "/Lotus/StoreItems/Types/BoosterPacks/CalendarMajorArtifactPack"
+                },
+                {
+                    "type": "Big Prize!",
+                    "reward": "Vosfor Cache",
+                    "uniqueName": "/Lotus/Types/StoreItems/Packages/Calendar/CalendarVosforPack"
+                }
+            ]
+        }
+    ],
+    "season": "Winter",
+    "yearIteration": 24,
+    "version": 19,
+    "requirements": [
+        "/Lotus/Upgrades/Calendar/1999UpgradeApplicationRequirement"
+    ]
+}

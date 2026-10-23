@@ -1,0 +1,33 @@
+{
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-26T00:00:00.000Z",
+    "week": 662,
+    "bonusRegion": "Mars",
+    "regionUniqueName": "/Lotus/Language/Locations/Mars",
+    "rewwards": [
+        {
+            "RewardClaimed": false,
+            "PointThreshold": 500,
+            "ItemCount": 12,
+            "Reward": "/Lotus/StoreItems/Types/Items/MiscItems/Neurode"
+        },
+        {
+            "RewardClaimed": false,
+            "PointThreshold": 1000,
+            "ItemCount": 10,
+            "Reward": "/Lotus/StoreItems/Types/Restoratives/Consumable/PlatinumSpectre"
+        },
+        {
+            "RewardClaimed": false,
+            "PointThreshold": 1500,
+            "ItemCount": 1,
+            "Reward": "/Lotus/StoreItems/Types/Items/MiscItems/OrokinCatalyst"
+        },
+        {
+            "RewardClaimed": false,
+            "PointThreshold": 2000,
+            "ItemCount": 100,
+            "Reward": "/Lotus/StoreItems/Upgrades/Mods/FusionBundles/UncommonFusionBundle"
+        }
+    ]
+}

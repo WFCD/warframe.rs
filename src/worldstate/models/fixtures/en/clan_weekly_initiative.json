@@ -1,0 +1,33 @@
+{
+  "activation": "2026-09-28T00:00:00.000Z",
+  "expiry": "2026-10-05T00:00:00.000Z",
+  "week": 659,
+  "bonusRegion": "Mars",
+  "regionUniqueName": "/Lotus/Language/Locations/Mars",
+  "rewwards": [
+    {
+      "RewardClaimed": false,
+      "PointThreshold": 500,
+      "ItemCount": 5,
+      "Reward": "/Lotus/StoreItems/Types/Items/Research/ChemComponent"
+    },
+    {
+      "RewardClaimed": false,
+      "PointThreshold": 1000,
+      "ItemCount": 1,
+      "Reward": "/Lotus/StoreItems/Types/Items/MiscItems/Forma"
+    },
+    {
+      "RewardClaimed": false,
+      "PointThreshold": 1500,
+      "ItemCount": 60,
+      "Reward": "/Lotus/StoreItems/Upgrades/Mods/FusionBundles/UncommonFusionBundle"
+    },
+    {
+      "RewardClaimed": false,
+      "PointThreshold": 2000,
+      "ItemCount": 1,
+      "Reward": "/Lotus/StoreItems/Types/Recipes/Lens/GenericLensOstronBlueprint"
+    }
+  ]
+}

@@ -30,10 +30,11 @@ mod test_construction_progress {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/construction_progress.json")]
+        #[files("src/worldstate/models/fixtures/*/construction_progress.json")]
         #[mode = str]
-        construction_progress_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(construction_progress_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

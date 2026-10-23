@@ -1,0 +1,122 @@
+{
+    "id": "nightwave1804464000000",
+    "activation": "2026-08-12T15:30:00.000Z",
+    "expiry": "2027-03-08T00:00:00.000Z",
+    "season": 18,
+    "tag": "Radio Legion Intermission16 Syndicate",
+    "phase": 0,
+    "params": {},
+    "possibleChallenges": [],
+    "activeChallenges": [
+        {
+            "id": "1792540800000seasondailydeployairsupport",
+            "activation": "2026-10-18T00:00:00.000Z",
+            "expiry": "2026-10-21T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "Deploy an Air Support Charge in a Mission",
+            "title": "Air It Out",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792627200000seasondailycollectcredits",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-22T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "Pick up 15,000 Credits",
+            "title": "Saver",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792713600000seasondailykillenemieswithabilities",
+            "activation": "2026-10-20T00:00:00.000Z",
+            "expiry": "2026-10-23T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "Kill 150 Enemies with Abilities",
+            "title": "Power Trip",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentcompletemissions11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "Complete any 15 missions",
+            "title": "Mission Complete XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentkilleximus11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "Kill 30 Eximus",
+            "title": "Eximus Eliminator XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentkillenemies11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "Kill 500 Enemies",
+            "title": "Not a Warning Shot XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklycompletekuva",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "Complete 3 Kuva Siphon Missions",
+            "title": "Don't Fear The Reaper",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklysabotagecaches",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "Find all caches in 3 Sabotage missions",
+            "title": "Cache Hunter",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklyhardgoingdown",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": true,
+            "desc": "[PH] Season Weekly Hard Going Down Desc",
+            "title": "Season Weekly Hard Going Down",
+            "reputation": 7000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklyhardcompletearchonhunt",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": true,
+            "desc": "Complete an Archon Hunt",
+            "title": "Archon Hunter",
+            "reputation": 7000,
+            "isPermanent": false
+        }
+    ]
+}

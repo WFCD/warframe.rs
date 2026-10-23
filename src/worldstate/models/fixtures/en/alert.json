@@ -1,0 +1,94 @@
+[
+  {
+    "id": "6abdec7a31ca47b57807bccd",
+    "activation": "2026-10-01T14:00:00.000Z",
+    "expiry": "2026-10-15T18:00:00.000Z",
+    "mission": {
+      "description": "Tenno United Alert",
+      "node": "Ganymede (Jupiter)",
+      "nodeKey": "Ganymede (Jupiter)",
+      "type": "Disruption",
+      "typeKey": "Disruption",
+      "faction": "Corpus",
+      "factionKey": "Corpus",
+      "reward": {
+        "items": [
+          "Conquera Kuaka Floof"
+        ],
+        "countedItems": [
+          {
+            "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/Plushies/Plushy2021QTCC",
+            "type": "Conquera Kuaka Floof",
+            "key": "Conquera Kuaka Floof",
+            "count": 1
+          }
+        ],
+        "credits": 10000,
+        "thumbnail": "",
+        "color": 5198940
+      },
+      "minEnemyLevel": 20,
+      "maxEnemyLevel": 30,
+      "maxWaveNum": 8,
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "levelOverride": "Gas City Disruption",
+      "enemySpec": "Corpus Amalgam Endless",
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "requiredItemUniqueNames": [],
+      "levelAuras": []
+    },
+    "rewardTypes": [
+      "other"
+    ],
+    "tag": "LotusGift"
+  },
+  {
+    "id": "6abded092d8cfe07a40b28b9",
+    "activation": "2026-10-01T14:00:00.000Z",
+    "expiry": "2026-10-15T18:00:00.000Z",
+    "mission": {
+      "description": "Tenno United Alert",
+      "node": "Selkie (Sedna)",
+      "nodeKey": "Selkie (Sedna)",
+      "type": "Survival",
+      "typeKey": "Survival",
+      "faction": "Grineer",
+      "factionKey": "Grineer",
+      "reward": {
+        "items": [
+          "Conquera Sawgaw Floof"
+        ],
+        "countedItems": [
+          {
+            "uniqueName": "/Lotus/StoreItems/Types/Items/ShipDecos/Plushies/Plushy2022QTCC",
+            "type": "Conquera Sawgaw Floof",
+            "key": "Conquera Sawgaw Floof",
+            "count": 1
+          }
+        ],
+        "credits": 10000,
+        "thumbnail": "",
+        "color": 5198940
+      },
+      "minEnemyLevel": 15,
+      "maxEnemyLevel": 20,
+      "maxWaveNum": 10,
+      "nightmare": false,
+      "archwingRequired": false,
+      "isSharkwing": false,
+      "levelOverride": "Grineer Asteroid Survival Raid",
+      "enemySpec": "Grineer Survival A",
+      "advancedSpawners": [],
+      "requiredItems": [],
+      "requiredItemUniqueNames": [],
+      "levelAuras": []
+    },
+    "rewardTypes": [
+      "other"
+    ],
+    "tag": "LotusGift"
+  }
+]

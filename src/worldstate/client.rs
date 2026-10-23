@@ -305,10 +305,9 @@ impl Client {
             Item::query(
                 self.http.clone(),
                 format!(
-                    "{}/items/{}/?language={}",
+                    "{}/{language}/items/{}",
                     self.base_url,
-                    urlencoding::encode(query),
-                    language
+                    urlencoding::encode(query)
                 ),
             )
             .await

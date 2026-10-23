@@ -93,7 +93,7 @@ pub struct Client {
     #[cfg(feature = "market_cache")]
     #[builder(
         default = Cache::builder()
-            .time_to_live(Duration::from_secs(86400))
+            .time_to_live(Duration::from_hours(24))
             .max_capacity(12) // 1 for each language
             .build()
     )]
@@ -102,7 +102,7 @@ pub struct Client {
     #[cfg(feature = "market_cache")]
     #[builder(
         default = Cache::builder()
-            .time_to_live(Duration::from_secs(86400))
+            .time_to_live(Duration::from_hours(24))
             .max_capacity(7) // 1 for each slug category
             .build()
     )]
@@ -116,6 +116,7 @@ impl Default for Client {
 }
 
 impl Client {
+    /// Creates a new market API client with default settings.
     #[must_use]
     #[allow(clippy::missing_panics_doc)]
     pub fn new() -> Self {
@@ -124,6 +125,7 @@ impl Client {
             .expect("default client builder should never fail")
     }
 
+    /// Returns a new [`ClientBuilder`] for configuring a market API client.
     #[must_use]
     pub fn builder() -> ClientBuilder {
         ClientBuilder::default()

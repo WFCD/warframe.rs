@@ -1,0 +1,331 @@
+{
+  "attacks": [
+    {
+      "name": "Normal Attack",
+      "speed": 0.667,
+      "crit_chance": 15,
+      "crit_mult": 2.1,
+      "status_chance": 30,
+      "damage": {
+        "impact": 57,
+        "slash": 61,
+        "puncture": 55,
+        "viral": 89
+      },
+      "slide": "524",
+      "slam": {
+        "damage": "524.00",
+        "radial": {
+          "damage": "0.00",
+          "radius": 5
+        }
+      }
+    },
+    {
+      "name": "Throw",
+      "speed": 0.667,
+      "crit_chance": 17,
+      "crit_mult": 2.3,
+      "status_chance": 33,
+      "shot_type": "Thrown",
+      "shot_speed": 30,
+      "flight": 30,
+      "damage": {
+        "impact": 49,
+        "slash": 78,
+        "puncture": 43,
+        "viral": 118
+      }
+    },
+    {
+      "name": "Throw Bounce Explosion",
+      "speed": 0.667,
+      "crit_chance": 17,
+      "crit_mult": 2.3,
+      "status_chance": 33,
+      "shot_type": "AoE",
+      "falloff": {
+        "start": 0,
+        "end": 4.9,
+        "reduction": 0.5
+      },
+      "damage": {
+        "viral": 393
+      }
+    },
+    {
+      "name": "Throw Recall Explosion",
+      "speed": 0.667,
+      "crit_chance": 17,
+      "crit_mult": 2.3,
+      "status_chance": 33,
+      "shot_type": "AoE",
+      "falloff": {
+        "start": 0,
+        "end": 4.9,
+        "reduction": 0
+      },
+      "damage": {
+        "viral": 786
+      }
+    },
+    {
+      "name": "Charged Throw",
+      "speed": 0.833,
+      "crit_chance": 21,
+      "crit_mult": 2.5,
+      "status_chance": 35,
+      "charge_time": 1.2,
+      "shot_type": "Thrown",
+      "shot_speed": 30,
+      "flight": 30,
+      "damage": {
+        "impact": 127,
+        "slash": 135,
+        "puncture": 121,
+        "viral": 193
+      }
+    },
+    {
+      "name": "Charged Throw Bounce Explosion",
+      "speed": 0.833,
+      "crit_chance": 21,
+      "crit_mult": 2.5,
+      "status_chance": 35,
+      "charge_time": 1.2,
+      "shot_type": "AoE",
+      "falloff": {
+        "start": 0,
+        "end": 4.9,
+        "reduction": 0.5
+      },
+      "damage": {
+        "viral": 786
+      }
+    },
+    {
+      "name": "Charged Throw Recall Explosion",
+      "speed": 0.833,
+      "crit_chance": 21,
+      "crit_mult": 2.5,
+      "status_chance": 35,
+      "charge_time": 1.2,
+      "shot_type": "AoE",
+      "falloff": {
+        "start": 0,
+        "end": 4.9,
+        "reduction": 0
+      },
+      "damage": {
+        "viral": 1572
+      }
+    }
+  ],
+  "blockingAngle": 55,
+  "buildPrice": 30000,
+  "buildQuantity": 1,
+  "buildTime": 86400,
+  "category": "Melee",
+  "comboDuration": 5,
+  "components": [
+    {
+      "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangBlade",
+      "name": "Blade",
+      "description": "A weapon-crafting component.",
+      "itemCount": 2,
+      "imageName": "blade.png",
+      "tradable": false,
+      "drops": [
+        {
+          "chance": 0.3333,
+          "location": "Zealoid Prelate",
+          "rarity": "Common",
+          "type": "Pathocyst Blade"
+        }
+      ],
+      "masterable": false
+    },
+    {
+      "uniqueName": "/Lotus/Types/Recipes/Weapons/InfBoomerangBlueprint",
+      "name": "Blueprint",
+      "description": "Each strike of this infested glaive infects its target with viral pathogens. Occasionally, it discharges the spores of rabid, enemy-seeking maggots, either in-flight or on contact with the enemy.",
+      "itemCount": 1,
+      "imageName": "blueprint.png",
+      "tradable": false,
+      "masterable": false,
+      "drops": [
+        {
+          "chance": 0.3333,
+          "location": "Zealoid Prelate",
+          "rarity": "Common",
+          "type": "Pathocyst Blueprint"
+        }
+      ]
+    },
+    {
+      "uniqueName": "/Lotus/Types/Items/MiscItems/Neurode",
+      "name": "Neurodes",
+      "description": "Biotech sensor organ harvested from Infested entities.Location: Earth, Lua, Eris, and Deimos",
+      "itemCount": 5,
+      "imageName": "neurodes-c027fd4a28.png",
+      "tradable": false,
+      "drops": [],
+      "masterable": false
+    },
+    {
+      "uniqueName": "/Lotus/Types/Recipes/Weapons/WeaponParts/InfBoomerangDisc",
+      "name": "Subcortex",
+      "description": "A weapon-crafting component.",
+      "itemCount": 1,
+      "imageName": "subcortex.png",
+      "tradable": false,
+      "drops": [
+        {
+          "chance": 0.3333,
+          "location": "Zealoid Prelate",
+          "rarity": "Common",
+          "type": "Pathocyst Subcortex"
+        }
+      ],
+      "masterable": false
+    }
+  ],
+  "consumeOnBuild": true,
+  "criticalChance": 0.15000001,
+  "criticalMultiplier": 2.0999999,
+  "damage": {
+    "total": 262,
+    "impact": 57,
+    "puncture": 61,
+    "slash": 55,
+    "heat": 0,
+    "cold": 0,
+    "electricity": 0,
+    "toxin": 0,
+    "blast": 0,
+    "radiation": 0,
+    "gas": 0,
+    "magnetic": 0,
+    "viral": 89,
+    "corrosive": 0,
+    "void": 0,
+    "tau": 0,
+    "cinematic": 0,
+    "shieldDrain": 0,
+    "healthDrain": 0,
+    "energyDrain": 0,
+    "true": 0
+  },
+  "damagePerShot": [
+    57,
+    55,
+    61,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    89,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "description": "Each strike of this infested glaive infects its target with viral pathogens. Occasionally, it discharges the spores of rabid, enemy-seeking maggots, either in-flight or on contact with the enemy.",
+  "disposition": 4,
+  "fireRate": 0.66666669,
+  "followThrough": 0.69999999,
+  "heavyAttackDamage": 262,
+  "heavySlamAttack": 1048,
+  "heavySlamRadialDamage": 786,
+  "heavySlamRadius": 6,
+  "imageName": "pathocyst-7c3a6d4c28.png",
+  "introduced": {
+    "name": "Hotfix 25.7.7",
+    "url": "https://warframe.fandom.com/wiki/Update_25%23Hotfix_25.7.7",
+    "aliases": [
+      "25.7.7"
+    ],
+    "parent": "25.7",
+    "date": "2019-09-26"
+  },
+  "isPrime": false,
+  "masterable": true,
+  "masteryReq": 9,
+  "name": "Pathocyst",
+  "omegaAttenuation": 1.3,
+  "patchlogs": [
+    {
+      "name": "Update 30.5: Sisters of Parvos",
+      "date": "2021-07-06T15:02:10Z",
+      "url": "https://forums.warframe.com/topic/1269749-update-305-sisters-of-parvos/",
+      "additions": "",
+      "changes": "Pathocyst",
+      "fixes": ""
+    },
+    {
+      "name": "Orphix Venom: Hotfix 29.6.5",
+      "date": "2021-01-08T21:15:03Z",
+      "url": "https://forums.warframe.com/topic/1244435-orphix-venom-hotfix-2965/",
+      "additions": "",
+      "changes": "",
+      "fixes": "Fixed Pathocyst Infested pod sound looping when pods are created but do not spawn a maggot."
+    },
+    {
+      "name": "Heart of Deimos: TennoGen: 29.3.2",
+      "date": "2020-11-05T21:04:26Z",
+      "url": "https://forums.warframe.com/topic/1234372-heart-of-deimos-tennogen-2932/",
+      "additions": "",
+      "changes": "",
+      "fixes": "Fixed a heavy spot-load occurring when equipping the Pathocyst in the Arsenal."
+    },
+    {
+      "name": "Warframe Revised: Hotfix 27.2.2",
+      "date": "2020-03-06T20:01:27Z",
+      "url": "https://forums.warframe.com/topic/1173118-warframe-revised-hotfix-2722/",
+      "additions": "",
+      "changes": "Pathocyst: 50%",
+      "fixes": ""
+    },
+    {
+      "name": "Atlas Prime: Update 25.8.0 + 25.8.0.1",
+      "date": "2019-10-01T18:00:28Z",
+      "url": "https://forums.warframe.com/topic/1131643-atlas-prime-update-2580-25801/",
+      "additions": "Added new “fast whooshing” sounds to the Pathocyst.",
+      "changes": "",
+      "fixes": ""
+    }
+  ],
+  "polarities": [
+    "madurai",
+    "vazarin"
+  ],
+  "procChance": 0.30000001,
+  "productCategory": "Melee",
+  "range": 1.3,
+  "releaseDate": "2019-09-26",
+  "skipBuildTimePrice": 25,
+  "slamAttack": 786,
+  "slamRadialDamage": 524,
+  "slamRadius": 5,
+  "slideAttack": 524,
+  "slot": 5,
+  "stancePolarity": "naramon",
+  "tags": [
+    "Infested"
+  ],
+  "totalDamage": 262,
+  "tradable": false,
+  "type": "Melee",
+  "uniqueName": "/Lotus/Weapons/Infested/Melee/InfBoomerang/InfBoomerangWeapon",
+  "wikiaThumbnail": "https://static.wikia.nocookie.net/warframe/images/e/ec/Pathocyst.png/revision/latest?cb=20220612022533",
+  "wikiaUrl": "https://warframe.fandom.com/wiki/Pathocyst",
+  "windUp": 1.2
+}

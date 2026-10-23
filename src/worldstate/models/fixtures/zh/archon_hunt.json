@@ -1,0 +1,51 @@
+{
+    "id": "6ad559fea1b55e551427d302",
+    "activation": "2026-10-19T00:00:00.000Z",
+    "expiry": "2026-10-26T00:00:00.000Z",
+    "rewardPool": "Archon Sortie Rewards",
+    "variants": [],
+    "missions": [
+        {
+            "node": "Tharsis (\u706b\u661f)",
+            "nodeKey": "Tharsis (Mars)",
+            "type": "\u6551\u63f4",
+            "typeKey": "Rescue",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        },
+        {
+            "node": "Ara (\u706b\u661f)",
+            "nodeKey": "Ara (Mars)",
+            "type": "\u6514\u622a",
+            "typeKey": "Interception",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        },
+        {
+            "node": "War (\u706b\u661f)",
+            "nodeKey": "War (Mars)",
+            "type": "\u523a\u6bba",
+            "typeKey": "Assassination",
+            "nightmare": false,
+            "archwingRequired": false,
+            "isSharkwing": false,
+            "advancedSpawners": [],
+            "requiredItems": [],
+            "requiredItemUniqueNames": [],
+            "levelAuras": []
+        }
+    ],
+    "boss": "\u6b3a\u8c0b\u72fc\u4e3b",
+    "faction": "\u5408\u4e00\u4f17",
+    "factionKey": "Narmer"
+}

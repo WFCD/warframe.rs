@@ -23,22 +23,29 @@ pub struct News {
     pub image_link: String,
 
     /// Whether the News are prioritized
+    #[serde(default)]
     pub priority: bool,
 
     /// Whether the News are related to an update
+    #[serde(default)]
     pub update: bool,
 
     /// Whether the News are related to a stream
+    #[serde(default)]
     pub stream: bool,
+
+    /// Whether the News are related to a Prime Access
+    #[serde(default)]
+    pub prime_access: bool,
 
     /// The date the News were posted
     pub date: DateTime<Utc>,
 
-    /// When the event that is associated with the News begins
-    pub start_date: Option<DateTime<Utc>>,
+    /// The time when the News become active
+    pub activation: Option<DateTime<Utc>>,
 
-    /// When the event that is associated with the News ends
-    pub end_date: Option<DateTime<Utc>>,
+    /// The time when the News expire
+    pub expiry: Option<DateTime<Utc>>,
 
     /// The translations of the News message
     pub translations: HashMap<Language, String>,
@@ -47,10 +54,8 @@ pub struct News {
     pub link: String,
 
     /// Whether the News are mobile-only
+    #[serde(default)]
     pub mobile_only: bool,
-
-    /// The time when the News expire
-    pub expiry: Option<DateTime<Utc>>,
 }
 
 #[cfg(test)]
@@ -65,10 +70,11 @@ mod test_news {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/news.json")]
+        #[files("src/worldstate/models/fixtures/*/news.json")]
         #[mode = str]
-        news_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(news_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

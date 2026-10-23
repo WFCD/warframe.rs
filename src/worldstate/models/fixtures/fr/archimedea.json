@@ -1,0 +1,214 @@
+[
+    {
+        "id": "1d22f14af80ee805832b10b9be12b26b",
+        "activation": "2026-10-19T00:00:00.000Z",
+        "expiry": "2026-10-26T00:00:00.000Z",
+        "type": "C T_ L A B",
+        "typeKey": "C T_ L A B",
+        "missions": [
+            {
+                "faction": "Le Murmure",
+                "factionKey": "Man in the Wall",
+                "missionType": "Extermination",
+                "missionTypeKey": "Extermination",
+                "deviation": {
+                    "key": "FortifiedFoes",
+                    "name": "Sealed Armor",
+                    "description": "Enemies take 90% less damage from non-Weak Point hits."
+                },
+                "risks": [
+                    {
+                        "key": "AcceleratedEnemies",
+                        "name": "Bold Venture",
+                        "description": "Enemies deal -15% Damage and take +15% Damage but gain +15% Movement Speed, Attack Speed, and Fire Rate.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "EMPBlackHole",
+                        "name": "Alluring Arcocanids",
+                        "description": "As Rogue Arcocanids charge attacks, they pull Warframes towards them.",
+                        "isHard": true
+                    }
+                ]
+            },
+            {
+                "faction": "Le Murmure",
+                "factionKey": "Man in the Wall",
+                "missionType": "Survie",
+                "missionTypeKey": "Survival",
+                "deviation": {
+                    "key": "NecramechActivation",
+                    "name": "Necramech Influx",
+                    "description": "Necramechs appear with greater frequency."
+                },
+                "risks": [
+                    {
+                        "key": "Deflectors",
+                        "name": "Fortified Foes",
+                        "description": "Guardian Eximus units may be encountered, including Guardian Eximus Necramechs.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "Voidburst",
+                        "name": "Postmortal Surges",
+                        "description": "Slain enemies burts with Void energy.",
+                        "isHard": true
+                    }
+                ]
+            },
+            {
+                "faction": "Le Murmure",
+                "factionKey": "Man in the Wall",
+                "missionType": "Perturbation",
+                "missionTypeKey": "Disruption",
+                "deviation": {
+                    "key": "FragileNodes",
+                    "name": "Unified Purpose",
+                    "description": "Enemies can target and destroy Conduits."
+                },
+                "risks": [
+                    {
+                        "key": "Quicksand",
+                        "name": "Entanglement",
+                        "description": "Allies within 4m of slain enemies endure reduced Movement Speed and Parkour Velocity.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "AntiMaterialWeapons",
+                        "name": "Commanding Culverins",
+                        "description": "Rogue Culverins equip weapons that deal 5x Damage to Overguard and Necramechs.",
+                        "isHard": true
+                    }
+                ]
+            }
+        ],
+        "personalModifiers": [
+            {
+                "key": "NoPets",
+                "name": "No Pets",
+                "description": "[PH] No Pets Desc"
+            },
+            {
+                "key": "DullBlades",
+                "name": "Dull Blades",
+                "description": "-50% melee combo chance"
+            },
+            {
+                "key": "AntiGuard",
+                "name": "Dropped Guard",
+                "description": "Warframe and ally Overguard gain reduced by 75%."
+            },
+            {
+                "key": "ContactDamage",
+                "name": "Secondary Wounds",
+                "description": "Gain 1 Puncture Status Effect every time you take damage."
+            }
+        ]
+    },
+    {
+        "id": "ecf3f08083eae59ad7338351ba5f80c8",
+        "activation": "2026-10-19T00:00:00.000Z",
+        "expiry": "2026-10-26T00:00:00.000Z",
+        "type": "C T_ H E X",
+        "typeKey": "C T_ H E X",
+        "missions": [
+            {
+                "faction": "Scaldra",
+                "factionKey": "Scaldra",
+                "missionType": "Survie",
+                "missionTypeKey": "Survival",
+                "deviation": {
+                    "key": "TechrotConjunction",
+                    "name": "Pile-On",
+                    "description": "Techrot enemies attempt to melee attack Hell-Scrubbers, bursting on contact and increasing scrubber contamination by 25%."
+                },
+                "risks": [
+                    {
+                        "key": "InfectedTechrot",
+                        "name": "Corrupted Flesh",
+                        "description": "Techrot enemies are infused with Efervon and take damage over time. They explode when killed and leave behind deadly Efervon in their wake.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "PointBlank",
+                        "name": "Myopic Munitions",
+                        "description": "Enemies will only take damage if a player is within 15m of them.",
+                        "isHard": true
+                    }
+                ]
+            },
+            {
+                "faction": "Scaldra",
+                "factionKey": "Scaldra",
+                "missionType": "D\u00e9fense",
+                "missionTypeKey": "Defense",
+                "deviation": {
+                    "key": "ExplosiveEnergy",
+                    "name": "Miasmite Mash",
+                    "description": "Enemies drop Miasmites upon death that immediately rush Flare."
+                },
+                "risks": [
+                    {
+                        "key": "MiasmiteHive",
+                        "name": "Miasmite Swarm",
+                        "description": "Techrot Miasmites swarm out of the shadows throught the mission.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "ShieldedFoes",
+                        "name": "Bolstered Belligerents",
+                        "description": "All enemies have Overguard equal to 50% of their max health.",
+                        "isHard": true
+                    }
+                ]
+            },
+            {
+                "faction": "Scaldra",
+                "factionKey": "Scaldra",
+                "missionType": "Assassinat",
+                "missionTypeKey": "Assassination",
+                "deviation": {
+                    "key": "TankReinforcements",
+                    "name": "Reinforcements",
+                    "description": "Reinforcements will arrive during the fight."
+                },
+                "risks": [
+                    {
+                        "key": "HeavyWarfare",
+                        "name": "Heavy Warfare",
+                        "description": "Enemies take 95% less damage from non-heavy weapons. Enemies will drop heavy ammo packs and heavy weapon recall time reduced to 5s.",
+                        "isHard": false
+                    },
+                    {
+                        "key": "CompetitionSpillover",
+                        "name": "Competitive Streak",
+                        "description": "Random negative penalties from Amir and Aoi's \"Faceoff\" mode will be applied throughout the mission.",
+                        "isHard": true
+                    }
+                ]
+            }
+        ],
+        "personalModifiers": [
+            {
+                "key": "RangeDebuff",
+                "name": "Range Debuff",
+                "description": "[PH] Range Debuff Desc"
+            },
+            {
+                "key": "NoPets",
+                "name": "No Pets",
+                "description": "[PH] No Pets Desc"
+            },
+            {
+                "key": "AnemicShields",
+                "name": "Anemic Shields",
+                "description": "[PH] Anemic Shields Desc"
+            },
+            {
+                "key": "DullBlades",
+                "name": "Dull Blades",
+                "description": "-50% melee combo chance"
+            }
+        ]
+    }
+]

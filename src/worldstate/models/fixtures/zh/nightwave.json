@@ -1,0 +1,122 @@
+{
+    "id": "nightwave1804464000000",
+    "activation": "2026-08-12T15:30:00.000Z",
+    "expiry": "2027-03-08T00:00:00.000Z",
+    "season": 18,
+    "tag": "Radio Legion Intermission16 Syndicate",
+    "phase": 0,
+    "params": {},
+    "possibleChallenges": [],
+    "activeChallenges": [
+        {
+            "id": "1792540800000seasondailydeployairsupport",
+            "activation": "2026-10-18T00:00:00.000Z",
+            "expiry": "2026-10-21T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "\u5728\u4efb\u52a1\u4e2d\u90e8\u7f72\u4e00\u4e2a\u7a7a\u4e2d\u652f\u63f4\u547c\u53eb\u5668",
+            "title": "\u5929\u964d\u795e\u5175",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792627200000seasondailycollectcredits",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-22T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "\u62fe\u53d615,000\u73b0\u91d1",
+            "title": "\u50a8\u84c4\u8005",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792713600000seasondailykillenemieswithabilities",
+            "activation": "2026-10-20T00:00:00.000Z",
+            "expiry": "2026-10-23T00:00:00.000Z",
+            "isDaily": true,
+            "isElite": false,
+            "desc": "\u4f7f\u7528\u6280\u80fd\u64ca\u6bba150\u540d\u6575\u4eba",
+            "title": "\u529b\u91cf\u5c55\u73b0",
+            "reputation": 1000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentcompletemissions11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "\u5b8c\u6210\u4efb\u610f 15 \u9879\u4efb\u52a1",
+            "title": "\u4efb\u52a1\u5b8c\u6210 XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentkilleximus11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "\u51fb\u674030\u540d\u5353\u8d8a\u8005",
+            "title": "\u5353\u8d8a\u6b7c\u706d\u8005 XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklypermanentkillenemies11",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "\u51fb\u6740500\u540d\u654c\u4eba",
+            "title": "\u8fd9\u4e0d\u662f\u8b66\u544a\u5c04\u51fb XI",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklycompletekuva",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "\u5b8c\u62103\u4e2a\u8d64\u6bd2\u8679\u5438\u5668\u4efb\u52a1",
+            "title": "\u65e0\u9700\u60e7\u6015\u6b7b\u795e",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklysabotagecaches",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": false,
+            "desc": "\u57283\u9879\u7834\u574f\u4efb\u52a1\u4e2d\u627e\u5230\u6240\u6709\u50a8\u85cf\u7bb1",
+            "title": "\u7bb1\u5b50\u730e\u4eba",
+            "reputation": 4500,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklyhardgoingdown",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": true,
+            "desc": "[PH] Season Weekly Hard Going Down Desc",
+            "title": "Season Weekly Hard Going Down",
+            "reputation": 7000,
+            "isPermanent": false
+        },
+        {
+            "id": "1792972800000seasonweeklyhardcompletearchonhunt",
+            "activation": "2026-10-19T00:00:00.000Z",
+            "expiry": "2026-10-26T00:00:00.000Z",
+            "isDaily": false,
+            "isElite": true,
+            "desc": "\u5b8c\u6210\u4e00\u6b21\u6267\u5211\u5b98\u730e\u6740",
+            "title": "\u6267\u5211\u5b98\u730e\u6740",
+            "reputation": 7000,
+            "isPermanent": false
+        }
+    ]
+}

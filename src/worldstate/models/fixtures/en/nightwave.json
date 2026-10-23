@@ -1,0 +1,122 @@
+{
+  "id": "nightwave1804464000000",
+  "activation": "2026-08-12T15:30:00.000Z",
+  "expiry": "2027-03-08T00:00:00.000Z",
+  "season": 18,
+  "tag": "Radio Legion Intermission16 Syndicate",
+  "phase": 0,
+  "params": {},
+  "possibleChallenges": [],
+  "activeChallenges": [
+    {
+      "id": "1791158400000seasondailykillenemies",
+      "activation": "2026-10-02T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Kill 200 Enemies",
+      "title": "Warning Shot",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1791244800000seasondailykillenemieswithviral",
+      "activation": "2026-10-03T00:00:00.000Z",
+      "expiry": "2026-10-06T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Kill 150 Enemies with Viral Damage",
+      "title": "Go Viral",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1791331200000seasondailypickupenergy",
+      "activation": "2026-10-04T00:00:00.000Z",
+      "expiry": "2026-10-07T00:00:00.000Z",
+      "isDaily": true,
+      "isElite": false,
+      "desc": "Pick up 20 Energy Orbs",
+      "title": "Energizing",
+      "reputation": 1000,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklypermanentcompletemissions8",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Complete any 15 missions",
+      "title": "Mission Complete VIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklypermanentkilleximus8",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Kill 30 Eximus",
+      "title": "Eximus Eliminator VIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklypermanentkillenemies8",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Kill 500 Enemies",
+      "title": "Not a Warning Shot VIII",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklyopenlockers",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Open 30 Lockers",
+      "title": "Kleptomaniac",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklycatchrareplainsfish",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": false,
+      "desc": "Catch 6 Rare Fish in the Plains of Eidolon",
+      "title": "Earth Fisher",
+      "reputation": 4500,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklyhardterminated",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": true,
+      "desc": "Destroy 3 Necramech vault guardians",
+      "title": "Terminated",
+      "reputation": 7000,
+      "isPermanent": false
+    },
+    {
+      "id": "1791158400000seasonweeklyhardcompleteconquest",
+      "activation": "2026-09-28T00:00:00.000Z",
+      "expiry": "2026-10-05T00:00:00.000Z",
+      "isDaily": false,
+      "isElite": true,
+      "desc": "Complete a run of Deep Archimedea or Temporal Archimedea",
+      "title": "Voluntary Specimen",
+      "reputation": 7000,
+      "isPermanent": false
+    }
+  ]
+}

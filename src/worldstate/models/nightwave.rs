@@ -93,10 +93,11 @@ mod test_nightwave {
 
     #[rstest]
     fn test(
-        #[files("src/worldstate/models/fixtures/nightwave.json")]
+        #[files("src/worldstate/models/fixtures/*/nightwave.json")]
         #[mode = str]
-        nightwave_en: &str,
+        fixture: &str,
     ) {
-        from_str::<R>(nightwave_en).unwrap();
+        let parsed = from_str::<R>(fixture).unwrap();
+        println!("{parsed:#?}");
     }
 }

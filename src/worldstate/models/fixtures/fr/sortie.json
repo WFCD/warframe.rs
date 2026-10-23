@@ -1,0 +1,36 @@
+{
+    "id": "6ad63afece377242b4699967",
+    "activation": "2026-10-19T16:00:00.000Z",
+    "expiry": "2026-10-20T16:00:00.000Z",
+    "rewardPool": "Sortie Rewards",
+    "variants": [
+        {
+            "missionType": "Interception",
+            "missionTypeKey": "Interception",
+            "modifier": "Am\u00e9lioration physique des ennemis: Impact",
+            "modifierDescription": "Les ennemis peuvent infliger des d\u00e9g\u00e2ts d'impact accrus. Les d\u00e9g\u00e2ts de type finisher ne peuvent \u00eatre contr\u00e9.",
+            "node": "Enceladus (Saturne)",
+            "nodeKey": "Enceladus (Saturn)"
+        },
+        {
+            "missionType": "Extermination",
+            "missionTypeKey": "Extermination",
+            "modifier": "Am\u00e9lioration \u00e9l\u00e9mentaire des ennemis: Glace",
+            "modifierDescription": "Les ennemis infligent des dommages de Glace suppl\u00e9mentaires et poss\u00e8dent une immunit\u00e9 \u00e0 ce type de dommage.",
+            "node": "Ara (Mars)",
+            "nodeKey": "Ara (Mars)"
+        },
+        {
+            "missionType": "Assassinat",
+            "missionTypeKey": "Assassination",
+            "modifier": "Forteresse Eximus",
+            "modifierDescription": "Les unit\u00e9s Eximus ont plus de chances d'appara\u00eetre dans cette mission. Certaines de leurs auras se cumulent.",
+            "node": "Saxis (\u00c9ris)",
+            "nodeKey": "Saxis (Eris)"
+        }
+    ],
+    "missions": [],
+    "boss": "Phorid",
+    "faction": "Infest\u00e9",
+    "factionKey": "Infestation"
+}

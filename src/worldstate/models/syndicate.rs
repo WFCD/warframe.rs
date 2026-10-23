@@ -1,65 +1,41 @@
 #![allow(clippy::doc_markdown)]
-use warframe_macros::model;
 
-/// A Syndicate in Warframe
-#[model]
-#[non_exhaustive]
+use super::faction::SyndicateFaction;
+
+/// A Syndicate in Warframe, with fallback for unrecognized syndicate keys
+#[derive(
+    Debug,
+    PartialEq,
+    PartialOrd,
+    Clone,
+    Eq,
+    Hash,
+    derive_more::Display,
+    derive_more::From,
+    derive_more::TryInto,
+)]
 pub enum Syndicate {
-    /// ArbitersOfHexis
-    #[serde(rename = "Arbiters of Hexis")]
-    ArbitersOfHexis,
-    /// CephalonSuda
-    #[serde(rename = "Cephalon Suda")]
-    CephalonSuda,
-    /// Assassins
-    #[serde(rename = "Assassins")]
-    Assassins,
-    /// Nightwave
-    #[serde(rename = "Nightwave")]
-    Nightwave,
-    /// Ostrons
-    #[serde(rename = "Ostrons")]
-    Ostrons,
-    /// VoxSolaris
-    #[serde(rename = "Vox Solaris")]
-    VoxSolaris,
-    /// SolarisUnited
-    #[serde(rename = "Solaris United")]
-    SolarisUnited,
-    /// PerrinSequence
-    #[serde(rename = "Perrin Sequence")]
-    PerrinSequence,
-    /// SteelMeridian
-    #[serde(rename = "Steel Meridian")]
-    SteelMeridian,
-    /// RedVeil
-    #[serde(rename = "Red Veil")]
-    RedVeil,
-    /// NewLoka
-    #[serde(rename = "New Loka")]
-    NewLoka,
-    /// Holdfasts
-    #[serde(rename = "The Holdfasts")]
-    Holdfasts,
-    /// Entrati
-    Entrati,
-    /// Cavia
-    #[serde(rename = "EntratiLabSyndicate", alias = "Cavia")]
-    Cavia,
-    /// VentKids
-    #[serde(rename = "Operations Syndicate")]
-    VentKids,
-    /// KahlsGarrison
-    #[serde(rename = "Kahl's Garrison")]
-    KahlsGarrison,
-    /// Necraloid
-    Necraloid,
-    /// The Hex
-    #[serde(rename = "HexSyndicate")]
-    TheHex,
+    /// A known syndicate
+    Known(SyndicateFaction),
+    /// An unrecognized syndicate
+    Unknown(String),
+}
 
-    /// Other Syndicates, look at syndicate itself.
-    /// A bit inconvenient, but necessary for completeness.
-    #[serde(other)]
-    Other,
+impl<'de> serde::Deserialize<'de> for Syndicate {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let value =
+            serde_json::Value::deserialize(deserializer).map_err(serde::de::Error::custom)?;
+
+        if let Ok(v) = SyndicateFaction::deserialize(&value) {
+            return Ok(Syndicate::Known(v));
+        }
+
+        match value.as_str() {
+            Some(s) => Ok(Syndicate::Unknown(s.to_owned())),
+            None => Ok(Syndicate::Unknown(value.to_string())),
+        }
+    }
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "6abf0212d157647f5e554686",
+    "activation": "2026-10-02T01:00:02.395Z",
+    "expiry": "2026-10-09T01:00:02.395Z",
+    "amount": 6,
+    "mode": "Any Mode",
+    "category": "week",
+    "categoryKey": "week",
+    "description": "Win 6 matches of any Game Type",
+    "title": "Match Won",
+    "standing": 0,
+    "daily": false,
+    "rootChallenge": false
+  },
+  {
+    "id": "6abf0212d157647f5e554687",
+    "activation": "2026-10-02T01:00:02.395Z",
+    "expiry": "2026-10-09T01:00:02.395Z",
+    "amount": 20,
+    "mode": "Any Mode",
+    "category": "week",
+    "categoryKey": "week",
+    "description": "Complete 20 matches of any Game Type",
+    "title": "Match Complete",
+    "standing": 0,
+    "daily": false,
+    "rootChallenge": false
+  }
+]

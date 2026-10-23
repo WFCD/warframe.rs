@@ -1,0 +1,28 @@
+{
+  "id": "duviriCycleanger1791100800000",
+  "activation": "2026-10-04T06:00:00.000Z",
+  "expiry": "2026-10-04T08:00:00.000Z",
+  "state": "anger",
+  "choices": [
+    {
+      "category": "normal",
+      "categoryKey": "EXC_NORMAL",
+      "choices": [
+        "Ash",
+        "Frost",
+        "Nyx"
+      ]
+    },
+    {
+      "category": "hard",
+      "categoryKey": "EXC_HARD",
+      "choices": [
+        "Torid",
+        "DualToxocyst",
+        "DualIchor",
+        "Miter",
+        "Atomos"
+      ]
+    }
+  ]
+}

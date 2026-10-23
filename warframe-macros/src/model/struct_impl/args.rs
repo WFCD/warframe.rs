@@ -38,12 +38,7 @@ fn get_endpoint_impl(struct_name: &Ident, endpoint: &LitStr) -> syn::Result<Toke
     Ok(quote! {
         impl crate::worldstate::models::base::Endpoint for #struct_name {
             fn endpoint(base_url: &str, language: crate::worldstate::language::Language) -> String {
-                format!(
-                    "{}/pc{}/?language={}",
-                    base_url,
-                    #endpoint_value,
-                    language
-                )
+                format!("{base_url}/{language}{}", #endpoint_value)
             }
         }
     })

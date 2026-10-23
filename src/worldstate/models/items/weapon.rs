@@ -354,11 +354,11 @@ mod test_weapon {
 
     #[rstest]
     fn test_weapon_query_primary(
-        #[files("src/worldstate/models/fixtures/weapon_ranged.json")]
+        #[files("src/worldstate/models/fixtures/*/weapon_ranged.json")]
         #[mode = str]
-        ranged_weapon_en: &str,
+        fixture: &str,
     ) -> Result<(), Box<dyn std::error::Error>> {
-        let weapon = from_str::<Weapon>(ranged_weapon_en)?;
+        let weapon = from_str::<Weapon>(fixture)?;
 
         assert!(matches!(weapon, Weapon::Rifle(_)));
 
@@ -367,11 +367,11 @@ mod test_weapon {
 
     #[rstest]
     fn test_weapon_query_melee(
-        #[files("src/worldstate/models/fixtures/weapon_melee.json")]
+        #[files("src/worldstate/models/fixtures/*/weapon_melee.json")]
         #[mode = str]
-        melee_weapon_en: &str,
+        fixture: &str,
     ) -> Result<(), Box<dyn std::error::Error>> {
-        let weapon = from_str::<Weapon>(melee_weapon_en)?;
+        let weapon = from_str::<Weapon>(fixture)?;
 
         assert!(matches!(weapon, Weapon::Melee(_)));
 

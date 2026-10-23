@@ -38,24 +38,36 @@ pub mod queryable {
     pub use super::models::{
         alert::Alert,
         arbitration::Arbitration,
+        archimedea::Archimedea,
         archon_hunt::ArchonHunt,
+        calendar::Calendar,
         cambion_drift::CambionDrift,
         cetus::Cetus,
+        clan_weekly_initiative::ClanWeeklyInitiative,
+        conclave_challenge::ConclaveChallenge,
         construction_progress::ConstructionProgress,
         daily_deal::DailyDeal,
-        deep_archimedea::DeepArchimedea,
+        descendia::Descendia,
+        duviri_cycle::DuviriCycle,
+        earth_cycle::EarthCycle,
         event::Event,
+        faceoff_bonus::FaceoffBonus,
         fissure::Fissure,
         flash_sale::FlashSale,
         global_upgrades::GlobalUpgrade,
         invasion::Invasion,
+        kinepage::Kinepage,
         news::News,
         nightwave::Nightwave,
         orb_vallis::OrbVallis,
+        sentient_outpost::SentientOutpost,
+        simaris::Simaris,
         sortie::Sortie,
         steel_path::SteelPath,
         syndicate::Syndicate,
+        vault_trader::VaultTrader,
         void_trader::VoidTrader,
+        zariman_cycle::ZarimanCycle,
     };
 }
 
@@ -66,6 +78,12 @@ pub use error::{
 };
 pub use language::Language;
 pub use models::{
+    archimedea::{
+        ArchimedeaMission,
+        ArchimedeaModifier,
+        ArchimedeaRisk,
+        ArchimedeaType,
+    },
     archon_hunt::ArchonHuntMission,
     base::{
         Endpoint,
@@ -73,19 +91,38 @@ pub use models::{
         Queryable,
         TimedEvent,
     },
+    calendar::{
+        CalendarChallenge,
+        CalendarDay,
+        CalendarEvent,
+        CalendarUpgrade,
+    },
     cambion_drift::CambionDriftState,
     cetus::CetusState,
+    clan_weekly_initiative::ClanWeeklyReward,
+    conclave_challenge::ConclaveChallengeCategory,
     damage_type::{
         CombinedElementalDamage,
         DamageType,
         ElementalDamage,
         PhysicalDamage,
     },
-    deep_archimedea::{
-        DeepArchimedeaMission,
-        DeepArchimedeaModifier,
+    descendia::{
+        DescendiaChallenge,
+        DescendiaNamedItem,
+        DescentChallengeType,
+        DescentMissionType,
     },
-    faction::Faction,
+    duviri_cycle::{
+        DuviriChoice,
+        DuviriChoiceCategory,
+    },
+    faction::{
+        EnemyFaction,
+        Faction,
+        SyndicateFaction,
+        TennoFaction,
+    },
     fissure::Tier,
     invasion::InvasionMember,
     items,
@@ -98,8 +135,12 @@ pub use models::{
     orb_vallis::OrbVallisState,
     reward::Reward,
     reward_type::RewardType,
+    sentient_outpost::SentientOutpostMission,
     sortie::SortieMission,
-    steel_path::SteelPathShopItem,
+    steel_path::{
+        SteelPathIncursion,
+        SteelPathShopItem,
+    },
     syndicate_mission::{
         SyndicateJob,
         SyndicateMission,
