@@ -16,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
          fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: lts/*
 
@@ -49,7 +49,7 @@ jobs:
       - commitlint
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install semantic-release-cargo
         if: needs.get-next-version.outputs.new-release-published == 'true'
         uses: EricCrosson/install-github-release-binary@v2
@@ -74,14 +74,17 @@ jobs:
       - name: Cargo build with all features
         run: cargo build --all-features
 
+      - name: Cargo test
+        run: cargo test
+
       - name: Semantic Release
         id: release
-        uses: cycjimmy/semantic-release-action@v3.2.0
+        uses: cycjimmy/semantic-release-action@v8.1.4
         if: needs.get-next-version.outputs.new-release-published == 'true'
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
         with:
-          semantic_version: 18
+          semantic_version: 20
           extra_plugins: |
             @semantic-release/git
             @semantic-release/changelog
